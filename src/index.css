@@ -1,0 +1,59 @@
+/*
+https://www.figma.com/design/izE8HcSvsNFm3AVFErXWyP/Fintrack
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+*,
+html,
+body,
+:root,
+:after,
+:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  width: 100%;
+  font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  line-height: 1.5;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --dark: #141414;
+  --secondary: #7f7f7f;
+  --light: white;
+  --creme: #e8e4da;
+  --textColor: #141414;
+  --primary: lightgreen;
+  --topH: 22%;
+}
+
+input::placeholder,
+:after,
+:before {
+  background-color: transparent;
+  border: none;
+  color: var(--dark);
+}
+
+body {
+  color: var(--dark);
+  background-color: #1b1b1b;
+}
+
+a {
+  text-decoration: none;
+}
+
+[class*='icon'] {
+  cursor: pointer;
+}
