@@ -52,12 +52,12 @@ const ExpenseIncome = ({ stateName }: ExpenseIncomeTypeProp) => {
         <header className='header__container'>
           <div className='header__content'>
             <div className='header__logoAndIcon'>
-              <div className='logo__container'>
-                <Logo className='logo' />
-              </div>
-              <div className='menuIcon__container'>
-                <MenuIcon className='menuIcon' />
-              </div>
+              {/* <div className='logo__container'> */}
+                <Logo />
+              {/* </div> */}
+              {/* <div className='menuIcon__container'> */}
+                <MenuIcon />
+              {/* </div> */}
             </div>
 
             <div className='screen'>

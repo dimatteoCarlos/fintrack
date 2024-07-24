@@ -1,21 +1,10 @@
-*,
-html,
-body,
-:root {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0 auto;
-  font-size: 16px;
-  width: 100%;
-  font-family: 'Outfit';
-}
+
 :root {
   --dark: #141414;
   --secondary: #7f7f7f;
   --light: white;
   --creme: #e8e4da;
   --textColor: white;
-
   --textColor: #141414;
   --primary: lightgreen;
 }
@@ -84,11 +73,12 @@ body {
 .header__logoAndIcon {
   display: flex;
   justify-content: space-between;
+  /* justify-content: end; */
   align-items: center;
   text-align: center;
   color: #141414;
-  padding-top: 1.25rem;
-  padding-bottom: 1.5em;
+  /* padding-top: 1.25rem;
+  padding-bottom: 1.5em; */
   /* border: 5px solid var(--primary1, red); */
 }
 .logo__container,

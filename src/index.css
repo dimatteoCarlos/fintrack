@@ -4,8 +4,6 @@ https://www.figma.com/design/izE8HcSvsNFm3AVFErXWyP/Fintrack
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-*,
-html,
 body,
 :root,
 :after,
@@ -14,7 +12,6 @@ body,
   margin: 0;
   padding: 0;
   font-size: 16px;
-  width: 100%;
   font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -42,7 +39,8 @@ input::placeholder,
 :before {
   background-color: transparent;
   border: none;
-  color: var(--dark);
+  padding: 0;
+  margin: 0;
 }
 
 body {
@@ -52,6 +50,24 @@ body {
 
 a {
   text-decoration: none;
+}
+input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  border: outline;
+}
+* {
+  font-family: inherit;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
 }
 
 [class*='icon'] {

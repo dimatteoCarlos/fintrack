@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 
-.page__container {
+.pocket__page__container {
   min-width: 22.5rem;
   min-height: 50rem;
 
@@ -19,20 +19,27 @@
   /* border: 5px solid var(--primary); */
 }
 
-.page__content {
+.pocket__page__content {
   width: 85%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding-bottom: 1rem;
   /* border: 5px solid var(--primary); */
-  /* gap: 1rem; */
 }
 
-.main__title--container {
+.pocket__main__title--container {
   display: flex;
   align-items: center;
-    /* border: 5px solid var(--primary); */
+  padding-bottom: 1.5rem;
+  /* border: 5px solid var(--primary); */
+}
+
+.container--PocketName {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  /* border: 5px solid var(--primary); */
 }
 
 .form__title,
@@ -61,49 +68,61 @@
   text-align-last: left;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
-  /* border: 5px solid var(--primary); */
+  /* width: 100%; */
 }
 
 .bullet--input {
   border: 1px solid var(--creme);
-  height: 2.625em;
+  height: 2.625rem;
   border-radius: 1rem;
   color: var(--creme);
-  padding: 0;
+  padding: 0%;
+  width: 100%;
   /* border: 5px solid var(--primary); */
 }
 
-.bullet--input::placeholder {
+.bullet--input::placeholder,
+::placeholder {
   color: var(--creme);
   font-size: 0.875rem;
   padding-left: 0.5em;
   font-weight: 500;
 }
-
-/*categoryNature*/
-.categoryNature__tiles {
-  gap: 0.5rem 0.25rem;
+/*target amount */
+.targetAmount.bullet--input {
   display: flex;
-  justify-content: start;
-  padding-top: 0.5rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.form__title--categoryNature {
-  text-align-last: left;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0rem 0 0rem 0.25rem;
+  height: 4.25rem;
+  width: 100%;
+  /* background-color: red; */
 }
 
-.categoryNature__btn {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 0.75rem;
-  border: 2px solid #f7f7f7;
-  color: #f7f7f7;
-  padding: 0.5rem 0.375rem;
-  min-width: 5.75rem;
-  height: 2.5rem;
+.input__targetAmount {
+  text-align-last: left;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+}
+
+.input__targetAmount::placeholder {
+  color: var(--creme);
+  background-color: transparent;
+  color: #5b5b5b;
+  /* width: max-content; Why is LIMITED?*/
+  padding: 0;
+}
+
+.date.input--bullet .bullet--input::placeholder {
+  display:flex;
+  justify-content: space-between;
+  
 }
 
 /*------save btn-----------*/
@@ -123,3 +142,13 @@
   /* font-weight: 600; */
   font-weight: bold;
 }
+
+/*
+  {
+    labelText: 'Desired Date',
+    className: 'label--text',
+    content: 'MM/DD/YYYY',
+    icon: <ArrowDawnSvg />,
+  },
+}
+*/

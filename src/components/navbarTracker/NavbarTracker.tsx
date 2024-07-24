@@ -49,18 +49,18 @@ const NavbarTracker = () =>
               'control__container'
             )}
           >
-            {/* <Add
+            <Add
               className='addIcon control--icon'
               onClick={activateTrackerControl}
               id={'tracker'}
-            /> */}
-            <img
+            />
+            {/* <img
               src='/tracker.png'
               alt=''
               className='addIcon control--icon'
               onClick={activateTrackerControl}
               id={'tracker'}
-            />
+            /> */}
             <div id={'tracker-label'} className='control--label'>
               {'tracker'}
             </div>

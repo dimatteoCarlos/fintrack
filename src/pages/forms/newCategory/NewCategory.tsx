@@ -1,9 +1,10 @@
-import LeftArrowSvg from '../../../../assets/LeftArrowSvg.svg';
-// import LeftArrow from '../../../../assets/LeftArrowSvg.tsx';
-import TopWhiteSpace from '../../../../components/topWhiteSpace/TopWhiteSpace.tsx';
-import PlusSignBtn from './PlusSignBtn.tsx';
-import { PlusSignIcon } from './PlusSignIcon.tsx';
+import React from 'react';
+import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
+
+import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
+import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import './newCategoryForm.css';
+import { EventHandler } from 'react';
 const formTitle = 'New Category';
 
 export const newCategoryFormLabels: { [key: string]: string | JSX.Element }[] =
@@ -18,7 +19,7 @@ export const newCategoryFormLabels: { [key: string]: string | JSX.Element }[] =
       className: 'label--text',
       content: 'Category Name',
     },
-    { labelText: '', className: 'iconContent', content: <PlusSignIcon /> },
+    { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
     { labelText: 'Budget', className: 'label--text', content: 'Amount' },
   ];
 
@@ -42,6 +43,16 @@ const NewCategory = () => {
     console.log('crumb');
   }
 
+  function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    console.log('addHandler');
+  }
+
+  function categoryNatureHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log('categoryNatureHandler');
+    e.preventDefault();
+  }
+
   return (
     <section className='page__container'>
       <TopWhiteSpace bgc={'dark'} />
@@ -49,7 +60,10 @@ const NewCategory = () => {
       <div className='page__content'>
         <form action='submit' className='form__box'>
           <div className='main__title--container'>
-            <LeftArrowSvg className='iconLeftArrow' />
+            <div className='iconLeftArrow'>
+              <LeftArrowSvg />
+            </div>
+
             <div className='form__title'>{formTitle}</div>
           </div>
 
@@ -57,18 +71,23 @@ const NewCategory = () => {
             {newCategoryFormLabels.map((item, indx) => {
               const { labelText, content, className } = item;
 
+              // console.log(className, crypto.randomUUID(), indx);
+
               return (
-                <>
-                  {/* {className == 'iconContent' && <PlusSignBtn />} */}
+                <React.Fragment
+                  key={`${className}-${crypto.randomUUID()}-${indx}`}
+                >
+                  {className == 'iconContent' && (
+                    <button className={'bullet--input'} onClick={addHandler}>
+                      <PlusSignSvg />
+                    </button>
+                  )}
 
                   {className !== 'iconContent' && (
-                    <div
-                      className='input--bullet'
-                      key={`${labelText}-${crypto.randomUUID()}`}
-                    >
+                    <div className='input--bullet'>
                       <label className='label form__title'>{labelText}</label>
+
                       <input
-                        key={`input-${labelText}-${crypto.randomUUID()}`}
                         type='text'
                         className={`bullet bullet--input`}
                         placeholder={`${content}`}
@@ -76,9 +95,39 @@ const NewCategory = () => {
                       />
                     </div>
                   )}
-                </>
+                </React.Fragment>
               );
             })}
+          </div>
+
+          <div className='container--categoryNature'>
+            <div className='form__title form__title--categoryNature'>
+              {natureTitle}
+            </div>
+            <div className='categoryNature__tiles'>
+              {natureLabels.map((label, indx) => {
+                return (
+                  <button
+                    className='categoryNature__btn'
+                    onClick={categoryNatureHandler}
+                    key={`${indx}-tile`}
+                    id={`${label}`}
+                  >
+                    {label.labelText}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className='btn__container'>
+            <button
+              type='submit'
+              className='submit__btn'
+              // onClick={categoryNatureHandler}
+              id={'save'}
+            >
+              {`${'Save'}`}
+            </button>
           </div>
         </form>
       </div>
