@@ -7,7 +7,8 @@ https://www.figma.com/design/izE8HcSvsNFm3AVFErXWyP/Fintrack
 body,
 :root,
 :after,
-:before {
+:before,
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -17,8 +18,9 @@ body,
 
 :root {
   line-height: 1.5;
+  font-synthesis: weight;
   color-scheme: light dark;
-  font-synthesis: none;
+
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,14 +46,14 @@ input::placeholder,
 }
 
 body {
-  color: var(--dark);
   background-color: #1b1b1b;
 }
 
 a {
   text-decoration: none;
 }
-input {
+input,
+span {
   padding: 0;
   margin: 0;
   border: none;

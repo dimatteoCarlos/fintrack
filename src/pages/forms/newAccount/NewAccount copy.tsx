@@ -1,40 +1,48 @@
-import React from 'react';
-import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
+import React, { EventHandler } from 'react';
+// import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import ArrowDawnSvg from '../../../assets/ArrowDownSvg.svg';
-import './newPocketForm.css';
-import { EventHandler } from 'react';
-const formTitle = 'New Pocket';
+import './newAccountForm.css';
+import FormTitle from '../../../components/formComponents/FormTitle.tsx';
+import FormSelectionBullet from '../../../components/formComponents/FormSelectionBullet.tsx';
+import FormInputBullet from '../../../components/formComponents/FormInputBullet.tsx';
+import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-export const newPocketFormLabels: { [key: string]: string | JSX.Element | number }[] = [
+export const newAccountFormLabels: { [key: string]: string | JSX.Element }[] = [
   {
-    labelText: 'Name',
+    labelText: 'Account Name',
     className: 'label--text',
-    content: 'Purpose/name',
+    content: 'Name',
     icon: '',
   },
-  {
-    labelText: 'Note',
-    className: 'label--text',
-    content: 'Description',
-    icon: '',
-  },
-  // { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
-  // {
-  //   labelText: 'Target Amount',
-  //   className: 'label--text',
-  //   content: 'Target',
-  //   placeholder: 'Saved',
-  //   icon: '',
-  // },
 
   {
-    labelText: 'Desired Date',
+    labelText: 'Account Type',
+    className: 'label--text',
+    content: 'Type',
+    icon: <FormSelectionBullet />,
+  },
+
+  {
+    labelText: 'Starting Point',
     className: 'label--text',
     content: 'MM/DD/YYYY',
     icon: <ArrowDawnSvg />,
   },
+
+  {
+    labelText: 'Value',
+    className: 'label--text',
+    content: '0,00',
+    icon: '',
+  },
+];
+
+const typesOptions = [
+  { option: 'option1' },
+  { option: 'option2' },
+  { option: 'option3 is very long' },
 ];
 
 const targetAmount = {
@@ -45,7 +53,7 @@ const targetAmount = {
   icon: '',
 };
 
-const NewPocket = () => {
+const NewAccount = () => {
   function inputHandler() {
     console.log('input');
   }
@@ -54,22 +62,21 @@ const NewPocket = () => {
     console.log('crumb');
   }
 
+  function onSubmitHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log('submit btn clicked');
+    e.preventDefault();
+  }
+
   return (
-    <section className='pocket__page__container'>
+    <section className='account__page__container'>
       <TopWhiteSpace bgc={'dark'} />
 
-      <div className='pocket__page__content'>
+      <div className='account__page__content'>
         <form action='submit' className='form__box'>
-          <div className='pocket__main__title--container'>
-            <div className='iconLeftArrow'>
-              <LeftArrowSvg />
-            </div>
+          <FormTitle formTitle={'New Account'} />
 
-            <div className='form__title'>{formTitle}</div>
-          </div>
-
-          <div className='container--PocketName'>
-            {newPocketFormLabels.map((item, indx) => {
+          <div className='container--accountName'>
+            {newAccountFormLabels.map((item, indx) => {
               const { labelText, content, className, icon } = item;
 
               // console.log(className, crypto.randomUUID(), indx);
@@ -78,28 +85,26 @@ const NewPocket = () => {
                 <React.Fragment
                   key={`${className}-${crypto.randomUUID()}-${indx}`}
                 >
-                  {/* {labelText == 'Target Amount' && (
-                    <button className={'bullet--input'} onClick={addHandler}>
-                      <PlusSignSvg />
-                    </button>
-                  )} */}
-
-                  {labelText !== 'Target Amount' && (
-                    <div className='input--bullet'>
-                      <label className='label form__title'>{labelText}</label>
-
-                      <input
-                        type='text'
-                        className={`bullet bullet--input`}
-                        placeholder={`${content}`}
-                        onChange={inputHandler}
+                  {true && (
+                    <>
+                      <FormInputBullet
+                        labelText={labelText}
+                        content={content}
+                        inputHandler={inputHandler}
                       />
-                    </div>
+                      <FormSelectionBullet
+                        labelText={labelText}
+                        content={content}
+                        inputHandler={inputHandler}
+                        options={typesOptions}
+                      />
+                    </>
                   )}
                 </React.Fragment>
               );
             })}
 
+            {/* 
             <div className='input--bullet'>
               <label className='label form__title'>
                 {targetAmount.labelText}
@@ -125,18 +130,11 @@ const NewPocket = () => {
                   onChange={inputHandler}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className='btn__container'>
-            <button
-              type='submit'
-              className='submit__btn'
-              // onClick={PocketNatureHandler}
-              id={'save'}
-            >
-              {`${'Save'}`}
-            </button>
+            <FormSubmitBtn onClickHandler={onSubmitHandler} btnTitle={'Save'} />
           </div>
         </form>
       </div>
@@ -144,4 +142,4 @@ const NewPocket = () => {
   );
 };
 
-export default NewPocket;
+export default NewAccount;

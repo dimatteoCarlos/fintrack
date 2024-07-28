@@ -1,13 +1,12 @@
 :root {
-  --topWsH: 2.75rem;
+  --topSpaceHeight: 2.75rem;
 }
 
 .top--whiteSpace {
-  /* background-color: var(--light); */
   width: 100%;
-  height: var(--topWsH);
-
+  height: var(--topSpaceHeight);
   border-bottom: 0.5px solid var(--dark);
-  /* border: 1px solid yellow; */
 }
+
+
 

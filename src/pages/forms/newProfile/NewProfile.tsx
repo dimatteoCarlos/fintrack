@@ -1,6 +1,5 @@
 import React from 'react';
 import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
-
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import ArrowDawnSvg from '../../../assets/ArrowDownSvg.svg';
 import './newProfileForm.css';

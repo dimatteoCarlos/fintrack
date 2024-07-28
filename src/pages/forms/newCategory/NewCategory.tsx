@@ -4,10 +4,9 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import './newCategoryForm.css';
-import { EventHandler } from 'react';
 const formTitle = 'New Category';
 
-export const newCategoryFormLabels: { [key: string]: string | JSX.Element }[] =
+export const newCategoryFormLabels: { [key: string]: string | JSX.Element | number}[] =
   [
     {
       labelText: 'Category Name',

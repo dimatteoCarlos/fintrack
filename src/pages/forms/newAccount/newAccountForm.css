@@ -1,11 +1,13 @@
-[class*='icon'] {
+/* [class*='icon'] {
   cursor: pointer;
-}
+} */
 
-.profile__page__container {
+.account__page__container {
   min-width: 22.5rem;
-  padding-bottom: 1rem;
+  min-height: 50rem;
+
   width: 33.3%;
+  /* height: 48rem; */
 
   margin: 0 auto;
   display: flex;
@@ -17,7 +19,7 @@
   /* border: 5px solid var(--primary); */
 }
 
-.profile__page__content {
+.account__page__content {
   width: 85%;
   display: flex;
   flex-direction: column;
@@ -25,14 +27,14 @@
   /* border: 5px solid var(--primary); */
 }
 
-.profile__main__title--container {
+.account__main__title--container {
   display: flex;
   align-items: center;
   padding-bottom: 1.5rem;
   /* border: 5px solid var(--primary); */
 }
 
-.container--profileName {
+.container--accountName {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -40,18 +42,17 @@
   /* border: 5px solid var(--primary); */
 }
 
-.form__title,
+/* .form__title,
 .labelText {
   color: var(--light);
   font-size: 1.25rem;
   text-align: center;
   width: 100%;
-  /* border: 5px solid var(--primary); */
-}
+} */
 
-.iconLeftArrow {
+/* .iconLeftArrow {
   height: 1.25rem;
-}
+} */
 
 .container--categoryName {
   display: flex;
@@ -62,30 +63,6 @@
   /* border: 5px solid var(--primary); */
 }
 
-.input--bullet {
-  text-align-last: left;
-  display: flex;
-  flex-direction: column;
-  /* width: 100%; */
-}
-
-.bullet--input {
-  border: 1px solid var(--creme);
-  height: 2.625rem;
-  border-radius: 1rem;
-  color: var(--creme);
-  padding: 0%;
-  width: 100%;
-  /* border: 5px solid var(--primary); */
-}
-
-.bullet--input::placeholder,
-::placeholder {
-  color: var(--creme);
-  font-size: 0.875rem;
-  padding-left: 0.5em;
-  font-weight: 500;
-}
 /*target amount */
 .targetAmount.bullet--input {
   display: flex;
@@ -118,9 +95,8 @@
 }
 
 .date.input--bullet .bullet--input::placeholder {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  
 }
 
 /*------save btn-----------*/
@@ -128,18 +104,18 @@
   padding-top: 2.5rem;
 }
 
-.submit__btn {
+/* .submit__btn {
   height: 3.125rem;
   width: 100%;
   color: var(--dark);
   background-color: var(--creme);
   border-radius: 0.75em;
-  /* font-size: 0.875rem; */
+  font-size: 0.875rem;
   font-size: 1rem;
   text-align: center;
-  /* font-weight: 600; */
+  font-weight: 600;
   font-weight: bold;
-}
+} */
 
 /*
   {

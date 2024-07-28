@@ -1,0 +1,52 @@
+
+
+
+
+
+
+.trackerStateButton__container {
+  display: flex;
+  flex-direction: column;
+  /* border: none;
+  outline: none; */
+  align-items: center;
+  width: fit-content;
+  /* background-color: green; */
+}
+
+.trackerStateIconButton {
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2.5px;
+  height: 3.575rem;
+  width: 3.575rem;
+
+  /* border: 2px solid var(--dark); */
+  /* border: 2px solid yellow; */
+  background-color: var(--dark);
+  cursor: pointer;
+
+  /* background-color: green; */
+}
+
+.trackerStateButton:focus,
+.trackerStateButton:active,
+.trackerStateButton.active,
+.trackerStateButton:not(.active, :active):hover {
+  border: 2px solid var(--creme); /*no entiendo porque se muevo el boton*/
+  border-color:var(--creme);
+  padding: 0;
+  border-radius: 0.75rem;
+}
+
+.trackerStateButton__state--title {
+  font-size: 0.625rem;
+  color: #f7f7f7;
+  text-transform: capitalize;
+  text-align: center;
+  margin-top: 0.25em;
+}
