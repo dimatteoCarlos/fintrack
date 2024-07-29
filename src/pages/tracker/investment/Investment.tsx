@@ -3,7 +3,11 @@ import React from 'react'
 function Investment() {
   return (
     <>
-      Investment
+      <div className="expense"
+    style={{color:'yellow'}}
+    >
+      INVESTMENT
+    </div>
     </>
   )
 }

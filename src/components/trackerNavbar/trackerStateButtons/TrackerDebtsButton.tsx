@@ -1,21 +1,20 @@
-import TrackerStateButton from './TrackerStateButton.tsx';
 import DebtsSvg from '../../../assets/trackerNavbarSvg/DebtsSvg.svg';
-import { useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function TrackerDebtsButton() {
-
-
   return (
     <>
       <div className='trackerStateButton__container'>
-        <div className={`trackerStateButton `}>
-        <TrackerStateButton>
+        <NavLink
+          to={'/tracker/debts'}
+          className={`flx-col-center trackerStateIconButton  ${(isActive: {
+            isActive: boolean;
+          }) => (isActive ? 'active' : '')}`}
+        >
           <DebtsSvg />
-        </TrackerStateButton>
-        </div>
+        </NavLink>
         <div className='trackerStateButton__state--title'>{'Debts'}</div>
       </div>
-  
     </>
   );
 }

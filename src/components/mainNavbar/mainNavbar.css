@@ -29,7 +29,7 @@
   background-color: var(--creme);
 
   color: var(--dark);
-  transition-duration: 2s;
+  /* transition-duration: 0.5s; */
 }
 
 .mainNavbarButton .button--label {

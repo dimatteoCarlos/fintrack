@@ -1,12 +1,7 @@
 import Header from '../../components/header/Header';
-
+import { Outlet } from 'react-router-dom';
 import MainNavbar from '../../components/mainNavbar/MainNavbar.tsx';
 
-export type GlobalStatesType = {
-  availableBudget: number;
-  enteredCurrency: string;
-  selectedCountry: string;
-};
 function Layout() {
   //-------------------------------
 
@@ -14,7 +9,7 @@ function Layout() {
     <>
       <section className='home__layout'>
         <Header />
-        {/* <MainNavbar /> */}
+        <Outlet />
         <MainNavbar />
       </section>
     </>

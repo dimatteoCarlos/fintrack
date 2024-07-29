@@ -29,12 +29,18 @@ function Expense() {
 
   return (
     <>
-      <section className='home__layout'>
-        <Header {...globalStates} />
+
+    <div className="expense"
+    style={{}}
+    >
+      EXPENSE
+    </div>
+      {/* <section className='home__layout'> */}
+        {/* <Header {...globalStates} /> */}
         {/* <nav className='trackerNavbar__container'> */}
-          <TrackerNavbar />
+          {/* <TrackerNavbar /> */}
         {/* </nav> */}
-      </section>
+      {/* </section> */}
     </>
   );
 }

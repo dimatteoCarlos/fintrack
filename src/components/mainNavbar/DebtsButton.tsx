@@ -10,7 +10,7 @@ const classNavLink = `mainNavbarButton ${({
 function DebtsButton() {
   return (
     <>
-      <NavLink to='/budget' className={classNavLink}>
+      <NavLink to='/debts/debtors' className={classNavLink}>
         <div className='iconContainer flx-col-center'>
           <DebtsSvg />
         </div>

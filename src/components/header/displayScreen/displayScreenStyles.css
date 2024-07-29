@@ -5,12 +5,13 @@
   border-radius: 0.75rem;
   width: 87%;
   width: 100%;
-  font-size: 0.875rem;
-  font-weight: 500;
+
   padding: 0.5em 0.75em;
 }
 
 .displayScreen--concept {
+  font-size: 0.875rem;
+  font-weight: 500;
   letter-spacing: 1px;
   text-align: left;
 }

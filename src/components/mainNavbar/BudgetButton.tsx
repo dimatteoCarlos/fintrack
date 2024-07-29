@@ -8,9 +8,11 @@ const classNavLink = `mainNavbarButton ${({
 }) => (isActive ? 'active' : '')}`;
 
 function BudgetButton() {
+
+  
   return (
     <>
-      <NavLink to='/budget' className={classNavLink}>
+      <NavLink to='/budget/categories' className={classNavLink}>
         <div className='iconContainer flx-col-center'>
           <WalletSvg />
         </div>

@@ -12,23 +12,6 @@ body {
   color: var(--dark);
 }
 
-.home__layout {
-  min-width: 22.5rem;
-  min-height: 50rem;
-  height: 50rem;
-
-  width: 33.3%;
-
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-
-  /* gap: 5rem; */
-  /* border: 5px solid var(--primary); */
-}
-
 [class*='icon'] {
   cursor: pointer;
 }
@@ -47,120 +30,82 @@ body {
   padding: 0;
 }
 
-/* .home__header { */
-/* width: 100%;
-  min-height: 12.5rem;
+.home__layout {
+  min-width: 22.5rem;
+  min-height: 50rem;
+  height: 50rem;
+
+  width: 33.3%;
+
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  background-color: var(--light);
-  --topH: 22%; */
-/* border:5px solid orange; */
-/* } */
-
-/* .home__top--whiteSpace { */
-/* background-color: var(--light);
-  width: 100%;
-  height: var(--topH);
-  border-bottom: 0.5px solid var(--dark); */
-/* } */
-
-/* .header__container { */
-/* min-height: 2.5rem;
-  height: 78%;
-  height: calc(100 - var(--topH));
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-
-  background-color: var(--light); */
-
-/* border: 5px solid blue; */
-/* } */
-
-/* .header__content { */
-/* width: 87%;
-  background-color: transparent; */
-
-/* border: 10px solid brown; */
-/* } */
-/*  */
-
-.header__content .screen {
-  background-color: var(--creme);
-  display: flex;
   justify-content: space-between;
-  border-radius: 0.75rem;
+  position: relative;
 
-  font-size: 0.875rem;
-  font-weight: 500;
-
-  padding: 0.5em 0.75em;
-  /* background-color: red; */
+  /* border: 5px solid var(--primary); */
 }
 
-.header__content .screen--result {
-  font-size: 0.875rem;
-  text-align: right;
-  font-weight: 600;
+.home__header {
+  width: 100%;
+  min-height: 12.5rem;
+  height: 12.5rem;
+
+  background-color: var(--light);
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  /* border: 5px solid cyan; */
 }
+/*----------------------*/
+
+.trackerLayout{
+
+/* border:10px solid yellow; */
+}
+
+.trackerLayout__header {
+  width: 100%;
+  position: absolute;
+  top: var(--topSpaceHeight);
+  background-color: var(--light);
+  background-color: orange;
+}
+
+.headerContent__container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  /* border: 10px solid yellowgreen */
+}
+
 /*---------------/*
-/*navbar states*/
+/*trackerNavbar states*/
 .trackerNavbar__container {
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  /* gap: 0.15rem; */
   background-color: #1b1b1b;
   border-radius: 1rem 1rem 0 0;
-  align-items: center;
   width: 80%;
+  margin: 0 auto;
   align-self: center;
+  position: absolute;
+  top: 20.5%;
+  left:50%;
+  transform:translateX(-50%);
 
-  margin-top: -1.5rem;
-  /* border: 1px solid var(--primary1, red); */
+  /* border: 5px solid red; */
 }
-
-/* .navbar__state {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  outline: none;
-  align-items: center;
-} */
-
-/* .icon {
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  padding: 2.5px;
-  height: 3.7rem;
-  width: 3.7rem;
-} */
-
-/* .state__icon {
-  height: 3.5rem;
-  width: 3.5rem;
-  border-radius: 0.75rem;
-} */
-
-/* .icon:active, */
-/* .icon:focus,
-.icon .active,
-.icon :not(.active, .icon:active):hover {
-  border: 2px solid white;
-  padding: 0;
-  border-radius: 0.75rem;
-} */
-
-/* .state--title {
-  font-size: 0.625rem;
-  color: white;
-  text-transform: capitalize;
-  text-align: center;
-  margin-top: 0.25em;
-} */
 
 /*----sep comp-----*/
 .stack__sep {
@@ -332,13 +277,13 @@ body {
 
 /*-----navbar tracker-----------*/
 /* .navbar__tracker { */
-  /* width: 85%;
+/* width: 85%;
   margin: 0 auto; */
-  /* border: 2px solid rgb(0, 255, 51); */
+/* border: 2px solid rgb(0, 255, 51); */
 /* } */
 
 /* .navbarTracker__controls { */
-  /* background-color: var(--light);
+/* background-color: var(--light);
   border-radius: 1rem;
   padding: 0.5em;
 
@@ -348,7 +293,7 @@ body {
   gap: 1rem;
 
   height: 4rem; */
-  /* border: 2px solid rgb(0, 255, 51); */
+/* border: 2px solid rgb(0, 255, 51); */
 /* } */
 
 .control--label {
@@ -369,5 +314,3 @@ body {
   padding: 0.25rem;
   padding-right: 0rem;
 }
-
-

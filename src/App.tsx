@@ -22,11 +22,12 @@ function App() {
       element: <Layout />,
 
       children: [
-        { path: '/tracker', element: <TrackerLayout /> },
+        { index: true, element: <TrackerLayout /> },
         {
+          path: '/tracker',
+          element: <TrackerLayout />,
           children: [
-    
-            { index:true, element: <Expense /> },
+            { index: true, element: <Expense /> },
             { path: '/tracker/expense', element: <Expense /> },
             { path: '/tracker/income', element: <Income /> },
             { path: '/tracker/investment', element: <Investment /> },
@@ -34,16 +35,16 @@ function App() {
           ],
         },
 
-        { path: '/budget/category', element: <Categories /> },
-        { path: '/budget/category/:categoryId', element: <CategoryDetail /> },
-        { path: '/budget/pocket', element: <Pockets /> },
-        { path: '/budget/pocket/:pocketId', element: <PocketDetail /> },
+        { path: '/budget/categories', element: <Categories /> },
+        { path: '/budget/categories/:categoryId', element: <CategoryDetail /> },
+        { path: '/budget/pockets', element: <Pockets /> },
+        { path: '/budget/pockets/:pocketId', element: <PocketDetail /> },
 
-        { path: '/debt/debtor', element: <Debtors /> },
-        { path: '/debt/debtor/:debtorId', element: <DebtorDetail /> },
+        { path: '/debts/debtors', element: <Debtors /> },
+        { path: '/debts/debtors/:debtorId', element: <DebtorDetail /> },
 
-        { path: '/overview/account', element: <Accounts /> },
-        { path: '/overview/account/:accountId', element: <AccountDetail /> },
+        { path: '/overview/accounts', element: <Accounts /> },
+        { path: '/overview/accounts/:accountId', element: <AccountDetail /> },
       ],
     },
   ]);

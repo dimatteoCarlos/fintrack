@@ -10,7 +10,7 @@ const classNavLink = `mainNavbarButton ${({
 function OverviewButton() {
   return (
     <>
-      <NavLink to='/budget' className={classNavLink}>
+      <NavLink to='/overview/accounts' className={classNavLink}>
         <div className='iconContainer flx-col-center'>
           <OverviewSvg />
         </div>

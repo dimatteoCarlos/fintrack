@@ -1,12 +1,19 @@
-import TrackerStateButton from './TrackerStateButton';
 import InvestmentSvg from '../../../assets/trackerNavbarSvg/InvestmentSvg.svg';
+import { NavLink } from 'react-router-dom';
+
 function TrackerInvestmentButton() {
+  const classNavLink = `trackerStateIconButton flx-col-center ${({
+    isActive,
+  }: {
+    isActive: boolean;
+  }) => (isActive ? 'active' : '')}`;
+
   return (
     <>
       <div className='trackerStateButton__container'>
-        <TrackerStateButton>
+        <NavLink to='/tracker/investment' className={classNavLink}>
           <InvestmentSvg />
-        </TrackerStateButton>
+        </NavLink>
         <div className='trackerStateButton__state--title'>{'Investment'}</div>
       </div>
     </>

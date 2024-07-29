@@ -1,6 +1,6 @@
 import { currencyFormat } from '../../../../helpers/functions.ts';
 import '../displayScreenStyles.css';
-// import {} from
+
 type DisplayScreenNumberPropType = {
   amount: number;
   chosenCurrency: string;

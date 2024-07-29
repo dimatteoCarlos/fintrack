@@ -5,6 +5,7 @@ import DebtsButton from './DebtsButton.tsx';
 import OverviewButton from './OverviewButton.tsx';
 
 function MainNavbar() {
+  
   return (
     <MainNavbarContainer>
       <TrackerButton />

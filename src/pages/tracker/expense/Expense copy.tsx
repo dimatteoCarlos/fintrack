@@ -9,7 +9,7 @@ export type GlobalStatesType = {
   selectedCountry: string;
 };
 
-function Income() {
+function Expense() {
   //temporary values
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 
@@ -29,14 +29,20 @@ function Income() {
 
   return (
     <>
-      <div className="expense"
+
+    <div className="expense"
     style={{color:'yellow'}}
     >
-      INCOME
+      EXPENSE
     </div>
+      {/* <section className='home__layout'> */}
+        {/* <Header {...globalStates} /> */}
+        {/* <nav className='trackerNavbar__container'> */}
+          {/* <TrackerNavbar /> */}
+        {/* </nav> */}
+      {/* </section> */}
     </>
   );
 }
 
-export default Income;
-
+export default Expense;

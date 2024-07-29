@@ -1,40 +1,37 @@
-import Header from '../../components/header/Header';
+import DisplayScreenNumber from '../../components/header/displayScreen/displayScreenNumber/DisplayScreenNumber';
+
+import LogoMenuIcon from '../../components/header/LogoMenuIcon';
 import TrackerNavbar from '../../components/trackerNavbar/TrackerNavbar';
+import { Outlet } from 'react-router-dom';
 
-
-
-export type GlobalStatesType = {
-  availableBudget: number;
-  enteredCurrency: string;
-  selectedCountry: string;
-};
-function Layout() {
-
+function TrackerLayout() {
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 
-  const enteredCurrency = 'eur';
+  const enteredCurrency = 'usd';
 
   const selectedCountry = currencyOptions[enteredCurrency];
 
   const availableBudget = 0;
 
-  const globalStates: GlobalStatesType = {
-    availableBudget,
-    enteredCurrency,
-    selectedCountry,
-  };
-//-------------------------------
+  //-------------------------------
 
   return (
-    <>
-      {/* <section className='home__layout'> */}
-        <Header {...globalStates} />
-
-        <TrackerNavbar />
-      {/* </section> */}
-    </>
+    <div className='trackerLayout'>
+      <div className='trackerLayout__header'>
+        <div className='headerContent__container'>
+          <LogoMenuIcon />
+          <DisplayScreenNumber
+            amount={availableBudget}
+            chosenCurrency={enteredCurrency}
+            countryCurrency={selectedCountry}
+          />
+        </div>
+      </div>
+      <TrackerNavbar />
+      <Outlet />
+    </div>
   );
 }
 
-export default Layout;
+export default TrackerLayout;

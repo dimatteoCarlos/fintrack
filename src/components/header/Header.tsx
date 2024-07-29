@@ -1,12 +1,11 @@
 import TopWhiteSpace from '../topWhiteSpace/TopWhiteSpace.tsx';
 
-import './headerStyle.css';
-
-function Header(): JSX.Element {
+function Header({children}:any): JSX.Element {
   return (
     <>
       <header className='home__header'>
         <TopWhiteSpace bgc='light' />
+        {children}
       </header>
     </>
   );
