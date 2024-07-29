@@ -3,7 +3,8 @@ import React from 'react'
 function Categories() {
   return (
     <>
-      Categories
+    <div className="" style={{color:'yellow'}}>Categories</div>
+  
     </>
   )
 }

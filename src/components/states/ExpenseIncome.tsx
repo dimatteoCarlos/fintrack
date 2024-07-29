@@ -7,6 +7,7 @@ import TrackerIcon from '../../assets/navbarState/plusSvg.svg';
 import NavbarStates from '../trackerNavbar/TrackerNavbar.tsx';
 import NavbarTracker from '../mainNavbar/MainNavbar.tsx';
 import { useState } from 'react';
+import { changeCurrency } from '../../helpers/functions.ts';
 
 // states controls navbar
 
@@ -29,15 +30,7 @@ const ExpenseIncome = ({ stateName }: ExpenseIncomeTypeProp) => {
   const [currency, setCurrency] = useState<'usd' | 'cop'>('usd');
 
   function toggleCurrency() {
-    const current = (currency: 'cop' | 'usd') => {
-      if (currency == 'usd') {
-        return 'cop';
-      } else if (currency == 'cop') {
-        return 'usd';
-      } else {
-        return 'usd';
-      }
-    };
+    const current =changeCurrency(currency);
 
     console.log('current:', current, typeof current);
 
@@ -72,7 +65,10 @@ const ExpenseIncome = ({ stateName }: ExpenseIncomeTypeProp) => {
       <div className='content__presentation'>
         <div className='state__cards'>
           <div className='state__card--top'>
+
             <div className='card--title'>{'Amount'}</div>
+
+
             <div className='card__screen'>
               <div className='screen--result'>{'0,000.00'}</div>
               <div className='icon-currency' onClick={toggleCurrency}>

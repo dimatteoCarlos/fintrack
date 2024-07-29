@@ -35,12 +35,7 @@ function Expense() {
     >
       EXPENSE
     </div>
-      {/* <section className='home__layout'> */}
-        {/* <Header {...globalStates} /> */}
-        {/* <nav className='trackerNavbar__container'> */}
-          {/* <TrackerNavbar /> */}
-        {/* </nav> */}
-      {/* </section> */}
+ 
     </>
   );
 }

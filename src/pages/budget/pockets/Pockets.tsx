@@ -3,7 +3,8 @@ import React from 'react'
 function Pockets() {
   return (
     <>
-      Pockets
+    <div className="" style={{color:'yellow'}}>Pockets</div>
+      
     </>
   )
 }

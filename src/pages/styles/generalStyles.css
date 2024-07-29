@@ -62,9 +62,8 @@ body {
 }
 /*----------------------*/
 
-.trackerLayout{
-
-/* border:10px solid yellow; */
+.trackerLayout {
+  /* border:10px solid yellow; */
 }
 
 .trackerLayout__header {
@@ -86,14 +85,13 @@ body {
 }
 
 /*---------------/*
-/*trackerNavbar states*/
+/*trackerNavbar*/
 .trackerNavbar__container {
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  /* gap: 0.15rem; */
   background-color: #1b1b1b;
   border-radius: 1rem 1rem 0 0;
   width: 80%;
@@ -101,9 +99,10 @@ body {
   align-self: center;
   position: absolute;
   top: 20.5%;
-  left:50%;
-  transform:translateX(-50%);
+  left: 50%;
+  transform: translateX(-50%);
 
+  /* gap: 0.15rem; */
   /* border: 5px solid red; */
 }
 
@@ -171,13 +170,43 @@ body {
   background-color: var(--creme);
   border-radius: 0.75rem;
   padding: 0.75rem;
-  gap: 0.75rem;
-
   display: flex;
   align-items: center;
-
   justify-content: space-between;
 }
+
+.inputNumber {
+  font-size: 1.5rem;
+  line-height: 2.125em;
+  font-weight: 700;
+  max-width: 70%;
+  text-align: right;
+  background-color: transparent;
+  color: var(--dark);
+}
+
+.inputNumber::placeholder {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+/*------------------------*/
+.icon-currency {
+  border: 2px solid var(--dark);
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 1.1em;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  padding: 0.75rem 0.5rem;
+}
+
+
+
+
+/*------------------------*/
 .screen--concept {
   font-size: 0.875rem;
   font-weight: 500;
@@ -189,29 +218,7 @@ body {
   width: fit-content;
 }
 
-.card__screen .screen--result {
-  text-align: right;
-  font-size: 1.25rem;
-  line-height: 2rem;
-  font-weight: 700;
-  /* border: 1px solid blue; */
-}
-
-.icon-currency {
-  margin: 0;
-  padding: 0.75em 0.75em;
-  border-radius: 1.1em;
-
-  border: 2.5px solid var(--dark);
-  font-size: 0.65rem;
-  font-weight: 700;
-
-  line-height: 1.625em;
-  text-align: center;
-  width: 5em;
-  /* background-color: goldenrod; */
-}
-
+/*-----------------------*/
 .card__note {
   display: flex;
   align-items: center;

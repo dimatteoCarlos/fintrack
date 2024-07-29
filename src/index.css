@@ -57,8 +57,22 @@ span {
   padding: 0;
   margin: 0;
   border: none;
-  border: outline;
+  outline: none;
 }
+
+/*Hide Input Number Arrows*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/*Firefox*/
+input[type='number'] {
+  -moz-appearance: none;
+  appearance: none;
+}
+
 * {
   font-family: inherit;
 }

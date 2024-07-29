@@ -1,10 +1,16 @@
+import { useState } from 'react';
 import '../../styles/generalStyles.css';
-import Header from '../../../components/header/Header.tsx';
+import { changeCurrency } from '../../../helpers/functions';
 
-import TrackerNavbar from '../../../components/trackerNavbar/TrackerNavbar.tsx';
+import {
+  AmountInputScreen,
+  CardStatePresentation,
+  CardStateTop,
+  CardTitle,
+} from './trackerComponents/TrackerComponents.tsx';
 
 export type GlobalStatesType = {
-  availableBudget: number;
+  // availableBudget: number;
   enteredCurrency: string;
   selectedCountry: string;
 };
@@ -12,35 +18,72 @@ export type GlobalStatesType = {
 function Expense() {
   //temporary values
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-
-  const enteredCurrency = 'eur';
-
-  const selectedCountry = currencyOptions[enteredCurrency];
-
-  const availableBudget = 0;
-
-  const globalStates: GlobalStatesType = {
-    availableBudget,
-    enteredCurrency,
-    selectedCountry,
-  };
+  const enteredCurrency = 'usd';
+  const formatNumberCountry = currencyOptions[enteredCurrency];
 
   //-----------------
+  //form input expense data state variables
+  const initialExpenseData = {
+    expenseAmount: '0,000.00',
+    expenseAccount: '',
+    expenseCategory: '',
+    expenseNote: '',
+  };
+
+  const [expenseData, setExpenseData] = useState(initialExpenseData);
+  const [currency, setCurrency] = useState<'usd' | 'cop'>(enteredCurrency);
+
+  //functions
+
+  function numberFormat(x: number | string) {
+    // const formatter = new Intl.NumberFormat('en-US', { useGrouping: true });
+    const formatter = new Intl.NumberFormat(formatNumberCountry, {
+      useGrouping: true,
+    });
+    const formattedNumber = formatter.format(Number(x));
+    console.log(Number(formattedNumber), formattedNumber);
+    return formattedNumber;
+  }
+
+  function toggleCurrency() {
+    setCurrency((prev) => changeCurrency(prev));
+  }
+
+  function expenseDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
 
   return (
     <>
+      <div className='expense' style={{ color: 'inherit' }}>
+        <CardStatePresentation>
+          <CardStateTop>
+            <CardTitle>Amount</CardTitle>
+            <AmountInputScreen>
+              <input
+                className='inputNumber'
+                type='number'
+                placeholder={'0,000.00'}
+                onChange={expenseDataHandler}
+                name='expenseAmount'
+                value={expenseData.expenseAmount}
+                // max={99999999999999}
+                // maxLength={15}
+                // value={`${numberFormat(expenseData.expenseAmount)}`}
+              />
 
-    <div className="expense"
-    style={{}}
-    >
-      EXPENSE
-    </div>
-      {/* <section className='home__layout'> */}
-        {/* <Header {...globalStates} /> */}
-        {/* <nav className='trackerNavbar__container'> */}
-          {/* <TrackerNavbar /> */}
-        {/* </nav> */}
-      {/* </section> */}
+              <div className='icon-currency' onClick={toggleCurrency}>
+                {currency.toUpperCase()}
+              </div>
+            </AmountInputScreen>
+
+{/* ******** */}
+
+
+          </CardStateTop>
+        </CardStatePresentation>
+      </div>
     </>
   );
 }
