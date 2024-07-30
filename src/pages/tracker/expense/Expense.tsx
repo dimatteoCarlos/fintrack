@@ -7,7 +7,9 @@ import {
   CardStatePresentation,
   CardStateTop,
   CardTitle,
+  InputSelection,
 } from './trackerComponents/TrackerComponents.tsx';
+import MySelectComponent from './trackerComponents/SelectComponent.tsx';
 
 export type GlobalStatesType = {
   // availableBudget: number;
@@ -36,7 +38,6 @@ function Expense() {
   //functions
 
   function numberFormat(x: number | string) {
-    // const formatter = new Intl.NumberFormat('en-US', { useGrouping: true });
     const formatter = new Intl.NumberFormat(formatNumberCountry, {
       useGrouping: true,
     });
@@ -78,7 +79,11 @@ function Expense() {
               </div>
             </AmountInputScreen>
 
-{/* ******** */}
+            {/* ******** */}
+
+
+
+         <MySelectComponent />
 
 
           </CardStateTop>

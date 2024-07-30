@@ -31,17 +31,14 @@ export function AmountInputScreen({ children }: any) {
 
 
 
-// export function InputNumber() {
-//   return (
-//     <>
-//       <input
-//         max={99999999999999}
-//         maxLength={15}
-//         className='inputNumber '
-//         type='number'
-//         placeholder={'0,000.00'}
-//         value={''}
-//       />
-//     </>
-//   );
-// }
+
+
+export  function InputSelection() {
+  return (
+    <div style={{color:'red'}}>
+      Input Selection
+    </div>
+  )
+}
+//********************* */
+
