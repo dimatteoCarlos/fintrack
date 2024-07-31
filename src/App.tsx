@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
 import Expense from './pages/tracker/expense/Expense.tsx';
 import Income from './pages/tracker/income/Income.tsx';
@@ -22,7 +26,7 @@ function App() {
       element: <Layout />,
 
       children: [
-        { index: true, element: <TrackerLayout /> },
+        { index: true, element: <Navigate to='/tracker/expense' /> },
         {
           path: '/tracker',
           element: <TrackerLayout />,

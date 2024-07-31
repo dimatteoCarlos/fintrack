@@ -51,11 +51,12 @@
 /* formSubmitBtn.css */
 /*------save btn-----------*/
 .btn__container {
-  padding-top: 2.5rem;
+  /* padding-top: 2.5rem; */
 }
 
 .submit__btn {
   height: 3.125rem;
+  height: 2.125rem;
   width: 100%;
   color: var(--dark);
   background-color: var(--creme);
@@ -63,8 +64,8 @@
   text-align: center;
   font-size: 0.875rem;
   font-weight: 600;
-  /* font-size: 1rem; */
-  /* font-weight: bold; */
+  font-size: 1rem;
+  font-weight: bold;
 }
 /*--------------*/
 /*formSelectionBullet.css*/

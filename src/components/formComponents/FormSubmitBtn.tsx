@@ -2,7 +2,6 @@ import React from 'react';
 import './formComponentStyles/formComponentStyles.css'
 type FormSubmitBtnPropType = {
   btnTitle: string;
-  // btnTitle:{[key:string]:string | JSX.Element}[];
   
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };

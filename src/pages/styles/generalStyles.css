@@ -10,6 +10,7 @@
 
 body {
   color: var(--dark);
+  /* background-color: var(--dark); */
 }
 
 [class*='icon'] {
@@ -33,17 +34,19 @@ body {
 .home__layout {
   min-width: 22.5rem;
   min-height: 50rem;
-  height: 50rem;
+  height: 55rem;
 
-  width: 33.3%;
+  max-width: 33.3%;
 
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* justify-content: center; */
+  gap:1.5rem;
   position: relative;
 
-  /* border: 5px solid var(--primary); */
+  border: 5px solid var(--primary);
 }
 
 .home__header {
@@ -71,7 +74,7 @@ body {
   position: absolute;
   top: var(--topSpaceHeight);
   background-color: var(--light);
-  background-color: orange;
+  /* background-color: orange; */
 }
 
 .headerContent__container {
@@ -157,6 +160,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  z-index: 10;
 }
 
 .card--title {
@@ -169,7 +173,7 @@ body {
 .card__screen {
   background-color: var(--creme);
   border-radius: 0.75rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -177,9 +181,9 @@ body {
 
 .inputNumber {
   font-size: 1.5rem;
-  line-height: 2.125em;
+  line-height: 2em;
   font-weight: 700;
-  max-width: 70%;
+  max-width: 80%;
   text-align: right;
   background-color: transparent;
   color: var(--dark);
@@ -187,7 +191,9 @@ body {
 
 .inputNumber::placeholder {
   color: var(--dark);
-  font-weight: 700;
+  font-weight: bold;
+  font-size: 20px;
+  font-size: 1.5rem;
 }
 
 /*------------------------*/
@@ -215,24 +221,29 @@ body {
   width: fit-content;
 }
 
-/*-----------------------*/
-.card__note {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  justify-content: space-between;
+/*-----CardNote---------------*/
+
+.input__note__description {
+  font-size: 0.875rem;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 600;
+  max-width: 100%;
+  text-align: left;
+  background-color: transparent;
+  color: var(--dark);
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+textarea:invalid {
+  border: 2px dashed tomato;
 }
 
-.card__note .card__screen .screen--concept {
-  padding: 0.5em 0;
-}
-
-.tracker__icon {
-  width: max-content;
-}
-
-.iconPlus {
-  width: auto;
+.input__note__description::placeholder {
+  color: var(--dark);
+  font-weight: 600;
 }
 
 /*-- bottom card for investment and debts--*/

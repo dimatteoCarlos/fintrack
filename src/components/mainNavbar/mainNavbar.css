@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4rem;
+  /* height: 4rem; */
 
   /* border-radius: 0.75rem; */
 }
@@ -29,7 +29,7 @@
   background-color: var(--creme);
 
   color: var(--dark);
-  /* transition-duration: 0.5s; */
+  /* transition: 1s ease; */
 }
 
 .mainNavbarButton .button--label {

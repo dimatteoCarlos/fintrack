@@ -29,16 +29,27 @@ export function AmountInputScreen({ children }: any) {
   );
 }
 
-
-
-
-
-export  function InputSelection() {
+export function CardSeparator() {
   return (
-    <div style={{color:'red'}}>
-      Input Selection
+    <div className='stack__sep'>
+      <span className='circleL'></span>
+      <span className='bar'></span>
+      <span className='circleR'></span>
     </div>
-  )
+  );
 }
-//********************* */
+
+export function CardNote() {
+  return (
+    <div className='card__note'>
+      <div className='card__screen'>
+        <div className='screen--concept'>{'Description'}</div>
+      </div>
+      <div className='tracker__icon'></div>
+    </div>
+  );
+}
+
+
+
 

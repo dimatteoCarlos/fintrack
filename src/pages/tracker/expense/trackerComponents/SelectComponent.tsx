@@ -2,24 +2,23 @@
 
 import Select, { components } from 'react-select';
 import ArrowDownDarkSvg from './ArrowDownDarkSvg.svg';
-import './selectComponent.css';
 
 // Define las opciones para el select
-const options = [
-  { value: 'account_01', label: 'Account_01' },
-  { value: 'account_02', label: 'Account_02' },
-  { value: 'account_03', label: 'Account_03' },
-];
+// const options1 = [
+//   { value: 'account_01', label: 'Account_01' },
+//   { value: 'account_02', label: 'Account_02' },
+//   { value: 'account_03', label: 'Account_03' },
+// ];
 
 const customStyles = {
-  container: (baseStyles) => ({
+  container: (baseStyles: any) => ({
     ...baseStyles,
     width: '100%',
-    backgroundColor: '#e8e4da',
-    borderRadius: '0.75rem',
     border: 'none',
+    borderRadius: '0.75rem',
   }),
-  control: (baseStyles) => ({
+
+  control: (baseStyles: any) => ({
     ...baseStyles,
     border: 'none',
     boxShadow: 'none',
@@ -29,22 +28,22 @@ const customStyles = {
     fontWeight: '500',
     fontSize: '0.875rem',
 
-    '&:hover': {
-      border: 'none',
-    },
+    // '&:hover': {
+    //   border: 'none',
+    // },
   }),
 
-  placeholder: (baseStyle) => ({
-    ...baseStyle,
+  placeholder: (baseStyles: any) => ({
+    ...baseStyles,
     color: '#141414',
   }),
 
-  menu: (provided) => ({
-    ...provided,
+  menu: (baseStyles: any) => ({
+    ...baseStyles,
     zIndex: 9999,
   }),
 
-  option: (provided, state) => ({
+  option: (provided: any, state: any) => ({
     ...provided,
     backgroundColor: state.isSelected ? '#e8e4da' : 'white',
     color: '#141414',
@@ -64,26 +63,38 @@ const DropdownIndicator = (props: any) => {
   );
 };
 
+export type SelectComponentPropType = {
+  options: {
+    value: any;
+    label: string;
+  }[];
+};
+
 // Define el componente
-const MySelectComponent = () => {
+function SelectComponent({dropDownOptions}:any) {
+const {title, options} = dropDownOptions;
+  console.log(title, options)
   // Función para manejar el cambio en el select
-  const handleChange = ({ selectedOption }: any) => {
+  const handleChange = (
+    selectedOption: { value: any; label: string } | null
+  ) => {
     console.log('Opción seleccionada:', selectedOption);
   };
 
   return (
     <>
-      <div className='card--title'>Account</div>
+      {/* <div className='card--title'>Account</div> */}
       <Select
         options={options}
         onChange={handleChange}
-        placeholder='Available Account'
+        placeholder={title}
         styles={customStyles}
         closeMenuOnSelect={true}
         components={{ DropdownIndicator }}
+        isSearchable
       />
     </>
   );
-};
+}
 
-export default MySelectComponent;
+export default SelectComponent;
