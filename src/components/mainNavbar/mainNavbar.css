@@ -8,9 +8,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* height: 4rem; */
 
+  /* height: 4rem; */
   /* border-radius: 0.75rem; */
+}
+
+.mainNavbar__container {
+
+/* position: absolute;
+bottom:-7%;
+left:50%;
+transform:translateX(-50%);  */
+
+/* border:11px solid tomato; */
+
 }
 
 .mainNavbarButton.active {

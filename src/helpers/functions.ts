@@ -34,3 +34,11 @@ export function changeCurrency(currency: 'cop' | 'usd') {
   }
 }
 //-------------------------
+function numberFormat(x: number | string, formatNumberCountry:string) {
+  const formatter = new Intl.NumberFormat(formatNumberCountry, {
+    useGrouping: true,
+  });
+  const formattedNumber = formatter.format(Number(x));
+  console.log(Number(formattedNumber), formattedNumber);
+  return formattedNumber;
+}

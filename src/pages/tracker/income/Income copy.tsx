@@ -12,8 +12,6 @@ import {
 import SelectComponent from '../trackerComponents/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-// import '../../styles/generalStyles.css';
-
 export type GlobalStatesType = {
   // availableBudget: number;
   enteredCurrency: string;
@@ -22,15 +20,15 @@ export type GlobalStatesType = {
 
 //------------------------------
 
-function Expense() {
+function Income() {
   //temporary values
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const enteredCurrency = 'usd';
   const formatNumberCountry = currencyOptions[enteredCurrency];
 
-  //----Expense Options Temporary----------
+  //----Income Options Temporary----------
 
-  const expenseAccountOptions = {
+  const incomeAccountOptions = {
     title: 'Available Account',
     options: [
       { value: 'account_01', label: 'Account_01' },
@@ -39,7 +37,7 @@ function Expense() {
     ],
   };
   //-----------------
-  const expenseCategoryOptions = {
+  const incomeCategoryOptions = {
     title: 'Category / Subategory',
     options: [
       { value: 'category_01', label: 'Category_01 / SubCategory X' },
@@ -51,15 +49,15 @@ function Expense() {
     ],
   };
   //-----------------
-  //form input expense data state variables
-  const initialExpenseData = {
-    expenseAmount: '0,000.00',
-    expenseAccount: '',
-    expenseCategory: '',
-    expenseNote: '',
+  //form input income data state variables
+  const initialIncomeData = {
+    incomeAmount: '0,000.00',
+    incomeAccount: '',
+    incomeCategory: '',
+    incomeNote: '',
   };
   //---states------
-  const [expenseData, setExpenseData] = useState(initialExpenseData);
+  const [incomeData, setIncomeData] = useState(initialIncomeData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(enteredCurrency);
 
   //----functions--------
@@ -77,39 +75,37 @@ function Expense() {
     setCurrency((prev) => changeCurrency(prev));
   }
 
-  function inputExpenseDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  function inputIncomeDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setIncomeData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
-  function textareaExpenseDataHandler() {
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  function textareaIncomeDataHandler() {
+    setIncomeData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function onSaveHandler(){
-    console.log('On Save Handler')
+  function onSaveHandler() {
+    console.log('On Save Handler');
   }
 
   //--------------------------
 
   return (
     <>
-      <div className='expense' style={{ color: 'inherit' }}>
-
-        {/* <CardStatePresentation>
-          <CardStateTop> */}
+      <div className='income' style={{ color: 'inherit' }}>
+        <CardStatePresentation>
+          <CardStateTop>
             <CardTitle>Amount</CardTitle>
 
             <AmountInputScreen>
               <input
                 className='inputNumber'
-                type='text'
+                type='number'
                 placeholder={'0,000.00'}
-                onChange={inputExpenseDataHandler}
-                name='expenseAmount'
-                value={expenseData.expenseAmount}
-                // max={99999999999999}
-                // maxLength={15}
-                // value={`${numberFormat(expenseData.expenseAmount)}`}
+                onChange={inputIncomeDataHandler}
+                name='incomeAmount'
+                value={incomeData.incomeAmount}
+
+                // value={`${numberFormat(incomeData.incomeAmount)}`}
               />
 
               <div className='icon-currency' onClick={toggleCurrency}>
@@ -118,11 +114,11 @@ function Expense() {
             </AmountInputScreen>
 
             <CardTitle>Account</CardTitle>
-            <SelectComponent dropDownOptions={expenseAccountOptions} />
+            <SelectComponent dropDownOptions={incomeAccountOptions} />
 
             <CardSeparator />
             <CardTitle>Category</CardTitle>
-            <SelectComponent dropDownOptions={expenseCategoryOptions} />
+            <SelectComponent dropDownOptions={incomeCategoryOptions} />
 
             {/* APLICAR DEBOUNCE A TEXTAREA -  cual es el evento en textarea?*/}
 
@@ -131,19 +127,23 @@ function Expense() {
               <textarea
                 className='input__note__description'
                 placeholder='Description'
-                onChange={textareaExpenseDataHandler}
-                name='expenseNote'
-                value={expenseData.expenseNote}
+                onChange={textareaIncomeDataHandler}
+                name='incomeNote'
+                value={incomeData.incomeNote}
                 rows={3}
                 maxLength={250}
               />
             </AmountInputScreen>
 
-            <FormSubmitBtn  btnTitle={'save'} onClickHandler={onSaveHandler} ></FormSubmitBtn>
-
+            <FormSubmitBtn
+              btnTitle={'save'}
+              onClickHandler={onSaveHandler}
+            ></FormSubmitBtn>
+          </CardStateTop>
+        </CardStatePresentation>
       </div>
     </>
   );
 }
 
-export default Expense;
+export default Income;

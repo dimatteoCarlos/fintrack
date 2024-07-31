@@ -3,6 +3,7 @@ import DisplayScreenNumber from '../../components/header/displayScreen/displaySc
 import LogoMenuIcon from '../../components/header/LogoMenuIcon';
 import TrackerNavbar from '../../components/trackerNavbar/TrackerNavbar';
 import { Outlet } from 'react-router-dom';
+import CardTrackerPresentation from '../tracker/expense/CardTrackerPresentation';
 
 function TrackerLayout() {
   //temporary values------------
@@ -28,8 +29,11 @@ function TrackerLayout() {
           />
         </div>
       </div>
+
       <TrackerNavbar />
-      <Outlet />
+      <CardTrackerPresentation>
+        <Outlet />
+      </CardTrackerPresentation>
     </div>
   );
 }

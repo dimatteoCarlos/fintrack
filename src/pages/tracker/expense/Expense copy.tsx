@@ -94,15 +94,14 @@ function Expense() {
   return (
     <>
       <div className='expense' style={{ color: 'inherit' }}>
-
-        {/* <CardStatePresentation>
-          <CardStateTop> */}
+        <CardStatePresentation>
+          <CardStateTop>
             <CardTitle>Amount</CardTitle>
 
             <AmountInputScreen>
               <input
                 className='inputNumber'
-                type='text'
+                type='number'
                 placeholder={'0,000.00'}
                 onChange={inputExpenseDataHandler}
                 name='expenseAmount'
@@ -140,7 +139,8 @@ function Expense() {
             </AmountInputScreen>
 
             <FormSubmitBtn  btnTitle={'save'} onClickHandler={onSaveHandler} ></FormSubmitBtn>
-
+          </CardStateTop>
+        </CardStatePresentation>
       </div>
     </>
   );

@@ -71,9 +71,10 @@ export type SelectComponentPropType = {
 };
 
 // Define el componente
-function SelectComponent({dropDownOptions}:any) {
-const {title, options} = dropDownOptions;
-  console.log(title, options)
+function SelectComponent({ dropDownOptions }: any) {
+  const { title, options } = dropDownOptions;
+  // console.log(title, options)
+  
   // Función para manejar el cambio en el select
   const handleChange = (
     selectedOption: { value: any; label: string } | null
@@ -83,7 +84,6 @@ const {title, options} = dropDownOptions;
 
   return (
     <>
-      {/* <div className='card--title'>Account</div> */}
       <Select
         options={options}
         onChange={handleChange}

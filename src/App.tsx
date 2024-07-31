@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 
 import Expense from './pages/tracker/expense/Expense.tsx';
-import Income from './pages/tracker/income/Income.tsx';
+import Income from './pages/tracker/income/Income0.tsx';
 import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
 import Categories from './pages/budget/categories/Categories.tsx';
@@ -26,7 +26,7 @@ function App() {
       element: <Layout />,
 
       children: [
-        { index: true, element: <Navigate to='/tracker/expense' /> },
+        // { index: true, element: <Navigate to='/tracker/expense' /> },
         {
           path: '/tracker',
           element: <TrackerLayout />,
