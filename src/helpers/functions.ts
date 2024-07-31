@@ -25,20 +25,30 @@ export function digitRound(n = Number.MIN_VALUE, digit = 2) {
 
 //-------------------------
 export function changeCurrency(currency: 'cop' | 'usd') {
-  if (currency == 'usd') {
+  if (currency.toLocaleLowerCase() == 'usd') {
     return 'cop';
-  } else if (currency == 'cop') {
+  } else if (currency.toLocaleLowerCase() == 'cop') {
     return 'usd';
   } else {
     return 'usd';
   }
 }
 //-------------------------
-function numberFormat(x: number | string, formatNumberCountry:string) {
+export function numberFormat(x: number | string, formatNumberCountry: string) {
+  if (Number.isNaN(Number.parseFloat(x.toString()))) {
+    return 0;
+  }
+
+  const enteredNumber = Number.parseFloat(x.toString());
+  
   const formatter = new Intl.NumberFormat(formatNumberCountry, {
     useGrouping: true,
   });
-  const formattedNumber = formatter.format(Number(x));
+
+  const formattedNumber = formatter.format(Number(enteredNumber));
+
   console.log(Number(formattedNumber), formattedNumber);
+
   return formattedNumber;
 }
+//-------------------------

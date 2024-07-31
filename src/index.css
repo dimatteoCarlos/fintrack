@@ -1,6 +1,7 @@
 /*
 https://www.figma.com/design/izE8HcSvsNFm3AVFErXWyP/Fintrack
 */
+/* @import './pages/styles/generalStyles.css'; */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
@@ -28,12 +29,12 @@ body,
 
 :root {
   --dark: #141414;
-  --secondary: #7f7f7f;
   --light: white;
   --creme: #e8e4da;
   --textColor: #141414;
-  --primary: lightgreen;
   --topH: 22%;
+  --primary: lightgreen;
+  --secondary: #7f7f7f;
 }
 
 input::placeholder,
@@ -47,7 +48,6 @@ input::placeholder,
 
 body {
   background-color: #1b1b1b;
-
 }
 
 a {
@@ -73,7 +73,7 @@ input[type='number'] {
   -moz-appearance: none;
   appearance: none;
 }
-
+/*-----------------------*/
 * {
   font-family: inherit;
 }

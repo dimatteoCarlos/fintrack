@@ -1,7 +1,7 @@
 import {
   CardStatePresentation,
   CardStateTop,
-} from '../trackerComponents/TrackerComponents';
+} from '../tracker/trackerComponents/TrackerComponents.tsx';
 
 function CardTrackerPresentation({ children }: any) {
   return (

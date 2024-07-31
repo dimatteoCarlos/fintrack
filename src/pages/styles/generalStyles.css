@@ -10,7 +10,6 @@
 
 body {
   color: var(--dark);
-  /* background-color: var(--dark); */
 }
 
 [class*='icon'] {
@@ -34,17 +33,15 @@ body {
 .home__layout {
   min-width: 22.5rem;
   min-height: 50rem;
-  height: 50rem;
+  height: 53rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  justify-content: center;
-  gap: 1rem;
   position: relative;
-
+  
   max-width: 33.3%;
-  /* border: 5px solid var(--primary); */
+  
 }
 
 .home__header {
@@ -54,7 +51,8 @@ body {
   background-color: var(--light);
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+
+  justify-content: start;
 
   /* border: 5px solid cyan; */
 }
@@ -134,9 +132,10 @@ body {
   border-color: var(--creme);
 }
 /*---------------------*/
+section {
+}
 
-.expense {
-  /* border:10px solid blue; */
+article {
 }
 /*---card results---*/
 .content__presentation {
@@ -165,7 +164,7 @@ body {
   line-height: 1.25rem;
   font-weight: 600;
   text-transform: capitalize;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .card__screen {
@@ -236,7 +235,7 @@ body {
   resize: none;
 }
 textarea:invalid {
-  border: 2px dashed tomato;
+  border: 1px dashed tomato;
 }
 
 .input__note__description::placeholder {

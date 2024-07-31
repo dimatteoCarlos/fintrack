@@ -1,7 +1,7 @@
+//
+import '../../styles/generalStyles.css';
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
-import { numberFormat } from '../../../helpers/functions.ts';
-
 import {
   AmountInputScreen,
   CardSeparator,
@@ -10,53 +10,52 @@ import {
 import SelectComponent from '../trackerComponents/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-//------------------------------
-
-function Expense() {
+function Income() {
   //temporary values
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
   const formatNumberCountry = currencyOptions[defaultCurrency];
+  console.log(formatNumberCountry);
 
-  //----Expense Options Temporary values----------
+  //----Income Options Temporary values----------
   const accountOptions = {
     title: 'Available Account',
     options: [
       { value: 'account_01', label: 'Account_01' },
       { value: 'account_02', label: 'Account_02' },
       { value: 'account_03', label: 'Account_03' },
+      { value: 'account_04', label: 'Account_04' },
     ],
   };
   //--------
-  const categoryOptions = {
-    title: 'Category / Subategory',
+  const sourceOptions = {
+    title: 'Source of income',
     options: [
-      { value: 'category_01', label: 'Category_01 / SubCategory X' },
-      { value: 'category_02', label: 'Category_02 / SubCategory X' },
-      { value: 'category_03', label: 'Category_03 / SubCategory X' },
-      { value: 'category_04', label: 'Category_04 / SubCategory X' },
-      { value: 'category_05', label: 'Category_05 / SubCategory X' },
-      { value: 'category_06', label: 'Category_06 / SubCategory X' },
+      { value: 'source_01', label: 'source_01' },
+      { value: 'source_02', label: 'source_02' },
+      { value: 'source_03', label: 'source_03' },
+      { value: 'source_04', label: 'source_04' },
     ],
   };
+
   //-----------------
-  //input expense data state variables
-  const initialExpenseData = {
+  //input income data state variables
+  const initialIncomeData = {
     amount: '0,000.00',
     account: '',
-    category: '',
+    source: '',
     note: '',
     currency: 'usd',
   };
   //---states------
-  const [expenseData, setExpenseData] = useState(initialExpenseData);
+  const [incomeData, setIncomeData] = useState(initialIncomeData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
 
   //-----useEffect--------
   useEffect(() => {
-    setExpenseData((prev) => ({ ...prev, currency: currency }));
+    setIncomeData((prev) => ({ ...prev, currency: currency }));
     //shows previous state data
-    // console.log(expenseData);
+    // console.log(incomeData);
   }, [currency]);
 
   //----functions--------
@@ -66,13 +65,13 @@ function Expense() {
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setIncomeData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
   function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setIncomeData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-    console.log(expenseData);
+    console.log(incomeData);
   }
 
   function onSaveHandler() {
@@ -83,7 +82,7 @@ function Expense() {
 
   return (
     <>
-      <article className='expense' style={{ color: 'inherit' }}>
+      <article className='income' style={{ color: 'inherit' }}>
         <CardTitle>Amount</CardTitle>
 
         <AmountInputScreen>
@@ -93,8 +92,7 @@ function Expense() {
             placeholder={'0,000.00'}
             onChange={inputTrackDataHandler}
             name='amount'
-            value={`${expenseData.amount}`}
-            // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
+            value={`${incomeData.amount}`}
           />
 
           <div className='icon-currency' onClick={toggleCurrency}>
@@ -106,8 +104,9 @@ function Expense() {
         <SelectComponent dropDownOptions={accountOptions} />
 
         <CardSeparator />
-        <CardTitle>Category</CardTitle>
-        <SelectComponent dropDownOptions={categoryOptions} />
+
+        <CardTitle>Source</CardTitle>
+        <SelectComponent dropDownOptions={sourceOptions} />
 
         {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
 
@@ -120,7 +119,7 @@ function Expense() {
             name='note'
             rows={3}
             maxLength={150}
-            value={expenseData.note}
+            value={incomeData.note}
           />
         </AmountInputScreen>
 
@@ -133,4 +132,4 @@ function Expense() {
   );
 }
 
-export default Expense;
+export default Income;

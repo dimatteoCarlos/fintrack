@@ -1,9 +1,8 @@
 import DisplayScreenNumber from '../../components/header/displayScreen/displayScreenNumber/DisplayScreenNumber';
-
 import LogoMenuIcon from '../../components/header/LogoMenuIcon';
 import TrackerNavbar from '../../components/trackerNavbar/TrackerNavbar';
+import CardTrackerPresentation from './CardTrackerPresentation';
 import { Outlet } from 'react-router-dom';
-import CardTrackerPresentation from '../tracker/expense/CardTrackerPresentation';
 
 function TrackerLayout() {
   //temporary values------------
@@ -11,7 +10,7 @@ function TrackerLayout() {
 
   const enteredCurrency = 'usd';
 
-  const selectedCountry = currencyOptions[enteredCurrency];
+  const formatNumberCountry = currencyOptions[enteredCurrency];
 
   const availableBudget = 0;
 
@@ -25,7 +24,7 @@ function TrackerLayout() {
           <DisplayScreenNumber
             amount={availableBudget}
             chosenCurrency={enteredCurrency}
-            countryCurrency={selectedCountry}
+            countryCurrency={formatNumberCountry}
           />
         </div>
       </div>
