@@ -16,6 +16,8 @@ import SelectComponent from '../trackerComponents/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 import { CardDate } from '../trackerComponents/TrackerComponents';
 
+import TrackerDatepicker from '../trackerComponents/TrackerDatepicker.tsx';
+
 //------------------------------
 
 function Investment() {
@@ -42,6 +44,7 @@ function Investment() {
     account: '',
     currency: 'usd',
     type: 'deposit',
+    date: new Date(),
     note: '',
   };
   //---states------
@@ -97,6 +100,12 @@ function Investment() {
     console.log('On Save Handler');
   }
 
+  function changeInvestmentDate(selectedDate: Date): void {
+    console.log(selectedDate);
+    setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
+    console.log(investmentData);
+  }
+
   //--------------------------
 
   return (
@@ -112,6 +121,7 @@ function Investment() {
             onChange={inputTrackDataHandler}
             name='amount'
             value={`${investmentData.amount}`}
+
             // value={`${numberFormat(Number.parseFloat(investmentData.amount), formatNumberCountry)}`}
           />
 
@@ -140,15 +150,15 @@ function Investment() {
           <CardDate>
             <CardTitle>Date</CardTitle>
             <CardDateScreen>
-              <div className='screen--concept' onClick={toggleTypeInv}>
-                {'MM/DD/YYYY'}
-              </div>
+              <TrackerDatepicker
+                changeDate={changeInvestmentDate}
+                date={investmentData.date}
+              ></TrackerDatepicker>
             </CardDateScreen>
           </CardDate>
-
+          
         </CardTypeAndDateContainer>
 
-        
         <CardTitle>Note</CardTitle>
         <AmountInputScreen>
           <textarea

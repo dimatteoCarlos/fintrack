@@ -77,22 +77,5 @@ export function CardDateScreen({ children }: any) {
 
 
 
-/*
-<div className='card__typeDate'>
-              <div className='card__typeDate--type'>
-                <div className='card--title'>{'Type'}</div>
-                <div className='card__screen--type'>
-                  <div className='screen--concept' onClick={toggleTypeInv}>
-                    {typeInv}
-                  </div>
-                </div>
-              </div>
-              <div className='card__typeDate--date'>
-                <div className='card--title'>{'Date'}</div>
-                <div className='card__screen'>
-                  <div className='screen--concept'>{'MM/DD/YY'}</div>
-                </div>
-              </div>
-            </div>
 
-*/
+

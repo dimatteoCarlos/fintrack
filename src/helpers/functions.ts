@@ -40,7 +40,7 @@ export function numberFormat(x: number | string, formatNumberCountry: string) {
   }
 
   const enteredNumber = Number.parseFloat(x.toString());
-  
+
   const formatter = new Intl.NumberFormat(formatNumberCountry, {
     useGrouping: true,
   });
@@ -52,3 +52,14 @@ export function numberFormat(x: number | string, formatNumberCountry: string) {
   return formattedNumber;
 }
 //-------------------------
+
+export function showDate(date: Date, countryFormat = 'es-ES') {
+  console.log(
+    date.toLocaleDateString(countryFormat, {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  );
+}
