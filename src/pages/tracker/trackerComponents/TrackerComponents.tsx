@@ -50,6 +50,49 @@ export function CardNote() {
   );
 }
 
+//---------------------
+export function CardTypeAndDateContainer({ children }: any) {
+  return <div className='card__typeDate__container'>{children}</div>;
+}
+
+//---
+export function CardType({ children }: any) {
+  return <div className='card__typeDate--type'>{children}</div>;
+}
+
+export function CardTypeScreen({ children }: any) {
+  return <div className='card__screen--type'>{children}</div>;
+}
+
+//---
+export function CardDate({ children }: any) {
+  return <div className='card__typeDate--date'>{children}</div>;
+}
+
+export function CardDateScreen({ children }: any) {
+  return <div className='card__screen--date'>{children}</div>;
+}
 
 
 
+
+
+/*
+<div className='card__typeDate'>
+              <div className='card__typeDate--type'>
+                <div className='card--title'>{'Type'}</div>
+                <div className='card__screen--type'>
+                  <div className='screen--concept' onClick={toggleTypeInv}>
+                    {typeInv}
+                  </div>
+                </div>
+              </div>
+              <div className='card__typeDate--date'>
+                <div className='card--title'>{'Date'}</div>
+                <div className='card__screen'>
+                  <div className='screen--concept'>{'MM/DD/YY'}</div>
+                </div>
+              </div>
+            </div>
+
+*/

@@ -95,17 +95,25 @@ const Investment = () => {
             <span className='bar'></span>
             <span className='circleR'></span>
           </div>
-
+{/*  */}
           <div className='state__card--bottom'>
             <div className='card__typeDate'>
+
+
               <div className='card__typeDate--type'>
                 <div className='card--title'>{'Type'}</div>
                 <div className='card__screen--type'>
+
+
                   <div className='screen--concept' onClick={toggleTypeInv}>
                     {typeInv}
                   </div>
+
+                  
                 </div>
               </div>
+
+
               <div className='card__typeDate--date'>
                 <div className='card--title'>{'Date'}</div>
                 <div className='card__screen'>

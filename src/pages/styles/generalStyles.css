@@ -39,9 +39,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  
+
   max-width: 33.3%;
-  
 }
 
 .home__header {
@@ -242,47 +241,65 @@ textarea:invalid {
   color: var(--dark);
   font-weight: 600;
 }
-
+/*--------------*/
+/*--------------*/
 /*-- bottom card for investment and debts--*/
-.card__typeDate {
+.card__typeDate__container {
   display: flex;
-  /* justify-content: space-between; */
   align-items: start;
   gap: 0.5em;
+  /* justify-content: space-between; */
+  /* border:1px solid orange; */
 }
 
 .card__typeDate--type,
-.card__typeDate--date {
+.card__typeDate--date,
+.card__typeDate--element {
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: start;
-  gap: 0.25em;
   width: 50%;
+  /* justify-content: start; */
   /* border:1px solid red; */
 }
+
 .card__typeDate--type {
-  width: 42%;
+  width: 40%;
 }
 
-.card__typeDate--type .card__screen--type {
-  text-align: center;
+.card__screen--type {
   border: 2px solid var(--dark);
-  padding: 0.5em;
+  padding: 0.5rem 0;
   border-radius: 0.75rem;
-  gap: 0.5rem;
+  width: 100%;
+  cursor: pointer;
 }
 
 .card__typeDate--type .screen--concept {
   font-weight: 600;
   font-size: 0.875rem;
   text-transform: capitalize;
-  cursor: pointer;
+  width: fit-content;
+
+  padding: 0;
+  margin: 0 auto;
+  /* border:1px solid blue; */
 }
 
-.card__typeDate--date .card__screen {
-  padding: 0.6em;
+.card__screen--date {
+  background-color: var(--creme);
+  border-radius: 0.75rem;
+
+  padding: 0.6rem;
+  width: 100%;
+  text-align: center;
+  cursor:pointer;
+  
+  /* border:1px solid red; */
+
 }
+
+
 .card__typeDate .screen--concept {
   text-align: center;
 }
