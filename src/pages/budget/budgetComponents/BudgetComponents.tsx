@@ -91,3 +91,14 @@ export function PocketRightTile({ children }: any) {
     </>
   );
 }
+
+//------------------
+export function BudgetPresentation({ children }: any) {
+  return (
+    <div className='content__presentation--budget'>
+      <div className='cards__presentation--budget'>{children}
+
+      </div>
+    </div>
+  );
+}

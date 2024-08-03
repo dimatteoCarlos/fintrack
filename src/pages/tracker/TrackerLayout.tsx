@@ -7,13 +7,9 @@ import { Outlet } from 'react-router-dom';
 function TrackerLayout() {
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-
   const enteredCurrency = 'usd';
-
   const formatNumberCountry = currencyOptions[enteredCurrency];
-
   const availableBudget = 0;
-
   //-------------------------------
 
   return (

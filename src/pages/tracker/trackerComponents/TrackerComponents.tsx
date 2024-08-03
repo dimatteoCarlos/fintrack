@@ -4,7 +4,7 @@
 export function CardStatePresentation({ children }: any) {
   return (
     <div className='content__presentation'>
-      <div className='state__cards'>{children}</div>
+      <div className=' cards__presentation--tracker'>{children}</div>
     </div>
   );
 }

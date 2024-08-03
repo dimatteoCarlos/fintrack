@@ -4,6 +4,7 @@ import {
   BigBoxResult,
   BoxRow,
   BudgetCardTitle,
+  BudgetPresentation,
   CardTilePocket,
   OpenAddEditBtn,
   PocketLeftTile,
@@ -16,11 +17,8 @@ import {
 function BudgetLayout() {
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-
   const defaultCurrency = 'usd';
-
   const formatNumberCountry = currencyOptions[defaultCurrency];
-
   const resultAmount = 0;
   const remaining = 0;
 
@@ -105,8 +103,8 @@ function BudgetLayout() {
           />
         </BigBoxResult>
         {/*  */}
-        <div className='budget__presentation'></div>
 
+        <BudgetPresentation>
         <BudgetCardTitle>Category List</BudgetCardTitle>
         {/*  */}
         <StatusBoxContainer>
@@ -148,6 +146,8 @@ function BudgetLayout() {
         <OpenAddEditBtn>
           <div className='open__btn__label'>New Pocket</div>
         </OpenAddEditBtn>
+        </BudgetPresentation>
+
       </div>
     </>
   );

@@ -148,15 +148,17 @@ section {
 
 article {
 }
+
 /*---card results---*/
 .content__presentation {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-top: 4.5rem;
-  /* border: 5px solid purple; */
+  border: 5px solid purple;
 }
-.state__cards {
+
+.cards__presentation--tracker {
   background: url('../../assets/cardBgTexture.png') repeat;
   width: 87%;
   margin: 0 auto;
@@ -418,13 +420,29 @@ textarea:invalid {
   width: 86.3%;
 }
 
+/*BudgetPresentation*/
+.content__presentation--budget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 5px solid blue;
+}
+.cards__presentation--budget {
+  width: 87%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 1rem 1.625rem;
+}
+
+/**/
+
 /*Category List*/
 
 .card__budget--title {
   color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
-  padding-bottom: 1rem;
+  padding: 0;
 }
 
 .box__container,
