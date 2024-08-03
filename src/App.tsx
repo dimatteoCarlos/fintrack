@@ -16,8 +16,9 @@ import Debtors from './pages/debts/debtors/Debtors.tsx';
 import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
 import Accounts from './pages/overview/accounts/Accounts.tsx';
 import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
-import TrackerLayout from './pages/layout/TrackerLayout.tsx';
+import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
+import BudgetLayout from './pages/budget/BudgetLayout.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -39,10 +40,20 @@ function App() {
           ],
         },
 
-        { path: '/budget/categories', element: <Categories /> },
-        { path: '/budget/categories/:categoryId', element: <CategoryDetail /> },
-        { path: '/budget/pockets', element: <Pockets /> },
-        { path: '/budget/pockets/:pocketId', element: <PocketDetail /> },
+        {
+          path: '/budget',
+          element: <BudgetLayout />,
+          children: [
+            { index: true, element: <Categories /> },
+            { path: '/budget/categories', element: <Categories /> },
+            {
+              path: '/budget/categories/:categoryId',
+              element: <CategoryDetail />,
+            },
+            { path: '/budget/pockets', element: <Pockets /> },
+            { path: '/budget/pockets/:pocketId', element: <PocketDetail /> },
+          ],
+        },
 
         { path: '/debts/debtors', element: <Debtors /> },
         { path: '/debts/debtors/:debtorId', element: <DebtorDetail /> },

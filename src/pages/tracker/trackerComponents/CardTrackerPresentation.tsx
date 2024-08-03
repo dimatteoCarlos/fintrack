@@ -1,7 +1,4 @@
-import {
-  CardStatePresentation,
-  CardStateTop,
-} from '../tracker/trackerComponents/TrackerComponents.tsx';
+import { CardStatePresentation, CardStateTop } from './TrackerComponents.tsx';
 
 function CardTrackerPresentation({ children }: any) {
   return (

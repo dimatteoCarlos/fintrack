@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
-import { numberFormat } from '../../../helpers/functions.ts';
+// import { numberFormat } from '../../../helpers/functions.ts';
 
 import {
   AmountInputScreen,
@@ -21,10 +21,11 @@ import TrackerDatepicker from '../trackerComponents/TrackerDatepicker.tsx';
 //------------------------------
 
 function Investment() {
-  //temporary values
-  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
-  const formatNumberCountry = currencyOptions[defaultCurrency];
+  //temporary values
+  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+  // const formatNumberCountry = currencyOptions[defaultCurrency];
+  // console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
 
   //----Investment Options Temporary values----------
   const accountOptions = {
@@ -35,7 +36,6 @@ function Investment() {
       { value: 'account_03', label: 'Account_03' },
     ],
   };
-  //--------
 
   //-----------------
   //input investment data state variables
@@ -60,7 +60,7 @@ function Investment() {
 
     setInvestmentData((prev) => ({ ...prev, type: typeInv }));
 
-    //shows previous state data
+    //It shows previous state data
     // console.log(investmentData);
   }, [currency, typeInv]);
 
@@ -82,7 +82,7 @@ function Investment() {
   }
 
   function toggleTypeInv() {
-    const current = (type: 'deposit' | 'withdraw') => {
+    const current = (typeInv: 'deposit' | 'withdraw') => {
       if (typeInv == 'deposit') {
         return 'withdraw';
       } else if (typeInv == 'withdraw') {
@@ -92,7 +92,6 @@ function Investment() {
       }
     };
     setTypeInv((prev) => current(prev));
-
     // console.log('current:', current, typeof current);
   }
 
@@ -101,9 +100,8 @@ function Investment() {
   }
 
   function changeInvestmentDate(selectedDate: Date): void {
-    console.log(selectedDate);
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
-    console.log(investmentData);
+    // console.log(investmentData);
   }
 
   //--------------------------
@@ -135,7 +133,7 @@ function Investment() {
 
         <CardSeparator />
 
-        {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+        {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
 
         <CardTypeAndDateContainer>
           <CardType>
@@ -156,7 +154,6 @@ function Investment() {
               ></TrackerDatepicker>
             </CardDateScreen>
           </CardDate>
-          
         </CardTypeAndDateContainer>
 
         <CardTitle>Note</CardTitle>

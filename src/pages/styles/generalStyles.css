@@ -29,6 +29,17 @@ body {
   margin: 0;
   padding: 0;
 }
+.flx-row-jc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row-flx-sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+}
 
 .home__layout {
   min-width: 22.5rem;
@@ -61,7 +72,7 @@ body {
   /* border:1px solid yellow; */
 }
 
-.trackerLayout__header {
+.layout__header {
   width: 100%;
   position: absolute;
   top: var(--topSpaceHeight);
@@ -81,7 +92,8 @@ body {
 
 /*---------------/*
 /*trackerNavbar*/
-.trackerNavbar__container {
+.trackerNavbar__container,
+.total__container {
   padding: 0.75rem;
   display: flex;
   justify-content: space-between;
@@ -102,7 +114,7 @@ body {
   /* border: 2px solid goldenrod; */
 }
 
-/*----sep comp-----*/
+/*----card separator component-----*/
 .stack__sep {
   display: flex;
   justify-content: start;
@@ -242,7 +254,6 @@ textarea:invalid {
   font-weight: 600;
 }
 /*--------------*/
-/*--------------*/
 /*-- bottom card for investment and debts--*/
 .card__typeDate__container {
   display: flex;
@@ -272,6 +283,7 @@ textarea:invalid {
   border-radius: 0.75rem;
   width: 100%;
   cursor: pointer;
+  /* border:1px solid red; */
 }
 
 .card__typeDate--type .screen--concept {
@@ -309,25 +321,23 @@ textarea:invalid {
   margin: 0;
   color: var(--dark);
   font-weight: 400;
-  cursor:pointer;
+  cursor: pointer;
 }
-
 
 .tracker__datepicker:focus,
 .tracker__datepicker:active {
   font-weight: 600;
 }
-/*DATE PICKER MODIFIED*/
+/*MODIFIED DATE PICKER */
 
-.react-datepicker-popper{
+.react-datepicker-popper {
   position: absolute;
-  /* transform:translate(61px, 311.818px) !important;  */
-  transform:translate(61px, 451.818px) !important;
-  /* transform:translate(30%, 451.818px) !important; */
+  /* transform: translate(61px, 451.818px) !important; */
+  transform: translate(61px, 311.818px) !important;
 }
 
-.react-datepicker__triangle{
-  display:none;
+.react-datepicker__triangle {
+  display: none;
 }
 
 .react-datepicker__month-container {
@@ -359,4 +369,164 @@ textarea:invalid {
   color: var(--dark);
 }
 
-/*----------------*/
+/*Functional Pages*/
+/*----Budget----------*/
+.title__header__container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  gap: calc(100% - 12rem);
+  color: var(--dark);
+  padding: 1.7rem 0;
+}
+
+.title__header {
+  text-transform: capitalize;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.iconArrowLeftDark {
+  background-color: black;
+  display: flex;
+}
+
+/*BigBoxResult*/
+
+/*it includes the tracker navbar styles*/
+.total__container {
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+  top: 7.5rem;
+  /* border:1px solid red; */
+}
+
+.total__container .total__amount {
+  font-size: 2rem;
+  display: flex;
+}
+
+.total__container .displayScreen {
+  color: var(--dark);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-weight: bolder;
+  width: 86.3%;
+}
+
+/*Category List*/
+
+.card__budget--title {
+  color: var(--light);
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding-bottom: 1rem;
+}
+
+.box__container,
+.box__row {
+  /* width: 100%; */
+  border: none;
+}
+
+.box__container {
+  border-bottom: 1px solid var(--light);
+  padding: 0.25rem 0 0.25rem 0;
+}
+
+.box__title,
+.box__title--category__name,
+.box__title--spent {
+  color: var(--light);
+  font-size: 0.875rem;
+  line-height: 1.625rem;
+}
+
+.status__square {
+  height: 0.5rem;
+  width: 0.5rem;
+  background-color: #5b8c93;
+  border: none;
+  border-radius: 0.125rem;
+}
+.box__subtitle,
+.box__subtitle--status,
+.box__subtitle--budget {
+  font-size: 0.625rem;
+  color: var(--creme);
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+/* Open Add Edit Button */
+
+.line__container {
+  border-radius: 0.75rem;
+  border: 2px solid var(--light);
+  cursor: pointer;
+}
+
+button.line__container {
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+.add__edit__btn {
+  height: 3.125rem;
+  width: 100%;
+  background-color: transparent;
+}
+
+.open__btn__label {
+  font-size: 0.875rem;
+  color: var(--light);
+  letter-spacing: 0.5px;
+}
+
+/*Card Tile Pocket*/
+.card__tile__pocket {
+  padding: 2.25rem 0.75rem;
+  height: 6.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__tile__pocket .tile__left {
+  width: 60%;
+  flex-direction: column;
+  gap: 0.25rem;
+  display: flex;
+}
+
+.card__tile__pocket .tile__right {
+  width: 40%;
+  height: 3.75rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  display: flex;
+  align-items: end;
+  border-left: 3px dashed var(--light);
+}
+
+.tile__title {
+  color: var(--light);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.tile__subtitle {
+  color: #5b5b5b;
+  font-size: 0.625rem;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.tile__right .tile__title {
+  font-weight: 500;
+}
+/*----------*/

@@ -1,8 +1,4 @@
-type currencyFormatType = {
-  number: number;
-  chosenCurrency: string;
-  countryFormat: string;
-};
+
 
 //-------------------------
 
@@ -54,12 +50,13 @@ export function numberFormat(x: number | string, formatNumberCountry: string) {
 //-------------------------
 
 export function showDate(date: Date, countryFormat = 'es-ES') {
-  console.log(
-    date.toLocaleDateString(countryFormat, {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  );
+  const formattedDate = date.toLocaleDateString(countryFormat, {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+  console.log(formattedDate);
+
+  return formattedDate;
 }

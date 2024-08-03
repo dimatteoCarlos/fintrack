@@ -13,17 +13,17 @@ import { showDate } from '../../../helpers/functions';
 
 //-------
 
-// Define el tipo para el estado del componente
-interface DatePickerProps {
+//---
+type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
-}
+};
 
 function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
-  // Estado para manejar la fecha seleccionada
+  // Handle state selected date
   const [selectedDate, setSelectedDate] = useState<Date>(date);
 
-  // Maneja el cambio de fecha
+  //Handle date changes
   const dateChangeHandler = (date: Date) => {
     setSelectedDate(date);
     changeDate(date);
@@ -37,8 +37,6 @@ function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
       className='tracker__datepicker__input'
-      calendarClassName='tracker__datepicker--calendar'
-      // isClearable
     />
   );
 }
