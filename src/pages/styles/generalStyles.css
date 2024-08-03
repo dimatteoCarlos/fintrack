@@ -155,7 +155,7 @@ article {
   flex-direction: column;
   justify-content: space-between;
   padding-top: 4.5rem;
-  border: 5px solid purple;
+  /* border: 5px solid purple; */
 }
 
 .cards__presentation--tracker {
@@ -330,6 +330,7 @@ textarea:invalid {
 .tracker__datepicker:active {
   font-weight: 600;
 }
+
 /*MODIFIED DATE PICKER */
 
 .react-datepicker-popper {
@@ -425,7 +426,7 @@ textarea:invalid {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 5px solid blue;
+  /* border: 5px solid orange; */
 }
 .cards__presentation--budget {
   width: 87%;
@@ -437,23 +438,31 @@ textarea:invalid {
 /**/
 
 /*Category List*/
+.list__main__container {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  /* border:1px solid blue; */
+}
 
 .card__budget--title {
   color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
-  padding: 0;
+  padding:2rem 0 1rem;
 }
 
 .box__container,
 .box__row {
   /* width: 100%; */
   border: none;
+
 }
 
 .box__container {
   border-bottom: 1px solid var(--light);
   padding: 0.25rem 0 0.25rem 0;
+  /* border:1px solid yellow; */
 }
 
 .box__title,
@@ -462,6 +471,7 @@ textarea:invalid {
   color: var(--light);
   font-size: 0.875rem;
   line-height: 1.625rem;
+  
 }
 
 .status__square {
@@ -470,6 +480,7 @@ textarea:invalid {
   background-color: #5b8c93;
   border: none;
   border-radius: 0.125rem;
+  
 }
 .box__subtitle,
 .box__subtitle--status,
@@ -487,10 +498,13 @@ textarea:invalid {
   border-radius: 0.75rem;
   border: 2px solid var(--light);
   cursor: pointer;
+
+  /* border:1px solid blue; */
 }
 
 button.line__container {
   padding: 0.5rem 0 0.5rem 0;
+    margin-top: 2rem;
 }
 
 .add__edit__btn {
@@ -528,6 +542,7 @@ button.line__container {
   gap: 0.25rem;
   display: flex;
   align-items: end;
+  justify-content: center;
   border-left: 3px dashed var(--light);
 }
 
@@ -547,4 +562,5 @@ button.line__container {
 .tile__right .tile__title {
   font-weight: 500;
 }
+
 /*----------*/

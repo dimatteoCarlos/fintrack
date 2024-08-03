@@ -28,6 +28,17 @@ export function BigBoxResult({ children }: BigBoxResultPropType) {
   return <div className='total__container'>{children}</div>;
 }
 
+//------------------
+export function BudgetPresentation({ children }: any) {
+  return (
+    <div className='content__presentation--budget'>
+      <div className='cards__presentation--budget'>{children}
+
+      </div>
+    </div>
+  );
+}
+
 //-----Category List--------//
 export function BudgetCardTitle({ children }: any) {
   return <div className='card__budget--title'>{children} </div>;
@@ -93,12 +104,12 @@ export function PocketRightTile({ children }: any) {
 }
 
 //------------------
-export function BudgetPresentation({ children }: any) {
-  return (
-    <div className='content__presentation--budget'>
-      <div className='cards__presentation--budget'>{children}
+// export function BudgetPresentation({ children }: any) {
+//   return (
+//     <div className='content__presentation--budget'>
+//       <div className='cards__presentation--budget'>{children}
 
-      </div>
-    </div>
-  );
-}
+//       </div>
+//     </div>
+//   );
+// }

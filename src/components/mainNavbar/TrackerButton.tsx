@@ -10,7 +10,7 @@ const classNavLink = `mainNavbarButton ${({
 function TrackerButton() {
   return (
     <>
-      <NavLink to='/tracker' className={classNavLink}>
+      <NavLink to='/tracker/expense' className={classNavLink}>
         <div className='iconContainer flx-col-center'>
           <AddSvg />
         </div>

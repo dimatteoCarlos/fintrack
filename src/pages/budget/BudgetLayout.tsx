@@ -50,8 +50,6 @@ function BudgetLayout() {
     },
   ];
 
-  const { categoryName, spent, statusTitle, budget } = categories[0];
-
   const pockets = [
     {
       name: 'Name',
@@ -79,7 +77,6 @@ function BudgetLayout() {
     },
   ];
 
-  const { name, description, saved, goal } = pockets[0];
 
   return (
     <>
@@ -105,49 +102,63 @@ function BudgetLayout() {
         {/*  */}
 
         <BudgetPresentation>
-        <BudgetCardTitle>Category List</BudgetCardTitle>
-        {/*  */}
-        <StatusBoxContainer>
-          <BoxRow>
-            <div className='box__title'>{categoryName} </div>
-            <div className='box__title'>{spent} </div>
-          </BoxRow>
-          <BoxRow>
-            <BoxRow>
-              <div className='row-flx-sb'>
-                <StatusSquare />
-                <div className='box__subtitle'>{statusTitle} </div>
+          <BudgetCardTitle>Category List</BudgetCardTitle>
+          {/*  */}
+
+          <div className='list__main__container'>
+            {categories.map((category, indx) => {
+              const { categoryName, spent, statusTitle, budget } = category;
+
+              return (
+                <StatusBoxContainer key={indx}>
+                  <BoxRow>
+                    <div className='box__title'>{categoryName} </div>
+                    <div className='box__title'>{spent} </div>
+                  </BoxRow>
+                  <BoxRow>
+                    <BoxRow>
+                      <div className='row-flx-sb'>
+                        <StatusSquare />
+                        <div className='box__subtitle'>{statusTitle} </div>
+                      </div>
+                    </BoxRow>
+                    <div className='box__subtitle'>{budget} </div>
+                  </BoxRow>
+                </StatusBoxContainer>
+              );
+            })}
+          </div>
+
+          <OpenAddEditBtn>
+            <div className='open__btn__label'>New Category</div>
+          </OpenAddEditBtn>
+
+          <BudgetCardTitle>Pockets</BudgetCardTitle>
+
+          <div className='list__main__container'>
+          {pockets.map((pocket, indx) => {
+         const  { name, description, saved, goal }=pocket
+         return (
+          <CardTilePocket key={`pockect-${indx}`}>
+            <PocketLeftTile>
+              <div className='tile__title'>{name}</div>
+              <div className='tile__subtitle'>{description}</div>
+            </PocketLeftTile>
+
+            <PocketRightTile>
+              <div className='tile__title'>{saved}</div>
+              <div className='tile__subtitle row-flx-sb'>
+                {goal} <StatusSquare />
               </div>
-            </BoxRow>
-            <div className='box__subtitle'>{budget} </div>
-          </BoxRow>
-        </StatusBoxContainer>
-
-        <OpenAddEditBtn>
-          <div className='open__btn__label'>New Category</div>
-        </OpenAddEditBtn>
-
-        <BudgetCardTitle>Pockets</BudgetCardTitle>
-
-        <CardTilePocket>
-          <PocketLeftTile>
-            <div className='tile__title'>{name}</div>
-            <div className='tile__subtitle'>{description}</div>
-          </PocketLeftTile>
-
-          <PocketRightTile>
-            <div className='tile__title'>{saved}</div>
-            <div className='tile__subtitle row-flx-sb'>
-              {goal} <StatusSquare />
-            </div>
-          </PocketRightTile>
-        </CardTilePocket>
-
-        <OpenAddEditBtn>
-          <div className='open__btn__label'>New Pocket</div>
-        </OpenAddEditBtn>
+            </PocketRightTile>
+          </CardTilePocket>
+         )
+    })}
+          </div>
+          <OpenAddEditBtn>
+            <div className='open__btn__label'>New Pocket</div>
+          </OpenAddEditBtn>
         </BudgetPresentation>
-
       </div>
     </>
   );
