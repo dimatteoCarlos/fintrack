@@ -19,6 +19,7 @@ import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
+import DebtsLayout from './pages/debts/DebtsLayout.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -55,8 +56,15 @@ function App() {
           ],
         },
 
-        { path: '/debts/debtors', element: <Debtors /> },
-        { path: '/debts/debtors/:debtorId', element: <DebtorDetail /> },
+        {
+          path: '/debts',
+          element: <DebtsLayout />,
+          children: [
+            { index: true, element: <Debtors /> },
+            { path: '/debts/debtors', element: <Debtors /> },
+            { path: '/debts/debtors/:debtorId', element: <DebtorDetail /> },
+          ],
+        },
 
         { path: '/overview/accounts', element: <Accounts /> },
         { path: '/overview/accounts/:accountId', element: <AccountDetail /> },

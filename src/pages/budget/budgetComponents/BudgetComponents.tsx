@@ -1,27 +1,30 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import LeftArrowDarkSvg from '../../../assets/LeftArrowSvg.svg';
 
 export function TitleHeader() {
   const location = useLocation();
-  const mainRoutePath = location.pathname.split('/')[1];
+  const previousRoute = location.pathname.split('/')[0]?? '/';
+  const currentRoute = location.pathname.split('/')[1] 
+  const navigateTo = useNavigate();
 
   return (
-    <>
-      <div className='title__header__container'>
-        <div className='iconArrowLeftDark'>
-          <LeftArrowDarkSvg />
-        </div>
-
-        <div className='title__header'>{mainRoutePath}</div>
+    <div className='title__header__container'>
+      <div
+        className='iconArrowLeftDark'
+        // onClick={()=>navigateTo(-1)}
+        onClick={() => navigateTo(previousRoute)}
+      >
+        <LeftArrowDarkSvg />
       </div>
-    </>
+
+      <div className='title__header'>{currentRoute}</div>
+    </div>
   );
 }
 
 //----------------
 type BigBoxResultPropType = {
   children: any;
-  // resultAmount?: number | string;
 };
 
 export function BigBoxResult({ children }: BigBoxResultPropType) {
@@ -32,9 +35,7 @@ export function BigBoxResult({ children }: BigBoxResultPropType) {
 export function BudgetPresentation({ children }: any) {
   return (
     <div className='content__presentation--budget'>
-      <div className='cards__presentation--budget'>{children}
-
-      </div>
+      <div className='cards__presentation--budget'>{children}</div>
     </div>
   );
 }

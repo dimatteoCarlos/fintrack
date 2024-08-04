@@ -1,5 +1,6 @@
 import DisplayScreenNumber from '../../components/header/displayScreen/displayScreenNumber/DisplayScreenNumber';
 import { currencyFormat } from '../../helpers/functions';
+
 import {
   BigBoxResult,
   BoxRow,
@@ -15,6 +16,8 @@ import {
 } from './budgetComponents/BudgetComponents';
 
 function BudgetLayout() {
+
+
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
@@ -77,7 +80,6 @@ function BudgetLayout() {
     },
   ];
 
-
   return (
     <>
       <div className='budgetLayout'>
@@ -86,10 +88,10 @@ function BudgetLayout() {
             <TitleHeader></TitleHeader>
           </div>
         </div>
+
         <BigBoxResult>
           <div className='total__amount'>
             {currencyFormat(defaultCurrency, resultAmount, formatNumberCountry)}
-            {}
           </div>
 
           <DisplayScreenNumber
@@ -136,24 +138,24 @@ function BudgetLayout() {
           <BudgetCardTitle>Pockets</BudgetCardTitle>
 
           <div className='list__main__container'>
-          {pockets.map((pocket, indx) => {
-         const  { name, description, saved, goal }=pocket
-         return (
-          <CardTilePocket key={`pockect-${indx}`}>
-            <PocketLeftTile>
-              <div className='tile__title'>{name}</div>
-              <div className='tile__subtitle'>{description}</div>
-            </PocketLeftTile>
+            {pockets.map((pocket, indx) => {
+              const { name, description, saved, goal } = pocket;
+              return (
+                <CardTilePocket key={`pockect-${indx}`}>
+                  <PocketLeftTile>
+                    <div className='tile__title'>{name}</div>
+                    <div className='tile__subtitle'>{description}</div>
+                  </PocketLeftTile>
 
-            <PocketRightTile>
-              <div className='tile__title'>{saved}</div>
-              <div className='tile__subtitle row-flx-sb'>
-                {goal} <StatusSquare />
-              </div>
-            </PocketRightTile>
-          </CardTilePocket>
-         )
-    })}
+                  <PocketRightTile>
+                    <div className='tile__title'>{saved}</div>
+                    <div className='tile__subtitle row-flx-sb'>
+                      {goal} <StatusSquare />
+                    </div>
+                  </PocketRightTile>
+                </CardTilePocket>
+              );
+            })}
           </div>
           <OpenAddEditBtn>
             <div className='open__btn__label'>New Pocket</div>
