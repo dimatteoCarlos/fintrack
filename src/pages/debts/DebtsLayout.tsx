@@ -53,8 +53,6 @@ function DebtsLayout() {
     },
   ];
 
-  
-
   return (
     <>
       <div className='debtsLayout'>
@@ -99,12 +97,12 @@ function DebtsLayout() {
                   </BoxRow>
                   <BoxRow>
                     <BoxRow>
-                      <div className='row-flx-sb'>
+                      <div className='flx-row-sb'>
                         <StatusSquare />
                         <div className='box__subtitle'>{type} </div>
                       </div>
                     </BoxRow>
-                    <div className='box__subtitle'> </div>
+                    {/* <div className='box__subtitle'> </div> */}
                   </BoxRow>
                 </BoxContainer>
               );

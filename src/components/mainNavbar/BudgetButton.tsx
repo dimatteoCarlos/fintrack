@@ -1,18 +1,21 @@
 import WalletSvg from '../../assets/mainNavbarSvg/WalletSvg.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-const classNavLink = `mainNavbarButton ${({
-  isActive,
-}: {
-  isActive: boolean;
-}) => (isActive ? 'active' : '')}`;
+const classNavLink = `mainNavbarButton
+${({ isActive }: { isActive: boolean }) => (isActive ? 'active' : '')}
+`;
 
 function BudgetButton() {
+  const btnName = 'budget';
+  const isBtnActive =
+    useLocation().pathname.split('/')[1] == btnName ? 'active' : '';
 
-  
   return (
     <>
-      <NavLink to='/budget/categories' className={classNavLink}>
+      <NavLink
+        to='/budget/categories'
+        className={`${classNavLink} ${isBtnActive}`}
+      >
         <div className='iconContainer flx-col-center'>
           <WalletSvg />
         </div>

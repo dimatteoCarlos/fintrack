@@ -2,6 +2,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import LeftArrowDarkSvg from '../../../assets/LeftArrowSvg.svg';
 
+//------TitleHeader--------C take it from Budget Comp
 export function TitleHeader() {
   const navigateTo = useNavigate();
   const location = useLocation();
@@ -32,50 +33,66 @@ export function BigBoxResult({ children }: BigBoxResultPropType) {
 }
 
 //------------------
-
+// not used yet in overview
 export function DisplayMainScreen({ children }: any) {
   return <div className='displayScreen'>{children}</div>;
 }
 
-//--------------------------C
+//----------------
+//bigBoxScreenRow
+
+//--------------------------NC 'cause different paddings
 export function Presentation({ children }: any) {
   return (
-    <article className='content__presentation'>
+    <section className='content__presentation'>
       <div className='cards__presentation'>{children}</div>
-    </article>
+    </section>
   );
 }
 
 //-----Summary---------------C
-export function DebtsCardTitle({ children }: any) {
+export function CardTitle({ children }: any) {
   return <div className='presentation__card--title'>{children} </div>;
 }
 
 //-----BoxContainer -----------C
-export function BoxContainer({ children }: any) {
-  return <div className='box__container .flx-row-sb'>{children}</div>;
-}
+// export function BoxContainer({ children }: any) {
+//   return <div className='box__container .flx-row-sb'>{children}</div>;
+// }
 
 export function BoxRow({ children }: any) {
   return <div className='box__row flx-row-sb'>{children}</div>;
 }
 
 export function StatusSquare({ children }: any) {
-  return <span className='status__square'>{children}</span>;
+  return (
+    <>
+      <span className='status__square'></span>
+      {children}
+    </>
+  );
 }
 
 //-------Add / Edit Button-----------C
 
-export function OpenAddEditBtn({ children }: any) {
+export function Button({ children }: any) {
   function onClickHandler() {
-    console.log('Add new or Edit a Category');
+    console.log('Add new or Edit button w/o container');
   }
   return (
     <button
-      className='line__container flx-row-jc add__edit__btn'
+      // className='line__container flx-row-jc add__edit__btn'
       onClick={onClickHandler}
     >
       {children}
     </button>
+  );
+}
+
+export function OpenAddEditBtn({ children }: any) {
+  return (
+    <div className='line__container flx-row-jc add__edit__btn'>
+      <Button>{children}</Button>
+    </div>
   );
 }

@@ -20,6 +20,7 @@ import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
 import DebtsLayout from './pages/debts/DebtsLayout.tsx';
+import OverviewLayout from './pages/overview/OverviewLayout.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -66,8 +67,9 @@ function App() {
           ],
         },
 
-        { path: '/overview/accounts', element: <Accounts /> },
-        { path: '/overview/accounts/:accountId', element: <AccountDetail /> },
+        {path:'/overview', element:<OverviewLayout/>,children:[
+        {index:true, element:<Accounts/>},{path: '/overview/accounts', element: <Accounts /> },
+        { path: '/overview/accounts/:accountId', element: <AccountDetail /> },]}
       ],
     },
   ]);

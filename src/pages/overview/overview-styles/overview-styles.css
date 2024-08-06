@@ -1,0 +1,260 @@
+/*overview-styles.css*/
+
+.overviewLayout .bigBox__container {
+  padding: 1.25rem;
+
+  width: 81.11%;
+  margin: 0 auto;
+  position: absolute;
+  top: 7.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  border-radius: 1rem;
+  gap: 0.75rem;
+  background-color: var(--creme);
+}
+
+.overviewLayout .bigBox__frame {
+  border: 1px solid var(--dark);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-size: 0.875rem;
+}
+
+.bigBox__frame__screenRow {
+  color: var(--dark);
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.bigBox__screenRow--title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.bigBox__screenRow--amount {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
+}
+
+.overviewLayout .content__presentation {
+  border: 0px solid yellow;
+}
+
+/*Overview Presentation -- C*/
+.overviewLayout .content__presentation {
+  display: flex-root;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  /* border: 5px solid greenyellow; */
+  /* padding-top: 1rem; */
+}
+
+.overviewLayout .cards__presentation {
+  width: 88%;
+  margin: 0 auto;
+  border-radius: 1rem;
+
+  margin-top: 4.5rem;
+  padding: 1rem 0;
+
+  /* border: 0.5px dashed var(--creme); */
+  /* padding: 1rem 1.625rem; */
+}
+
+.presentation__card__title__container {
+  padding: 1.5rem 0 1rem 0;
+}
+
+.overviewLayout .presentation__card--title {
+  color: var(--light);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+a.icon {
+  height: 100%;
+  width: 2rem;
+  z-index: 1;
+}
+
+/*SAVING GOALS*/
+
+/*Goals Indicators*/
+
+.goals__main__info {
+  flex-direction: column;
+  display: flex;
+  align-items: space-between;
+  justify-content: start;
+  gap: 0.5rem;
+  /* border:10px solid red; */
+}
+
+.tile__container {
+  border-radius: 1rem;
+  border: 1px solid var(--creme);
+  height: 100%;
+}
+
+.tile__container--goal {
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  /* border-color:red; */
+}
+
+.tile__subtitle {
+  font-size: 0.625rem;
+  font-weight: 400;
+  color: var(--creme);
+  opacity: 0.6;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+.tile__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--light);
+  line-height: 1.5rem;
+
+  letter-spacing: 1px;
+  text-transform: capitalize;
+}
+
+.tile__container__col {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.25rem;
+  height: 100%;
+}
+
+.tile__status__container {
+  gap: 0.25rem;
+}
+
+.tile__status--goal {
+  text-transform: lowercase;
+}
+
+/*Goal tiles group*/
+
+.tiles__container {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: 0;
+  /* border: 1px solid var(--light1, red); */
+}
+
+.tiles__container {
+  gap: 0.1rem;
+  flex-wrap: nowrap;
+}
+
+.tile__container__col--goalInfo {
+  padding: 1rem;
+  flex: 50%;
+}
+
+.tile__title--goalInfo {
+  letter-spacing: 0.15px;
+  text-transform: none;
+}
+
+.letterSpaceSmall {
+  letter-spacing: 0.65px;
+}
+
+/*GOALS ACCOUNTS*/
+.goals__account {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: start;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  /* border: 1px solid rgb(21, 223, 21); */
+}
+
+.tile__container--account {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--creme);
+  min-width: 9.6rem;
+
+  /* border: 1px solid rgb(21, 223, 21); */
+}
+
+.tile__subtitle--account {
+  color: #5b5b5b;
+  opacity: 1;
+}
+
+.tile__title.tile__title--account {
+  color: var(--dark);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: center;
+  min-width: 100%;
+
+  padding-top: 0.25rem;
+}
+
+/*GOALS INVESTMENT*/
+
+.goals__investment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tile__container--investment {
+  background-color: var(--creme);
+  width: 100%;
+  min-height: 4.125rem;
+  padding: 0.75rem;
+  gap: 0.25rem;
+}
+.tile__container__col--investment {
+  /* border: 1px solid red; */
+}
+.tile__container__col--investment.col--investment--left {
+  flex: 58%;
+
+  text-align-last: left;
+  gap: 0.25rem;
+  max-height: 66px;
+}
+
+.col--investment--left .tile__title--account {
+  padding: 0;
+  letter-spacing: normal;
+}
+
+.col--investment--right .tile__title--account {
+  padding: 0;
+  text-align: right;
+  letter-spacing: normal;
+}
+.tile__status--investment--right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  gap: 0.25rem;
+  letter-spacing: 1px;
+}
+
+.subtitle__status__investment--right {
+  color: #5b5b5b;
+  opacity: 1;
+}

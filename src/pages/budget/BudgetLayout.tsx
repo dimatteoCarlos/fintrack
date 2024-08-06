@@ -16,8 +16,6 @@ import {
 } from './budgetComponents/BudgetComponents';
 
 function BudgetLayout() {
-
-
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
@@ -119,7 +117,7 @@ function BudgetLayout() {
                   </BoxRow>
                   <BoxRow>
                     <BoxRow>
-                      <div className='row-flx-sb'>
+                      <div className='flx-row-sb'>
                         <StatusSquare />
                         <div className='box__subtitle'>{statusTitle} </div>
                       </div>
@@ -149,7 +147,7 @@ function BudgetLayout() {
 
                   <PocketRightTile>
                     <div className='tile__title'>{saved}</div>
-                    <div className='tile__subtitle row-flx-sb'>
+                    <div className='tile__subtitle flx-row-sb'>
                       {goal} <StatusSquare />
                     </div>
                   </PocketRightTile>

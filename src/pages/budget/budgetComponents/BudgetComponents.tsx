@@ -1,24 +1,32 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import LeftArrowDarkSvg from '../../../assets/LeftArrowSvg.svg';
-
+//-----C
 export function TitleHeader() {
   const location = useLocation();
-  const previousRoute = location.pathname.split('/')[0]?? '/';
-  const currentRoute = location.pathname.split('/')[1] 
+  const previousRoute = location.pathname.split('/')[0] ?? '/';
+  const currentRoute = location.pathname.split('/')[1];
   const navigateTo = useNavigate();
 
   return (
-    <div className='title__header__container'>
+    <Link to='..' className='title__header__container'>
       <div
         className='iconArrowLeftDark'
-        // onClick={()=>navigateTo(-1)}
         onClick={() => navigateTo(previousRoute)}
+        // onClick={()=>navigateTo(-1)}
       >
         <LeftArrowDarkSvg />
       </div>
 
+      {/* <div
+        className='iconArrowLeftDark'
+        onClick={()=>navigateTo(-1)}
+        // onClick={() => navigateTo(previousRoute)}
+      >
+        <LeftArrowDarkSvg />
+      </div> */}
+
       <div className='title__header'>{currentRoute}</div>
-    </div>
+    </Link>
   );
 }
 
@@ -48,11 +56,11 @@ export function BudgetCardTitle({ children }: any) {
 //----------------
 
 export function StatusBoxContainer({ children }: any) {
-  return <div className='box__container .row-flx-sb'>{children}</div>;
+  return <div className='box__container .flx-row-sb'>{children}</div>;
 }
 
 export function BoxRow({ children }: any) {
-  return <div className='box__row row-flx-sb'>{children}</div>;
+  return <div className='box__row flx-row-sb'>{children}</div>;
 }
 //---------------------
 
