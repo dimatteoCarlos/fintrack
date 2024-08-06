@@ -218,6 +218,7 @@ a.icon {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .tile__container--investment {
@@ -279,6 +280,7 @@ a.icon {
   border-radius: 1rem;
   background-color: #1b1b1b;
   margin: 1rem 0;
+  padding: 1rem;
   /* border: 1px solid white; */
 }
 

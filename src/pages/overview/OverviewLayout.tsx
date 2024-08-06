@@ -446,6 +446,12 @@ function OverviewLayout() {
             })}
           </article>
 
+          {
+            <OpenAddEditBtn>
+              <div className='open__btn__label'>Add Account</div>
+            </OpenAddEditBtn>
+          }
+
           {/*LAST MOVEMENTS  */}
           <article className='goals__last__movements'>
           <div className='presentation__card__title__container flx-row-sb'>
