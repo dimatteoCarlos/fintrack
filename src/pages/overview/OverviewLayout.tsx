@@ -1,5 +1,6 @@
 import {
   BigBoxResult,
+  BoxContainer,
   BoxRow,
   Button,
   CardTitle,
@@ -131,55 +132,55 @@ function OverviewLayout() {
   const lastMovements = [
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
 
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
   ];
 
   //Last Debts
-  const latestDebtsRecords = [
+  const latestDebtsrecords = [
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
 
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
     {
       categoryName: 'Category Name',
-      Record: 'record',
+      record: 'Record',
       description: 'Description',
       date: 'MM/DD',
     },
@@ -444,6 +445,78 @@ function OverviewLayout() {
               }
             })}
           </article>
+
+
+
+          <CardTitle>Last Movements</CardTitle>
+          <CardTitle>Last 30 days</CardTitle>
+
+          <div className='list__main__container'>
+            {lastMovements.map((movement, indx) => {
+              const { categoryName, record, description, date } = movement;
+
+              return (
+                <BoxContainer key={indx}>
+                  <BoxRow>
+                    <div className='box__title'>{categoryName} </div>
+                    <div className='box__title'>
+                      {record}
+                      {/* {currencyFormat(
+                        defaultCurrency,
+                        amount,
+                        formatNumberCountry
+                      )} */}
+                    </div>
+                  </BoxRow>
+                  <BoxRow>
+                    <BoxRow>
+                      <div className='flx-row-sb'>
+                        <StatusSquare />
+                        <div className='box__subtitle'>{description} </div>
+                      </div>
+                    </BoxRow>
+                    <div className='box__subtitle'> {date}</div>
+                  </BoxRow>
+                </BoxContainer>
+              );
+            })}
+          </div>
+
+
+          
+          <CardTitle>Last Debts</CardTitle>
+          <CardTitle>Latest records</CardTitle>
+
+          <div className='list__main__container'>
+            {latestDebtsrecords.map((movement, indx) => {
+              const { categoryName, record, description, date } = movement;
+
+              return (
+                <BoxContainer key={indx}>
+                  <BoxRow>
+                    <div className='box__title'>{categoryName} </div>
+                    <div className='box__title'>
+                      {record}
+                      {/* {currencyFormat(
+                        defaultCurrency,
+                        amount,
+                        formatNumberCountry
+                      )} */}
+                    </div>
+                  </BoxRow>
+                  <BoxRow>
+                    <BoxRow>
+                      <div className='flx-row-sb'>
+                        <StatusSquare />
+                        <div className='box__subtitle'>{description} </div>
+                      </div>
+                    </BoxRow>
+                    <div className='box__subtitle'> {date}</div>
+                  </BoxRow>
+                </BoxContainer>
+              );
+            })}
+          </div>
         </Presentation>
       </main>
     </>

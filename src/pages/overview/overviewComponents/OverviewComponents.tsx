@@ -56,9 +56,9 @@ export function CardTitle({ children }: any) {
 }
 
 //-----BoxContainer -----------C
-// export function BoxContainer({ children }: any) {
-//   return <div className='box__container .flx-row-sb'>{children}</div>;
-// }
+export function BoxContainer({ children }: any) {
+  return <div className='box__container .flx-row-sb'>{children}</div>;
+}
 
 export function BoxRow({ children }: any) {
   return <div className='box__row flx-row-sb'>{children}</div>;

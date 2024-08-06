@@ -12,10 +12,10 @@ import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx'
 
 function Income() {
   //temporary values
-  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
-  const formatNumberCountry = currencyOptions[defaultCurrency];
-  console.log(formatNumberCountry);
+  // const formatNumberCountry = currencyOptions[defaultCurrency];
+  // console.log(formatNumberCountry);
 
   //----Income Options Temporary values----------
   const accountOptions = {
