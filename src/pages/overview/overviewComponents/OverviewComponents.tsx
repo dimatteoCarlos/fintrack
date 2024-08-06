@@ -96,3 +96,13 @@ export function OpenAddEditBtn({ children }: any) {
     </div>
   );
 }
+
+export function SeeMore({ children }: any) {
+  return (
+    <div className='see_more flx-row-jc'>
+      <Button>{children}</Button>
+    </div>
+  );
+}
+
+

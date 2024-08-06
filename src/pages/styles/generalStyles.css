@@ -47,6 +47,12 @@ body {
   align-items: center;
   padding: 0;
 }
+.flx-row-start {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0;
+}
 
 .home__layout {
   margin: 0 auto;

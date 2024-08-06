@@ -289,3 +289,20 @@ a.icon {
   /* border:1px solid white; */
   border-radius: 1rem;
 }
+
+.seeMore{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap:1rem;
+  font-size: 0.875rem;
+  color:#f7f7f7;
+  
+  padding: 0 1rem 0 1rem;
+  /* border:1px solid red; */
+
+
+
+
+}

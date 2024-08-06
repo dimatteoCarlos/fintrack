@@ -6,6 +6,7 @@ import {
   CardTitle,
   OpenAddEditBtn,
   Presentation,
+  SeeMore,
   StatusSquare,
   TitleHeader,
 } from '../overview/overviewComponents/OverviewComponents';
@@ -14,6 +15,8 @@ import './overview-styles/overview-styles.css';
 
 import { currencyFormat } from '../../helpers/functions';
 import Dots3LightSvg from '../../assets/Dots3LightSvg.svg';
+import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
+
 import { Link } from 'react-router-dom';
 
 //
@@ -221,16 +224,16 @@ function OverviewLayout() {
 
         <Presentation>
           <article className='goals__main__info'>
-          <div className='presentation__card__title__container flx-row-sb'>
-            <CardTitle>Saving Goals</CardTitle>
-            <Link className='flx-col-center icon ' to={'/accounts/edit'}>
-              <Dots3LightSvg />{' '}
-            </Link>
-          </div>
+            <div className='presentation__card__title__container flx-row-sb'>
+              <CardTitle>Saving Goals</CardTitle>
+              <Link className='flx-col-center icon ' to={'/accounts/edit'}>
+                <Dots3LightSvg />{' '}
+              </Link>
+            </div>
 
-          {/* SAVING GOALS component  */}
+            {/* SAVING GOALS component  */}
 
-          {/* GOALS HEAD INFO  */}
+            {/* GOALS HEAD INFO  */}
             <div className='tile__container tile__container--goal'>
               <div className='tile__container__col'>
                 <div className='tile__subtitle'>{goal.title}</div>
@@ -331,7 +334,6 @@ function OverviewLayout() {
             </Link>
           </div>
           <article className='goals__account'>
-
             {/* Account Balance  */}
 
             {accounts.map((account, indx) => {
@@ -454,12 +456,12 @@ function OverviewLayout() {
 
           {/*LAST MOVEMENTS  */}
           <article className='goals__last__movements'>
-          <div className='presentation__card__title__container flx-row-sb'>
-            <CardTitle>Last Movements</CardTitle>
-            {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
-          </div>
+            <div className='presentation__card__title__container flx-row-sb'>
+              <CardTitle>Last Movements</CardTitle>
+              {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
+            </div>
 
-          {/* <article className='goals__last__movements'> */}
+            {/* <article className='goals__last__movements'> */}
             <div className='main__subtitle'>Last 30 days</div>
 
             <div className='list__main__container'>
@@ -494,12 +496,16 @@ function OverviewLayout() {
             </div>
           </article>
 
+          <Link className='seeMore' to={'/accounts/edit'}>
+            <div className='link'>See More</div> <ChevronRightSvg />{' '}
+          </Link>
+
           {/*LAST DEBTS  */}
           <article className='goals__last__movements'>
-          <div className='presentation__card__title__container flx-row-sb'>
-            <CardTitle>Last Debts</CardTitle>
-            {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
-          </div>
+            <div className='presentation__card__title__container flx-row-sb'>
+              <CardTitle>Last Debts</CardTitle>
+              {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
+            </div>
 
             <div className='main__subtitle'>Latest records</div>
 
@@ -534,6 +540,10 @@ function OverviewLayout() {
               })}
             </div>
           </article>
+
+          <Link className='seeMore' to={'/accounts/edit'}>
+            <div className='link'>See More</div> <ChevronRightSvg />{' '}
+          </Link>
         </Presentation>
       </main>
     </>
