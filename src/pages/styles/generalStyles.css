@@ -506,7 +506,7 @@ textarea:invalid {
   color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
-  padding: 0rem 0 1rem;
+  padding: 1rem 0 1rem;
 }
 
 .box__container,
@@ -584,6 +584,10 @@ button.line__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.card__tile__pocket {
+  background-color: #1b1b1b;
 }
 
 .card__tile__pocket .tile__left {

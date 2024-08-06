@@ -220,6 +220,7 @@ function OverviewLayout() {
         </BigBoxResult>
 
         <Presentation>
+          <article className='goals__main__info'>
           <div className='presentation__card__title__container flx-row-sb'>
             <CardTitle>Saving Goals</CardTitle>
             <Link className='flx-col-center icon ' to={'/accounts/edit'}>
@@ -230,7 +231,6 @@ function OverviewLayout() {
           {/* SAVING GOALS component  */}
 
           {/* GOALS HEAD INFO  */}
-          <article className='goals__main__info'>
             <div className='tile__container tile__container--goal'>
               <div className='tile__container__col'>
                 <div className='tile__subtitle'>{goal.title}</div>
@@ -330,8 +330,8 @@ function OverviewLayout() {
               {/* <Dots3LightSvg />{' '} */}
             </Link>
           </div>
-
           <article className='goals__account'>
+
             {/* Account Balance  */}
 
             {accounts.map((account, indx) => {
@@ -446,77 +446,88 @@ function OverviewLayout() {
             })}
           </article>
 
+          {/*LAST MOVEMENTS  */}
+          <article className='goals__last__movements'>
+          <div className='presentation__card__title__container flx-row-sb'>
+            <CardTitle>Last Movements</CardTitle>
+            {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
+          </div>
 
+          {/* <article className='goals__last__movements'> */}
+            <div className='main__subtitle'>Last 30 days</div>
 
-          <CardTitle>Last Movements</CardTitle>
-          <CardTitle>Last 30 days</CardTitle>
+            <div className='list__main__container'>
+              {lastMovements.map((movement, indx) => {
+                const { categoryName, record, description, date } = movement;
 
-          <div className='list__main__container'>
-            {lastMovements.map((movement, indx) => {
-              const { categoryName, record, description, date } = movement;
-
-              return (
-                <BoxContainer key={indx}>
-                  <BoxRow>
-                    <div className='box__title'>{categoryName} </div>
-                    <div className='box__title'>
-                      {record}
-                      {/* {currencyFormat(
+                return (
+                  <BoxContainer key={indx}>
+                    <BoxRow>
+                      <div className='box__title'>{categoryName} </div>
+                      <div className='box__title'>
+                        {record}
+                        {/* {currencyFormat(
                         defaultCurrency,
                         amount,
                         formatNumberCountry
                       )} */}
-                    </div>
-                  </BoxRow>
-                  <BoxRow>
-                    <BoxRow>
-                      <div className='flx-row-sb'>
-                        <StatusSquare />
-                        <div className='box__subtitle'>{description} </div>
                       </div>
                     </BoxRow>
-                    <div className='box__subtitle'> {date}</div>
-                  </BoxRow>
-                </BoxContainer>
-              );
-            })}
+                    <BoxRow>
+                      <BoxRow>
+                        <div className='flx-row-sb'>
+                          {/* <StatusSquare /> */}
+                          <div className='box__subtitle'>{description} </div>
+                        </div>
+                      </BoxRow>
+                      <div className='box__subtitle'> {date}</div>
+                    </BoxRow>
+                  </BoxContainer>
+                );
+              })}
+            </div>
+          </article>
+
+          {/*LAST DEBTS  */}
+          <article className='goals__last__movements'>
+          <div className='presentation__card__title__container flx-row-sb'>
+            <CardTitle>Last Debts</CardTitle>
+            {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
           </div>
 
+            <div className='main__subtitle'>Latest records</div>
 
-          
-          <CardTitle>Last Debts</CardTitle>
-          <CardTitle>Latest records</CardTitle>
+            <div className='list__main__container'>
+              {latestDebtsrecords.map((movement, indx) => {
+                const { categoryName, record, description, date } = movement;
 
-          <div className='list__main__container'>
-            {latestDebtsrecords.map((movement, indx) => {
-              const { categoryName, record, description, date } = movement;
-
-              return (
-                <BoxContainer key={indx}>
-                  <BoxRow>
-                    <div className='box__title'>{categoryName} </div>
-                    <div className='box__title'>
-                      {record}
-                      {/* {currencyFormat(
+                return (
+                  <BoxContainer key={indx}>
+                    <BoxRow>
+                      <div className='box__title'>{categoryName} </div>
+                      <div className='box__title'>
+                        {record}
+                        {/* {currencyFormat(
                         defaultCurrency,
                         amount,
                         formatNumberCountry
                       )} */}
-                    </div>
-                  </BoxRow>
-                  <BoxRow>
-                    <BoxRow>
-                      <div className='flx-row-sb'>
-                        <StatusSquare />
-                        <div className='box__subtitle'>{description} </div>
                       </div>
                     </BoxRow>
-                    <div className='box__subtitle'> {date}</div>
-                  </BoxRow>
-                </BoxContainer>
-              );
-            })}
-          </div>
+                    <BoxRow>
+                      <BoxRow>
+                        <div className='flx-row-sb'>
+                          {/* <StatusSquare /> */}
+                          <div className='box__subtitle'>{description} </div>
+                        </div>
+                      </BoxRow>
+                      <div className='box__subtitle'> {date}</div>
+                    </BoxRow>
+                  </BoxContainer>
+                );
+              })}
+            </div>
+          </article>
         </Presentation>
       </main>
     </>

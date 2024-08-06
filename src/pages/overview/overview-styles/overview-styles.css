@@ -76,6 +76,8 @@
   color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
+
+  padding: 1rem 0 1rem 0;
 }
 
 a.icon {
@@ -119,6 +121,7 @@ a.icon {
   letter-spacing: 1px;
   text-transform: capitalize;
 }
+
 .tile__title {
   font-size: 0.875rem;
   font-weight: 500;
@@ -225,7 +228,7 @@ a.icon {
   gap: 0.25rem;
 }
 .tile__container__col--investment {
-  /* border: 1px solid red; */
+  border: 0px solid red;
 }
 .tile__container__col--investment.col--investment--left {
   flex: 58%;
@@ -257,4 +260,30 @@ a.icon {
 .subtitle__status__investment--right {
   color: #5b5b5b;
   opacity: 1;
+}
+
+.main__subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--creme);
+  padding: 0rem 0 2rem 0;
+}
+
+.overviewLayout .presentation__card__title__container {
+  padding: 1rem 0 0 0;
+  /* border:1px solid yellow; */
+}
+
+.goals__last__movements {
+  border-radius: 1rem;
+  background-color: #1b1b1b;
+  margin: 1rem 0;
+  /* border: 1px solid white; */
+}
+
+.goals__main__info, .goals__account {
+  background-color: var(--dark);
+  /* border:1px solid white; */
+  border-radius: 1rem;
 }
