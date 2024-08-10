@@ -42,12 +42,10 @@ function TrackerLayout() {
       <TrackerNavbar />
       <>
         <div className='content__presentation'>
-          {/* <CardSeparator /> */}
           <div className='cards__presentation cards__presentation--tracker'>
-
-              <Outlet />
-            </div>
+            <Outlet />
           </div>
+        </div>
         {/* </div> */}
       </>
     </div>
