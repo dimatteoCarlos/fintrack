@@ -13,7 +13,6 @@ import { showDate } from '../../../helpers/functions';
 
 //-------
 
-//---
 type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
@@ -34,6 +33,9 @@ function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
     <DatePicker
       selected={selectedDate}
       onChange={(selectedDate) => dateChangeHandler(selectedDate!)}
+
+      showYearDropdown
+      scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
       className='tracker__datepicker__input'

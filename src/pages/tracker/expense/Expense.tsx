@@ -105,7 +105,7 @@ function Expense() {
         <CardTitle>Account</CardTitle>
         <SelectComponent dropDownOptions={accountOptions} />
 
-        <CardSeparator />
+        {/* <CardSeparator /> */}
         <CardTitle>Category</CardTitle>
         <SelectComponent dropDownOptions={categoryOptions} />
 

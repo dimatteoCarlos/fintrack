@@ -131,7 +131,7 @@ function Investment() {
         <CardTitle>Account</CardTitle>
         <SelectComponent dropDownOptions={accountOptions} />
 
-        <CardSeparator />
+        {/* <CardSeparator /> */}
 
         {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
 

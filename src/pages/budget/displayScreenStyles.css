@@ -1,17 +1,13 @@
-
-/*AFECTA A DEBT BUDGET Y OVERVIEW*/
-
+/* 
 .displayScreen {
+  background-color: var(--creme) ;
   color:var(--dark);
   display: flex;
   justify-content: space-between;
-
+  border-radius: 0.75rem;
   width: 100%;
-  
+  border:10px solid red;
   padding: 0.5em 0.75em;
-  border:10px solid greenyellow;
-  background-color: var(--creme) ;
-  background-color: var(--dark) ;
 }
 
 .displayScreen--concept {
@@ -20,8 +16,6 @@
   letter-spacing: 1px;
   text-align: left;
   color:var(--dark);
-  color:red;
-  
 }
 
 .displayScreen--result {
@@ -29,7 +23,4 @@
   text-align: right;
   font-weight: 600;
   color:var(--dark);
-  
-}
-
-
+} */

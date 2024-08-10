@@ -1,6 +1,9 @@
-/*overview-styles.css*/
-
-.overviewLayout .bigBox__container {
+/*overview styles.css*/
+.overviewLayout {
+  border: 1px solid;
+}
+/*---BigBoxResult--*/
+.bigBox__container {
   padding: 1.25rem;
 
   width: 81.11%;
@@ -15,7 +18,7 @@
   background-color: var(--creme);
 }
 
-.overviewLayout .bigBox__frame {
+.bigBox__frame {
   border: 1px solid var(--dark);
   border-radius: 0.5rem;
   padding: 0.5rem;
@@ -42,37 +45,20 @@
   font-size: 0.875rem;
 }
 
-.overviewLayout .content__presentation {
+/*--------------------------*/
+/*afecta a todo*/
+.content__presentation {
   border: 0px solid yellow;
 }
 
-/*Overview Presentation -- C*/
-.overviewLayout .content__presentation {
-  display: flex-root;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0;
-  /* border: 5px solid greenyellow; */
-  /* padding-top: 1rem; */
+/*----CardTitle -----*/
+
+.overviewLayout .presentation__card__title__container {
+  /* padding: 1rem 0 0rem 0; */
+  /* border: 1px solid red; */
 }
 
-.overviewLayout .cards__presentation {
-  width: 88%;
-  margin: 0 auto;
-  border-radius: 1rem;
-
-  margin-top: 4.5rem;
-  padding: 1rem 0;
-
-  /* border: 0.5px dashed var(--creme); */
-  /* padding: 1rem 1.625rem; */
-}
-
-.presentation__card__title__container {
-  padding: 1.5rem 0 1rem 0;
-}
-
-.overviewLayout .presentation__card--title {
+.presentation__card--title {
   color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
@@ -85,10 +71,8 @@ a.icon {
   width: 2rem;
   z-index: 1;
 }
-
+/*--------------------------*/
 /*SAVING GOALS*/
-
-/*Goals Indicators*/
 
 .goals__main__info {
   flex-direction: column;
@@ -98,6 +82,8 @@ a.icon {
   gap: 0.5rem;
   /* border:10px solid red; */
 }
+
+/*Goals Head Info*/
 
 .tile__container {
   border-radius: 1rem;
@@ -148,8 +134,8 @@ a.icon {
 .tile__status--goal {
   text-transform: lowercase;
 }
-
-/*Goal tiles group*/
+/*------------*/
+/*Goals Indicators*/
 
 .tiles__container {
   padding: 0;
@@ -178,6 +164,7 @@ a.icon {
   letter-spacing: 0.65px;
 }
 
+/*****************/
 /*GOALS ACCOUNTS*/
 .goals__account {
   display: flex;
@@ -192,7 +179,7 @@ a.icon {
 .tile__container--account {
   padding: 0.5rem 0.75rem;
   background-color: var(--creme);
-  min-width: 9.6rem;
+  min-width: 9.475rem;
 
   /* border: 1px solid rgb(21, 223, 21); */
 }
@@ -271,9 +258,9 @@ a.icon {
   padding: 0rem 0 2rem 0;
 }
 
-.overviewLayout .presentation__card__title__container {
+.presentation__card__title__container.main {
   padding: 1rem 0 0 0;
-  /* border:1px solid yellow; */
+  /* border: 1px solid yellow; */
 }
 
 .goals__last__movements {
@@ -284,25 +271,23 @@ a.icon {
   /* border: 1px solid white; */
 }
 
-.goals__main__info, .goals__account {
+.goals__main__info,
+.goals__account {
   background-color: var(--dark);
-  /* border:1px solid white; */
   border-radius: 1rem;
+  /* border:1px solid white; */
 }
 
-.seeMore{
+/*--------SeeMore------------*/
+.seeMore {
   width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
   font-size: 0.875rem;
-  color:#f7f7f7;
-  
+  color: #f7f7f7;
+
   padding: 0 1rem 0 1rem;
   /* border:1px solid red; */
-
-
-
-
 }

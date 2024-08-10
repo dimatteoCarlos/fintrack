@@ -1,7 +1,7 @@
 // Importa React y el componente Select de react-select
 
 import Select, { components } from 'react-select';
-import ArrowDownDarkSvg from './ArrowDownDarkSvg.svg';
+import ArrowDownDarkSvg from '../../../assets/ArrowDownDarkSvg.svg';
 
 // Define las opciones para el select
 // const options1 = [
@@ -74,7 +74,7 @@ export type SelectComponentPropType = {
 function SelectComponent({ dropDownOptions }: any) {
   const { title, options } = dropDownOptions;
   // console.log(title, options)
-  
+
   // Función para manejar el cambio en el select
   const handleChange = (
     selectedOption: { value: any; label: string } | null

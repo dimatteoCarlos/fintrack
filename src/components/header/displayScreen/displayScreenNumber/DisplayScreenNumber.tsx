@@ -6,6 +6,7 @@ type DisplayScreenNumberPropType = {
   chosenCurrency: string;
   countryCurrency: string;
   titleConcept: string;
+  variant: string;
 };
 
 export function DisplayScreenNumber({
@@ -13,13 +14,14 @@ export function DisplayScreenNumber({
   chosenCurrency,
   countryCurrency,
   titleConcept,
+  variant,
 }: DisplayScreenNumberPropType) {
   return (
-    <div className='displayScreen displayScreen--number'>
-      <div className='displayScreen--concept'>{titleConcept}</div>
-      <div className='displayScreen--result'>
+    <div className={`displayScreen ${variant}`}>
+      {/* <div className={`displayScreen--concept ${variant}`}>{titleConcept}</div>
+      <div className={`displayScreen--result ${variant}`}>
         {currencyFormat(chosenCurrency, amount, countryCurrency)}
-      </div>
+      </div> */}
     </div>
   );
 }

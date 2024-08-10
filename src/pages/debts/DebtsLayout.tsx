@@ -1,57 +1,19 @@
-import {
-  BigBoxResult,
-  BoxContainer,
-  BoxRow,
-  DebtsCardTitle,
-  DisplayMainScreen,
-  OpenAddEditBtn,
-  Presentation,
-  StatusSquare,
-  TitleHeader,
-} from '../debts/debtsComponents/DebtsComponents';
-import { currencyFormat } from '../../helpers/functions';
+import './debts-styles.css';
+
+import { BoxContainer, BoxRow } from './components/boxComponents.tsx';
+
+import DebtsBigBoxResult from './components/DebtsBigBoxResult.tsx';
+import ListOfDebtors from './components/ListOfDebtors.tsx';
+import { TitleHeader } from '../../components/TitleHeader.tsx';
+import OpenAddEditBtn from '../../components/OpenAddEditBtn.tsx';
+import { CardTitle } from '../../components/CardTitle.tsx';
 
 function DebtsLayout() {
   //temporary values------------
-  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  const defaultCurrency = 'usd';
-  const formatNumberCountry = currencyOptions[defaultCurrency];
-  const message = "you're owed";
-  const total = 0;
-
-  //Temporarily Dummy data
-  const debtors = [
-    {
-      name: 'name',
-      lastname: 'last name',
-      amount: 0,
-      type: 'debtor/lender',
-    },
-    {
-      name: 'name',
-      lastname: 'last name',
-      amount: 0,
-      type: 'debtor/lender',
-    },
-    {
-      name: 'name',
-      lastname: 'last name',
-      amount: 0,
-      type: 'debtor/lender',
-    },
-    {
-      name: 'name',
-      lastname: 'last name',
-      amount: 0,
-      type: 'debtor/lender',
-    },
-    {
-      name: 'name',
-      lastname: 'last name',
-      amount: 0,
-      type: 'debtor/lender',
-    },
-  ];
+  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+  // const defaultCurrency = 'usd';
+  // const formatNumberCountry = currencyOptions[defaultCurrency];
+  const bigScreenInfo = [{ title: "you're owed", amount: 0 }];
 
   return (
     <>
@@ -62,56 +24,18 @@ function DebtsLayout() {
           </div>
         </div>
 
-        <BigBoxResult>
-          <div className='bigBox__mainInfo'>{message.toUpperCase()}</div>
+        <DebtsBigBoxResult bigScreenInfo={bigScreenInfo}></DebtsBigBoxResult>
 
-          <DisplayMainScreen>
-            <div className='displayScreen--concept'>{'total'}</div>
-            <div className='displayScreen--result'>
-              {currencyFormat(defaultCurrency, total, formatNumberCountry)}
-            </div>
-          </DisplayMainScreen>
-        </BigBoxResult>
+        <section className='content__presentation'>
+          <div className='cards__presentation'>
+            <CardTitle>Summary</CardTitle>
 
-        <Presentation>
-          <DebtsCardTitle>Summary</DebtsCardTitle>
-
-          <div className='list__main__container'>
-            {debtors.map((debtor, indx) => {
-              const { name, lastname, amount, type } = debtor;
-
-              return (
-                <BoxContainer key={indx}>
-                  <BoxRow>
-                    <div className='box__title'>
-                      {name}, {lastname}{' '}
-                    </div>
-                    <div className='box__title'>
-                      {' '}
-                      {currencyFormat(
-                        defaultCurrency,
-                        amount,
-                        formatNumberCountry
-                      )}
-                    </div>
-                  </BoxRow>
-                  <BoxRow>
-                    <BoxRow>
-                      <div className='flx-row-sb'>
-                        <StatusSquare />
-                        <div className='box__subtitle'>{type} </div>
-                      </div>
-                    </BoxRow>
-                    {/* <div className='box__subtitle'> </div> */}
-                  </BoxRow>
-                </BoxContainer>
-              );
-            })}
+            <ListOfDebtors></ListOfDebtors>
+            <OpenAddEditBtn>
+              <div className='open__btn__label'>New Debtor</div>
+            </OpenAddEditBtn>
           </div>
-          <OpenAddEditBtn>
-            <div className='open__btn__label'>New Debtor</div>
-          </OpenAddEditBtn>
-        </Presentation>
+        </section>
       </div>
     </>
   );

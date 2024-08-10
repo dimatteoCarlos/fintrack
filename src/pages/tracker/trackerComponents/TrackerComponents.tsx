@@ -1,10 +1,12 @@
 //amount input
 //screen__container
 
+import { ReactNode } from "react";
+
 export function CardStatePresentation({ children }: any) {
   return (
     <div className='content__presentation'>
-      <div className=' cards__presentation--tracker'>{children}</div>
+      <div className='cards__presentation cards__presentation--tracker'>{children}</div>
     </div>
   );
 }
@@ -31,10 +33,12 @@ export function AmountInputScreen({ children }: any) {
 
 export function CardSeparator() {
   return (
+    <div className="separator__container">
     <div className='stack__sep'>
       <span className='circleL'></span>
       <span className='bar'></span>
       <span className='circleR'></span>
+    </div>
     </div>
   );
 }
@@ -51,7 +55,7 @@ export function CardNote() {
 }
 
 //---------------------
-export function CardTypeAndDateContainer({ children }: any) {
+export function CardTypeAndDateContainer({ children }:{children:ReactNode}) {
   return <div className='card__typeDate__container'>{children}</div>;
 }
 
@@ -72,7 +76,7 @@ export function CardDate({ children }: any) {
 export function CardDateScreen({ children }: any) {
   return <div className='card__screen--date'>{children}</div>;
 }
-
+//-------------
 
 
 

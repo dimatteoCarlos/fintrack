@@ -103,7 +103,7 @@ function Income() {
         <CardTitle>Account</CardTitle>
         <SelectComponent dropDownOptions={accountOptions} />
 
-        <CardSeparator />
+        {/* <CardSeparator /> */}
 
         <CardTitle>Source</CardTitle>
         <SelectComponent dropDownOptions={sourceOptions} />

@@ -21,12 +21,14 @@ import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
 import DebtsLayout from './pages/debts/DebtsLayout.tsx';
 import OverviewLayout from './pages/overview/OverviewLayout.tsx';
+import NotFoundPage from './pages/error/NotFoundPage.tsx';
 
 function App() {
   const router = createBrowserRouter([
     {
       path: '/',
       element: <Layout />,
+      errorElement: <NotFoundPage />,
 
       children: [
         { index: true, element: <Navigate to='/tracker/expense' /> },
@@ -67,9 +69,18 @@ function App() {
           ],
         },
 
-        {path:'/overview', element:<OverviewLayout/>,children:[
-        {index:true, element:<Accounts/>},{path: '/overview/accounts', element: <Accounts /> },
-        { path: '/overview/accounts/:accountId', element: <AccountDetail /> },]}
+        {
+          path: '/overview',
+          element: <OverviewLayout />,
+          children: [
+            { index: true, element: <Accounts /> },
+            { path: '/overview/accounts', element: <Accounts /> },
+            {
+              path: '/overview/accounts/:accountId',
+              element: <AccountDetail />,
+            },
+          ],
+        },
       ],
     },
   ]);

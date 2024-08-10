@@ -30,17 +30,28 @@ body {
   padding: 0;
 }
 
+.flex-col-sb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
 .flx-row-jc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .flx-row-sb {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0;
 }
+
 .flx-row-end {
   display: flex;
   justify-content: end;
@@ -64,6 +75,7 @@ body {
   max-width: 33.3%;
   min-width: 22.5rem;
   padding-bottom: 1rem;
+
   /* min-height: 52rem; */
   /* height: 53rem; */
 }
@@ -80,13 +92,25 @@ body {
 
   /* border: 5px solid cyan; */
 }
-/*-------trackerLayout---------------*/
 
-.trackerLayout {
-  border: none;
-  /* border:1px solid yellow; */
+.content__presentation {
+  display: flex-root;
+  flex-direction: column;
+  padding: 4.5rem 0 1.5rem 0;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 10px solid yellow; */
 }
 
+.cards__presentation {
+  width: 88%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 0.5rem 0;
+  /* border: 5px solid purple; */
+}
+
+/*general styles*/
 .layout__header {
   width: 100%;
   position: absolute;
@@ -105,297 +129,6 @@ body {
   /* border: 10px solid yellowgreen; */
 }
 
-/*trackerNavbar*/
-.trackerNavbar__container,
-.total__container {
-  padding: 0.75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  border-radius: 1rem 1rem 0 0;
-  width: 80%;
-  margin: 0 auto;
-  align-self: center;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  gap: 0.15rem;
-
-  /* border: 2px solid goldenrod; */
-}
-
-.trackerNavbar__container,
-.total__container {
-  background-color: #1b1b1b;
-}
-
-/*---------------/*
-
-/*----card separator component-----*/
-.stack__sep {
-  display: flex;
-  justify-content: start;
-  padding: 0.25rem 0;
-  margin-left: -11%;
-  width: 130%;
-}
-.circleL,
-.circleR {
-  --radio: 1.1rem;
-  height: var(--radio);
-  width: calc(var(--radio) * 0.65);
-  background-color: var(--dark);
-  border-top-right-radius: var(--radio);
-  border-bottom-right-radius: var(--radio);
-}
-.circleR {
-  border-radius: var(--radio) 0 0 var(--radio);
-}
-
-.bar {
-  border-bottom: 2px dashed white;
-  transform-origin: center center;
-  transform: translateY(-50%);
-  width: 87%;
-  border-color: var(--creme);
-}
-/*---------------------*/
-section {
-  border: none;
-}
-article {
-  border: none;
-}
-
-/*---tracker card results---*/
-.content__presentation {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 4.5rem;
-  padding-bottom: 1.5rem;
-  /* border: 5px solid purple; */
-}
-
-.cards__presentation--tracker {
-  background: url('../../assets/cardBgTexture.png') repeat;
-  width: 87%;
-  margin: 0 auto;
-  border-radius: 1rem;
-  padding: 1rem 1.625rem;
-}
-
-.state__card--top,
-.state__card--bottom {
-  z-index: 10;
-  /* border: 1px solid rgb(35, 56, 3); */
-}
-
-.card--title {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-  text-transform: capitalize;
-  padding: 0.5rem 0;
-}
-
-.card__screen {
-  background-color: var(--creme);
-  border-radius: 0.75rem;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.inputNumber {
-  font-size: 1.5rem;
-  line-height: 2em;
-  font-weight: 700;
-  max-width: 80%;
-  text-align: right;
-  background-color: transparent;
-  color: var(--dark);
-}
-
-.inputNumber::placeholder {
-  color: var(--dark);
-  font-weight: bold;
-  font-size: 20px;
-  font-size: 1.5rem;
-}
-
-/*------------------------*/
-.icon-currency {
-  border: 2px solid var(--dark);
-  font-size: 0.625rem;
-  font-weight: 700;
-  border-radius: 1.1em;
-
-  width: 2.5rem;
-  height: 2.5rem;
-
-  padding: 0.75rem 0.5rem;
-}
-
-/*------------------------*/
-.screen--concept {
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  /* text-transform: capitalize; */
-}
-
-.icon--arrow {
-  width: fit-content;
-}
-
-/*-----CardNote---------------*/
-
-.input__note__description {
-  font-size: 0.875rem;
-  line-height: 1.2em;
-  letter-spacing: 1px;
-  font-weight: 600;
-  max-width: 100%;
-  text-align: left;
-  background-color: transparent;
-  color: var(--dark);
-  width: 100%;
-  border: none;
-  outline: none;
-  resize: none;
-}
-
-textarea:invalid {
-  border: 1px dashed tomato;
-}
-
-.input__note__description::placeholder {
-  color: var(--dark);
-  font-weight: 600;
-}
-/*--------------*/
-/*-- bottom card for investment and debts--*/
-.card__typeDate__container {
-  display: flex;
-  align-items: start;
-  width: 100%;
-  justify-content: space-between;
-  /* border:1px solid orange; */
-}
-
-.card__typeDate--type,
-.card__typeDate--date,
-.card__typeDate--element {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  width: 50%;
-  /* border:1px solid red; */
-}
-
-.card__typeDate--type {
-  width: 40%;
-}
-
-.card__screen--type {
-  border: 2px solid var(--dark);
-  padding: 0.5rem 0;
-  border-radius: 0.75rem;
-  width: 100%;
-  cursor: pointer;
-  /* border:1px solid red; */
-}
-
-.card__typeDate--type .screen--concept {
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-transform: capitalize;
-  width: fit-content;
-
-  padding: 0;
-  margin: 0 auto;
-  /* border:1px solid blue; */
-}
-
-.card__screen--date {
-  background-color: var(--creme);
-  border-radius: 0.75rem;
-
-  padding: 0.5rem;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-
-  /* border:1px solid red; */
-}
-.card__typeDate .screen--concept {
-  text-align: center;
-}
-
-/*----- datepicker  ---------*/
-.tracker__datepicker__input {
-  background-color: transparent;
-  width: 100%;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  color: var(--dark);
-  font-weight: 400;
-  cursor: pointer;
-}
-
-.tracker__datepicker:focus,
-.tracker__datepicker:active {
-  font-weight: 600;
-}
-
-/*MODIFIED DATE PICKER */
-
-.react-datepicker-popper {
-  position: absolute;
-  /* transform: translate(61px, 451.818px) !important; */
-  transform: translate(61px, 311.818px) !important;
-}
-
-.react-datepicker__triangle {
-  display: none;
-}
-
-.react-datepicker__month-container {
-  background-color: #5b5b5b;
-  color: #f7f7f7;
-}
-
-.react-datepicker__day {
-  color: white !important;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.react-datepicker__day.react-datepicker__day--selected,
-.react-datepicker__day--keyboard-selected {
-  background-color: #5b8c93 !important;
-  border-radius: 50% !important;
-}
-
-.react-datepicker__day:hover {
-  background-color: rgb(91, 140, 147) !important;
-  border-radius: 50% !important;
-  font-weight: 700 !important;
-}
-
-.react-datepicker__day-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--dark);
-}
-/*-----------*/
-
 /*Functional Pages*/
 /*----Budget----------*/
 
@@ -404,26 +137,26 @@ textarea:invalid {
 }
 
 .title__header__container {
-  display: flex;
+  /* display: flex;
   justify-content: start;
   align-items: center;
   width: 100%;
   color: var(--dark);
   padding: 1.7rem 0;
-  position: relative;
+  position: relative; */
 
   /* background-color: green; */
 }
 
 .title__header {
-  text-transform: capitalize;
+  /* text-transform: capitalize;
   font-size: 1.25rem;
   font-weight: 600;
   background-color: transparent;
   position: absolute;
   top: auto;
   width: 100%;
-  text-align: center;
+  text-align: center; */
 }
 
 .title__header::before {
@@ -438,198 +171,195 @@ textarea:invalid {
 }
 
 .iconArrowLeftDark {
-  background-color: black;
-  color: black;
-  fill: black;
-  stroke: black;
-
-  display: flex;
+  /* display: flex;
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--light);
   border-radius: 0.5rem;
-
+  
   cursor: pointer;
-  z-index: 1;
+  z-index: 1; */
 }
+/* border: 1px solid var(--dark); */
 
 /*BigBoxResult*/
 
 /*it includes the tracker navbar styles*/
 .budgetLayout .total__container {
-  color: var(--light);
+  /* color: var(--light);
   display: flex;
   flex-direction: column;
 
   gap: 1rem;
   top: 7.5rem;
-  width: 81.1%;
+  width: 81.11%; */
   /* border:1px solid red; */
 }
 
+.bigBox__container {
+  /* padding: 1.25rem;
+
+  width: 81.11%; 80% in figma */
+  /* margin: 0 auto;
+  position: absolute;
+  top: 7.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  border-radius: 1rem;
+  gap: 0.75rem;
+  background-color: var(--creme);
+  color:10px solid blue;*/
+}
+
+/*afecta solo a budget*/
 .total__container .total__amount {
-  font-size: 2rem;
-  display: flex;
+  /* font-size: 2rem;
+  display: flex; */
 }
 
 .total__container .displayScreen {
-  color: var(--dark);
+  /* color: var(--dark);
   font-size: 0.875rem;
   font-weight: 700;
   font-weight: bolder;
-  width: 86.3%;
+  width: 86.3%; */
+  /* border:10px solid red; */
 }
 
 /*BudgetPresentation*/
-.content__presentation--budget {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.cards__presentation--budget {
-  width: 81.11%;
-  margin: 0 auto;
-  border-radius: 1rem;
-  margin-top: 3.5rem;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  /* border: 1px solid red; */
-}
 
 /**/
 
 /*Category List*/
 .list__main__container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.75rem; */
   /* border:1px solid blue; */
 }
 
 .card__budget--title {
-  color: var(--light);
+  /* color: var(--light);
   font-size: 1.25rem;
   font-weight: 600;
-  padding: 1rem 0 1rem;
+  padding: 1rem 0 1rem; */
 }
 
 .box__container,
 .box__row {
   /* width: 100%; */
-  border: none;
+  /* border: none; */
 }
 
 .box__container {
-  border-bottom: 1px solid var(--light);
-  padding: 0.25rem 0 0.25rem 0;
+  /* border-bottom: 1px solid var(--light);
+  padding: 0.25rem 0 0.25rem 0; */
   /* border:1px solid yellow; */
 }
 
 .box__title,
 .box__title--category__name,
 .box__title--spent {
-  color: var(--light);
+  /* color: var(--light);
   font-size: 0.875rem;
   line-height: 1.625rem;
 
-  text-transform: capitalize;
+  text-transform: capitalize; */
 }
 
 .status__square {
-  height: 0.5rem;
+  /* height: 0.5rem;
   width: 0.5rem;
   background-color: #5b8c93;
   border: none;
-  border-radius: 0.125rem;
+  border-radius: 0.125rem; */
 }
 
 .box__subtitle,
 .box__subtitle--status,
 .box__subtitle--budget {
-  font-size: 0.625rem;
+  /* font-size: 0.625rem; */
   /* color: var(--creme); */
-  color: #5b5b5b;
+  /* color: #5b5b5b;
   letter-spacing: 0.5px;
   font-weight: 400;
-  text-transform: capitalize;
+  text-transform: capitalize; */
 }
 
 /* Open Add Edit Button */
 
 .line__container {
-  border-radius: 0.75rem;
+  /* border-radius: 0.75rem;
   border: 2px solid var(--light);
-  cursor: pointer;
+  cursor: pointer; */
 
   /* border:1px solid blue; */
 }
 
 button.line__container {
-  padding: 0.5rem 0 0.5rem 0;
-  margin-top: 2rem;
+  /* padding: 0.5rem 0 0.5rem 0;
+  margin-top: 2rem; */
 }
 
 .add__edit__btn {
-  height: 3.125rem;
+  /* height: 3.125rem;
   width: 100%;
-  background-color: transparent;
+  background-color: transparent; */
 }
 
 .open__btn__label {
-  font-size: 0.875rem;
+  /* font-size: 0.875rem;
   color: var(--light);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px; */
 }
 
 /*Card Tile Pocket*/
 .card__tile__pocket {
-  padding: 2.25rem 0.75rem;
+  /* padding: 2.25rem 0.75rem;
   height: 6.25rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 
 .card__tile__pocket {
-  background-color: #1b1b1b;
+  /* background-color: #1b1b1b; */
 }
 
 .card__tile__pocket .tile__left {
-  width: 60%;
+  /* width: 60%;
   flex-direction: column;
   gap: 0.25rem;
-  display: flex;
+  display: flex; */
 }
 
 .card__tile__pocket .tile__right {
-  width: 40%;
+  /* width: 40%;
   height: 3.75rem;
   flex-direction: column;
   gap: 0.25rem;
   display: flex;
   align-items: end;
   justify-content: center;
-  border-left: 3px dashed var(--light);
+  border-left: 3px dashed var(--light); */
 }
 
 .tile__title {
-  color: var(--light);
+  /* color: var(--light);
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 400; */
 }
 
 .tile__subtitle {
-  color: #5b5b5b;
+  /* color: #5b5b5b;
   font-size: 0.625rem;
   letter-spacing: 1px;
-  font-weight: 400;
+  font-weight: 400; */
 }
 
 .tile__right .tile__title {
-  font-weight: 500;
+  /* font-weight: 500; */
 }
+*/
 
 /*Functional Pages*/
 /*----Debts------*/
@@ -653,89 +383,9 @@ button.line__container {
 
 /*it includes the tracker navbar styles*/
 
-.debtsLayout .bigBox__container {
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-
-  border-radius: 1rem;
-  width: 80%;
-  margin: 0 auto;
-
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  gap: 0.75rem;
-  background-color: var(--creme);
-  /* border:1px solid red; */
-}
-
-.debtsLayout .bigBox__container {
-  top: 7.5rem;
-}
-
-.debtsLayout .bigBox__mainInfo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.debtsLayout .displayScreen {
-  background-color: var(--dark);
-  border: none;
-  border-radius: 0.75rem;
-  min-height: 2.4375rem;
-  color: var(--light);
-  width: 86.3%;
-  padding: 0.5rem 0.75rem;
-
-  font-size: 0.875rem;
-  font-weight: 700;
-  font-weight: bolder;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.debtsLayout .displayScreen--concept,
-.debtsLayout .displayScreen--result {
-  color: var(--light);
-  font-size: 0.875rem;
-  text-transform: capitalize;
-  font-weight: 400;
-}
-
-.debtsLayout .displayScreen--result {
-  font-weight: 500;
-}
-
 /*---------------------------*/
 /*DebtsPresentation ----C*/
-.debtsLayout .content__presentation {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0;
-  /* border: 5px solid greenyellow; */
-  /* padding-top: 1rem; */
-}
-.debtsLayout .cards__presentation {
-  width: 81%;
-  margin: 0 auto;
-  border-radius: 1rem;
-  margin-top: 3.5rem;
-  padding: 1rem 0rem;
-  /* border: 0.5px solid greenyellow; */
-}
 
-.debtsLayout .presentation__card--title {
-  color: var(--light);
-  font-size: 1.25rem;
-  font-weight: 600;
-  padding: 1rem 0 1.5rem 0;
-}
+/*C*/
+
+/*nuevos estilos generales*/
