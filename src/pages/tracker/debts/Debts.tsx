@@ -1,22 +1,14 @@
 import { useEffect, useState } from 'react';
-import { changeCurrency } from '../../../helpers/functions.ts';
-// import { numberFormat } from '../../../helpers/functions.ts';
-import CardSeparator from '../components/CardSeparator.tsx';
 
-import {
-  AmountInputScreen,
-  CardDateScreen,
-  CardTitle,
-  CardType,
-  CardTypeAndDateContainer,
-  CardTypeScreen,
-} from '../components/TrackerComponents.tsx';
+import CardSeparator from '../components/CardSeparator.tsx';
 
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
-import { CardDate } from '../components/TrackerComponents.tsx';
 
 import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
+
+import { changeCurrency } from '../../../helpers/functions.ts';
+// import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
 
@@ -134,9 +126,7 @@ function Debts() {
             <div className='card__typeDate--type'>
               <div className='card--title'>Type</div>
               <button className='card__screen--type' onClick={toggleType}>
-                <div className='screen--concept' >
-                  {type}
-                </div>
+                <div className='screen--concept'>{type}</div>
               </button>
             </div>
 

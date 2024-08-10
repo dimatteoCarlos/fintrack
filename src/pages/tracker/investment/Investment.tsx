@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { changeCurrency } from '../../../helpers/functions.ts';
-// import { numberFormat } from '../../../helpers/functions.ts';
 
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
 import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
+
+import { changeCurrency } from '../../../helpers/functions.ts';
+// import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
 
@@ -128,9 +129,7 @@ function Investment() {
             <div className='card__typeDate--type'>
               <div className='card--title'>Type</div>
               <button className='card__screen--type' onClick={toggleTypeInv}>
-                <div className='screen--concept' >
-                  {typeInv}
-                </div>
+                <div className='screen--concept'>{typeInv}</div>
               </button>
             </div>
 
@@ -158,8 +157,9 @@ function Investment() {
               value={investmentData.note}
             />
           </div>
+          {/* <CardNote note={investmentData.note} dataHandler={textareaTrackDataHandler}/> */}
         </div>
-        <FormSubmitBtn onClickHandler={onSaveHandler}>save</FormSubmitBtn>
+        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
       </article>
     </>
   );

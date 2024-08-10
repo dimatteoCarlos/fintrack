@@ -1,7 +1,7 @@
 /*tracker-style.css*/
 
 /*---------------------*/
-/*posible conflicto con displayScreen*/
+/*possible conflict w displayScreen*/
 .displayScreen.light {
   border-radius: 0.75rem;
   /* width: 85%; */
@@ -17,7 +17,7 @@
 }
 
 /* hay conflicto con .displayScreen--concept/result*/
-/*probar module.css*/
+/*probar usando module.css*/
 .displayScreen--concept.dark,
 .displayScreen--result.dark {
   font-size: 0.875rem;
@@ -31,7 +31,7 @@
   color: var(--dark);
   font-weight: 700;
   align-items: center;
-  /* border: 5px solid red; */
+  /* border: 1px solid red; */
 }
 
 /*---------------*/
@@ -256,7 +256,7 @@ textarea:invalid {
 
   padding: 0;
   margin: 0 auto;
-  color:var(--dark);
+  color: var(--dark);
   /* border:1px solid blue; */
 }
 
@@ -337,13 +337,6 @@ textarea:invalid {
   color: var(--dark);
   font-weight: 500;
   background-color: var(--creme);
-
-  /*Dark theme*/
-  /*
-  background-color: #5b5b5b;
-  color: #f7f7f7;
-  font-size: 0.875rem;
-  padding-bottom: 0.2rem; */
 }
 
 /*-----------*/

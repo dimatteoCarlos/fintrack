@@ -2,9 +2,11 @@
 import '../../styles/generalStyles.css';
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
-import { CardSeparator } from '../components/TrackerComponents.tsx';
+
+import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import CardNote from '../components/CardNote.tsx';
 
 function Income() {
   //temporary values
@@ -107,7 +109,6 @@ function Income() {
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
           <div className='card--title'>Note</div>
-          {/* <CardTitle>Note</CardTitle> */}
 
           <div className='card__screen'>
             <textarea
@@ -120,6 +121,8 @@ function Income() {
               value={incomeData.note}
             />
           </div>
+
+          {/* <CardNote note={incomeData.note} dataHandler={textareaTrackDataHandler}/> */}
         </div>
         <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
       </article>

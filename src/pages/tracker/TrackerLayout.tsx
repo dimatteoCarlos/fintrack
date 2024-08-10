@@ -5,9 +5,6 @@ import { currencyFormat } from '../../helpers/functions';
 
 import './tracker-style.css';
 
-// import CardTrackerPresentation from './trackerComponents/CardTrackerPresentation';
-// import { CardSeparator } from './trackerComponents/TrackerComponents';
-
 function TrackerLayout() {
   //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
@@ -40,13 +37,13 @@ function TrackerLayout() {
       </div>
 
       <TrackerNavbar />
+
       <>
         <div className='content__presentation'>
           <div className='cards__presentation cards__presentation--tracker'>
             <Outlet />
           </div>
         </div>
-        {/* </div> */}
       </>
     </div>
   );
