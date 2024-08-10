@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  BoxContainer,
-  BoxRow,
-  Button,
-
-} from './components/VariousComponents';
+import { Button } from './components/SeeMore';
 import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
 import { CardTitle } from '../../components/CardTitle';
+import { BoxContainer, BoxRow } from '../../components/boxComponents';
+import { Link } from 'react-router-dom';
 
 function LastDebts() {
   //Last Debts
@@ -81,16 +78,9 @@ function LastDebts() {
         </div>
       </article>
 
-      {/* 
-          <Link className='seeMore' to={'/accounts/edit'}>
-            <div className='link'>See More</div> <ChevronRightSvg />{' '}
-          </Link> */}
-
-      <Button>
-        <div className='seeMore'>
-          See More <ChevronRightSvg />
-        </div>
-      </Button>
+      <Link className='seeMore' to={'/accounts/edit'}>
+        <div className='link'>See More</div> <ChevronRightSvg />{' '}
+      </Link>
     </>
   );
 }

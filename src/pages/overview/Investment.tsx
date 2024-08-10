@@ -1,4 +1,4 @@
-import { StatusSquare } from './components/VariousComponents';
+import { StatusSquare } from '../../components/boxComponents';
 import { CardTitle } from '../../components/CardTitle';
 import OpenAddEditBtn from '../../components/OpenAddEditBtn';
 

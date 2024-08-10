@@ -1,5 +1,5 @@
 import { currencyFormat } from '../../helpers/functions';
-// import DisplayScreenNumber from '../../components/header/displayScreen/displayScreenNumber/DisplayScreenNumber';
+
 // import './displayScreenStyles.css';
 import './styles/budget-styles.css';
 
@@ -69,14 +69,6 @@ function BudgetLayout() {
             <div className={`displayScreen--result ${'dark'}`}>
               {currencyFormat(defaultCurrency, remaining, formatNumberCountry)}
             </div>
-
-            {/* <DisplayScreenNumber
-            amount={remaining}
-            chosenCurrency={defaultCurrency}
-            countryCurrency={formatNumberCountry}
-            titleConcept='Remaining'
-            variant='light'
-          /> */}
           </div>
         </div>
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import { BoxContainer, BoxRow } from './components/VariousComponents';
 import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
 import { Link } from 'react-router-dom';
 import { CardTitle } from '../../components/CardTitle';
+import { BoxContainer , BoxRow} from '../../components/boxComponents';
 
 function LastMovements() {
   //Last Movements

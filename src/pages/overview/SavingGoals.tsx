@@ -1,10 +1,9 @@
-import { StatusSquare } from './components/VariousComponents';
-
 import { currencyFormat } from '../../helpers/functions';
 
 import Dots3LightSvg from '../../assets/Dots3LightSvg.svg';
 import { Link } from 'react-router-dom';
 import { CardTitle } from '../../components/CardTitle';
+import { StatusSquare } from '../../components/boxComponents';
 
 //temporary values------------
 const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
@@ -13,11 +12,6 @@ const formatNumberCountry = currencyOptions[defaultCurrency];
 
 //Temporary Dummy data
 //Saving Goals
-// const bigScreenInfo = [
-//   { title: 'net worth', amount: 0 },
-//   { title: 'income', amount: 0 },
-//   { title: 'expenses', amount: 0 },
-// ];
 
 const goal = {
   title: 'goal',

@@ -5,8 +5,6 @@ import { currencyFormat } from '../../helpers/functions';
 
 import './tracker-style.css';
 
-
-// import DisplayScreenNumber from '../../components/header/displayScreen/displayScreenNumber/DisplayScreenNumber';
 // import CardTrackerPresentation from './trackerComponents/CardTrackerPresentation';
 // import { CardSeparator } from './trackerComponents/TrackerComponents';
 
@@ -24,12 +22,6 @@ function TrackerLayout() {
       <div className='layout__header'>
         <div className='headerContent__container'>
           <LogoMenuIcon />
-          {/* <DisplayScreenNumber
-            amount={availableBudget}
-            chosenCurrency={defaultCurrency}
-            countryCurrency={formatNumberCountry}
-            titleConcept='Available Budget'
-          /> */}
 
           <div className={`displayScreen ${'light'}`}>
             <div className={`displayScreen--concept ${'dark'}`}>
@@ -44,7 +36,6 @@ function TrackerLayout() {
               )}
             </div>
           </div>
-          
         </div>
       </div>
 
