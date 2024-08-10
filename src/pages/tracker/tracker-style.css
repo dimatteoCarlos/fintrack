@@ -256,6 +256,7 @@ textarea:invalid {
 
   padding: 0;
   margin: 0 auto;
+  color:var(--dark);
   /* border:1px solid blue; */
 }
 

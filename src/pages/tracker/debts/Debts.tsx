@@ -104,67 +104,68 @@ function Debts() {
   return (
     <>
       <article className='debts' style={{ color: 'inherit' }}>
-      <div className='state__card--top'>
-       <div className='card--title'>Amount</div>
+        <div className='state__card--top'>
+          <div className='card--title'>Amount</div>
 
-<div className='card__screen'>
-          <input
-            className='inputNumber'
-            type='number'
-            placeholder='0,000.00'
-            onChange={inputTrackDataHandler}
-            name='amount'
-            value={`${Data.amount}`}
-          />
+          <div className='card__screen'>
+            <input
+              className='inputNumber'
+              type='number'
+              placeholder='0,000.00'
+              onChange={inputTrackDataHandler}
+              name='amount'
+              value={`${Data.amount}`}
+            />
 
-          <div className='icon-currency' onClick={toggleCurrency}>
-            {currency.toUpperCase()}
+            <div className='icon-currency' onClick={toggleCurrency}>
+              {currency.toUpperCase()}
+            </div>
           </div>
-</div>
 
-       <div className='card--title'>Account</div>
-        <SelectComponent dropDownOptions={accountOptions} />
+          <div className='card--title'>Account</div>
+          <SelectComponent dropDownOptions={accountOptions} />
+        </div>
+        <div className='state__card--bottom'>
+          <CardSeparator />
 
-        {/* <CardSeparator /> */}
+          {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
 
-        {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
+          <div className='card__typeDate__container'>
+            <div className='card__typeDate--type'>
+              <div className='card--title'>Type</div>
+              <button className='card__screen--type' onClick={toggleType}>
+                <div className='screen--concept' >
+                  {type}
+                </div>
+              </button>
+            </div>
 
-        <CardTypeAndDateContainer>
-          <CardType>
-           <div className='card--title'>Type</div>
-            <CardTypeScreen>
-              <div className='screen--concept' onClick={toggleType}>
-                {type}
+            <div className='card__typeDate--date'>
+              <div className='card--title'>Date</div>
+              <div className='card__screen--date'>
+                <TrackerDatepicker
+                  changeDate={changeDate}
+                  date={Data.date}
+                ></TrackerDatepicker>
               </div>
-            </CardTypeScreen>
-          </CardType>
+            </div>
+          </div>
 
-          <CardDate>
-           <div className='card--title'>Date</div>
-            <CardDateScreen>
-              <TrackerDatepicker
-                changeDate={changeDate}
-                date={Data.date}
-              ></TrackerDatepicker>
-            </CardDateScreen>
-          </CardDate>
-        </CardTypeAndDateContainer>
+          <div className='card--title'>Note</div>
+          <div className='card__screen'>
+            <textarea
+              className='input__note__description'
+              placeholder='Description'
+              onChange={textareaTrackDataHandler}
+              name='note'
+              rows={3}
+              maxLength={150}
+              value={Data.note}
+            />
+          </div>
 
-       <div className='card--title'>Note</div>
-<div className='card__screen'>
-          <textarea
-            className='input__note__description'
-            placeholder='Description'
-            onChange={textareaTrackDataHandler}
-            name='note'
-            rows={3}
-            maxLength={150}
-            value={Data.note}
-          />
-</div>
-
-        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
-      </div>
+          <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
+        </div>
       </article>
     </>
   );

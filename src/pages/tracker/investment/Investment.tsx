@@ -124,14 +124,14 @@ function Investment() {
 
         {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
         <div className='state__card--bottom'>
-          <div className='card__typeDate__container .pt-2'>
+          <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
               <div className='card--title'>Type</div>
-              <div className='card__screen--type'>
-                <div className='screen--concept' onClick={toggleTypeInv}>
+              <button className='card__screen--type' onClick={toggleTypeInv}>
+                <div className='screen--concept' >
                   {typeInv}
                 </div>
-              </div>
+              </button>
             </div>
 
             <div className='card__typeDate--date'>
