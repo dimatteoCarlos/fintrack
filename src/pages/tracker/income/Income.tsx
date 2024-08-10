@@ -2,12 +2,8 @@
 import '../../styles/generalStyles.css';
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
-import {
-  AmountInputScreen,
-  CardSeparator,
-  CardTitle,
-} from '../trackerComponents/TrackerComponents.tsx';
-import SelectComponent from '../trackerComponents/SelectComponent.tsx';
+import { CardSeparator } from '../components/TrackerComponents.tsx';
+import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
 function Income() {
@@ -54,8 +50,6 @@ function Income() {
   //-----useEffect--------
   useEffect(() => {
     setIncomeData((prev) => ({ ...prev, currency: currency }));
-    //shows previous state data
-    // console.log(incomeData);
   }, [currency]);
 
   //----functions--------
@@ -83,50 +77,51 @@ function Income() {
   return (
     <>
       <article className='income' style={{ color: 'inherit' }}>
-        <CardTitle>Amount</CardTitle>
+        <div className='state__card--top'>
+          <div className='card--title'>Amount</div>
 
-        <AmountInputScreen>
-          <input
-            className='inputNumber'
-            type='text'
-            placeholder={'0,000.00'}
-            onChange={inputTrackDataHandler}
-            name='amount'
-            value={`${incomeData.amount}`}
-          />
+          <div className='card__screen'>
+            <input
+              className='inputNumber'
+              type='text'
+              placeholder={'0,000.00'}
+              onChange={inputTrackDataHandler}
+              name='amount'
+              value={`${incomeData.amount}`}
+            />
 
-          <div className='icon-currency' onClick={toggleCurrency}>
-            {currency.toUpperCase()}
+            <div className='icon-currency' onClick={toggleCurrency}>
+              {currency.toUpperCase()}
+            </div>
           </div>
-        </AmountInputScreen>
 
-        <CardTitle>Account</CardTitle>
-        <SelectComponent dropDownOptions={accountOptions} />
+          <div className='card--title'>Account</div>
+          <SelectComponent dropDownOptions={accountOptions} />
+        </div>
 
-        {/* <CardSeparator /> */}
+        <CardSeparator />
 
-        <CardTitle>Source</CardTitle>
-        <SelectComponent dropDownOptions={sourceOptions} />
+        <div className='state__card--bottom'>
+          <div className='card--title card--title--top'>Source</div>
+          <SelectComponent dropDownOptions={sourceOptions} />
 
-        {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+          {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+          <div className='card--title'>Note</div>
+          {/* <CardTitle>Note</CardTitle> */}
 
-        <CardTitle>Note</CardTitle>
-        <AmountInputScreen>
-          <textarea
-            className='input__note__description'
-            placeholder='Description'
-            onChange={textareaTrackDataHandler}
-            name='note'
-            rows={3}
-            maxLength={150}
-            value={incomeData.note}
-          />
-        </AmountInputScreen>
-
-        <FormSubmitBtn
-          btnTitle={'save'}
-          onClickHandler={onSaveHandler}
-        ></FormSubmitBtn>
+          <div className='card__screen'>
+            <textarea
+              className='input__note__description'
+              placeholder='Description'
+              onChange={textareaTrackDataHandler}
+              name='note'
+              rows={3}
+              maxLength={150}
+              value={incomeData.note}
+            />
+          </div>
+        </div>
+        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
       </article>
     </>
   );

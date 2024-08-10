@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
 // import { numberFormat } from '../../../helpers/functions.ts';
+import CardSeparator from '../components/CardSeparator.tsx';
 
 import {
   AmountInputScreen,
   CardDateScreen,
-  CardSeparator,
   CardTitle,
   CardType,
   CardTypeAndDateContainer,
   CardTypeScreen,
-} from '../trackerComponents/TrackerComponents.tsx';
+} from '../components/TrackerComponents.tsx';
 
-import SelectComponent from '../trackerComponents/SelectComponent.tsx';
+import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
-import { CardDate } from '../trackerComponents/TrackerComponents';
+import { CardDate } from '../components/TrackerComponents.tsx';
 
-import TrackerDatepicker from '../trackerComponents/TrackerDatepicker.tsx';
+import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
 
 //------------------------------
 
@@ -104,9 +104,10 @@ function Debts() {
   return (
     <>
       <article className='debts' style={{ color: 'inherit' }}>
-        <CardTitle>Amount</CardTitle>
+      <div className='state__card--top'>
+       <div className='card--title'>Amount</div>
 
-        <AmountInputScreen>
+<div className='card__screen'>
           <input
             className='inputNumber'
             type='number'
@@ -119,9 +120,9 @@ function Debts() {
           <div className='icon-currency' onClick={toggleCurrency}>
             {currency.toUpperCase()}
           </div>
-        </AmountInputScreen>
+</div>
 
-        <CardTitle>Account</CardTitle>
+       <div className='card--title'>Account</div>
         <SelectComponent dropDownOptions={accountOptions} />
 
         {/* <CardSeparator /> */}
@@ -130,7 +131,7 @@ function Debts() {
 
         <CardTypeAndDateContainer>
           <CardType>
-            <CardTitle>Type</CardTitle>
+           <div className='card--title'>Type</div>
             <CardTypeScreen>
               <div className='screen--concept' onClick={toggleType}>
                 {type}
@@ -139,7 +140,7 @@ function Debts() {
           </CardType>
 
           <CardDate>
-            <CardTitle>Date</CardTitle>
+           <div className='card--title'>Date</div>
             <CardDateScreen>
               <TrackerDatepicker
                 changeDate={changeDate}
@@ -149,8 +150,8 @@ function Debts() {
           </CardDate>
         </CardTypeAndDateContainer>
 
-        <CardTitle>Note</CardTitle>
-        <AmountInputScreen>
+       <div className='card--title'>Note</div>
+<div className='card__screen'>
           <textarea
             className='input__note__description'
             placeholder='Description'
@@ -160,12 +161,10 @@ function Debts() {
             maxLength={150}
             value={Data.note}
           />
-        </AmountInputScreen>
+</div>
 
-        <FormSubmitBtn
-          btnTitle={'save'}
-          onClickHandler={onSaveHandler}
-        ></FormSubmitBtn>
+        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
+      </div>
       </article>
     </>
   );

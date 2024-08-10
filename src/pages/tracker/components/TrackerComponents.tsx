@@ -19,6 +19,7 @@ export function CardStateTop({ children }: any) {
   );
 }
 
+/*------------- */
 export function CardTitle({ children }: any) {
   return <div className='card--title'> {children}</div>;
 }
@@ -30,7 +31,29 @@ export function AmountInputScreen({ children }: any) {
     </>
   );
 }
+export function CardTypeAndDateContainer({ children }:{children:ReactNode}) {
+  return <div className='card__typeDate__container'>{children}</div>;
+}
+export function CardType({ children }: any) {
+  return <div className='card__typeDate--type'>{children}</div>;
+}
 
+
+export function CardTypeScreen({ children }: any) {
+  return <div className='card__screen--type'>{children}</div>;
+}
+
+//---
+export function CardDate({ children }: any) {
+  return <div className='card__typeDate--date'>{children}</div>;
+}
+
+export function CardDateScreen({ children }: any) {
+  return <div className='card__screen--date'>{children}</div>;
+}
+
+
+/*------------- */
 export function CardSeparator() {
   return (
     <div className="separator__container">
@@ -55,27 +78,9 @@ export function CardNote() {
 }
 
 //---------------------
-export function CardTypeAndDateContainer({ children }:{children:ReactNode}) {
-  return <div className='card__typeDate__container'>{children}</div>;
-}
 
 //---
-export function CardType({ children }: any) {
-  return <div className='card__typeDate--type'>{children}</div>;
-}
 
-export function CardTypeScreen({ children }: any) {
-  return <div className='card__screen--type'>{children}</div>;
-}
-
-//---
-export function CardDate({ children }: any) {
-  return <div className='card__typeDate--date'>{children}</div>;
-}
-
-export function CardDateScreen({ children }: any) {
-  return <div className='card__screen--date'>{children}</div>;
-}
 //-------------
 
 

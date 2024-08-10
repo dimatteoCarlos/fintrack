@@ -1,5 +1,3 @@
-import React from 'react';
-import { Button } from './components/SeeMore';
 import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
 import { CardTitle } from '../../components/CardTitle';
 import { BoxContainer, BoxRow } from '../../components/boxComponents';

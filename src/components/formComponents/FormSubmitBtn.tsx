@@ -1,21 +1,27 @@
-
-import './formComponentStyles/formComponentStyles.css'
+import { ReactNode } from 'react';
+import './formComponentStyles/formComponentStyles.css';
 type FormSubmitBtnPropType = {
-  btnTitle: string;
-  
+  // btnTitle?: string;
+  children: ReactNode;
+
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-function FormSubmitBtn({ btnTitle, onClickHandler }: FormSubmitBtnPropType) {
+function FormSubmitBtn({
+  // btnTitle,
+  onClickHandler,
+  children,
+}: FormSubmitBtnPropType) {
   return (
     <div className='btn__container'>
       <button
         type='submit'
         className='submit__btn'
         onClick={onClickHandler}
-        id={btnTitle}
+        // id={btnTitle}
       >
-        {`${btnTitle}`}
+        {/* {`${btnTitle}`} */}
+        {children}
       </button>
     </div>
   );

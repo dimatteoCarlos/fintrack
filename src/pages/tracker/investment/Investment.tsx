@@ -2,21 +2,10 @@ import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
-import {
-  AmountInputScreen,
-  CardDateScreen,
-  CardSeparator,
-  CardTitle,
-  CardType,
-  CardTypeAndDateContainer,
-  CardTypeScreen,
-} from '../trackerComponents/TrackerComponents.tsx';
-
-import SelectComponent from '../trackerComponents/SelectComponent.tsx';
+import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
-import { CardDate } from '../trackerComponents/TrackerComponents';
-
-import TrackerDatepicker from '../trackerComponents/TrackerDatepicker.tsx';
+import CardSeparator from '../components/CardSeparator.tsx';
+import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
 
 //------------------------------
 
@@ -109,70 +98,68 @@ function Investment() {
   return (
     <>
       <article className='investment' style={{ color: 'inherit' }}>
-        <CardTitle>Amount</CardTitle>
+        <div className='state__card--top'>
+          <div className='card--title'>Amount</div>
 
-        <AmountInputScreen>
-          <input
-            className='inputNumber'
-            type='text'
-            placeholder={'0,000.00'}
-            onChange={inputTrackDataHandler}
-            name='amount'
-            value={`${investmentData.amount}`}
+          <div className='card__screen'>
+            <input
+              className='inputNumber'
+              type='text'
+              placeholder={'0,000.00'}
+              onChange={inputTrackDataHandler}
+              name='amount'
+              value={`${investmentData.amount}`}
 
-            // value={`${numberFormat(Number.parseFloat(investmentData.amount), formatNumberCountry)}`}
-          />
+              // value={`${numberFormat(Number.parseFloat(investmentData.amount), formatNumberCountry)}`}
+            />
 
-          <div className='icon-currency' onClick={toggleCurrency}>
-            {currency.toUpperCase()}
+            <div className='icon-currency' onClick={toggleCurrency}>
+              {currency.toUpperCase()}
+            </div>
           </div>
-        </AmountInputScreen>
-
-        <CardTitle>Account</CardTitle>
-        <SelectComponent dropDownOptions={accountOptions} />
-
-        {/* <CardSeparator /> */}
+          <div className='card--title'>Account</div>
+          <SelectComponent dropDownOptions={accountOptions} />
+        </div>
+        <CardSeparator />
 
         {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
-
-        <CardTypeAndDateContainer>
-          <CardType>
-            <CardTitle>Type</CardTitle>
-            <CardTypeScreen>
-              <div className='screen--concept' onClick={toggleTypeInv}>
-                {typeInv}
+        <div className='state__card--bottom'>
+          <div className='card__typeDate__container .pt-2'>
+            <div className='card__typeDate--type'>
+              <div className='card--title'>Type</div>
+              <div className='card__screen--type'>
+                <div className='screen--concept' onClick={toggleTypeInv}>
+                  {typeInv}
+                </div>
               </div>
-            </CardTypeScreen>
-          </CardType>
+            </div>
 
-          <CardDate>
-            <CardTitle>Date</CardTitle>
-            <CardDateScreen>
-              <TrackerDatepicker
-                changeDate={changeInvestmentDate}
-                date={investmentData.date}
-              ></TrackerDatepicker>
-            </CardDateScreen>
-          </CardDate>
-        </CardTypeAndDateContainer>
+            <div className='card__typeDate--date'>
+              <div className='card--title'> Date </div>
+              <div className='card__screen--date'>
+                <TrackerDatepicker
+                  changeDate={changeInvestmentDate}
+                  date={investmentData.date}
+                ></TrackerDatepicker>
+              </div>
+            </div>
+          </div>
 
-        <CardTitle>Note</CardTitle>
-        <AmountInputScreen>
-          <textarea
-            className='input__note__description'
-            placeholder='Description'
-            onChange={textareaTrackDataHandler}
-            name='note'
-            rows={3}
-            maxLength={150}
-            value={investmentData.note}
-          />
-        </AmountInputScreen>
+          <div className='card--title'>Note</div>
 
-        <FormSubmitBtn
-          btnTitle={'save'}
-          onClickHandler={onSaveHandler}
-        ></FormSubmitBtn>
+          <div className='card__screen'>
+            <textarea
+              className='input__note__description'
+              placeholder='Description'
+              onChange={textareaTrackDataHandler}
+              name='note'
+              rows={3}
+              maxLength={150}
+              value={investmentData.note}
+            />
+          </div>
+        </div>
+        <FormSubmitBtn onClickHandler={onSaveHandler}>save</FormSubmitBtn>
       </article>
     </>
   );

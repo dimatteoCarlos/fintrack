@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react';
 import { changeCurrency } from '../../../helpers/functions.ts';
-import { numberFormat } from '../../../helpers/functions.ts';
 
-import {
-  AmountInputScreen,
-  CardSeparator,
-  CardTitle,
-} from '../trackerComponents/TrackerComponents.tsx';
-import SelectComponent from '../trackerComponents/SelectComponent.tsx';
+import CardSeparator from '../components/CardSeparator.tsx';
+import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+// import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
 
 function Expense() {
   //temporary values
-  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
-  const formatNumberCountry = currencyOptions[defaultCurrency];
+  // const formatNumberCountry = currencyOptions[defaultCurrency];
 
   //----Expense Options Temporary values----------
   const accountOptions = {
@@ -84,50 +80,67 @@ function Expense() {
   return (
     <>
       <article className='expense' style={{ color: 'inherit' }}>
-        <CardTitle>Amount</CardTitle>
+        {/* start of top */}
+        <div className='state__card--top'>
+          {/* <CardTitle>Amount</CardTitle> */}
+          <div className='card--title'>Amount</div>
 
-        <AmountInputScreen>
-          <input
-            className='inputNumber'
-            type='text'
-            placeholder={'0,000.00'}
-            onChange={inputTrackDataHandler}
-            name='amount'
-            value={`${expenseData.amount}`}
-            // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
-          />
+          <div className='card__screen'>
+            <input
+              className='inputNumber'
+              type='text'
+              placeholder={'0,000.00'}
+              onChange={inputTrackDataHandler}
+              name='amount'
+              value={`${expenseData.amount}`}
+              // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
+            />
 
-          <div className='icon-currency' onClick={toggleCurrency}>
-            {currency.toUpperCase()}
+            <div className='icon-currency' onClick={toggleCurrency}>
+              {currency.toUpperCase()}
+            </div>
           </div>
-        </AmountInputScreen>
 
-        <CardTitle>Account</CardTitle>
-        <SelectComponent dropDownOptions={accountOptions} />
+          {/* <CardTitle>Account</CardTitle> */}
+          <div className='card--title'>Account</div>
 
-        {/* <CardSeparator /> */}
-        <CardTitle>Category</CardTitle>
-        <SelectComponent dropDownOptions={categoryOptions} />
+          <SelectComponent dropDownOptions={accountOptions} />
+        </div>
+        {/* end of top */}
+        <CardSeparator />
 
-        {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+        {/*start of bottom */}
 
-        <CardTitle>Note</CardTitle>
-        <AmountInputScreen>
-          <textarea
-            className='input__note__description'
-            placeholder='Description'
-            onChange={textareaTrackDataHandler}
-            name='note'
-            rows={3}
-            maxLength={150}
-            value={expenseData.note}
-          />
-        </AmountInputScreen>
+        <div className='state__card--bottom'>
+          <div className='card--title card--title--top'>Category</div>
+          <SelectComponent dropDownOptions={categoryOptions} />
 
+          {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+
+          <div className='card--title'>Note</div>
+
+          {/* <CardTitle>Note</CardTitle> */}
+          {/* <AmountInputScreen> */}
+          <div className='card__screen'>
+            <textarea
+              className='input__note__description'
+              placeholder='Description'
+              onChange={textareaTrackDataHandler}
+              name='note'
+              rows={3}
+              maxLength={150}
+              value={expenseData.note}
+            />
+          </div>
+          {/* </AmountInputScreen> */}
+        </div>
+        {/* end of bottom */}
         <FormSubmitBtn
-          btnTitle={'save'}
+          // btnTitle={'save'}
           onClickHandler={onSaveHandler}
-        ></FormSubmitBtn>
+        >
+          {'save'}
+        </FormSubmitBtn>
       </article>
     </>
   );

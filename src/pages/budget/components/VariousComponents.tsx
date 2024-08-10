@@ -29,6 +29,4 @@ export function BoxRow({ children }: any) {
 }
 //---------------------
 
-export function StatusSquare({ children }: any) {
-  return <span className='status__square'>{children}</span>;
-}
+

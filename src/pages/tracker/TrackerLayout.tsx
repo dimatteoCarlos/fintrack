@@ -44,11 +44,11 @@ function TrackerLayout() {
         <div className='content__presentation'>
           {/* <CardSeparator /> */}
           <div className='cards__presentation cards__presentation--tracker'>
-            <div className='state__card--top'>
+
               <Outlet />
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </>
     </div>
   );

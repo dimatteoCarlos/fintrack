@@ -1,7 +1,7 @@
 /*tracker-style.css*/
 
 /*---------------------*/
-/*conflicto con displayScreen*/
+/*posible conflicto con displayScreen*/
 .displayScreen.light {
   border-radius: 0.75rem;
   /* width: 85%; */
@@ -9,14 +9,15 @@
   background-color: var(--creme);
   padding: 0.5em 0.75em;
   border: none;
-  /* border: 5px solid red; */
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* border: 5px solid red; */
 }
 
 /* hay conflicto con .displayScreen--concept/result*/
+/*probar module.css*/
 .displayScreen--concept.dark,
 .displayScreen--result.dark {
   font-size: 0.875rem;
@@ -26,9 +27,11 @@
   color: var(--dark);
 }
 
-.displayScreen--result.dark {
+.displayScreen--result {
   color: var(--dark);
   font-weight: 700;
+  align-items: center;
+  /* border: 5px solid red; */
 }
 
 /*---------------*/
@@ -60,13 +63,12 @@
 }
 
 /*---------------/*
-
 /*----card separator component-----*/
 .separator__container {
-  width: 88%;
+  width: 88.5%;
   position: absolute;
   top: 56.8%;
-  left: 6%;
+  left: 5.75%;
   background-color: transparent;
 }
 
@@ -80,12 +82,14 @@
 
 .circleL,
 .circleR {
-  --radio: 1.1rem;
+  --radio: 1.15rem;
   height: var(--radio);
   width: calc(var(--radio) * 0.65);
   background-color: var(--dark);
+
   border-top-right-radius: var(--radio);
   border-bottom-right-radius: var(--radio);
+  background-color: var(--dark);
 }
 .circleR {
   border-radius: var(--radio) 0 0 var(--radio);
@@ -96,6 +100,8 @@
 
   transform: translateY(-45%);
   width: 100%;
+
+  border-radius: var(--radio);
 }
 /*---------------------*/
 section {
@@ -124,6 +130,11 @@ article {
   font-weight: 600;
   text-transform: capitalize;
   padding: 0.5rem 0;
+}
+
+.card--title--top {
+  padding: 2rem 0 0.5rem 0;
+  /* border: 1px solid red; */
 }
 
 .card__screen {
@@ -219,6 +230,8 @@ textarea:invalid {
   flex-direction: column;
   align-items: start;
   width: 50%;
+  padding: 1.5rem 0 0rem 0;
+
   /* border:1px solid red; */
 }
 

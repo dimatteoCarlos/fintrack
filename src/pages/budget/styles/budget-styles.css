@@ -157,11 +157,11 @@
 }
 
 .status__square {
-  height: 0.5rem;
+  /* height: 0.5rem;
   width: 0.5rem;
   background-color: #5b8c93;
   border: none;
-  border-radius: 0.125rem;
+  border-radius: 0.125rem; */
 }
 
 .box__subtitle,

@@ -1,5 +1,4 @@
-import { BoxRow } from '../../../components/boxComponents.tsx';
-import { StatusSquare } from './VariousComponents.tsx';
+import { BoxRow, StatusSquare } from '../../../components/boxComponents.tsx';
 
 function ListCategory() {
   //List Category

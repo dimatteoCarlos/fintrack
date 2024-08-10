@@ -1,5 +1,4 @@
-import React from 'react';
-import { StatusSquare } from './VariousComponents';
+import { StatusSquare } from '../../../components/boxComponents';
 
 function ListPocket() {
   const pockets = [
