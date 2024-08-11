@@ -24,6 +24,7 @@
   background-color: transparent;
   position: absolute;
   top: auto;
+  left:0;
   width: 100%;
   text-align: center;
 }
@@ -42,11 +43,11 @@
 .iconArrowLeftDark {
   display: flex;
   padding: 0.5rem 0.75rem;
-  /* border: 1px solid var(--dark); */
   border-radius: 0.5rem;
-
+  
   cursor: pointer;
   z-index: 1;
+  /* border: 1px solid var(--dark); */
 }
 
 /*BigBoxResult*/

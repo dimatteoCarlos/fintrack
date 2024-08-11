@@ -1,25 +1,50 @@
 /*accounting-styles*/
 
-.accounting__title {
-  color: var(--light);
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 auto;
-  text-align: center;
+.accounting__layout {
+  padding: 2.75rem 0 1rem 0;
   /* border: 1px solid red; */
 }
 
-.accounting__layout {
-  padding: 2.5rem 0 1rem 0;
+.accounting__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  margin: 0 auto;
   gap: 1rem;
+  /* border: 1px solid yellowgreen; */
+}
+
+/*accounting header*/
+.accounting__header {
+  width: 91.25%;
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  max-width: 50%;
+  position: relative;
+  padding: 0.875rem 0;
+  /* border: 11px solid blue; */
+}
+
+.accounting__title {
+  color: var(--light);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
   /* border: 1px solid red; */
 }
+
+.accounting__header--icon {
+  position: absolute;
+  left: 0rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+  /* border: 1px solid red; */
+}
+/*---------------*/
+
 .accountingBox__container {
   padding: 0.75rem;
   border-radius: 0.75rem;
@@ -33,6 +58,7 @@
   text-align: left;
   width: 100%;
   font-size: 1.2rem;
+
   /* text-transform: capitalize; */
 }
 
@@ -44,14 +70,14 @@
 
   display: flex;
   align-items: center;
+  justify-content: end;
 
   padding: 0 0.5rem;
-
-  justify-content: end;
 }
 
 .bubble--result {
   color: var(--dark);
   font-weight: 600;
+  font-size: 1rem;
   letter-spacing: 1px;
 }

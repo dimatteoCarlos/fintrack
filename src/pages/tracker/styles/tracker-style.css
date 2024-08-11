@@ -129,6 +129,7 @@ article {
   font-weight: 600;
   text-transform: capitalize;
   padding: 0.5rem 0;
+  color: var(--dark);
 }
 
 .card--title--top {
@@ -143,6 +144,7 @@ article {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: var(--dark);
 }
 
 .inputNumber {
@@ -336,6 +338,19 @@ textarea:invalid {
   color: var(--dark);
   font-weight: 500;
   background-color: var(--creme);
+}
+
+a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-upcoming {
+  background: url('/ArrowDownDarkSvg.svg') no-repeat center;
+  transform: rotate(180deg);
+  /* border:1px solid red; */
+  top: 1px;
+}
+
+a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-previous {
+  background: url('../../../assets/ArrowDownDarkSvg.svg') no-repeat center;
+  /* border:1px solid red; */
+  top: 1px;
 }
 
 /*-----------*/

@@ -1,7 +1,6 @@
 import AccountingBox from './components/AccountingBox';
 import './styles/accounting-styles.css';
 import LeftArrowSvg from '../../assets/LeftArrowSvg.svg';
-import { TitleHeader } from '../../components/TitleHeader';
 import { Link } from 'react-router-dom';
 function Accounting() {
   const accounting = [
@@ -16,22 +15,19 @@ function Accounting() {
   return (
     <>
       <section className='accounting__layout'>
-        <div className='headerContent__container'>
-          <Link to={'..'} className='title__header__container'>
-            <div className='iconArrowLeftDark'>
+        <div className='accounting__container'>
+          <Link to={'..'} className='accounting__header'>
+            <div className='accounting__header--icon'>
               <LeftArrowSvg />
             </div>
 
-            <div className='title__header accounting__title'>
-              {'Accounting'}
-            </div>
+            <div className='accounting__title'>{'accounting'}</div>
           </Link>
-          );
+          
+          {accounting.map((balance, indx) => (
+            <AccountingBox {...balance} key={`acc-${indx}`} />
+          ))}
         </div>
-
-        {accounting.map((balance, indx) => (
-          <AccountingBox {...balance} key={`acc-${indx}`} />
-        ))}
       </section>
     </>
   );

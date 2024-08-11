@@ -9,7 +9,7 @@
 }
 
 body {
-  color: var(--dark);
+  /* color: var(--dark); */
 }
 
 [class*='icon'] {
@@ -134,6 +134,8 @@ body {
   /* border: 10px solid yellowgreen; */
 }
 
+
+/*put it into a component*/
 .status__square {
   height: 0.5rem;
   width: 0.5rem;
