@@ -22,6 +22,7 @@ import BudgetLayout from './pages/budget/BudgetLayout.tsx';
 import DebtsLayout from './pages/debts/DebtsLayout.tsx';
 import OverviewLayout from './pages/overview/OverviewLayout.tsx';
 import NotFoundPage from './pages/error/NotFoundPage.tsx';
+import Accounting from './pages/accounting/Accounting.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -81,8 +82,12 @@ function App() {
             },
           ],
         },
+
+     
+      
       ],
     },
+    { path: '/accounting', element: <Accounting /> },
   ]);
 
   return (

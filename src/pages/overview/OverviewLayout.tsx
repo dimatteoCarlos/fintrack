@@ -1,4 +1,4 @@
-import './overview-styles.css';
+import './styles/overview-styles.css';
 
 import Overview from './Overview';
 

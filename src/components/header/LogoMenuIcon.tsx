@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.svg';
 
 import MenuIcon from '../../assets/MenuSvg.svg';
@@ -6,9 +7,9 @@ function LogoMenuIcon() {
   return (
     <div className='header__logoAndIcon'>
       <Logo />
-      <div className='iconContainer'>
+      <Link to ='/accounting' className='iconContainer'>
         <MenuIcon />
-      </div>
+      </Link>
     </div>
   );
 }

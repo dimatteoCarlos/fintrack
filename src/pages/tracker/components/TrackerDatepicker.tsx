@@ -3,10 +3,10 @@ import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-//---
-
+//-------
 import { showDate } from '../../../helpers/functions';
 
+//to express date in spanish
 // import es  from 'date-fns/locale/es';
 // import { registerLocale } from 'react-datepicker';
 // registerLocale('es', es, );
@@ -33,7 +33,6 @@ function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
     <DatePicker
       selected={selectedDate}
       onChange={(selectedDate) => dateChangeHandler(selectedDate!)}
-
       showYearDropdown
       scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'

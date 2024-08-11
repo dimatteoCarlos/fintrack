@@ -3,7 +3,7 @@ import TrackerNavbar from '../../components/trackerNavbar/TrackerNavbar';
 import { Outlet } from 'react-router-dom';
 import { currencyFormat } from '../../helpers/functions';
 
-import './tracker-style.css';
+import './styles/tracker-style.css';
 
 function TrackerLayout() {
   //temporary values------------

@@ -6,6 +6,8 @@ type CardNotePropType = {
 };
 
 function CardNote({ dataHandler, note }: CardNotePropType) {
+
+  
   return (
     <>
       <div className='card--title'>{'Note'}</div>

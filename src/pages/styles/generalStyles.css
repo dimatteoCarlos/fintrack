@@ -5,7 +5,7 @@
   --creme: #e8e4da;
   --textColor: white;
   --textColor: #141414;
-  --primary: lightgreen;
+  --primary: #5b8c93;
 }
 
 body {
@@ -140,22 +140,4 @@ body {
   background-color: #5b8c93;
   border: none;
   border-radius: 0.125rem;
-}
-
-/*Functional Pages*/
-/*----Debts------*/
-
-.debtsLayout {
-  border: none;
-  /* border:1px solid red; */
-}
-
-/*TitleHeader*/
-.title__header__container {
-  border: none;
-  /* border:1px solid red; */
-}
-.title__header {
-  border: none;
-  /* border:1px solid red; */
 }

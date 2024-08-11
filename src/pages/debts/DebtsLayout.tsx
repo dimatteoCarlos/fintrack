@@ -1,6 +1,5 @@
-import './debts-styles.css';
+import './styles/debts-styles.css';
 
-import { BoxContainer, BoxRow } from './components/boxComponents.tsx';
 
 import DebtsBigBoxResult from './components/DebtsBigBoxResult.tsx';
 import ListOfDebtors from './components/ListOfDebtors.tsx';
