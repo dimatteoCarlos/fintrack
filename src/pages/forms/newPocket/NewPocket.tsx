@@ -5,9 +5,9 @@ import ArrowDownSvg from '../../../assets/ArrowDownSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useState } from 'react';
-import FormDatepicker from '../../../components/datepicker/FormDatepicker.tsx';
-import '../styles/form-styles.css';
-import TrackerDatepicker from '../../tracker/components/TrackerDatepicker.tsx';
+import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
+import '../styles/forms-styles.css';
+import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
 //---------Form Field Names----------
 const formTitle = 'New Pocket';
@@ -131,45 +131,44 @@ function NewPocket() {
               );
             })}
 
-            <div className='input__box '>
-              <label className='form__title'>{targetAmount.labelText}</label>
+            {/* <div className='input__box '> */}
+            <label className='form__title1'>{targetAmount.labelText}</label>
 
-              <div className='targetAmount input__container'>
-                {targetAmount.content}
+            <div className='targetAmount input__container'>
+              {targetAmount.content}
 
-                {/* <textarea */}
-                <input
-                  type='text'
-                  name='targetAmount'
-                  className={`input__targetAmount`}
-                  placeholder={`${targetAmount.placeholder}`}
-                  maxLength={150}
-                  onChange={inputHandler}
-                  // value={''}
-                  // rows={3}
-                />
-              </div>
-
-              {/* datepicker */}
-              <div className='date input__box'>
-                <label className='label form__title'>{'Desired Date'}</label>
-                aqui va
-              </div>
-
-              <div className='card__screen--date'>
-                <TrackerDatepicker
-                  changeDate={changeDesiredDate}
-                  date={pocketData.date}
-                ></TrackerDatepicker>
-              </div>
-
-
-
+              {/* <textarea */}
+              <input
+                type='text'
+                name='targetAmount'
+                className={`input__targetAmount`}
+                placeholder={`${targetAmount.placeholder}`}
+                maxLength={150}
+                onChange={inputHandler}
+                // value={''}
+                // rows={3}
+              />
             </div>
+
+            {/* datepicker */}
+            {/* <div className='date input__box'> */}
+            <label className='label '>{'Desired Date'}</label>
+
+            <div className='form__datepicker__container'>
+              <FormDatepicker
+                changeDate={changeDesiredDate}
+                date={pocketData.date}
+                variant={'form'}
+              ></FormDatepicker>
+            </div>
+
+            {/* </div> */}
+            {/* </div> */}
           </div>
 
           {/* save */}
-          <div className='submit__btn__container'>
+
+          {/* <div className='submit__btn__container'>
             <button
               type='submit'
               className='submit__btn'
@@ -178,7 +177,9 @@ function NewPocket() {
             >
               {`${'Save'}`}
             </button>
-          </div>
+          </div> */}
+
+          <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
         </form>
       </div>
     </section>

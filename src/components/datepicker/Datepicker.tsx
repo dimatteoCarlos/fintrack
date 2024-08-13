@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './datepicker-styles.css'
 
 //-------
 import { showDate } from '../../helpers/functions';
@@ -19,10 +20,10 @@ type DatePickerProps = {
   variant?: 'tracker' | 'form';
 };
 
-function FormDatepicker({
+function Datepicker({
   date = new Date(),
   changeDate,
-  variant = 'form',
+  variant ,
 }: DatePickerProps) {
   // Handle state selected date
   const [selectedDate, setSelectedDate] = useState<Date>(date);
@@ -42,14 +43,14 @@ function FormDatepicker({
       scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
-      // className={
-      //   variant == 'tracker'
-      //     ? 'tracker__inside__datepicker'
-      //     : 'form__inside__datepicker'
-      // }
-      className='form__inside__datepicker'
+      className={
+        variant == 'tracker'
+          ? 'tracker__inside__datepicker'
+          : 'form__inside__datepicker'
+      }
+      // className='tracker__inside__datepicker'
     />
   );
 }
 
-export default FormDatepicker;
+export default Datepicker;

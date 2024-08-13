@@ -4,7 +4,7 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
-import './newCategoryForm.css';
+import '../styles/forms-styles.css';
 
 //---------Form Field Names----------
 const formTitle = 'New Category';

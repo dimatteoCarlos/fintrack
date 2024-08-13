@@ -1,28 +1,326 @@
-/*datepicker-styles.css*/
+/*tracker-style.css*/
 
-/*-----form datepicker  ---------*/
-.tracker__inside__datepicker {
-  /* background-color: transparent;
+/*---------------------*/
+/*possible conflict w displayScreen*/
+.displayScreen.light {
+  border-radius: 0.75rem;
+  /* width: 85%; */
+  width: 100%;
+  background-color: var(--creme);
+  padding: 0.5em 0.75em;
+  border: none;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 5px solid red; */
+}
+
+/* hay conflicto con .displayScreen--concept/result*/
+/*probar usando module.css*/
+.displayScreen--concept.dark,
+.displayScreen--result.dark {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: left;
+  color: var(--dark);
+}
+
+.displayScreen--result {
+  color: var(--dark);
+  font-weight: 700;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+/*---------------*/
+/*trackerNavbar*/
+.trackerNavbar__container,
+.total__container {
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 1rem 1rem 0 0;
+  width: 80%;
+  margin: 0 auto;
+  align-self: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  gap: 0.15rem;
+
+  /* border: 2px solid goldenrod; */
+}
+
+.trackerNavbar__container,
+.total__container {
+  background-color: #1b1b1b;
+}
+
+/*---------------/*
+/*----card separator component-----*/
+.separator__container {
+  width: 88.5%;
+  position: absolute;
+  top: 56%;
+  /* top: 54%; */
+  left: 5.75%;
+  background-color: transparent;
+}
+
+.stack__sep {
+  display: flex;
+  justify-content: start;
+  background-color: transparent;
+
+  /* border: 10px solid yellow; */
+}
+
+.circleL,
+.circleR {
+  --radio: 1.15rem;
+  height: var(--radio);
+  width: calc(var(--radio) * 0.65);
+  background-color: var(--dark);
+
+  border-top-right-radius: var(--radio);
+  border-bottom-right-radius: var(--radio);
+  background-color: var(--dark);
+}
+.circleR {
+  border-radius: var(--radio) 0 0 var(--radio);
+}
+
+.bar {
+  border-bottom: 2px dashed var(--creme);
+
+  transform: translateY(-45%);
+  width: 100%;
+
+  border-radius: var(--radio);
+}
+/*---------------------*/
+section {
+  border: none;
+}
+article {
+  border: none;
+}
+
+/*---tracker card results---*/
+
+.cards__presentation--tracker {
+  padding: 1rem 1.625rem;
+  background: url('../../../assets/cardBgTexture.png') repeat;
+}
+
+.state__card--top,
+.state__card--bottom {
+  border: 0px solid rgb(35, 56, 3);
+}
+
+.card--title {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 0.5rem 0;
+  color: var(--dark);
+}
+
+.card--title--top {
+  padding: 2rem 0 0.5rem 0;
+  /* border: 1px solid red; */
+}
+
+.card__screen {
+  background-color: var(--creme);
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--dark);
+}
+
+.inputNumber {
+  font-size: 1.5rem;
+  line-height: 2em;
+  font-weight: 700;
+  max-width: 80%;
+  text-align: right;
+  background-color: transparent;
+  color: var(--dark);
+}
+
+.inputNumber::placeholder {
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 20px;
+  font-size: 1.5rem;
+}
+
+/*------------------------*/
+.icon-currency {
+  border: 2px solid var(--dark);
+  font-size: 0.625rem;
+  font-weight: 700;
+  border-radius: 1.1em;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  padding: 0.75rem 0.5rem;
+}
+
+/*------------------------*/
+.screen--concept {
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  /* text-transform: capitalize; */
+}
+
+.icon--arrow {
+  width: fit-content;
+}
+
+/*-----CardNote---------------*/
+
+.input__note__description {
+  font-size: 0.875rem;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 600;
+  max-width: 100%;
+  text-align: left;
+  background-color: transparent;
+  color: var(--dark);
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+textarea:invalid {
+  border: 1px dashed tomato;
+}
+
+.input__note__description::placeholder {
+  color: var(--dark);
+  font-weight: 600;
+}
+/*--------------*/
+/*-- bottom card for investment and debts--*/
+.card__typeDate__container {
+  display: flex;
+  align-items: start;
+  width: 100%;
+  justify-content: space-between;
+  /* border:1px solid orange; */
+}
+
+.card__typeDate--type,
+.card__typeDate--date,
+.card__typeDate--element {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 50%;
+  padding: 1.5rem 0 0rem 0;
+
+  /* border:1px solid red; */
+}
+
+.card__typeDate--type {
+  width: 40%;
+}
+
+.card__screen--type {
+  border: 2px solid var(--dark);
+  padding: 0.5rem 0;
+  border-radius: 0.75rem;
+  width: 100%;
+  cursor: pointer;
+  /* border:1px solid red; */
+}
+
+.card__typeDate--type .screen--concept {
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+  width: fit-content;
+
+  padding: 0;
+  margin: 0 auto;
+  color: var(--dark);
+  /* border:1px solid blue; */
+}
+
+.card__screen--date {
+  background-color: var(--creme);
+  border-radius: 0.75rem;
+
+  padding: 0.5rem;
   width: 100%;
   text-align: center;
+  cursor: pointer;
+
+  /* border:1px solid red; */
+}
+.card__typeDate .screen--concept {
+  text-align: center;
+}
+
+/*-----tracker datepicker  ---------*/
+.tracker__inside__datepicker,
+.form__inside__datepicker {
+  background-color: transparent;
+  width: 100%;
+
   padding: 0;
   margin: 0;
-  color: var(--dark);
   font-weight: 400;
-  cursor: pointer; */
+  cursor: pointer;
+}
+.tracker__inside__datepicker {
+  text-align: center;
+  color: var(--dark);
 }
 
-.tracker__datepicker:focus,
-.tracker__datepicker:active {
-  /* font-weight: 600; */
+.tracker__inside__datepicker:hover,
+.tracker__inside__datepicker:focus,
+.tracker__inside__datepicker:active {
+  font-weight: 600;
 }
 
-/*MODIFIED DATE PICKER */
-/*
+/*-----form datepicker  ---------*/
+
+.form__inside__datepicker {
+  color: var(--creme);
+  text-align: left;
+}
+
+.form__inside__datepicker:hover,
+.form__inside__datepicker:focus,
+.form__inside__datepicker:active {
+  font-weight: 600;
+}
+
+/*-----------------------------------*/
+
+/*MODIFIED DATE PICKER STYLES */
+
 .react-datepicker-popper {
-  position: absolute;
-  transform: translate(61px, 451.818px) !important;
-  transform: translate(61px, 311.818px) !important;
+  /* position: absolute; */
+  /* transform: translate(61px, 311.818px) !important; */
+  /* top:10rem !important;
+  left: 0rem !important; */
 }
 
 .react-datepicker__triangle {
@@ -65,16 +363,14 @@
 }
 
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-upcoming {
-  background: url('/ArrowDownDarkSvg.svg') no-repeat center;
+  background: url('../../assets/ArrowDownDarkSvg.svg') no-repeat center;
   transform: rotate(180deg);
   top: 1px;
 }
 
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-previous {
-  background: url('../../../assets/ArrowDownDarkSvg.svg') no-repeat center;
+  background: url('../../assets/ArrowDownDarkSvg.svg') no-repeat center;
   top: 1px;
 }
 
 /*-----------*/
-
-/*-----form datepicker  ---------*/

@@ -1,12 +1,14 @@
+/*forms-styles.css*/
+
 [class*='icon'] {
   cursor: pointer;
 }
 
 .page__container {
-  min-width: 22.5rem;
   min-height: 50rem;
+  min-width: 22.5rem;
 
-  width: 33.3%;
+  /* width: 33.3%; */
   /* height: 48rem; */
 
   margin: 0 auto;
@@ -15,8 +17,10 @@
 
   /* gap: 2rem; */
   /* position: relative; */
+  /* width: 50%; */
+  padding:0 1rem;
 
-  /* border: 5px solid var(--primary); */
+  border: 5px solid var(--primary);
 }
 
 .page__content {
@@ -42,12 +46,19 @@
 }
 
 .form__title,
+label,
 .labelText {
   color: var(--light);
   font-size: 1.25rem;
   text-align: center;
   width: 100%;
+  text-transform: capitalize;
   /* border: 1px solid var(--primary); */
+}
+
+label,
+.labelText {
+text-align: left;
 }
 
 .iconLeftArrow {
@@ -91,6 +102,7 @@
   font-size: 0.875rem;
   padding-left: 0.5em;
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 /*categoryNature*/
@@ -138,3 +150,60 @@
   /* font-weight: 600; */
   font-weight: bold;
 }
+
+/*NewPocket*/
+/*target amount */
+.targetAmount.input__container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+
+  height: 4.25rem;
+  width: 100%;
+
+  text-transform: capitalize;
+  /* background-color: red; */
+}
+
+.input__targetAmount {
+  text-align-last: left;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  resize: none;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.input__targetAmount::placeholder {
+  color: var(--creme);
+  background-color: transparent;
+  color: #5b5b5b;
+  padding: 0;
+  /* width: max-content; Why is LIMITED?*/
+}
+
+textarea:invalid {
+  border: 1px dashed tomato;
+}
+
+/*------------*/
+/*Date Picker input form*/
+
+.form__datepicker__container {
+  border: 1px solid var(--creme);
+  height: 2.625em;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: transparent;
+}
+
+
+
+

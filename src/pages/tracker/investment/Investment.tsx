@@ -3,9 +3,13 @@ import { useEffect, useState } from 'react';
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
-import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
+
+// import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
+// import Datepicker from '../components/TrackerDatepicker.tsx';
+// import Datepicker from '../components/TrackerDatepicker.tsx';
 
 import { changeCurrency } from '../../../helpers/functions.ts';
+import Datepicker from '../../../components/datepicker/Datepicker.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -136,10 +140,15 @@ function Investment() {
             <div className='card__typeDate--date'>
               <div className='card--title'> Date </div>
               <div className='card__screen--date'>
-                <TrackerDatepicker
+                {/* <TrackerDatepicker */}
+                <Datepicker
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
-                ></TrackerDatepicker>
+                  variant={'tracker'}
+                  >
+                   
+                  </Datepicker>
+                {/* ></TrackerDatepicker> */}
               </div>
             </div>
           </div>

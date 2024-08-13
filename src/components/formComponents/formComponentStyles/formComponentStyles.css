@@ -145,5 +145,6 @@ option {
   right: 0.5em;
   border: none;
   outline: none;
-  pointer-events: none; /*just visual*/
+  pointer-events: none;
+   /*just visual*/
 }
