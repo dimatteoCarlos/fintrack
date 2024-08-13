@@ -1,9 +1,8 @@
 import './styles/debts-styles.css';
 
-
 import DebtsBigBoxResult from './components/DebtsBigBoxResult.tsx';
 import ListOfDebtors from './components/ListOfDebtors.tsx';
-import { TitleHeader } from '../../components/TitleHeader.tsx';
+import { TitleHeader } from '../../components/titleHeader/TitleHeader.tsx';
 import OpenAddEditBtn from '../../components/OpenAddEditBtn.tsx';
 import { CardTitle } from '../../components/CardTitle.tsx';
 

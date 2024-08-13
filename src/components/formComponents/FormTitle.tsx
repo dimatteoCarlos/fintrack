@@ -1,3 +1,7 @@
+// /------Form Title--------
+
+import { Link, useLocation } from 'react-router-dom';
+
 import LeftArrowSvg from '../../assets/LeftArrowSvg.svg';
 import './formComponentStyles/formComponentStyles.css';
 
@@ -6,15 +10,18 @@ type FormtTitleTypeProp = {
 };
 
 function FormTitle({ formTitle }: FormtTitleTypeProp) {
+  const location = useLocation();
+  const currentRoute = location.pathname.split('/')[1];
   return (
-    <div className='account__main__title--container'>
-      <div className='iconLeftArrow'>
+    <div className='main__title--container'>
+      <Link to={'..'} relative='path' className='iconLeftArrow'>
         <LeftArrowSvg />
-      </div>
+      </Link>
 
-      <div className='form__title'>{formTitle}</div>
+      <div className='form__title'>{formTitle}{currentRoute}</div>
     </div>
   );
 }
 
 export default FormTitle;
+

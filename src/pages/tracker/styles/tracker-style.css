@@ -67,7 +67,8 @@
 .separator__container {
   width: 88.5%;
   position: absolute;
-  top: 56.8%;
+  top: 56%;
+  /* top: 54%; */
   left: 5.75%;
   background-color: transparent;
 }
@@ -277,7 +278,7 @@ textarea:invalid {
 }
 
 /*-----tracker datepicker  ---------*/
-.tracker__datepicker__input {
+.tracker__inside__datepicker {
   background-color: transparent;
   width: 100%;
   text-align: center;
@@ -288,16 +289,16 @@ textarea:invalid {
   cursor: pointer;
 }
 
-.tracker__datepicker:focus,
-.tracker__datepicker:active {
+.tracker__inside__datepicker:hover,
+.tracker__inside__datepicker:focus,
+.tracker__inside__datepicker:active {
   font-weight: 600;
 }
 
 /*MODIFIED DATE PICKER */
-
+/*
 .react-datepicker-popper {
   position: absolute;
-  transform: translate(61px, 451.818px) !important;
   transform: translate(61px, 311.818px) !important;
 }
 
@@ -343,14 +344,13 @@ textarea:invalid {
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-upcoming {
   background: url('/ArrowDownDarkSvg.svg') no-repeat center;
   transform: rotate(180deg);
-  /* border:1px solid red; */
   top: 1px;
 }
 
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-previous {
   background: url('../../../assets/ArrowDownDarkSvg.svg') no-repeat center;
-  /* border:1px solid red; */
   top: 1px;
 }
+  */
 
 /*-----------*/

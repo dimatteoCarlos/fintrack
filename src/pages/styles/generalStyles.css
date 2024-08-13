@@ -65,6 +65,28 @@ body {
   padding: 0;
 }
 
+.iconArrowLeftDark, .iconArrowLeftLight {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  left:-0.9rem;
+  cursor: pointer;
+  z-index: 1;
+
+  /* border: 1px solid var(--dark); */
+}
+
+.iconArrowLeftDark:hover,
+.iconArrowLeftDark:active,
+.iconArrowLeftDark:focus {
+  background-color: rgba(232, 228, 218, 0.5);
+}
+
+.iconArrowLeftLight:hover {
+  background-color: rgba(41, 41, 41, 1);
+}
+
 .pt-2 {
   padding-top: 2rem;
 }
@@ -97,10 +119,11 @@ body {
   /* border: 5px solid cyan; */
 }
 
+
 .content__presentation {
   display: flex-root;
   flex-direction: column;
-  padding: 4.5rem 0 1.5rem 0;
+  padding: 5rem 0 1.5rem 0;
   align-items: center;
   justify-content: space-between;
   /* border: 10px solid yellow; */
@@ -133,7 +156,6 @@ body {
   align-items: center;
   /* border: 10px solid yellowgreen; */
 }
-
 
 /*put it into a component*/
 .status__square {

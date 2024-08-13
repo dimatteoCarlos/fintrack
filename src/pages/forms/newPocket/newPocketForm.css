@@ -88,14 +88,17 @@
   padding-left: 0.5em;
   font-weight: 500;
 }
+
 /*target amount */
-.targetAmount.bullet--input {
+.targetAmount.input__container {
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0rem 0 0rem 0.25rem;
+  /* padding: 0rem 0 0rem 0.25rem; */
+  padding: 0.5rem 0 0.5rem 0.5rem;
+
   height: 4.25rem;
   width: 100%;
   /* background-color: red; */
@@ -108,21 +111,28 @@
   outline: none;
   padding: 0;
   margin: 0;
-  width: max-content;
+  resize: none;
+  width: 100%;
+  overflow-y: hidden;
 }
 
 .input__targetAmount::placeholder {
   color: var(--creme);
   background-color: transparent;
   color: #5b5b5b;
-  /* width: max-content; Why is LIMITED?*/
   padding: 0;
+  /* width: max-content; Why is LIMITED?*/
 }
 
+textarea:invalid {
+  border: 1px dashed tomato;
+}
+
+/*------------*/
+
 .date.input--bullet .bullet--input::placeholder {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  
 }
 
 /*------save btn-----------*/

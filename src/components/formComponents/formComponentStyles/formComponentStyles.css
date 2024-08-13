@@ -4,9 +4,10 @@
 
 /*formTitle.css*/
 .main__title--container {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  padding-bottom: 1.5rem;
+  justify-content: center;
+  padding-bottom: 1.5rem; */
 }
 
 .form__title,

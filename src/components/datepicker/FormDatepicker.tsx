@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 //-------
-import { showDate } from '../../../helpers/functions';
+import { showDate } from '../../helpers/functions';
 
 //to express date in spanish
 // import es  from 'date-fns/locale/es';
@@ -16,9 +16,14 @@ import { showDate } from '../../../helpers/functions';
 type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
+  variant?: 'tracker' | 'form';
 };
 
-function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
+function FormDatepicker({
+  date = new Date(),
+  changeDate,
+  variant = 'form',
+}: DatePickerProps) {
   // Handle state selected date
   const [selectedDate, setSelectedDate] = useState<Date>(date);
 
@@ -37,9 +42,14 @@ function TrackerDatepicker({ date = new Date(), changeDate }: DatePickerProps) {
       scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
-      className='tracker__inside__datepicker'
+      // className={
+      //   variant == 'tracker'
+      //     ? 'tracker__inside__datepicker'
+      //     : 'form__inside__datepicker'
+      // }
+      className='form__inside__datepicker'
     />
   );
 }
 
-export default TrackerDatepicker;
+export default FormDatepicker;
