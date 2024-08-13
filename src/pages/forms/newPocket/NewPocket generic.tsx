@@ -10,8 +10,8 @@ import '../styles/forms-styles.css';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
 //---------Form Field Names----------
-// const formTitle = 'New Pocket';
-/*
+const formTitle = 'New Pocket';
+
 export const newPocketFormLabels: {
   [key: string]: string | JSX.Element | number;
 }[] = [
@@ -35,14 +35,14 @@ export const newPocketFormLabels: {
     icon: <ArrowDownSvg />,
   },
 ];
-*/
-// const targetAmount = {
-//   labelText: 'target amount',
-//   className: 'label text',
-//   content: 'target',
-//   placeholder: 'Saved',
-//   icon: '',
-// };
+
+const targetAmount = {
+  labelText: 'target amount',
+  className: 'label text',
+  content: 'target',
+  placeholder: 'Saved',
+  icon: '',
+};
 
 //-------------------------
 
@@ -50,7 +50,7 @@ function NewPocket() {
   const initialNewPocketData = {
     name: '',
     note: '',
-    target: 'saved',
+    target: 0,
     date: new Date(),
   };
 
@@ -85,61 +85,73 @@ function NewPocket() {
             relative='path'
             className='iconLeftArrow'
           >
+            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
             <LeftArrowSvg />
           </Link>
 
-          <div className='form__title'>{'New Pocket'}</div>
+          <div className='form__title'>{formTitle}</div>
         </div>
         {/*  */}
 
         <form className='form__box'>
           <div className='form__container'>
-            <div className='input__box'>
-              <label className='label form__title'>{'Name'}</label>
-              <input
-                type='text'
-                className={`input__container`}
-                placeholder={`${'purpose/name'}`}
-                onChange={inputHandler}
-                name={'name'}
-                // value={`${pocketData[`${labeltext}`]}`}
-                value={pocketData['name']}
-              />
-            </div>
+            {newPocketFormLabels.map((item, indx) => {
+              const { labelText, content, className, icon } = item;
+              const labeltext = labelText
+                .toString()
+                .toLowerCase()
+                .split('_')
+                .join('');
+              console.log(
+                '🚀 ~ {newPocketFormLabels.map ~ labeltext:',
+                labeltext
+              );
 
-            <div className='input__box'>
-              <label className='label form__title'>{'Note'}</label>
-              <input
-                type='text'
-                className={`input__container`}
-                placeholder={`${'description'}`}
-                onChange={inputHandler}
-                name={'note'}
-                value={pocketData['note']}
-                // value={pocketData.note}
-              />
-            </div>
+              return (
+                <div key={`${className}-${crypto.randomUUID()}-${indx}`}>
+                  {labelText !== 'target amount' &&
+                    labelText !== 'desired date' && (
+                      <div className='input__box'>
+                        <label className='label form__title'>{labelText}</label>
+                        <input
+                          type='text'
+                          className={`input__container`}
+                          placeholder={`${content}`}
+                          onChange={inputHandler}
+                          name={`${labeltext
+                            .toString()
+                            .toLowerCase()
+                            .split('_')
+                            .join('')}`}
+                          // value={`${pocketData[`${labeltext}`]}`}
+                        />
+                      </div>
+                    )}
+                </div>
+              );
+            })}
 
-            <label className='form__title1'>{'target amount'}</label>
+            {/* <div className='input__box '> */}
+            <label className='form__title1'>{targetAmount.labelText}</label>
 
             <div className='targetAmount input__container'>
-              {'target'}
+              {targetAmount.content}
 
               {/* <textarea */}
               <input
                 type='text'
                 name='targetAmount'
                 className={`input__targetAmount`}
-                placeholder={'Saved'}
+                placeholder={`${targetAmount.placeholder}`}
                 maxLength={150}
                 onChange={inputHandler}
-                value={pocketData['target']}
+                // value={''}
                 // rows={3}
               />
             </div>
 
             {/* datepicker */}
-
+            {/* <div className='date input__box'> */}
             <label className='label '>{'Desired Date'}</label>
 
             <div className='form__datepicker__container'>
@@ -149,6 +161,9 @@ function NewPocket() {
                 variant={'form'}
               ></FormDatepicker>
             </div>
+
+            {/* </div> */}
+            {/* </div> */}
           </div>
 
           {/* save */}
