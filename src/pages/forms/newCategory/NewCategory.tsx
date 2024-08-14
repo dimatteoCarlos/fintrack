@@ -5,31 +5,32 @@ import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/forms-styles.css';
+import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
 //---------Form Field Names----------
-const formTitle = 'New Category';
+// const formTitle = 'New Category';
 
-export const newCategoryFormLabels: {
-  [key: string]: string | JSX.Element | number;
-}[] = [
-  {
-    labelText: 'Category Name',
-    className: 'label--text',
-    content: 'Category Name',
-  },
-  {
-    labelText: 'Subcategory',
-    className: 'label--text',
-    content: 'Category Name',
-  },
-  { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
-  { labelText: 'Budget', className: 'label--text', content: 'Amount' },
-];
+// export const newCategoryFormLabels: {
+//   [key: string]: string | JSX.Element | number;
+// }[] = [
+//   {
+//     labelText: 'Category Name',
+//     className: 'label--text',
+//     content: 'Category Name',
+//   },
+//   {
+//     labelText: 'Subcategory',
+//     className: 'label--text',
+//     content: 'Category Name',
+//   },
+//   { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
+//   { labelText: 'Budget', className: 'label--text', content: 'Amount' },
+// ];
 
 //---------------
-export const natureTitle = 'Category Nature';
+export const tileTitle = 'Category Nature';
 
-export const natureLabels = [
+export const tileLabels = [
   { labelText: 'Must', className: 'label--text' },
 
   { labelText: 'Need', className: 'label--text' },
@@ -37,16 +38,36 @@ export const natureLabels = [
   { labelText: 'Want', className: 'label--text' },
   { labelText: 'Other', className: 'label--text' },
 ];
+//------------------------------------
+
+const initialNewCategoryData = {
+  category: '',
+  subcategory: '',
+  budget: 0.0,
+  nature: '',
+};
+
+type CategoryDataType = {
+  category: string;
+  subcategory: string;
+  budget: string | number;
+  nature: string;
+};
 
 //-------------------------
 function NewCategory() {
-  const location = useLocation();
-  console.log('🚀 ~ NewCategory ~ location:', location);
-
+  //---states------
+  const [categoryData, setCategoryData] = useState<CategoryDataType>(
+    initialNewCategoryData
+  );
   const [activeCategory, setActiveCategory] = useState('');
 
-  function inputHandler() {
-    console.log('input');
+  const location = useLocation();
+  // console.log('🚀 ~ NewCategory ~ location:', location);
+
+  function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    setCategoryData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -54,19 +75,21 @@ function NewCategory() {
     console.log('addHandler');
   }
 
-  function categoryNatureHandler(e: React.MouseEvent<HTMLButtonElement>) {
+  function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log('categoryNatureHandler', e.currentTarget.id);
+    console.log('natureHandler', e.currentTarget.id);
     setActiveCategory(e.currentTarget.id);
+    const activeNature = e.currentTarget.id ? e.currentTarget.id : '';
+    setCategoryData((prev) => ({ ...prev, nature: activeNature }));
 
-    const categoryNature = e.currentTarget.id.toLowerCase();
-    console.log('🚀 ~ categoryNatureHandler ~ categoryNature:', categoryNature);
+    const nature = e.currentTarget.id.toLowerCase();
+    // console.log('🚀 ~ natureHandler ~ nature:', nature);
   }
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     setActiveCategory('');
-    console.log('submit function');
+    // console.log('submit function');
   }
 
   return (
@@ -75,6 +98,8 @@ function NewCategory() {
 
       {/* main title component */}
       <div className='page__content'>
+        {/* main__title could be a component */}
+
         <div className='main__title--container'>
           <Link
             to={location.state.previousRoute}
@@ -84,58 +109,72 @@ function NewCategory() {
             {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
             <LeftArrowSvg />
           </Link>
-
-          <div className='form__title'>{formTitle}</div>
+          <div className='form__title'>{'New Category'}</div>
         </div>
+
         {/*  */}
+
         <form className='form__box'>
           <div className='container--categoryName form__container'>
-            {newCategoryFormLabels.map((item, indx) => {
-              const { labelText, content, className } = item;
+            <div className='input__box'>
+              <label className='label form__title'>{'Category Name'}</label>
 
-              // console.log(className, crypto.randomUUID(), indx);
-
-              return (
-                <div key={`${className}-${crypto.randomUUID()}-${indx}`}>
-                  {className == 'iconContent' && (
-                    <button
-                      className={'bullet--input input__container'}
-                      onClick={addHandler}
-                    >
-                      <PlusSignSvg />
-                    </button>
-                  )}
-
-                  {className !== 'iconContent' && (
-                    <div className='input--bullet input__box'>
-                      <label className='label form__title'>{labelText}</label>
-
-                      <input
-                        type='text'
-                        className={`bullet bullet--input input__container`}
-                        placeholder={`${content}`}
-                        onChange={inputHandler}
-                        // value=''
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Component of tiles or badges */}
-          <div className='container--categoryNature'>
-            <div className='form__title form__title--categoryNature form__title--tiles'>
-              {natureTitle}
+              <input
+                type='text'
+                className={`input__container`}
+                placeholder={`Category Name`}
+                name={'category'}
+                onChange={inputHandler}
+                value={categoryData.category}
+              />
             </div>
 
-            <div className='categoryNature__tiles tiles__container'>
-              {natureLabels.map((label, indx) => {
+            <div className='input__box'>
+              <label className='label form__title'>{'subcategory'}</label>
+
+              <input
+                type='text'
+                className={`input__container`}
+                placeholder={`category name`}
+                name={'subcategory'}
+                onChange={inputHandler}
+                value={categoryData.subcategory}
+              />
+            </div>
+
+            <button
+              className={'bullet--input input__container'}
+              onClick={addHandler}
+            >
+              <PlusSignSvg />
+            </button>
+
+            <div className='input__box'>
+              <label className='label form__title'>{'budget'}</label>
+
+              <input
+                // type='text'
+                type='number'
+                className={`input__container`}
+                placeholder={`amount`}
+                name={'budget'}
+                onChange={inputHandler}
+                value={categoryData.budget}
+              />
+            </div>
+          </div>
+
+          {/* convert to a Component of tiles or badges */}
+          <div className='container--nature'>
+            <div className='form__title form__title--tiles'>{tileTitle}</div>
+
+            <div className='nature__tiles tiles__container'>
+              {tileLabels.map((label, indx) => {
+                // console.log(label.labelText);
                 return (
                   <button
-                    className='categoryNature__btn tile__button'
-                    onClick={categoryNatureHandler}
+                    className='nature__btn tile__button'
+                    onClick={natureHandler}
                     key={`${indx}-tile`}
                     id={`${label.labelText}`}
                     style={
@@ -153,16 +192,20 @@ function NewCategory() {
               })}
             </div>
           </div>
+
           {/* save */}
+
           <div className='submit__btn__container'>
-            <button
+            <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
+
+            {/* <button
               type='submit'
               className='submit__btn'
               onClick={onSubmitForm}
               id={'save'}
             >
               {`${'Save'}`}
-            </button>
+            </button> */}
           </div>
         </form>
       </div>
