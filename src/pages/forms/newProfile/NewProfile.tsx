@@ -1,12 +1,16 @@
-import React from 'react';
-import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
+import React, { useState } from 'react';
+import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
-import ArrowDawnSvg from '../../../assets/ArrowDownSvg.svg';
-import './newProfileForm.css';
-import { EventHandler } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-const formTitle = 'New Profile';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
 
+import '../styles/forms-styles.css';
+
+// const formTitle = 'New Profile';
+/*
+//temporary data structure
 export const newProfileFormLabels: { [key: string]: string | JSX.Element }[] = [
   {
     labelText: 'Name',
@@ -42,71 +46,162 @@ export const newProfileFormLabels: { [key: string]: string | JSX.Element }[] = [
     icon: <ArrowDawnSvg />,
   },
 ];
+*/
+//------------------------
+//Account Options
+const accountSelectionProp = {
+  title: 'account',
+  options: [
+    { value: 'account_01', label: 'Account_01' },
+    { value: 'account_02', label: 'Account_02' },
+    { value: 'account_03', label: 'Account_03' },
+  ],
+  variant: 'form', //define the custom styles to use in selection dropdown component
+};
 
-const NewProfile = () => {
-  function inputHandler() {
-    console.log('input');
+//Type Options
+const typeSelectionProp = {
+  title: 'lending',
+  options: [
+    { value: 'lending', label: 'Lending' },
+    { value: 'borrowing', label: 'Borrowing' },
+  ],
+  variant: 'form', //define the customStyle to use in selection dropdown component
+};
+
+//----Temporary values----------
+const initialNewProfileData = {
+  name: '',
+  lastname: '',
+  account: '',
+  type: 'lending',
+  amount: '0,00',
+};
+
+type ProfileDataType = {
+  name: string;
+  lastname: string;
+  account: string | number;
+  type: string;
+  amount: number | string;
+};
+
+//-------------------------
+function NewProfile() {
+  //-----states------
+  const [profileData, setProfileData] = useState<ProfileDataType>(
+    initialNewProfileData
+  );
+
+  const location = useLocation();
+  // console.log('🚀 ~ NewProfile ~ location:', location);
+
+  //---functions-----
+  function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    setProfileData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function toggleSelectedAction() {
-    console.log('crumb');
+  function typeSelectHandler(selectedOption: { value: string; label: string }) {
+    setProfileData((prev) => ({ ...prev, type: selectedOption.value }));
+    console.log('selectedOption', selectedOption);
+  }
+
+  function accountSelectHandler(selectedOption: {
+    value: string;
+    label: string;
+  }) {
+    setProfileData((prev) => ({ ...prev, account: selectedOption.value }));
+    console.log('selectedOption', selectedOption);
+  }
+
+  function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    console.log('submit form button');
   }
 
   return (
-    <section className='profile__page__container'>
-      <TopWhiteSpace bgc={'dark'} />
+    <section className='profile__page__container page__container'>
+      <TopWhiteSpace variant={'dark'} />
 
-      <div className='profile__page__content'>
-        <form action='submit' className='form__box'>
-          <div className='profile__main__title--container'>
-            <div className='iconLeftArrow'>
-              <LeftArrowSvg />
+      <div className='profile__page__content page__content'>
+        <div className='main__title--container'>
+          <Link
+            to={location.state.previousRoute}
+            relative='path'
+            className='iconLeftArrow'
+          >
+            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
+            <LeftArrowLightSvg />
+          </Link>
+
+          <div className='form__title'>{'New Profile'}</div>
+        </div>
+
+        {/*  */}
+
+        <form className='form__box'>
+          <div className='container--profileName form__container'>
+            <div className='input__box'>
+              <label className='label form__title'>{'Name'}</label>
+              <input
+                type='text'
+                className={`input__container`}
+                placeholder={`Name`}
+                name={'name'}
+                onChange={inputHandler}
+                value={profileData.name}
+              />
             </div>
 
-            <div className='form__title'>{formTitle}</div>
+            <div className='input__box'>
+              <label className='label form__title'>{'last name'}</label>
+              <input
+                type='text'
+                className={`input__container`}
+                placeholder={`last name`}
+                name={'lastname'}
+                onChange={inputHandler}
+                value={profileData.lastname}
+              />
+            </div>
+
+            <div className='input__box'>
+              <label className='label form__title'>{'Add Money'}</label>
+
+              <DropDownSelection
+                dropDownOptions={accountSelectionProp}
+                updateOptionHandler={accountSelectHandler}
+              />
+              <input
+                type='text'
+                className={`input__container input__container--amount`}
+                placeholder={`0,00`}
+                name={'amount'}
+                onChange={inputHandler}
+                value={profileData.amount}
+                style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+              />
+            </div>
+
+            <div className='input__box'>
+              <label className='label form__title'>{'Type'}</label>
+              <DropDownSelection
+                dropDownOptions={typeSelectionProp}
+                updateOptionHandler={typeSelectHandler}
+              />
+            </div>
           </div>
 
-          <div className='container--profileName'>
-            {newProfileFormLabels.map((item, indx) => {
-              const { labelText, content, className, icon } = item;
+          {/* save */}
 
-              // console.log(className, crypto.randomUUID(), indx);
-
-              return (
-                <React.Fragment
-                  key={`${className}-${crypto.randomUUID()}-${indx}`}
-                >
-                  {labelText !== 'Target Amount' && (
-                    <div className='input--bullet'>
-                      <label className='label form__title'>{labelText}</label>
-
-                      <input
-                        type='text'
-                        className={`bullet bullet--input`}
-                        placeholder={`${content}`}
-                        onChange={inputHandler}
-                      />
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
-          </div>
-
-          <div className='btn__container'>
-            <button
-              type='submit'
-              className='submit__btn'
-              // onClick={ProfileNatureHandler}
-              id={'save'}
-            >
-              {`${'Save'}`}
-            </button>
+          <div className='submit__btn__container'>
+            <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
           </div>
         </form>
       </div>
     </section>
   );
-};
+}
 
 export default NewProfile;

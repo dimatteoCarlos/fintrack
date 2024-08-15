@@ -6,7 +6,6 @@ import { changeCurrency } from '../../../helpers/functions.ts';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
-import CardNote from '../components/CardNote.tsx';
 
 function Income() {
   //temporary values
@@ -121,8 +120,6 @@ function Income() {
               value={incomeData.note}
             />
           </div>
-
-          {/* <CardNote note={incomeData.note} dataHandler={textareaTrackDataHandler}/> */}
         </div>
         <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
       </article>

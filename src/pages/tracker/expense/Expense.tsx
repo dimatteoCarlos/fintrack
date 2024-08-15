@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { changeCurrency } from '../../../helpers/functions.ts';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
+import { changeCurrency } from '../../../helpers/functions.ts';
+// import { CardTitle } from '../../../components/CardTitle.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -82,7 +85,6 @@ function Expense() {
       <article className='expense' style={{ color: 'inherit' }}>
         {/* start of top */}
         <div className='state__card--top'>
-          {/* <CardTitle>Amount</CardTitle> */}
           <div className='card--title'>Amount</div>
 
           <div className='card__screen'>
@@ -96,12 +98,14 @@ function Expense() {
               // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
             />
 
-            <div className='icon-currency' onClick={toggleCurrency}>
+            {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
-            </div>
+            </div> */}
+
+            <CurrencyBadge />
+            
           </div>
 
-          {/* <CardTitle>Account</CardTitle> */}
           <div className='card--title'>Account</div>
 
           <SelectComponent dropDownOptions={accountOptions} />
@@ -119,8 +123,6 @@ function Expense() {
 
           <div className='card--title'>Note</div>
 
-          {/* <CardTitle>Note</CardTitle> */}
-          {/* <AmountInputScreen> */}
           <div className='card__screen'>
             <textarea
               className='input__note__description'
@@ -132,9 +134,9 @@ function Expense() {
               value={expenseData.note}
             />
           </div>
-          {/* </AmountInputScreen> */}
         </div>
         {/* end of bottom */}
+
         <FormSubmitBtn
           // btnTitle={'save'}
           onClickHandler={onSaveHandler}

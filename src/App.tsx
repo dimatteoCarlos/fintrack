@@ -25,6 +25,9 @@ import NotFoundPage from './pages/error/NotFoundPage.tsx';
 import Accounting from './pages/accounting/Accounting.tsx';
 import NewCategory from './pages/forms/newCategory/NewCategory.tsx';
 import NewPocket from './pages/forms/newPocket/NewPocket.tsx';
+import NewProfile from './pages/forms/newProfile/NewProfile.tsx';
+import NewAccount from './pages/forms/newAccount/NewAccount.tsx';
+import Overview from './pages/overview/Overview.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -77,8 +80,9 @@ function App() {
           path: '/overview',
           element: <OverviewLayout />,
           children: [
-            { index: true, element: <Accounts /> },
-            { path: '/overview/accounts', element: <Accounts /> },
+            // { index: true, element: <Account /> },//what would be this?
+            { index: true, element: <Overview /> },
+            { path: '/overview/accounts', element: <Overview /> },
             {
               path: '/overview/accounts/:accountId',
               element: <AccountDetail />,
@@ -90,6 +94,8 @@ function App() {
     { path: '/accounting', element: <Accounting /> },
     { path: '/budget/categories/new_category', element: <NewCategory /> },
     { path: '/budget/categories/new_pocket', element: <NewPocket /> },
+    { path: '/debts/debtors/new_profile', element: <NewProfile /> },
+    { path: '/overview/accounts/new_account', element: <NewAccount /> },
   ]);
 
   return (

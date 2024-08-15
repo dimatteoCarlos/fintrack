@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import { currencyFormat } from '../../helpers/functions';
 import { CardTitle } from '../../components/CardTitle';
 import OpenAddEditBtn from '../../components/OpenAddEditBtn';
+import { CreateNewAccountPropType } from './Overview';
 
-function AccountBalance() {
-  
+function AccountBalance({
+  createNewAccount,
+  originRoute,
+}: CreateNewAccountPropType) {
   // //temporary values------------
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
@@ -35,14 +38,23 @@ function AccountBalance() {
     },
   ];
 
+  // const navigateTo: NavigateFunction = useNavigate();
+
+  // const location = useLocation();
+  // const originRoute = location.pathname;
+
+  // function createNewAccount(originRoute: string) {
+  //   navigateTo(originRoute + '/new_account', {
+  //     state: { previousRoute: originRoute },
+  //   });
+  // }
+
   return (
     <>
       {/*GOALS ACCOUNTS  */}
       <div className='presentation__card__title__container flx-row-sb'>
         <CardTitle>Accounts</CardTitle>
-        <Link className='flx-col-center icon ' to={'/accounts/edit'}>
-          {/* <Dots3LightSvg />{' '} */}
-        </Link>
+        <Link className='flx-col-center icon ' to={'/accounts/edit'}></Link>
       </div>
       <article className='goals__account'>
         {/* Account Balance  */}
@@ -67,34 +79,13 @@ function AccountBalance() {
             );
           }
         })}
-
-        {/* <div className='tile__container tile__container--account flx-col-sb'>
-              <div className='tile__subtitle tile__subtitle--account'>
-                {'nameAccount'}
-              </div>
-              <div className='tile__title tile__title--account'>
-                {'concept'} <span>{'amount'}</span>
-              </div>
-            </div>
-            <div className='tile__container tile__container--account flx-col-sb'>
-              <div className='tile__subtitle tile__subtitle--account'>
-                {'nameAccount'}
-              </div>
-              <div className='tile__title tile__title--account'>
-                {'concept'} <span>{'amount'}</span>
-              </div>
-            </div>
-            <div className='tile__container tile__container--account flx-col-sb'>
-              <div className='tile__subtitle tile__subtitle--account'>
-                {'nameAccount'}
-              </div>
-              <div className='tile__title tile__title--account'>
-                {'concept'} <span>{'amount'}</span>
-              </div>
-            </div> */}
       </article>
       {
-        <OpenAddEditBtn>
+        <OpenAddEditBtn
+          btnFunction={createNewAccount}
+          btnFunctionArg={originRoute}
+          btnPreviousRoute={originRoute}
+        >
           <div className='open__btn__label'>Add Account</div>
         </OpenAddEditBtn>
       }

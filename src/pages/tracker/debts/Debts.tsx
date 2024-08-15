@@ -5,9 +5,8 @@ import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
-
 import { changeCurrency } from '../../../helpers/functions.ts';
+import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -120,7 +119,7 @@ function Debts() {
         <div className='state__card--bottom'>
           <CardSeparator />
 
-          {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
+          {/* IS NECESARY TO APPLY DEBOUNCE TO INPUT AND TEXTAREA?*/}
 
           <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
@@ -136,6 +135,7 @@ function Debts() {
                 <TrackerDatepicker
                   changeDate={changeDate}
                   date={Data.date}
+                  variant='tracker'
                 ></TrackerDatepicker>
               </div>
             </div>

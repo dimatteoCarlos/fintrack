@@ -1,7 +1,6 @@
 //-------Add / Edit Button-----------C
 
 import { ReactNode } from 'react';
-import { useLocation } from 'react-router-dom';
 
 type OpenAddEditBtnPropType = {
   children: ReactNode;
@@ -14,7 +13,7 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
-  btnPreviousRoute,
+  // btnPreviousRoute,
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);

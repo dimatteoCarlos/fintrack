@@ -1,8 +1,13 @@
+import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import { StatusSquare } from '../../components/boxComponents';
 import { CardTitle } from '../../components/CardTitle';
 import OpenAddEditBtn from '../../components/OpenAddEditBtn';
+import { CreateNewAccountPropType } from './Overview';
 
-function Investment() {
+function Investment({
+  createNewAccount,
+  originRoute,
+}: CreateNewAccountPropType) {
   //Investment
 
   const investment = [
@@ -98,7 +103,11 @@ function Investment() {
       </article>
 
       {
-        <OpenAddEditBtn>
+        <OpenAddEditBtn
+          btnFunction={createNewAccount}
+          btnFunctionArg={originRoute}
+          btnPreviousRoute={originRoute}
+        >
           <div className='open__btn__label'>Add Account</div>
         </OpenAddEditBtn>
       }

@@ -122,6 +122,7 @@ function Investment() {
               {currency.toUpperCase()}
             </div>
           </div>
+          
           <div className='card--title'>Account</div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>

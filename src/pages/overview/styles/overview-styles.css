@@ -140,13 +140,12 @@ a.icon {
   margin: 0;
   border: none;
   outline: 0;
+  gap: 0.1rem;
+  flex-wrap: nowrap;
   /* border: 1px solid var(--light1, red); */
 }
 
-.tiles__container {
-  gap: 0.1rem;
-  flex-wrap: nowrap;
-}
+
 
 .tile__container__col--goalInfo {
   padding: 1rem;

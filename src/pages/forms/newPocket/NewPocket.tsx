@@ -1,7 +1,6 @@
 import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
-import ArrowDownSvg from '../../../assets/ArrowDownSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
 
 import { useState } from 'react';
@@ -116,7 +115,6 @@ function NewPocket() {
                 onChange={inputHandler}
                 name={'note'}
                 value={pocketData['note']}
-                // value={pocketData.note}
               />
             </div>
 
@@ -126,14 +124,15 @@ function NewPocket() {
               {'target'}
 
               {/* <textarea */}
+
               <input
                 type='text'
                 name='targetAmount'
-                className={`input__targetAmount`}
-                placeholder={'Saved'}
+                className={'input__targetAmount'}
+                placeholder={'saved'}
                 maxLength={150}
                 onChange={inputHandler}
-                value={pocketData['target']}
+                // value={pocketData['target']}
                 // rows={3}
               />
             </div>
@@ -152,17 +151,6 @@ function NewPocket() {
           </div>
 
           {/* save */}
-
-          {/* <div className='submit__btn__container'>
-            <button
-              type='submit'
-              className='submit__btn'
-              onClick={onSubmitForm}
-              id={'save'}
-            >
-              {`${'Save'}`}
-            </button>
-          </div> */}
 
           <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
         </form>

@@ -4,8 +4,8 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
-import '../styles/forms-styles.css';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import '../styles/forms-styles.css';
 
 //---------Form Field Names----------
 // const formTitle = 'New Category';
@@ -56,13 +56,13 @@ type CategoryDataType = {
 
 //-------------------------
 function NewCategory() {
+  const location = useLocation();
   //---states------
   const [categoryData, setCategoryData] = useState<CategoryDataType>(
     initialNewCategoryData
   );
   const [activeCategory, setActiveCategory] = useState('');
 
-  const location = useLocation();
   // console.log('🚀 ~ NewCategory ~ location:', location);
 
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -77,19 +77,17 @@ function NewCategory() {
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log('natureHandler', e.currentTarget.id);
-    setActiveCategory(e.currentTarget.id);
-    const activeNature = e.currentTarget.id ? e.currentTarget.id : '';
+    // console.log('natureHandler', e.currentTarget.id);
+    const activeNature = !!e.currentTarget.id
+      ? e.currentTarget.id
+      : '';
+    setActiveCategory(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
-
-    const nature = e.currentTarget.id.toLowerCase();
-    // console.log('🚀 ~ natureHandler ~ nature:', nature);
   }
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     setActiveCategory('');
-    // console.log('submit function');
   }
 
   return (
@@ -176,9 +174,9 @@ function NewCategory() {
                     className='nature__btn tile__button'
                     onClick={natureHandler}
                     key={`${indx}-tile`}
-                    id={`${label.labelText}`}
+                    id={`${label.labelText.toLowerCase()}`}
                     style={
-                      activeCategory == label.labelText
+                      activeCategory == label.labelText.toLowerCase()
                         ? {
                             backgroundColor: 'var(--creme)',
                             color: 'var(--dark)',

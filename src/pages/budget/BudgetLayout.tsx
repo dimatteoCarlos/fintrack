@@ -1,14 +1,11 @@
-import './styles/budget-styles.css';
 
-import { currencyFormat } from '../../helpers/functions';
-import { CardTitle } from '../../components/CardTitle';
-import ListCategory from './components/ListCategory';
-import ListPocket from './components/ListPocket';
+
 import { TitleHeader } from '../../components/titleHeader/TitleHeader';
-import OpenAddEditBtn from '../../components/OpenAddEditBtn';
-import { Outlet } from 'react-router-dom';
+
 import Categories from './categories/Categories';
 import BudgetBigBoxResult from './components/BudgetBigBoxResult';
+import './styles/budget-styles.css';
+import './styles/budget-styles.css';
 
 function BudgetLayout() {
   //temporary values------------
@@ -59,6 +56,7 @@ function BudgetLayout() {
         <BudgetBigBoxResult />
 
         <Categories />
+        
       </div>
     </>
   );

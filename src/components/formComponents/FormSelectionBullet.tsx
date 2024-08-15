@@ -2,6 +2,8 @@ import React from 'react';
 import ArrowDownSvg from '../../assets/ArrowDownSvg.svg';
 import './formComponentStyles/formComponentStyles.css';
 
+
+//Selection option without library
 type FormSelectionBulletTypeProp = {
   labelText: string | JSX.Element | number;
   content: string | JSX.Element | number;

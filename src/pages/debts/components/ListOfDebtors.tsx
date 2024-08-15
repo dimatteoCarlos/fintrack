@@ -59,7 +59,6 @@ function ListOfDebtors() {
                     <div className='box__subtitle'>{type} </div>
                   </div>
                 </BoxRow>
-                {/* <div className='box__subtitle'> </div> */}
               </BoxRow>
             </BoxContainer>
           );

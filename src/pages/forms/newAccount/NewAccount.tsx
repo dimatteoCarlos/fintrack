@@ -1,143 +1,210 @@
-import React from 'react';
-// import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
+import React, { useState } from 'react';
 
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
-import ArrowDownSvg from '../../../assets/ArrowDownSvg.svg';
-import './newAccountForm.css';
-import FormTitle from '../../../components/formComponents/FormTitle.tsx';
-import FormSelectionBullet from '../../../components/formComponents/FormSelectionBullet.tsx';
-import FormInputBullet from '../../../components/formComponents/FormInputBullet.tsx';
+import { Link, useLocation } from 'react-router-dom';
+
+import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
+
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 
-export const newAccountFormLabels: { [key: string]: string | JSX.Element }[] = [
-  {
-    labelText: 'Account Name',
-    classLabel: 'label--text',
-    content: 'Name',
-    icon: '',
-  },
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
+import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
 
-  {
-    labelText: 'Account Type',
-    classLabel: 'label--text',
-    content: 'Type',
-    icon: <ArrowDownSvg />,
-  },
+import '../styles/forms-styles.css';
 
-  {
-    labelText: 'Starting Point',
-    classLabel: 'label--text',
-    content: 'MM/DD/YYYY',
-    icon: <ArrowDownSvg />,
-  },
+// export const newAccountFormLabels: { [key: string]: string | JSX.Element }[] = [
+//   {
+//     labelText: 'Account Name',
+//     classLabel: 'label--text',
+//     content: 'Name',
+//     icon: '',
+//   },
 
-  {
-    labelText: 'Value',
-    classLabel: 'label--number',
-    content: '0,00',
-    icon: '',
-  },
-];
+//   {
+//     labelText: 'Account Type',
+//     classLabel: 'label--text',
+//     content: 'Type',
+//     icon: <ArrowDownSvg />,
+//   },
 
-const typesOptions = [
-  { option: 'option1' },
-  { option: 'option2' },
-  { option: 'option3 is very long' },
-];
+//   {
+//     labelText: 'Starting Point',
+//     classLabel: 'label--text',
+//     content: 'MM/DD/YYYY',
+//     icon: <ArrowDownSvg />,
+//   },
 
-const NewAccount = () => {
-  function inputHandler() {
-    console.log('input');
+//   {
+//     labelText: 'Value',
+//     classLabel: 'label--number',
+//     content: '0,00',
+//     icon: '',
+//   },
+// ];
+
+const accountTypeSelectionProp = {
+  title: 'Type',
+  options: [
+    {
+      value: 'accountType_01',
+      label: 'Account Type 01',
+    },
+    {
+      value: 'accountType_02',
+      label: 'Account Type 02',
+    },
+    {
+      value: 'accountType_03',
+      label: 'Account Type 03',
+    },
+  ],
+  variant: 'form',
+};
+
+//----Temporary values----------
+const initialNewAccountData = {
+  name: 'Account Name',
+  type: 'Account Type',
+  date: new Date(), //'Starting Point'
+  amount: '0.0', // 'Value'
+  currency: 'usd',
+};
+
+type AccountDataType = {
+  name: string;
+  date: Date;
+  type: string;
+  amount: number | string;
+  currency: string;
+  // account: string | number;
+};
+
+//-------------------------
+
+//-------------------------------
+function NewAccount() {
+  const location = useLocation();
+  //---states------
+  const [accountData, setAccountData] = useState<AccountDataType>(
+    initialNewAccountData
+  );
+  //---functions-----
+  function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    setAccountData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(e.target.name);
   }
 
-  function toggleSelectedAction() {
-    console.log('crumb');
+  function accountTypeSelectHandler(selectedOption: {
+    value: string;
+    label: string;
+  }) {
+    setAccountData((acc) => ({ ...acc, type: selectedOption.value }));
+    console.log('selectedOption', selectedOption);
   }
 
-  function onSubmitHandler(e: React.MouseEvent<HTMLButtonElement>) {
+  function changeStartingPoint(selectedDate: Date) {
+    setAccountData((acc) => ({ ...acc, date: selectedDate }));
+    console.log('selected starting point:', selectedDate);
+  }
+  function updateAccountDataCurrency(currency: string) {
+    setAccountData((acc) => ({ ...acc, currency: currency }));
+    console.log('selected starting point:', currency);
+  }
+
+  function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('submit btn clicked');
     e.preventDefault();
   }
 
   return (
-    <section className='account__page__container'>
-      <TopWhiteSpace bgc={'dark'} />
+    <section className='account__page__container page__container'>
+      <TopWhiteSpace variant={'dark'} />
 
-      <div className='account__page__content'>
-        <form action='submit' className='form__box'>
-          <FormTitle formTitle={'New Account'} />
+      <div className='account__page__content page__content'>
+        <div className='main__title--container'>
+          <Link
+            to={location.state.previousRoute}
+            relative='path'
+            className='iconLeftArrow'
+          >
+            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
 
-          <div className='container--accountName'>
-            {newAccountFormLabels.map((item, indx) => {
-              const { labelText, content, classLabel, icon } = item;
+            <LeftArrowLightSvg />
+          </Link>
+          <div className='form__title'>{'New Account'}</div>
+        </div>
 
-              // console.log(className, crypto.randomUUID(), indx);
-
-              return (
-                <React.Fragment
-                  key={`${classLabel}-${crypto.randomUUID()}-${indx}`}
-                >
-                  {(indx == 0 || indx == 3) && (
-                    <>
-                      <FormInputBullet
-                        labelText={labelText}
-                        classContent={classLabel}
-                        content={content}
-                        inputHandler={inputHandler}
-                      />
-                    </>
-                  )}
-
-                  {indx == 1 && (
-                    <>
-                      <FormSelectionBullet
-                        labelText={labelText}
-                        content={content}
-                        inputHandler={inputHandler}
-                        options={typesOptions}
-                      />
-                    </>
-                  )}
-                </React.Fragment>
-              );
-            })}
-
-            {/* 
-            <div className='input--bullet'>
-              <label className='label form__title'>
-                {targetAmount.labelText}
+        <form className='form__box'>
+          <div className=' form__container'>
+            <div className='input__box'>
+              <label htmlFor='name' className='label form__title'>
+                {'Account Name'}
               </label>
+              <input
+                type='text'
+                className='input__container'
+                placeholder='Name'
+                name='name'
+                onChange={inputHandler}
+                value={accountData.name}
+              />
+            </div>
+            <div className='input__box'>
+              <label className='label form__title'>Account Type</label>
 
-              <div className='targetAmount  bullet--input'>
-                {targetAmount.content}
-                <input
-                  type='text'
-                  className={`input__targetAmount`}
-                  placeholder={`${targetAmount.placeholder}`}
-                  // onChange={inputHandler}
-                />
+              <DropDownSelection
+                dropDownOptions={accountTypeSelectionProp}
+                updateOptionHandler={accountTypeSelectHandler}
+              />
+            </div>
+
+            <div className='account__dateAndCurrency box__twoElements'>
+              <div className='account__date'>
+                <label className='label form__title'>{'Starting Point'}</label>
+
+                <div className='form__datepicker__container'>
+                  <FormDatepicker
+                    changeDate={changeStartingPoint}
+                    date={accountData.date}
+                    variant={'form'}
+                  ></FormDatepicker>
+                </div>
               </div>
 
-              <div className='date input--bullet'>
-                <label className='label form__title'>{'Desired Date'}</label>
-
-                <input
-                  type='text'
-                  className={`bullet bullet--input`}
-                  placeholder={`MM/DD/YYYY`}
-                  onChange={inputHandler}
-                />
+              <div className='account__currency'>
+                <div className='label form__title'>Currency</div>
+                <CurrencyBadge
+                  updateOutsideCurrencyData={updateAccountDataCurrency}
+                  variant='form'
+                ></CurrencyBadge>
               </div>
-            </div> */}
+            </div>
+            <div className='input__box'>
+              <label htmlFor='amount' className='label form__title'>
+                {'value'}
+              </label>
+              <input
+                type='text'
+                className='input__container input__container--amount'
+                placeholder='0.00'
+                name='amount'
+                onChange={inputHandler}
+                value={`${accountData.amount}`} // if amount is a number
+                // value={accountData.amount}
+                style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+              />
+            </div>
           </div>
 
-          <div className='btn__container'>
-            <FormSubmitBtn onClickHandler={onSubmitHandler} btnTitle={'Save'} />
+          <div className='submit__btn__container'>
+            <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
           </div>
         </form>
       </div>
     </section>
   );
-};
+}
 
 export default NewAccount;

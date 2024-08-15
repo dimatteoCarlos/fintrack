@@ -7,6 +7,7 @@ import ListPocket from '../components/ListPocket';
 function Categories() {
   const originRoute = useLocation().pathname;
   const navigateTo: NavigateFunction = useNavigate();
+  
   console.log(originRoute);
 
   //functions
