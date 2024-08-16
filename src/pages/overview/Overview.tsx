@@ -39,7 +39,6 @@ function Overview() {
         <LastMovements />
 
         <LastDebts />
-        
       </div>
     </section>
   );

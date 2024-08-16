@@ -145,7 +145,7 @@ a.icon {
 }
 
 .tile__container__col--goalInfo {
-  padding: 1rem;
+  padding: 1rem 0.5rem 1rem 1rem;
   flex: 50%;
 }
 

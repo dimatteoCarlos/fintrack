@@ -111,21 +111,29 @@ label,
 }
 
 /*categoryNature*/
-.form__title--categoryNature,
 .form__title--tiles {
   text-align-last: left;
 }
-.categoryNature__tiles,
+
 .tiles__container {
   gap: 1rem 0.25rem;
   display: flex;
   justify-content: space-between;
   padding-top: 0.5rem;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
-.categoryNature__btn,
+.nature__tiles{
+  gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  flex-wrap: wrap;
+
+}
+
+
 .tile__button {
   font-size: 0.875rem;
   font-weight: 600;

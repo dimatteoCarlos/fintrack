@@ -165,7 +165,7 @@ function NewCategory() {
           <div className='container--nature'>
             <div className='form__title form__title--tiles'>{tileTitle}</div>
 
-            <div className='nature__tiles tiles__container'>
+            <div className='nature__tiles'>
               {tileLabels.map((label, indx) => {
                 // console.log(label.labelText);
                 return (
