@@ -78,9 +78,7 @@ function NewCategory() {
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     // console.log('natureHandler', e.currentTarget.id);
-    const activeNature = !!e.currentTarget.id
-      ? e.currentTarget.id
-      : '';
+    const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
     setActiveCategory(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
   }
@@ -88,6 +86,7 @@ function NewCategory() {
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     setActiveCategory('');
+    setCategoryData(initialNewCategoryData);
   }
 
   return (

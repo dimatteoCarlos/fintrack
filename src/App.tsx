@@ -15,7 +15,8 @@ import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
 import Debtors from './pages/debts/debtors/Debtors.tsx';
 import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
 import Accounts from './pages/overview/accounts/Accounts.tsx';
-import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
+// import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+// import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
@@ -28,6 +29,7 @@ import NewPocket from './pages/forms/newPocket/NewPocket.tsx';
 import NewProfile from './pages/forms/newProfile/NewProfile.tsx';
 import NewAccount from './pages/forms/newAccount/NewAccount.tsx';
 import Overview from './pages/overview/Overview.tsx';
+import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -83,10 +85,7 @@ function App() {
             // { index: true, element: <Account /> },//what would be this?
             { index: true, element: <Overview /> },
             { path: '/overview/accounts', element: <Overview /> },
-            {
-              path: '/overview/accounts/:accountId',
-              element: <AccountDetail />,
-            },
+            
           ],
         },
       ],
@@ -96,6 +95,10 @@ function App() {
     { path: '/budget/categories/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/accounts/new_account', element: <NewAccount /> },
+    {
+      path: '/overview/accounts/:accountId',
+      element: <AccountDetail />,
+    },
   ]);
 
   return (

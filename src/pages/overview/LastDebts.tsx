@@ -1,7 +1,7 @@
 import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
 import { CardTitle } from '../../components/CardTitle';
-import { BoxContainer, BoxRow } from '../../components/boxComponents';
 import { Link } from 'react-router-dom';
+import ListMovementContent from '../../components/listContent/ListContent';
 
 function LastDebts() {
   //Last Debts
@@ -10,26 +10,26 @@ function LastDebts() {
       categoryName: 'Category Name',
       record: 'Record',
       description: 'Description',
-      date: 'MM/DD',
+      date: new Date(),
     },
 
     {
       categoryName: 'Category Name',
       record: 'Record',
       description: 'Description',
-      date: 'MM/DD',
+      date: new Date(),
     },
     {
       categoryName: 'Category Name',
       record: 'Record',
       description: 'Description',
-      date: 'MM/DD',
+      date: new Date(),
     },
     {
       categoryName: 'Category Name',
       record: 'Record',
       description: 'Description',
-      date: 'MM/DD',
+      date: new Date(),
     },
   ];
 
@@ -42,42 +42,13 @@ function LastDebts() {
           {/* <CardTitle><div className='main__subtitle'>Last 30 days</div></CardTitle> */}
         </div>
 
-        <div className='main__subtitle'>Latest records</div>
+        <div className='main__subtitle'>{'Latest records'}</div>
 
-        <div className='list__main__container'>
-          {latestDebtsrecords.map((movement, indx) => {
-            const { categoryName, record, description, date } = movement;
-
-            return (
-              <BoxContainer key={indx}>
-                <BoxRow>
-                  <div className='box__title'>{categoryName} </div>
-                  <div className='box__title'>
-                    {record}
-                    {/* {currencyFormat(
-                        defaultCurrency,
-                        amount,
-                        formatNumberCountry
-                      )} */}
-                  </div>
-                </BoxRow>
-                <BoxRow>
-                  <BoxRow>
-                    <div className='flx-row-sb'>
-                      {/* <StatusSquare /> */}
-                      <div className='box__subtitle'>{description} </div>
-                    </div>
-                  </BoxRow>
-                  <div className='box__subtitle'> {date}</div>
-                </BoxRow>
-              </BoxContainer>
-            );
-          })}
-        </div>
+        <ListMovementContent lastMovements={latestDebtsrecords} />
       </article>
 
-      <Link className='seeMore' to={'/accounts/edit'}>
-        <div className='link'>See More</div> <ChevronRightSvg />{' '}
+      <Link className='seeMore' to={''}>
+        <div className='link'>{'See More'}</div> <ChevronRightSvg />{' '}
       </Link>
     </>
   );

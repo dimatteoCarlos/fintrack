@@ -65,14 +65,13 @@ label,
   position: absolute;
   left: 0;
 }
+
 /*--------------*/
 
 .container--categoryName,
 .form__container {
   display: flex;
   flex-direction: column;
-
-  /* padding: 1.5rem 0.875rem 1rem 0; */
   padding: 1.5rem 0rem 1rem 0;
   gap: 1rem;
   /* border: 5px solid var(--primary); */
@@ -219,10 +218,10 @@ textarea:invalid {
   justify-content: space-between;
   align-items: start;
   gap: 24%;
-
 }
 
-.account__date, .account__currency {
+.account__date,
+.account__currency {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -231,5 +230,8 @@ textarea:invalid {
   /* border: 1px solid red; */
 }
 
-
 /*------------*/
+/*--Account Detail--*/
+.icon3dots {
+  padding: 0.5rem 0 0.5rem 0.5rem;
+}

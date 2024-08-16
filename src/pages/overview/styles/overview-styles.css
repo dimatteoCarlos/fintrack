@@ -1,6 +1,6 @@
 /*overview styles.css*/
 .overviewLayout {
-  /* border: 0px solid white; */
+  border: 0px solid white;
 }
 /*---BigBoxResult--*/
 .bigBox__container {
@@ -47,7 +47,6 @@
 
 /*--------------------------*/
 /*afecta a todo*/
-
 
 /*----CardTitle -----*/
 
@@ -144,8 +143,6 @@ a.icon {
   flex-wrap: nowrap;
   /* border: 1px solid var(--light1, red); */
 }
-
-
 
 .tile__container__col--goalInfo {
   padding: 1rem;

@@ -62,8 +62,10 @@ function Investment({
         {/* Account Factual Balance  */}
 
         {investment.map((investment, indx) => {
-          const { title1, subtitle1, capital, title2, balanceType } =
+          const { title1, subtitle1, title2, balanceType , capital} =
             investment;
+
+          console.log('🚀 ~ {investment.map ~ capital:', capital);
 
           {
             return (

@@ -77,6 +77,7 @@ function NewAccount() {
     setAccountData((acc) => ({ ...acc, date: selectedDate }));
     console.log('selected starting point:', selectedDate);
   }
+
   function updateAccountDataCurrency(currency: string) {
     setAccountData((acc) => ({ ...acc, currency: currency }));
     console.log('selected starting point:', currency);
@@ -85,6 +86,7 @@ function NewAccount() {
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('submit btn clicked');
     e.preventDefault();
+    setAccountData(initialNewAccountData);
   }
 
   return (
@@ -129,7 +131,7 @@ function NewAccount() {
               />
             </div>
 
-            <div className='account__dateAndCurrency box__twoElements'>
+            <div className='account__dateAndCurrency'>
               <div className='account__date'>
                 <label className='label form__title'>{'Starting Point'}</label>
 

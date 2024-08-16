@@ -65,7 +65,7 @@ function AccountBalance({
 
           {
             return (
-              <div
+              <Link to={`/overview/accounts/:${indx}`}
                 className='tile__container tile__container--account flx-col-sb'
                 key={`account-${indx}`}
               >
@@ -76,7 +76,7 @@ function AccountBalance({
                   {/* {concept}{' '} */}
                   {currencyFormat(defaultCurrency, amount, formatNumberCountry)}
                 </div>
-              </div>
+              </Link>
             );
           }
         })}

@@ -117,6 +117,7 @@ function NewProfile() {
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    setProfileData(initialNewProfileData);
     console.log('submit form button');
   }
 

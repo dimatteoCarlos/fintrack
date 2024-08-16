@@ -70,6 +70,7 @@ function NewPocket() {
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    setPocketData(initialNewPocketData);
     console.log('submit function');
   }
 

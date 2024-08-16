@@ -17,7 +17,7 @@ import { showDate } from '../../helpers/functions';
 type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
-  variant?: 'tracker' | 'form';
+  variant?: 'tracker' | 'form' | 'light' | 'dark';
 };
 
 function Datepicker({
@@ -44,7 +44,7 @@ function Datepicker({
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
       className={
-        variant == 'tracker'
+        variant == 'tracker' || variant == 'light'
           ? 'tracker__inside__datepicker'
           : 'form__inside__datepicker'
       }
