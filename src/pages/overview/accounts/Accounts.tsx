@@ -1,11 +1,5 @@
-import React from 'react'
-
 function Accounts() {
-  return (
-    <>
-      Accounts
-    </>
-  )
+  return <>What is this page Accounts component for?</>;
 }
 
-export default Accounts
+export default Accounts;

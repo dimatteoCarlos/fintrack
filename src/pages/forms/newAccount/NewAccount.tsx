@@ -13,35 +13,7 @@ import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
 
 import '../styles/forms-styles.css';
 
-// export const newAccountFormLabels: { [key: string]: string | JSX.Element }[] = [
-//   {
-//     labelText: 'Account Name',
-//     classLabel: 'label--text',
-//     content: 'Name',
-//     icon: '',
-//   },
-
-//   {
-//     labelText: 'Account Type',
-//     classLabel: 'label--text',
-//     content: 'Type',
-//     icon: <ArrowDownSvg />,
-//   },
-
-//   {
-//     labelText: 'Starting Point',
-//     classLabel: 'label--text',
-//     content: 'MM/DD/YYYY',
-//     icon: <ArrowDownSvg />,
-//   },
-
-//   {
-//     labelText: 'Value',
-//     classLabel: 'label--number',
-//     content: '0,00',
-//     icon: '',
-//   },
-// ];
+//----Temporary data----------
 
 const accountTypeSelectionProp = {
   title: 'Type',
@@ -62,7 +34,6 @@ const accountTypeSelectionProp = {
   variant: 'form',
 };
 
-//----Temporary values----------
 const initialNewAccountData = {
   name: 'Account Name',
   type: 'Account Type',
@@ -79,8 +50,6 @@ type AccountDataType = {
   currency: string;
   // account: string | number;
 };
-
-//-------------------------
 
 //-------------------------------
 function NewAccount() {

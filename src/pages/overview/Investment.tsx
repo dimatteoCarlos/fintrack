@@ -1,4 +1,3 @@
-import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import { StatusSquare } from '../../components/boxComponents';
 import { CardTitle } from '../../components/CardTitle';
 import OpenAddEditBtn from '../../components/OpenAddEditBtn';
@@ -8,14 +7,17 @@ function Investment({
   createNewAccount,
   originRoute,
 }: CreateNewAccountPropType) {
-  //Investment
+  //Investment temporary data
+  //questions: does status have some conditional or variable style?
+  //seems that balanceType has at least two possible values: loss / profit
+  //capital could be the amount of the investment or not needed?
 
   const investment = [
     {
       title1: 'acc name',
       subtitle1: 'capital invested',
-      capital: 0,
       title2: 'factual balance',
+      capital: 0,
       status: (
         <span>
           <StatusSquare />

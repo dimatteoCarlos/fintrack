@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './datepicker-styles.css'
+import './datepicker-styles.css';
 
 //-------
 import { showDate } from '../../helpers/functions';
@@ -23,7 +23,7 @@ type DatePickerProps = {
 function Datepicker({
   date = new Date(),
   changeDate,
-  variant ,
+  variant,
 }: DatePickerProps) {
   // Handle state selected date
   const [selectedDate, setSelectedDate] = useState<Date>(date);

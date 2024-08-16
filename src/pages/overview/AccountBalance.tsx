@@ -61,6 +61,7 @@ function AccountBalance({
 
         {accounts.map((account, indx) => {
           const { nameAccount, concept, amount } = account;
+          console.log('🚀 ~ {accounts.map ~ concept:', concept);
 
           {
             return (

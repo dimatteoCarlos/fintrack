@@ -54,8 +54,10 @@ function Income() {
   }, [currency]);
 
   //----functions--------
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
+  function updateDataCurrency(currency: any) {
+    setCurrency(currency);
+    setIncomeData((data) => ({ ...data, currency: currency }));
+    console.log('selected starting point:', currency);
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -91,9 +93,11 @@ function Income() {
               value={`${incomeData.amount}`}
             />
 
-            <div className='icon-currency' onClick={toggleCurrency}>
+            {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
-            </div>
+            </div> */}
+
+            
           </div>
 
           <div className='card--title'>Account</div>

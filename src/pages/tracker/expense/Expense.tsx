@@ -47,7 +47,7 @@ function Expense() {
     note: '',
     currency: 'usd',
   };
-  //---states------
+  //---states------------
   const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
 
@@ -55,7 +55,7 @@ function Expense() {
   useEffect(() => {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
     //shows previous state data
-    // console.log(expenseData);
+    console.log(expenseData);
   }, [currency]);
 
   //----functions--------
@@ -63,10 +63,16 @@ function Expense() {
     setCurrency((prev) => changeCurrency(prev));
   }
 
+  function updateDataCurrency(currency: string) {
+    setExpenseData((prev) => ({ ...prev, currency: currency }));
+    console.log('selected starting point:', currency);
+  }
+
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
+  
   function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -98,12 +104,14 @@ function Expense() {
               // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
             />
 
-            {/* <div className='icon-currency' onClick={toggleCurrency}>
+            {/* <div className='icon-currency tracker' onClick={toggleCurrency}>
               {currency.toUpperCase()}
             </div> */}
 
-            <CurrencyBadge />
-            
+            <CurrencyBadge
+              variant={'tracker'}
+              updateOutsideCurrencyData={updateDataCurrency}
+            />
           </div>
 
           <div className='card--title'>Account</div>

@@ -7,6 +7,7 @@ import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx'
 
 import { changeCurrency } from '../../../helpers/functions.ts';
 import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -40,9 +41,9 @@ function Debts() {
   //---states------
   const [Data, setData] = useState(initialData);
 
-  const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
-
   const [type, setType] = useState<'lend' | 'borrow'>('lend');
+
+  const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
 
   //-----useEffect--------
   useEffect(() => {
@@ -52,9 +53,6 @@ function Debts() {
   }, [currency, type]);
 
   //----functions--------
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
-  }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -79,6 +77,16 @@ function Debts() {
       }
     };
     setType((prev) => current(prev));
+  }
+
+  function updateDataCurrency(currency: string) {
+    setData((data) => ({ ...data, currency: currency }));
+    // setCurrency(currency);
+    console.log('selected starting point:', currency);
+  }
+
+  function toggleCurrency() {
+    setCurrency((prev) => changeCurrency(prev));
   }
 
   function onSaveHandler() {
@@ -108,14 +116,23 @@ function Debts() {
               value={`${Data.amount}`}
             />
 
-            <div className='icon-currency' onClick={toggleCurrency}>
+            {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
+            </div> */}
+
+            <div className='account__currency'>
+              <CurrencyBadge
+                updateOutsideCurrencyData={updateDataCurrency}
+                variant='tracker'
+              ></CurrencyBadge>
             </div>
+
           </div>
 
           <div className='card--title'>Account</div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>
+        
         <div className='state__card--bottom'>
           <CardSeparator />
 

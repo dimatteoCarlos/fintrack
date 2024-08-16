@@ -4,12 +4,8 @@ import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
 
-// import TrackerDatepicker from '../components/TrackerDatepicker.tsx';
-// import Datepicker from '../components/TrackerDatepicker.tsx';
-// import Datepicker from '../components/TrackerDatepicker.tsx';
-
-import { changeCurrency } from '../../../helpers/functions.ts';
 import Datepicker from '../../../components/datepicker/Datepicker.tsx';
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -59,8 +55,10 @@ function Investment() {
   }, [currency, typeInv]);
 
   //----functions--------
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
+  function updateDataCurrency(currency: any) {
+    setCurrency(currency);
+    setInvestmentData((data) => ({ ...data, currency: currency }));
+    console.log('selected starting point:', currency);
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -118,11 +116,18 @@ function Investment() {
               // value={`${numberFormat(Number.parseFloat(investmentData.amount), formatNumberCountry)}`}
             />
 
-            <div className='icon-currency' onClick={toggleCurrency}>
+            {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
+            </div> */}
+
+            <div className='account__currency'>
+              <CurrencyBadge
+                updateOutsideCurrencyData={updateDataCurrency}
+                variant='tracker'
+              ></CurrencyBadge>
             </div>
           </div>
-          
+
           <div className='card--title'>Account</div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>
@@ -146,9 +151,7 @@ function Investment() {
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
                   variant={'tracker'}
-                  >
-                   
-                  </Datepicker>
+                ></Datepicker>
                 {/* ></TrackerDatepicker> */}
               </div>
             </div>
