@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
 import '../styles/forms-styles.css';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 //---------Form Field Names----------
 // const formTitle = 'New Pocket';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import { Link, useLocation } from 'react-router-dom';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
 
@@ -192,7 +192,6 @@ function NewProfile() {
                 updateOptionHandler={typeSelectHandler}
               />
             </div>
-            
           </div>
 
           {/* save */}

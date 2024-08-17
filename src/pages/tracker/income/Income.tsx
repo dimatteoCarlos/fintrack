@@ -5,7 +5,7 @@ import { changeCurrency } from '../../../helpers/functions.ts';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 function Income() {
   //temporary values
@@ -96,8 +96,6 @@ function Income() {
             {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
             </div> */}
-
-            
           </div>
 
           <div className='card--title'>Account</div>

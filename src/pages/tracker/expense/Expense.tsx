@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 import { changeCurrency } from '../../../helpers/functions.ts';
@@ -72,7 +72,7 @@ function Expense() {
     e.preventDefault();
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
-  
+
   function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));

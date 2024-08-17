@@ -4,7 +4,7 @@ import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace';
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
 import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
 import '../styles/forms-styles.css';
@@ -30,8 +30,6 @@ function PocketDetail() {
     ],
     variant: 'form', //define the custom styles to use in selection dropdown component
   };
-
- 
 
   const initialPocketDetail = {
     pocketInfo,

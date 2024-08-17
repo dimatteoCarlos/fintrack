@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import { changeCurrency } from '../../../helpers/functions.ts';
 import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
@@ -126,13 +126,12 @@ function Debts() {
                 variant='tracker'
               ></CurrencyBadge>
             </div>
-
           </div>
 
           <div className='card--title'>Account</div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>
-        
+
         <div className='state__card--bottom'>
           <CardSeparator />
 

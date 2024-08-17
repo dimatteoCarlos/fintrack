@@ -4,7 +4,7 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link, useLocation } from 'react-router-dom';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import '../styles/forms-styles.css';
 
 //---------Form Field Names----------

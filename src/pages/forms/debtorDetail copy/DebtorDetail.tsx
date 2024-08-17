@@ -5,9 +5,9 @@ import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 import ListContent from '../../../components/listContent/ListContent';
 import { CardTitle } from '../../../components/CardTitle';
-import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
-import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn';
 import '../styles/forms-styles.css';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
 function DebtorDetail() {
   //temporary data
 

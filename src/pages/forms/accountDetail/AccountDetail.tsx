@@ -5,7 +5,7 @@ import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 import ListContent from '../../../components/listContent/ListContent';
 import { CardTitle } from '../../../components/CardTitle';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn';
 import '../styles/forms-styles.css';
 
 import FormDatepicker from '../../../components/datepicker/Datepicker';

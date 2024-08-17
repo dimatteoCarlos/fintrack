@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import Datepicker from '../../../components/datepicker/Datepicker.tsx';

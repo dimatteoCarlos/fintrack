@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 
-import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn.tsx';
+import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
