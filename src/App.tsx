@@ -11,12 +11,17 @@ import Debts from './pages/tracker/debts/Debts.tsx';
 import Categories from './pages/budget/categories/Categories.tsx';
 import CategoryDetail from './pages/budget/categories/CategoryDetail.tsx';
 import Pockets from './pages/budget/pockets/Pockets.tsx';
-import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
+// import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
+import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
+
 import Debtors from './pages/debts/debtors/Debtors.tsx';
-import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
+// import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
+import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
+
 import Accounts from './pages/overview/accounts/Accounts.tsx';
-// import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 // import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
+import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
@@ -29,7 +34,6 @@ import NewPocket from './pages/forms/newPocket/NewPocket.tsx';
 import NewProfile from './pages/forms/newProfile/NewProfile.tsx';
 import NewAccount from './pages/forms/newAccount/NewAccount.tsx';
 import Overview from './pages/overview/Overview.tsx';
-import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -85,7 +89,6 @@ function App() {
             // { index: true, element: <Account /> },//what would be this?
             { index: true, element: <Overview /> },
             { path: '/overview/accounts', element: <Overview /> },
-            
           ],
         },
       ],
@@ -95,9 +98,17 @@ function App() {
     { path: '/budget/categories/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/accounts/new_account', element: <NewAccount /> },
+    // {
+    //   path: '/overview/accounts/:accountId',
+    //   element: <AccountDetail />,
+    // },
+    // {
+    //   path: '/overview/accounts/:accountId',
+    //   element: <DebtorDetail />,
+    // },
     {
       path: '/overview/accounts/:accountId',
-      element: <AccountDetail />,
+      element: <PocketDetail />,
     },
   ]);
 

@@ -37,6 +37,8 @@ export const tileLabels = [
 
   { labelText: 'Want', className: 'label--text' },
   { labelText: 'Other', className: 'label--text' },
+
+  // { labelText: 'New One', className: 'label--text' },
 ];
 //------------------------------------
 
@@ -194,15 +196,6 @@ function NewCategory() {
 
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
-
-            {/* <button
-              type='submit'
-              className='submit__btn'
-              onClick={onSubmitForm}
-              id={'save'}
-            >
-              {`${'Save'}`}
-            </button> */}
           </div>
         </form>
       </div>

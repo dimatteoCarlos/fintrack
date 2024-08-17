@@ -3,13 +3,13 @@ import { useState } from 'react';
 import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace';
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
-import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
-import FormDatepicker from '../../../components/datepicker/Datepicker';
 import ListContent from '../../../components/listContent/ListContent';
 import { CardTitle } from '../../../components/CardTitle';
 import FormSubmitBtn from '../../../components/formComponents/FormSubmitBtn';
 import '../styles/forms-styles.css';
 
+import FormDatepicker from '../../../components/datepicker/Datepicker';
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
 function AccountDetail() {
   //temporary data
 
@@ -65,6 +65,11 @@ function AccountDetail() {
       accountInfo: { ...accountInfo, [e.target.name]: e.target.value },
     }));
   }
+  function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
+    console.log('submit btn clicked');
+    e.preventDefault();
+    setAccountDetail(initialAccountDetail);
+  }
 
   function updateCurrency(currency: string) {
     setAccountDetail((prevState) => ({
@@ -87,12 +92,6 @@ function AccountDetail() {
       ...prevState,
       accountInfo: { ...accountInfo, date: selectedDate },
     }));
-  }
-
-  function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log('submit btn clicked');
-    e.preventDefault();
-    setAccountDetail(initialAccountDetail);
   }
 
   return (
@@ -147,9 +146,7 @@ function AccountDetail() {
                   </div> */}
 
                 <div
-                  className='form__datepicker__container
-                  
-                  '
+                  className='form__datepicker__container'
                   style={{ textAlign: 'center' }}
                 >
                   <FormDatepicker

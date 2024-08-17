@@ -192,6 +192,7 @@ function NewProfile() {
                 updateOptionHandler={typeSelectHandler}
               />
             </div>
+            
           </div>
 
           {/* save */}
