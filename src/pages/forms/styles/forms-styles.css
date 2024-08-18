@@ -107,7 +107,7 @@ label,
 
 .input__container.input__container--amount {
   padding: 0.75rem;
-  height: auto;
+  height: 2rem;
 }
 
 /*categoryNature*/
@@ -124,15 +124,13 @@ label,
   flex-wrap: nowrap;
 }
 
-.nature__tiles{
+.nature__tiles {
   gap: 1rem;
   display: flex;
   justify-content: space-between;
   padding-top: 0.5rem;
   flex-wrap: wrap;
-
 }
-
 
 .tile__button {
   font-size: 0.875rem;
@@ -242,4 +240,24 @@ textarea:invalid {
 /*--Account Detail--*/
 .icon3dots {
   padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+/*----Pocket Detail----*/
+.inputAmountAndPlusSign {
+  display: flex;
+  gap: 0.5rem;
+}
+.input__container--amount {
+  background-color: transparent;
+  font-size: 1.25rem;
+  padding: 0 0.75rem;
+  height: 2rem;
+}
+
+.iconPlusSign {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid #f7f7f7;
+  background-color: transparent;
 }

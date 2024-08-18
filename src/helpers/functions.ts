@@ -1,5 +1,3 @@
-
-
 //-------------------------
 
 export function currencyFormat(
@@ -46,6 +44,10 @@ export function numberFormat(x: number | string, formatNumberCountry: string) {
   console.log(Number(formattedNumber), formattedNumber);
 
   return formattedNumber;
+}
+//-------------------------
+function formatNumberWithCommas(number: number) {
+  return number.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');
 }
 //-------------------------
 

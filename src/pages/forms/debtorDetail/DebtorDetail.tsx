@@ -7,14 +7,27 @@ import ListContent from '../../../components/listContent/ListContent';
 import { CardTitle } from '../../../components/CardTitle';
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
+
+import { StatusSquare } from '../../../components/boxComponents.tsx';
+import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
+import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
+
 function DebtorDetail() {
   //temporary data
-
   const debtorInfo = {
     name: 'Name, LastName',
     account: '',
     amount: '0',
+  };
+
+  //summary data
+  const summaryData = {
+    title: 'amount',
+    amount: 2222.11,
+    subtitle1: '',
+    subtitle2: 'type',
+    status: <StatusSquare />,
   };
 
   //Account Options
@@ -106,6 +119,8 @@ function DebtorDetail() {
           </div>
         </div>
 
+        <SummaryDetailBox summaryData={summaryData}></SummaryDetailBox>
+
         <form className='form__box'>
           <div className='form__container'>
             <div className='input__box'>
@@ -116,15 +131,21 @@ function DebtorDetail() {
                 updateOptionHandler={accountSelectHandler}
               />
 
-              <input
-                type='text'
-                className={`input__container input__container--amount`}
-                placeholder={`0,00`}
-                name={'amount'}
-                onChange={inputHandler}
-                value={debtorDetail.debtorInfo.amount}
-                style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
-              />
+              <div className='inputAmountAndPlusSign'>
+                <input
+                  type='text'
+                  className={`input__container input__container--amount`}
+                  placeholder={`0,00`}
+                  name={'amount'}
+                  onChange={inputHandler}
+                  value={debtorDetail.debtorInfo.amount}
+                  style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+                />
+
+                <Link to='' className='flx-col-center iconPlusSign'>
+                  <PlusSignSvg />
+                </Link>
+              </div>
             </div>
           </div>
 

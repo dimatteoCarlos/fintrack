@@ -4,9 +4,14 @@ import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace';
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 
+
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection';
 import FormDatepicker from '../../../components/datepicker/Datepicker.tsx';
+
+import { StatusSquare } from '../../../components/boxComponents.tsx';
+import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
+import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
 
 function PocketDetail() {
@@ -18,6 +23,15 @@ function PocketDetail() {
     date: new Date(),
     account: '',
     amount: '0',
+  };
+
+  //summary data
+  const summaryData = {
+    title: 'target amount',
+    amount: 1112.11,
+    subtitle1: '$built',
+    subtitle2: 'status',
+    status: <StatusSquare />,
   };
 
   //Account Options
@@ -85,6 +99,8 @@ function PocketDetail() {
           </div>
         </div>
 
+        <SummaryDetailBox summaryData={summaryData}></SummaryDetailBox>
+
         <form className='form__box'>
           <div className='form__container'>
             <div className='input__box'>
@@ -120,15 +136,21 @@ function PocketDetail() {
               updateOptionHandler={accountSelectHandler}
             />
 
-            <input
-              type='text'
-              className={`input__container input__container--amount`}
-              placeholder={`0,00`}
-              name={'amount'}
-              onChange={inputHandler}
-              value={pocketDetail.pocketInfo.amount}
-              style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
-            />
+            <div className='inputAmountAndPlusSign'>
+              <input
+                type='text'
+                className={`input__container input__container--amount`}
+                placeholder={`0,00`}
+                name={'amount'}
+                onChange={inputHandler}
+                value={pocketDetail.pocketInfo.amount}
+                style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+              />
+
+              <Link to='' className='flx-col-center iconPlusSign'>
+                <PlusSignSvg />
+              </Link>
+            </div>
           </div>
 
           <div className='submit__btn__container'>

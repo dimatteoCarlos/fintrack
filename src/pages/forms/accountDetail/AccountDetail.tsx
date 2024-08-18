@@ -10,6 +10,13 @@ import '../styles/forms-styles.css';
 
 import FormDatepicker from '../../../components/datepicker/Datepicker';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
+
+import { StatusSquare } from '../../../components/boxComponents.tsx';
+import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
+import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+import '../styles/forms-styles.css';
+
+
 function AccountDetail() {
   //temporary data
 
@@ -20,6 +27,15 @@ function AccountDetail() {
     date: new Date(),
     currency: 'usd',
   };
+
+    //summary data
+    const summaryData = {
+      title: 'target amount',
+      amount: 1112.11,
+      subtitle1: '$built',
+      subtitle2: 'status',
+      status: <StatusSquare />,
+    };
 
   //Last Movements
   const lastMovements = [
