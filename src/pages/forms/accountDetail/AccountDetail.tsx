@@ -156,11 +156,6 @@ function AccountDetail() {
               <div className='account__date'>
                 <label className='label form__title'>{'starting point'}</label>
 
-                {/* <div className="input__container">{`${accountInfo.date.toDateString()}`}</div> */}
-                {/* <div className='input__container flx-col-center'>
-                    {`${new Intl.DateTimeFormat('es-ES').format(accountDetail.accountInfo.date)}`}
-                  </div> */}
-
                 <div
                   className='form__datepicker__container'
                   style={{ textAlign: 'center' }}
@@ -186,7 +181,7 @@ function AccountDetail() {
             <CardTitle>{'Last Movements'}</CardTitle>
           </div>
 
-          <ListContent lastMovements={lastMovements} />
+          <ListContent listOfItems={lastMovements} />
 
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>

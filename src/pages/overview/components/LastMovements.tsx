@@ -1,7 +1,7 @@
-import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
+import ChevronRightSvg from '../../../assets/ChevronRightSvg.svg';
 import { Link } from 'react-router-dom';
-import { CardTitle } from '../../components/CardTitle';
-import ListContent from '../../components/listContent/ListContent.tsx';
+import { CardTitle } from '../../../components/CardTitle.tsx';
+import ListContent from '../../../components/listContent/ListContent.tsx';
 
 function LastMovements() {
   //Last Movements
@@ -43,7 +43,7 @@ function LastMovements() {
         </div>
         <div className='main__subtitle'>Last 30 days</div>
 
-        <ListContent lastMovements={lastMovements} />
+        <ListContent listOfItems={lastMovements} />
       </article>
 
       <Link className='seeMore' to={''}>

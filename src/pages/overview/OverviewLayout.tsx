@@ -1,6 +1,5 @@
 import Overview from './Overview';
 import { BigBoxResult } from './components/BigBoxResult';
-import FunctionalPageLayoutHeader from './components/FunctionalPageLayoutHeader';
 import { TitleHeader } from '../../components/titleHeader/TitleHeader';
 import './styles/overview-styles.css';
 import { Outlet } from 'react-router-dom';
@@ -17,9 +16,12 @@ function OverviewLayout() {
 
   return (
     <main className='overviewLayout'>
-      <FunctionalPageLayoutHeader>
-        <TitleHeader />
-      </FunctionalPageLayoutHeader>
+      <div className='layout__header'>
+        <div className='headerContent__container'>
+          {' '}
+          <TitleHeader />
+        </div>
+      </div>
 
       <BigBoxResult bigScreenInfo={bigScreenInfo} />
       {/* <Outlet/> */}

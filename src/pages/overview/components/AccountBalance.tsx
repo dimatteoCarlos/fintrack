@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { currencyFormat } from '../../helpers/functions';
-import { CardTitle } from '../../components/CardTitle';
-import OpenAddEditBtn from '../../components/OpenAddEditBtn';
-import { CreateNewAccountPropType } from './Overview';
+import { currencyFormat } from '../../../helpers/functions';
+import { CardTitle } from '../../../components/CardTitle';
+import OpenAddEditBtn from '../../../components/OpenAddEditBtn';
+import { CreateNewAccountPropType } from '../Overview';
 
 function AccountBalance({
   createNewAccount,
@@ -65,7 +65,8 @@ function AccountBalance({
 
           {
             return (
-              <Link to={`/overview/accounts/:${indx}`}
+              <Link
+                to={`/overview/accounts/:${indx}`}
                 className='tile__container tile__container--account flx-col-sb'
                 key={`account-${indx}`}
               >

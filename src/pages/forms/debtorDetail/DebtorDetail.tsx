@@ -153,7 +153,7 @@ function DebtorDetail() {
             <CardTitle>{'Last Movements'}</CardTitle>
           </div>
 
-          <ListContent lastMovements={lastMovements} />
+          <ListContent listOfItems={lastMovements} />
 
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>

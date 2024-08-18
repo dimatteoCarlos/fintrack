@@ -1,9 +1,9 @@
-import { currencyFormat } from '../../helpers/functions';
+import { currencyFormat } from '../../../helpers/functions';
 
-import Dots3LightSvg from '../../assets/Dots3LightSvg.svg';
+import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 import { Link } from 'react-router-dom';
-import { CardTitle } from '../../components/CardTitle';
-import { StatusSquare } from '../../components/boxComponents';
+import { CardTitle } from '../../../components/CardTitle';
+import { StatusSquare } from '../../../components/boxComponents';
 
 //temporary values------------
 const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };

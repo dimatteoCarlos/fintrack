@@ -3,6 +3,7 @@ import LeftArrowDarkSvg from '../../assets/LeftArrowDarkSvg.svg';
 import './titleHeader-style.css';
 
 // /------TitleHeader--------
+//title matches with the main route name
 export function TitleHeader() {
   const location = useLocation();
   const currentRoute = location.pathname.split('/')[1];

@@ -1,25 +1,24 @@
 import { BoxContainer, BoxRow } from '../boxComponents';
 
 export type ListContenPropType = {
-  lastMovements: {
+  listOfItems: {
     categoryName: string;
     record: string;
     description: string;
-    date: Date | string | number;
+    date: Date | string | number | undefined | null;
   }[];
-  // lastMovements: { [key: string]: string | number | Date }[];
+  // listOfItems: { [key: string]: string | number | Date }[];
 };
 
-function ListContent({ lastMovements }: ListContenPropType) {
+function ListContent({ listOfItems }: ListContenPropType) {
   function isDateValid(dateStr: any) {
     return !isNaN(new Date(dateStr));
   }
   return (
     <>
       <div className='list__main__container'>
-        {lastMovements.map((movement, indx) => {
-          const { categoryName, record, description, date } = movement;
-          console.log(typeof date);
+        {listOfItems.map((item, indx) => {
+          const { categoryName, record, description, date } = item;
 
           return (
             <BoxContainer key={indx}>
@@ -34,9 +33,8 @@ function ListContent({ lastMovements }: ListContenPropType) {
                   </div>
                 </BoxRow>
 
-                {isDateValid(date) && (
+                {!!date && isDateValid(date) && (
                   <div className='box__subtitle'>
-                    {/* {new Date(date).toDateString()} */}
                     {`${new Intl.DateTimeFormat('es-ES').format(
                       new Date(date)
                     )}`}

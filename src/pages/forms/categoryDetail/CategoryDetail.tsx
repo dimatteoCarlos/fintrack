@@ -106,7 +106,7 @@ function categoryDetail() {
 
         <form className='form__box'>
           <CardTitle>{'Subcategory'}</CardTitle>
-          <ListContent lastMovements={listData} />
+          <ListContent listOfItems={listData} />
 
           <CardTitle>{'Category Nature'}</CardTitle>
 

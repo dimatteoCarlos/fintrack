@@ -1,7 +1,7 @@
-import { StatusSquare } from '../../components/boxComponents';
-import { CardTitle } from '../../components/CardTitle';
-import OpenAddEditBtn from '../../components/OpenAddEditBtn';
-import { CreateNewAccountPropType } from './Overview';
+import { StatusSquare } from '../../../components/boxComponents';
+import { CardTitle } from '../../../components/CardTitle';
+import OpenAddEditBtn from '../../../components/OpenAddEditBtn';
+import { CreateNewAccountPropType } from '../Overview';
 
 function Investment({
   createNewAccount,
@@ -62,10 +62,9 @@ function Investment({
         {/* Account Factual Balance  */}
 
         {investment.map((investment, indx) => {
-          const { title1, subtitle1, title2, balanceType , capital} =
-            investment;
+          const { title1, subtitle1, title2, balanceType } = investment;
 
-          console.log('🚀 ~ {investment.map ~ capital:', capital);
+          // console.log('🚀 ~ {investment.map ~ capital:', capital);
 
           {
             return (
@@ -94,7 +93,6 @@ function Investment({
                   </div>
                   <div className='tile__status--investment--right '>
                     <StatusSquare></StatusSquare>
-
                     <div className='tile__subtitle subtitle__status__investment--right '>
                       {balanceType}
                     </div>

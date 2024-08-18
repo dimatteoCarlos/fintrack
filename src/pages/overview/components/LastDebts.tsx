@@ -1,7 +1,7 @@
-import ChevronRightSvg from '../../assets/ChevronRightSvg.svg';
-import { CardTitle } from '../../components/CardTitle';
+import ChevronRightSvg from '../../../assets/ChevronRightSvg.svg';
+import { CardTitle } from '../../../components/CardTitle';
 import { Link } from 'react-router-dom';
-import ListMovementContent from '../../components/listContent/ListContent';
+import ListMovementContent from '../../../components/listContent/ListContent';
 
 function LastDebts() {
   //Last Debts
@@ -44,7 +44,7 @@ function LastDebts() {
 
         <div className='main__subtitle'>{'Latest records'}</div>
 
-        <ListMovementContent lastMovements={latestDebtsrecords} />
+        <ListMovementContent listOfItems={latestDebtsrecords} />
       </article>
 
       <Link className='seeMore' to={''}>

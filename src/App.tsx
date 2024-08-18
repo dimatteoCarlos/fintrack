@@ -12,17 +12,17 @@ import Categories from './pages/budget/categories/Categories.tsx';
 // import CategoryDetail from './pages/budget/categories/CategoryDetail.tsx';
 import Pockets from './pages/budget/pockets/Pockets.tsx';
 // import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
-import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 import Debtors from './pages/debts/debtors/Debtors.tsx';
 // import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
-import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
 
 import Accounts from './pages/overview/accounts/Accounts.tsx';
 // import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
-import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 
-import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail';
+import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
+import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
+import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
