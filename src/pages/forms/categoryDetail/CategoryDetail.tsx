@@ -14,6 +14,7 @@ import '../styles/forms-styles.css';
 
 function categoryDetail() {
   const [activeCategory, setActiveCategory] = useState('');
+  const [categoryDetail, setCategoryDetail] = useState(null);
 
   //temporary data
   const categoryInfo = {
@@ -30,17 +31,6 @@ function categoryDetail() {
     subtitle2: 'status',
     status: <StatusSquare />,
   };
-
-  const tileLabels = [
-    { labelText: 'Must', className: 'label--text' },
-
-    { labelText: 'Need', className: 'label--text' },
-
-    { labelText: 'Want', className: 'label--text' },
-    { labelText: 'Other', className: 'label--text' },
-
-    // { labelText: 'New One', className: 'label--text' },
-  ];
 
   //Last Movements
   const listData = [
@@ -70,6 +60,28 @@ function categoryDetail() {
     },
   ];
 
+  const tileLabels = [
+    { labelText: 'Must', className: 'label--text' },
+
+    { labelText: 'Need', className: 'label--text' },
+
+    { labelText: 'Want', className: 'label--text' },
+    { labelText: 'Other', className: 'label--text' },
+
+    // { labelText: 'New One', className: 'label--text' },
+  ];
+
+  // const initialCategoryDetail = {
+  //   summaryData,
+  //   listData,
+  //   nature: '',
+  // };
+
+  // const initialCategoryDetail=[
+
+  // ]
+  //Es necesario definir la estructura de la informacion o datos contemplados en detalles de categoria
+
   //--functions---
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -83,6 +95,8 @@ function categoryDetail() {
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('submit btn clicked');
     e.preventDefault();
+    setActiveCategory('');
+    //Definir la informacion de categoryDetail.
     // setcategoryDetail(initialcategoryDetail);
   }
 
@@ -95,7 +109,8 @@ function categoryDetail() {
             <Link to='..' relative='path' className='iconLeftArrow'>
               <LeftArrowLightSvg />
             </Link>
-            <div className='form__title'>{categoryInfo.name}</div>
+            <div className='form__title'>{'Category'}</div>
+            {/* <div className='form__title'>{categoryInfo.name}</div> */}
             <Link to='accounts/edit' className='flx-col-center icon3dots'>
               <Dots3LightSvg />
             </Link>

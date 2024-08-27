@@ -13,7 +13,7 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
-  // btnPreviousRoute,
+
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);

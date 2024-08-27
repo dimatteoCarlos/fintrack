@@ -3,7 +3,6 @@
 
 import { currencyFormat } from '../../../helpers/functions';
 
-// import { currencyFormat } from '../../../helpers/functions';
 type AccountingBoxPropType = {
   title: string;
   amount: number;

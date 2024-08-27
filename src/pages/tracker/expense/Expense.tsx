@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
 import { changeCurrency } from '../../../helpers/functions.ts';
 // import { CardTitle } from '../../../components/CardTitle.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
@@ -25,6 +25,7 @@ function Expense() {
       { value: 'account_02', label: 'Account_02' },
       { value: 'account_03', label: 'Account_03' },
     ],
+    variant: 'tracker',
   };
   //--------
   const categoryOptions = {
@@ -37,8 +38,9 @@ function Expense() {
       { value: 'category_05', label: 'Category_05 / SubCategory X' },
       { value: 'category_06', label: 'Category_06 / SubCategory X' },
     ],
+    variant: 'tracker',
   };
-  //-----------------
+
   //input expense data state variables
   const initialExpenseData = {
     amount: '0,000.00',
@@ -47,21 +49,17 @@ function Expense() {
     note: '',
     currency: 'usd',
   };
-  //---states------------
+
+  //---states-------------
   const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
 
   //-----useEffect--------
   useEffect(() => {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
-    //shows previous state data
-    console.log(expenseData);
   }, [currency]);
 
   //----functions--------
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
-  }
 
   function updateDataCurrency(currency: string) {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
@@ -76,12 +74,29 @@ function Expense() {
   function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
 
-    console.log(expenseData);
+  function updateAccount(selectedOption: { value: string; label: string }) {
+    setExpenseData((prev) => ({
+      ...prev,
+      account: selectedOption.value,
+    }));
+  }
+  function updateCategory(selectedOption: { value: string; label: string }) {
+    setExpenseData((prev) => ({
+      ...prev,
+      category: selectedOption.value,
+    }));
+    // console.log('selectedOption', selectedOption);
   }
 
   function onSaveHandler() {
     console.log('On Save Handler');
+    console.log(expenseData);
+
+    //reset expenseData
+    setExpenseData(initialExpenseData);
+    setCurrency(defaultCurrency);
   }
 
   //--------------------------
@@ -101,7 +116,6 @@ function Expense() {
               onChange={inputTrackDataHandler}
               name='amount'
               value={`${expenseData.amount}`}
-              // value={`${numberFormat(Number.parseFloat(expenseData.amount), formatNumberCountry)}`}
             />
 
             {/* <div className='icon-currency tracker' onClick={toggleCurrency}>
@@ -116,8 +130,13 @@ function Expense() {
 
           <div className='card--title'>Account</div>
 
-          <SelectComponent dropDownOptions={accountOptions} />
+          {/* <SelectComponent dropDownOptions={accountOptions} /> */}
+          <DropDownSelection
+            dropDownOptions={accountOptions}
+            updateOptionHandler={updateAccount}
+          />
         </div>
+
         {/* end of top */}
         <CardSeparator />
 
@@ -125,7 +144,11 @@ function Expense() {
 
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>Category</div>
-          <SelectComponent dropDownOptions={categoryOptions} />
+          {/* <SelectComponent dropDownOptions={categoryOptions} /> */}
+          <DropDownSelection
+            dropDownOptions={categoryOptions}
+            updateOptionHandler={updateCategory}
+          />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
 

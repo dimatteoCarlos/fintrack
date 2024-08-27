@@ -16,13 +16,13 @@ import Pockets from './pages/budget/pockets/Pockets.tsx';
 import Debtors from './pages/debts/debtors/Debtors.tsx';
 // import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
 
-import Accounts from './pages/overview/accounts/Accounts.tsx';
 // import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
 
-import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+// import Accounts from './pages/overview/accounts/Accounts.tsx';
+// import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
+// import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
-import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
@@ -62,7 +62,6 @@ function App() {
           path: '/budget',
           element: <BudgetLayout />,
           children: [
-            // { index: true, element: <Navigate to='/budget/categories'/> },
             { path: '/budget/categories', element: <Categories /> },
           ],
           // { path: '/budget/categories/new', element: <NewCategory /> },

@@ -1,11 +1,10 @@
 //
 import '../../styles/generalStyles.css';
 import { useEffect, useState } from 'react';
-import { changeCurrency } from '../../../helpers/functions.ts';
-
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
+import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 
 function Income() {
   //temporary values
@@ -23,6 +22,7 @@ function Income() {
       { value: 'account_03', label: 'Account_03' },
       { value: 'account_04', label: 'Account_04' },
     ],
+    variant: 'tracker',
   };
   //--------
   const sourceOptions = {
@@ -33,6 +33,7 @@ function Income() {
       { value: 'source_03', label: 'source_03' },
       { value: 'source_04', label: 'source_04' },
     ],
+    variant: 'tracker',
   };
 
   //-----------------
@@ -57,7 +58,17 @@ function Income() {
   function updateDataCurrency(currency: any) {
     setCurrency(currency);
     setIncomeData((data) => ({ ...data, currency: currency }));
-    console.log('selected starting point:', currency);
+  }
+
+  function updateAccount(selectedOption: { value: string; label: string }) {
+    setIncomeData((prev) => ({
+      ...prev,
+      account: selectedOption.value,
+    }));
+  }
+
+  function updateSource(selectedOption: { value: string; label: string }) {
+    setIncomeData((prev) => ({ ...prev, source: selectedOption.value }));
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -96,17 +107,27 @@ function Income() {
             {/* <div className='icon-currency' onClick={toggleCurrency}>
               {currency.toUpperCase()}
             </div> */}
+            <CurrencyBadge
+              variant={'tracker'}
+              updateOutsideCurrencyData={updateDataCurrency}
+            />
           </div>
 
           <div className='card--title'>Account</div>
-          <SelectComponent dropDownOptions={accountOptions} />
+          <DropDownSelection
+            dropDownOptions={accountOptions}
+            updateOptionHandler={updateAccount}
+          />
         </div>
 
         <CardSeparator />
 
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>Source</div>
-          <SelectComponent dropDownOptions={sourceOptions} />
+          <DropDownSelection
+            dropDownOptions={sourceOptions}
+            updateOptionHandler={updateSource}
+          />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
           <div className='card--title'>Note</div>

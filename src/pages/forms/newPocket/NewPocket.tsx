@@ -57,10 +57,15 @@ function NewPocket() {
 
   const [pocketData, setPocketData] = useState(initialNewPocketData);
   const location = useLocation();
-  console.log('🚀 ~ NewCategory ~ location:', location);
+  // console.log('🚀 ~ NewCategory ~ location:', location);
 
   function changeDesiredDate(selectedDate: Date): void {
-    setPocketData((data) => ({ ...data, desiredDate: selectedDate }));
+    setPocketData((data) => ({
+      ...data,
+      desiredDate: selectedDate.toDateString(),
+    }));
+    //Define the format of date data to be saved, Date or string.
+    // setPocketData((data) => ({ ...data, desiredDate: selectedDate.toDateString() }));
   }
 
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -70,8 +75,9 @@ function NewPocket() {
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    //function to handle pocketData
+    console.log('submit function', 'data:', pocketData);
     setPocketData(initialNewPocketData);
-    console.log('submit function');
   }
 
   return (
@@ -102,7 +108,6 @@ function NewPocket() {
                 placeholder={`${'purpose/name'}`}
                 onChange={inputHandler}
                 name={'name'}
-                // value={`${pocketData[`${labeltext}`]}`}
                 value={pocketData['name']}
               />
             </div>
@@ -128,12 +133,12 @@ function NewPocket() {
 
               <input
                 type='text'
-                name='targetAmount'
+                name='target'
                 className={'input__targetAmount'}
                 placeholder={'saved'}
                 maxLength={150}
                 onChange={inputHandler}
-                // value={pocketData['target']}
+                value={pocketData['target']}
                 // rows={3}
               />
             </div>
@@ -151,9 +156,8 @@ function NewPocket() {
             </div>
           </div>
 
-          {/* save */}
-
           <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
+
         </form>
       </div>
     </section>

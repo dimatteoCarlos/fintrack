@@ -1,4 +1,5 @@
 //--------------------------C
+//styles: generalStyles.css
 type ChildrenPropType = { children: React.ReactNode };
 
 //-----BoxContainer ---------------------C

@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 
-import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
-
 import { changeCurrency } from '../../../helpers/functions.ts';
 import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -27,6 +26,7 @@ function Debts() {
       { value: 'account_02', label: 'Account_02' },
       { value: 'account_03', label: 'Account_03' },
     ],
+    variant: 'tracker',
   };
   //-----------------
   //input debts data state variables
@@ -62,8 +62,13 @@ function Debts() {
   function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.preventDefault();
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
 
-    console.log(Data);
+  function updateAccount(selectedOption: { value: string; label: string }) {
+    setData((prev) => ({
+      ...prev,
+      account: selectedOption.value,
+    }));
   }
 
   function toggleType() {
@@ -82,14 +87,12 @@ function Debts() {
   function updateDataCurrency(currency: string) {
     setData((data) => ({ ...data, currency: currency }));
     // setCurrency(currency);
-    console.log('selected starting point:', currency);
-  }
-
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
+    // console.log('selected starting point:', currency);
   }
 
   function onSaveHandler() {
+    //define the form action or the actions after pressing save button
+    setData(initialData);
     console.log('On Save Handler');
   }
 
@@ -129,7 +132,10 @@ function Debts() {
           </div>
 
           <div className='card--title'>Account</div>
-          <SelectComponent dropDownOptions={accountOptions} />
+          <DropDownSelection
+            dropDownOptions={accountOptions}
+            updateOptionHandler={updateAccount}
+          />
         </div>
 
         <div className='state__card--bottom'>

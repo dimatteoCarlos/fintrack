@@ -11,9 +11,9 @@ import '../styles/forms-styles.css';
 import FormDatepicker from '../../../components/datepicker/Datepicker';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge';
 
-import { StatusSquare } from '../../../components/boxComponents.tsx';
-import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
-import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+// import { StatusSquare } from '../../../components/boxComponents.tsx';
+// import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
+// import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
 
 
@@ -28,14 +28,7 @@ function AccountDetail() {
     currency: 'usd',
   };
 
-    //summary data
-    const summaryData = {
-      title: 'target amount',
-      amount: 1112.11,
-      subtitle1: '$built',
-      subtitle2: 'status',
-      status: <StatusSquare />,
-    };
+
 
   //Last Movements
   const lastMovements = [
@@ -164,15 +157,19 @@ function AccountDetail() {
                     variant='form'
                     changeDate={changeStartingPoint}
                     date={accountDetail.accountInfo.date}
-                  ></FormDatepicker>
+                  />
+
                 </div>
               </div>
+
               <div className='account__currency'>
                 <div className='label form__title'>{'currency'}</div>
+
                 <CurrencyBadge
                   variant='form'
                   updateOutsideCurrencyData={updateCurrency}
                 />
+
               </div>
             </div>
           </div>
@@ -186,6 +183,7 @@ function AccountDetail() {
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
           </div>
+          
         </form>
       </div>
     </section>

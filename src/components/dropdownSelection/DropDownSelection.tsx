@@ -79,7 +79,7 @@ const formCustomStyles = {
     backgroundColor: 'transparent',
     margin: '0',
     padding: '0',
-    color: 'var(--light, yellow)',
+    color: 'var(--light, #f3f31a)',
     textTransform: 'capitalize',
     fontSize: '0.875rem',
     cursor: 'pointer',
@@ -120,16 +120,26 @@ const formCustomStyles = {
   singleValue: (style: any) => ({ ...style, color: 'var(--creme)' }),
 };
 
-//-------internal selection components------
-const DropdownIndicator = (props: any, variant: string) => {
-  // console.log(variant);
-
+//-------internal DropdownIndiator components------
+const DropdownIndicatorDark = (props: any) => {
   return (
     <components.DropdownIndicator
       {...props}
       className='custom-dropdown-indicator'
     >
-      {variant === 'tracker' ? <ArrowDownDarkSvg /> : <ArrowDownLightSvg />}
+      <ArrowDownDarkSvg />
+    </components.DropdownIndicator>
+  );
+};
+
+//----------------------------------
+const DropdownIndicatorLight = (props: any) => {
+  return (
+    <components.DropdownIndicator
+      {...props}
+      className='custom-dropdown-indicator'
+    >
+      <ArrowDownLightSvg />
     </components.DropdownIndicator>
   );
 };
@@ -156,7 +166,7 @@ const variantCustomStyles = {
 };
 
 //---------------------------------------
-// Define the component
+// Selection Comnponent
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
@@ -173,7 +183,13 @@ function DropDownSelection({
   // Function to handle the change on selected option state
   const handleChange = (selectedOption: any) => {
     updateOptionHandler(selectedOption);
-    console.log('Opción seleccionada:', selectedOption);
+    // console.log('Opción seleccionada:', selectedOption);
+  };
+
+  // Dynamically DropdownIndicator component selection
+  const DropdownArrowSelected = {
+    DropdownIndicator:
+      variant === 'tracker' ? DropdownIndicatorDark : DropdownIndicatorLight,
   };
 
   return (
@@ -184,7 +200,7 @@ function DropDownSelection({
         placeholder={title}
         styles={selectedCustomStyles}
         closeMenuOnSelect={true}
-        components={{ DropdownIndicator }}
+        components={DropdownArrowSelected}
         isSearchable
         // defaultValue={[options[0]]}
       />

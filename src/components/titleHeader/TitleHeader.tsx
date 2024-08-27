@@ -9,12 +9,15 @@ export function TitleHeader() {
   const currentRoute = location.pathname.split('/')[1];
 
   return (
+    <>
     <div className='title__header__container'>
+  
       <Link to={'..'} relative="path" className='iconArrowLeftDark'>
         <LeftArrowDarkSvg />
       </Link>
 
       <div className='title__header'>{currentRoute}</div>
     </div>
+    </>
   );
 }

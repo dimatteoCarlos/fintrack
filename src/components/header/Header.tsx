@@ -4,7 +4,7 @@ function Header(): JSX.Element {
   return (
     <>
       <header className='home__header'>
-        <TopWhiteSpace bgc='light' />
+        <TopWhiteSpace variant='light' />
       </header>
     </>
   );

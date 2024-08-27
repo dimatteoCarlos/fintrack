@@ -47,7 +47,7 @@
 
 .accounting__header--icon:hover, .accounting__header--icon:active, .accounting__header--icon:focus {
 
-
+  border: 0px solid tomato;
 }
 
 /*---------------*/

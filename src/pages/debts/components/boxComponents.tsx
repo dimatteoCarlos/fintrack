@@ -1,4 +1,4 @@
-//--------------------------C
+//--------------------------
 type ChildrenPropType = { children: React.ReactNode };
 
 //-----BoxContainer ---------------------C

@@ -46,7 +46,6 @@
 }
 
 /*--------------------------*/
-/*afecta a todo*/
 
 /*----CardTitle -----*/
 
@@ -103,6 +102,7 @@ a.icon {
   opacity: 0.6;
   letter-spacing: 1px;
   text-transform: capitalize;
+
 }
 
 .tile__title {
@@ -141,7 +141,6 @@ a.icon {
   outline: 0;
   gap: 0.1rem;
   flex-wrap: nowrap;
-  /* border: 1px solid var(--light1, red); */
 }
 
 .tile__container__col--goalInfo {

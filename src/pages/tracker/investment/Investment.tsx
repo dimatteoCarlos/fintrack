@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-
-import SelectComponent from '../components/SelectComponent.tsx';
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
-
 import Datepicker from '../../../components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
+import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -25,6 +23,7 @@ function Investment() {
       { value: 'account_02', label: 'Account_02' },
       { value: 'account_03', label: 'Account_03' },
     ],
+    variant: 'tracker',
   };
 
   //-----------------
@@ -49,9 +48,6 @@ function Investment() {
     setInvestmentData((prev) => ({ ...prev, currency: currency }));
 
     setInvestmentData((prev) => ({ ...prev, type: typeInv }));
-
-    //It shows previous state data
-    // console.log(investmentData);
   }, [currency, typeInv]);
 
   //----functions--------
@@ -59,6 +55,13 @@ function Investment() {
     setCurrency(currency);
     setInvestmentData((data) => ({ ...data, currency: currency }));
     console.log('selected starting point:', currency);
+  }
+
+  function updateAccount(selectedOption: { value: string; label: string }) {
+    setInvestmentData((prev) => ({
+      ...prev,
+      account: selectedOption.value,
+    }));
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -70,7 +73,7 @@ function Investment() {
     e.preventDefault();
     setInvestmentData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-    console.log(investmentData);
+    // console.log(investmentData);
   }
 
   function toggleTypeInv() {
@@ -129,7 +132,10 @@ function Investment() {
           </div>
 
           <div className='card--title'>Account</div>
-          <SelectComponent dropDownOptions={accountOptions} />
+          <DropDownSelection
+            dropDownOptions={accountOptions}
+            updateOptionHandler={updateAccount}
+          />
         </div>
         <CardSeparator />
 
@@ -146,13 +152,11 @@ function Investment() {
             <div className='card__typeDate--date'>
               <div className='card--title'> Date </div>
               <div className='card__screen--date'>
-                {/* <TrackerDatepicker */}
                 <Datepicker
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
                   variant={'tracker'}
                 ></Datepicker>
-                {/* ></TrackerDatepicker> */}
               </div>
             </div>
           </div>

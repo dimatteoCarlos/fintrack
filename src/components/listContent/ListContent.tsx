@@ -12,8 +12,9 @@ export type ListContenPropType = {
 
 function ListContent({ listOfItems }: ListContenPropType) {
   function isDateValid(dateStr: any) {
-    return !isNaN(new Date(dateStr));
+    return !isNaN(Number(new Date(dateStr)));
   }
+
   return (
     <>
       <div className='list__main__container'>

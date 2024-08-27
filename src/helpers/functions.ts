@@ -1,5 +1,4 @@
 //-------------------------
-
 export function currencyFormat(
   chosenCurrency = 'USD',
   number = 0,
@@ -28,7 +27,10 @@ export function changeCurrency(currency: 'cop' | 'usd') {
   }
 }
 //-------------------------
-export function numberFormat(x: number | string, formatNumberCountry: string) {
+export function numberFormat(
+  x: number | string,
+  formatNumberCountry: string = 'en-US'
+) {
   if (Number.isNaN(Number.parseFloat(x.toString()))) {
     return 0;
   }
@@ -41,13 +43,9 @@ export function numberFormat(x: number | string, formatNumberCountry: string) {
 
   const formattedNumber = formatter.format(Number(enteredNumber));
 
-  console.log(Number(formattedNumber), formattedNumber);
+  // console.log(formattedNumber);
 
   return formattedNumber;
-}
-//-------------------------
-function formatNumberWithCommas(number: number) {
-  return number.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');
 }
 //-------------------------
 
@@ -58,7 +56,14 @@ export function showDate(date: Date, countryFormat = 'es-ES') {
     month: 'long',
     day: 'numeric',
   });
-  console.log(formattedDate);
+  // console.log(formattedDate);
 
   return formattedDate;
 }
+
+//-------------------------
+export function capitlizeFirstWord(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+//-------------------------

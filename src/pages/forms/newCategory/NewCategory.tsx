@@ -74,6 +74,7 @@ function NewCategory() {
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    //adding function
     console.log('addHandler');
   }
 
@@ -87,6 +88,8 @@ function NewCategory() {
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    console.log(categoryData);
+    //function to save categoryData in DB
     setActiveCategory('');
     setCategoryData(initialNewCategoryData);
   }
@@ -100,12 +103,12 @@ function NewCategory() {
         {/* main__title could be a component */}
 
         <div className='main__title--container'>
-          <Link
+          {/* <Link
             to={location.state.previousRoute}
             relative='path'
             className='iconLeftArrow'
-          >
-            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
+          > */}
+          <Link to='..' relative='path' className='iconLeftArrow'>
             <LeftArrowSvg />
           </Link>
           <div className='form__title'>{'New Category'}</div>

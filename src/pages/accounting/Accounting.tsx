@@ -1,9 +1,8 @@
 import AccountingBox from './components/AccountingBox';
 import LeftArrowSvg from '../../assets/LeftArrowSvg.svg';
 import { Link } from 'react-router-dom';
+import TopWhiteSpace from '../../components/topWhiteSpace/TopWhiteSpace.tsx';
 import './styles/accounting-styles.css';
-import TopWhiteSpace from '../../components/topWhiteSpace/TopWhiteSpace';
-// import TopWhiteSpace from '../../../components/topWhiteSpace/TopWhiteSpace.tsx';
 
 function Accounting() {
   const accounting = [
@@ -26,7 +25,7 @@ function Accounting() {
               <LeftArrowSvg />
             </div>
 
-            <div className='accounting__title'>{'accounting'}</div>
+            <div className='accounting__title'>{'Accounting'}</div>
           </Link>
 
           {accounting.map((balance, indx) => (

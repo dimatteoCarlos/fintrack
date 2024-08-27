@@ -18,8 +18,8 @@ function OverviewLayout() {
     <main className='overviewLayout'>
       <div className='layout__header'>
         <div className='headerContent__container'>
-          {' '}
           <TitleHeader />
+          {' '}
         </div>
       </div>
 

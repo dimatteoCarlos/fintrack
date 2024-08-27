@@ -1,6 +1,5 @@
 /*tracker-style.css*/
 
-
 /*-----  datepicker  ---------*/
 .tracker__inside__datepicker,
 .form__inside__datepicker {
@@ -34,7 +33,7 @@
 .form__inside__datepicker:hover,
 .form__inside__datepicker:focus,
 .form__inside__datepicker:active {
-  color:white;
+  color: white;
 }
 
 /*-----------------------------------*/

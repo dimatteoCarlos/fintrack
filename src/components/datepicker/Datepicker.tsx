@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './datepicker-styles.css';
+import './styles/datepicker-styles.css';
 
 //-------
 import { showDate } from '../../helpers/functions';

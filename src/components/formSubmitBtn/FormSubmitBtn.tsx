@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import './formSubmitBtn-style.css'
+import './styles/formSubmitBtn-style.css'
 type FormSubmitBtnPropType = {
   // btnTitle?: string;
   children: ReactNode;

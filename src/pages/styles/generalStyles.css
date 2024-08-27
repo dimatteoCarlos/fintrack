@@ -9,7 +9,7 @@
 }
 
 body {
-  /* color: var(--dark); */
+  color: var(--dark);
 }
 
 [class*='icon'] {
@@ -65,12 +65,13 @@ body {
   padding: 0;
 }
 
-.iconArrowLeftDark, .iconArrowLeftLight {
+.iconArrowLeftDark,
+.iconArrowLeftLight {
   display: flex;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
+  /* padding: 0.5rem 0.75rem; */
+  /* border-radius: 0.5rem; */
   position: absolute;
-  left:-0.9rem;
+  left: 0rem;
   cursor: pointer;
   z-index: 1;
 
@@ -80,7 +81,8 @@ body {
 .iconArrowLeftDark:hover,
 .iconArrowLeftDark:active,
 .iconArrowLeftDark:focus {
-  background-color: rgba(232, 228, 218, 0.5);
+  /* background-color: rgba(232, 228, 218, 0.5); */
+  background-color: transparent;
 }
 
 .iconArrowLeftLight:hover {
@@ -91,19 +93,21 @@ body {
   padding-top: 2rem;
 }
 
+/*----Layout-------*/
 .home__layout {
+  /* --figmaWidth:22.5rem;
+  min-width: var(--figmaWidth); */
+  /* height: 50rem; */
+  max-height: 54rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
 
-  max-width: 33.3%;
-  min-width: 22.5rem;
+  min-width: 26rem;
+  max-width: 37.5rem;
   padding-bottom: 1rem;
-
-  /* min-height: 52rem; */
-  /* height: 53rem; */
 }
 
 .home__header {
@@ -118,7 +122,6 @@ body {
 
   /* border: 5px solid cyan; */
 }
-
 
 .content__presentation {
   display: flex-root;
@@ -145,6 +148,7 @@ body {
   left: 0;
   background-color: var(--light);
   /* background-color: orange; */
+  z-index: 1;
 }
 
 .headerContent__container {
@@ -154,16 +158,14 @@ body {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  /* border: 10px solid yellowgreen; */
+  /* border: 1px solid yellowgreen; */
 }
 
-/*put it into a component*/
+/*StatusSquare*/
 .status__square {
   height: 0.5rem;
   width: 0.5rem;
   background-color: #5b8c93;
   border: none;
   border-radius: 0.125rem;
-
-;
 }

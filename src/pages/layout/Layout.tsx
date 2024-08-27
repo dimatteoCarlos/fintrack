@@ -9,7 +9,7 @@ function Layout() {
 
   return (
     <>
-      <section className='home__layout'>
+      <section className='home__layout '>
         <Header />
         <Outlet />
         <MainNavbar />
