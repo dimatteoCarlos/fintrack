@@ -9,10 +9,14 @@ const classNavLink = `mainNavbarButton ${({
 
 function OverviewButton() {
   const btnName = 'overview';
-  const isBtnActive = useLocation().pathname.split('/')[1]==btnName?'active':'';
+  const isBtnActive =
+    useLocation().pathname.split('/')[1] == btnName ? 'active' : '';
   return (
     <>
-   <NavLink to='/overview/accounts' className={`${classNavLink} ${isBtnActive}`}>
+      <NavLink
+        to='/overview/accounts'
+        className={`${classNavLink} ${isBtnActive}`}
+      >
         <div className='iconContainer flx-col-center'>
           <OverviewSvg />
         </div>
