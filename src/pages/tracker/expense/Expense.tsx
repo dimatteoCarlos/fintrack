@@ -5,7 +5,7 @@ import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
-import { changeCurrency } from '../../../helpers/functions.ts';
+// import { changeCurrency } from '../../../helpers/functions.ts';
 // import { CardTitle } from '../../../components/CardTitle.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 

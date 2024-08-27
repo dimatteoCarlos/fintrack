@@ -1,4 +1,4 @@
-import { BoxContainer, BoxRow } from '../boxComponents';
+import { BoxContainer, BoxRow } from '../../components/boxComponents';
 
 export type ListContenPropType = {
   listOfItems: {

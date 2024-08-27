@@ -1,4 +1,4 @@
-import { BoxContainer, BoxRow } from './boxComponents';
+import { BoxContainer, BoxRow } from '../../../components/boxComponents';
 import { currencyFormat } from '../../../helpers/functions';
 
 function ListOfDebtors() {

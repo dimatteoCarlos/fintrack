@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
-import { changeCurrency } from '../../../helpers/functions.ts';
 import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
+import { changeCurrency } from '../../../helpers/functions.ts';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------

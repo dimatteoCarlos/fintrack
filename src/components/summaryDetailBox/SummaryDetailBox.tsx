@@ -1,6 +1,6 @@
 import { numberFormat } from '../../helpers/functions';
 // import { currencyFormat } from '../../../helpers/functions';
-import { StatusSquare } from '../boxComponents';
+import { StatusSquare } from '../../components/boxComponents.tsx';
 import './styles/summaryDetailBox-style.css';
 
 //temporary values------------
