@@ -9,19 +9,22 @@ import Income from './pages/tracker/income/Income.tsx';
 import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
 import Categories from './pages/budget/categories/Categories.tsx';
+
+//***it is necessary to define where to put the links of these routes *****/
+
 // import CategoryDetail from './pages/budget/categories/CategoryDetail.tsx';
-import Pockets from './pages/budget/pockets/Pockets.tsx';
-// import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
-
-import Debtors from './pages/debts/debtors/Debtors.tsx';
 // import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
-
 // import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
-
 // import Accounts from './pages/overview/accounts/Accounts.tsx';
 // import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
-import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
 // import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
+// import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
+// import Pockets from './pages/budget/pockets/Pockets.tsx';
+
+import Debtors from './pages/debts/debtors/Debtors.tsx';
+
+// These two detailed page links are temporary, 'till defining where to put'em
+import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
 import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
 
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
@@ -61,9 +64,7 @@ function App() {
         {
           path: '/budget',
           element: <BudgetLayout />,
-          children: [
-            { path: '/budget/categories', element: <Categories /> },
-          ],
+          children: [{ path: '/budget/categories', element: <Categories /> }],
           // { path: '/budget/categories/new', element: <NewCategory /> },
           // {
           //   path: '/budget/categories/:categoryId',

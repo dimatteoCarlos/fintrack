@@ -17,16 +17,11 @@ function categoryDetail() {
   const [categoryDetail, setCategoryDetail] = useState(null);
 
   //temporary data
-  const categoryInfo = {
-    name: 'Category',
-    account: '',
-    amount: '0',
-  };
 
   //summary data
   const summaryData = {
     title: 'budget',
-    amount: 2222.11,
+    amount: 99999.99,
     subtitle1: 'Spent',
     subtitle2: 'status',
     status: <StatusSquare />,
@@ -38,25 +33,25 @@ function categoryDetail() {
       categoryName: 'subcategory name',
       record: 'spent',
       description: '% percentage',
-      date: new Date(),
+      date: new Date().setDate(new Date().getDate() - 7),
     },
     {
       categoryName: 'subcategory name',
       record: 'spent',
       description: '% percentage',
-      date: new Date(),
+      date: new Date().setDate(new Date().getDate() - 60),
     },
     {
       categoryName: 'subcategory name',
       record: 'spent',
       description: '% percentage',
-      date: new Date(),
+      date: new Date().setDate(new Date().getDate() - 90),
     },
     {
       categoryName: 'subcategory name',
       record: 'spent',
       description: '% percentage',
-      date: new Date(),
+      date: new Date().setDate(new Date().getDate() - 180),
     },
   ];
 
@@ -68,7 +63,7 @@ function categoryDetail() {
     { labelText: 'Want', className: 'label--text' },
     { labelText: 'Other', className: 'label--text' },
 
-    // { labelText: 'New One', className: 'label--text' },
+    // { labelText: 'New Indicator', className: 'label--text' },
   ];
 
   // const initialCategoryDetail = {
@@ -80,6 +75,7 @@ function categoryDetail() {
   // const initialCategoryDetail=[
 
   // ]
+
   //Es necesario definir la estructura de la informacion o datos contemplados en detalles de categoria
 
   //--functions---
@@ -96,6 +92,7 @@ function categoryDetail() {
     console.log('submit btn clicked');
     e.preventDefault();
     setActiveCategory('');
+
     //Definir la informacion de categoryDetail.
     // setcategoryDetail(initialcategoryDetail);
   }
@@ -110,7 +107,8 @@ function categoryDetail() {
               <LeftArrowLightSvg />
             </Link>
             <div className='form__title'>{'Category'}</div>
-            {/* <div className='form__title'>{categoryInfo.name}</div> */}
+
+            {/* it is necessary to define this link route and what to do */}
             <Link to='accounts/edit' className='flx-col-center icon3dots'>
               <Dots3LightSvg />
             </Link>
