@@ -65,7 +65,7 @@ function NewCategory() {
   );
   const [activeCategory, setActiveCategory] = useState('');
 
-  // console.log('🚀 ~ NewCategory ~ location:', location);
+  console.log('🚀 ~ NewCategory ~ location:', location);
 
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();

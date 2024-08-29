@@ -2,7 +2,7 @@ import Overview from './Overview';
 import { BigBoxResult } from './components/BigBoxResult';
 import { TitleHeader } from '../../components/titleHeader/TitleHeader';
 import './styles/overview-styles.css';
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 
 //
 function OverviewLayout() {

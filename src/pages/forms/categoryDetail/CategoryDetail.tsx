@@ -14,7 +14,7 @@ import '../styles/forms-styles.css';
 
 function categoryDetail() {
   const [activeCategory, setActiveCategory] = useState('');
-  const [categoryDetail, setCategoryDetail] = useState(null);
+  // const [categoryDetail, setCategoryDetail] = useState(null);
 
   //temporary data
 

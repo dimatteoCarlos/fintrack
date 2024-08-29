@@ -11,12 +11,12 @@ export function currencyFormat(
   return formatFn.format(number);
 }
 
-//--------------------
+//--------------------------
 export function digitRound(n = Number.MIN_VALUE, digit = 2) {
   return Math.round(n * Math.pow(10, digit)) / Math.pow(10, digit);
 }
 
-//-------------------------
+//--------------------------
 export function changeCurrency(currency: 'cop' | 'usd') {
   if (currency.toLocaleLowerCase() == 'usd') {
     return 'cop';
@@ -26,7 +26,7 @@ export function changeCurrency(currency: 'cop' | 'usd') {
     return 'usd';
   }
 }
-//-------------------------
+//----------------------------
 export function numberFormat(
   x: number | string,
   formatNumberCountry: string = 'en-US'
@@ -48,7 +48,6 @@ export function numberFormat(
   return formattedNumber;
 }
 //-------------------------
-
 export function showDate(date: Date, countryFormat = 'es-ES') {
   const formattedDate = date.toLocaleDateString(countryFormat, {
     weekday: 'short',

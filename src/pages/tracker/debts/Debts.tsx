@@ -6,7 +6,7 @@ import FormSubmitBtn from '../../../components/formSubmitBtn/FormSubmitBtn.tsx';
 import TrackerDatepicker from '../../../components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../components/currencyBadge/CurrencyBadge.tsx';
 import DropDownSelection from '../../../components/dropdownSelection/DropDownSelection.tsx';
-import { changeCurrency } from '../../../helpers/functions.ts';
+// import { changeCurrency } from '../../../helpers/functions.ts';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -84,9 +84,9 @@ function Debts() {
     setType((prev) => current(prev));
   }
 
-  function updateDataCurrency(currency: string) {
+  function updateDataCurrency(currency: 'usd' | 'cop') {
     setData((data) => ({ ...data, currency: currency }));
-    // setCurrency(currency);
+    setCurrency(currency);
     // console.log('selected starting point:', currency);
   }
 

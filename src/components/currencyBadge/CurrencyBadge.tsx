@@ -4,7 +4,7 @@ import './styles/currency-style.css'
 
 type CurrencyBadgePropType = {
   variant: string;
-  updateOutsideCurrencyData?: (currency: string) => void;
+  updateOutsideCurrencyData?: (currency: 'usd' | 'cop') => void;
 };
 function CurrencyBadge({
   variant,
