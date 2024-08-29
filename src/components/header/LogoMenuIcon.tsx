@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/logo.svg';
-
 import MenuIcon from '../../assets/MenuSvg.svg';
-import './logoMenuIcon.css';
+import './styles/logoMenuIcon-style.css';
+
 function LogoMenuIcon() {
   return (
     <div className='header__logoAndIcon'>

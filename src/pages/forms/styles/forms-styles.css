@@ -77,7 +77,6 @@ label,
   /* border: 5px solid var(--primary); */
 }
 
-.input--bullet,
 .input__box {
   text-align-last: left;
   display: flex;
@@ -86,7 +85,6 @@ label,
   /* border: 3px solid var(--primary1, red); */
 }
 
-.bullet--input,
 .input__container {
   border: 1px solid var(--creme);
   height: 2.625em;
@@ -96,7 +94,6 @@ label,
   /* border: 5px solid var(--primary); */
 }
 
-.bullet--input::placeholder,
 .input__container::placeholder {
   color: var(--creme);
   font-size: 0.875rem;
@@ -152,18 +149,20 @@ label,
 .submit__btn {
   height: 3.125rem;
   width: 100%;
-  color: var(--dark);
+  /* color: var(--dark);
   background-color: var(--creme);
   border-radius: 0.75em;
-  /* font-size: 0.875rem; */
   font-size: 1rem;
   text-align: center;
-  /* font-weight: 600; */
-  font-weight: bold;
+  font-weight: bold; */
 }
 
+/*figma styles*/
+/* font-size: 0.875rem; */
+/* font-weight: 600; */
+
+/*----------------*/
 /*NewPocket*/
-/*target amount */
 .targetAmount.input__container {
   display: flex;
   flex-direction: column;
@@ -198,15 +197,13 @@ label,
   color: #5b5b5b;
   text-transform: capitalize;
   /* padding: 0rem; */
-
-  /* width: max-content; Why is LIMITED?*/
 }
 
 textarea:invalid {
   border: 1px dashed tomato;
 }
 
-/*------------*/
+/*---------------------------*/
 /*--Date Picker input form--*/
 
 .form__datepicker__container {
@@ -247,6 +244,7 @@ textarea:invalid {
   display: flex;
   gap: 0.5rem;
 }
+
 .input__container--amount {
   background-color: transparent;
   font-size: 1.25rem;

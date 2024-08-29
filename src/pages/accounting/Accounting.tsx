@@ -1,4 +1,4 @@
-import AccountingBox from './components/AccountingBox';
+import AccountingBox from './components/AccountingBox.tsx';
 import LeftArrowSvg from '../../assets/LeftArrowSvg.svg';
 import { Link } from 'react-router-dom';
 import TopWhiteSpace from '../../components/topWhiteSpace/TopWhiteSpace.tsx';

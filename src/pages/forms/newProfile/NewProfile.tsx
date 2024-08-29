@@ -8,45 +8,6 @@ import DropDownSelection from '../../../components/dropdownSelection/DropDownSel
 
 import '../styles/forms-styles.css';
 
-// const formTitle = 'New Profile';
-/*
-//temporary data structure
-export const newProfileFormLabels: { [key: string]: string | JSX.Element }[] = [
-  {
-    labelText: 'Name',
-    className: 'label--text',
-    content: 'Name',
-    icon: '',
-  },
-  {
-    labelText: 'Last Name',
-    className: 'label--text',
-    content: 'Last Name',
-    icon: '',
-  },
-  // { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
-  {
-    labelText: 'Add Money',
-    className: 'label--text',
-    content: 'Account',
-    placeholder: 'Account',
-    icon: <ArrowDawnSvg />,
-  },
-
-  {
-    labelText: '',
-    className: 'label--text',
-    content: '0,00',
-    icon: '',
-  },
-  {
-    labelText: 'Type',
-    className: 'label--text',
-    content: 'Lending',
-    icon: <ArrowDawnSvg />,
-  },
-];
-*/
 //------------------------
 //Account Options
 const accountSelectionProp = {
@@ -117,10 +78,10 @@ function NewProfile() {
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log(profileData)
+    console.log(profileData);
     setProfileData(initialNewProfileData);
 
-    console.log('submit form button');
+    console.log('submit form button action must be defined');
   }
 
   return (

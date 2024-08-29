@@ -1,3 +1,4 @@
+//styles applied: generalStyles.css
 import TopWhiteSpace from '../topWhiteSpace/TopWhiteSpace.tsx';
 
 function Header(): JSX.Element {

@@ -115,7 +115,7 @@ article {
 
 /*---tracker card results---*/
 .cards__presentation--tracker {
-  padding: 1rem 1.625rem;
+  /* padding: 1rem 1.625rem; */
   background: url('../../../assets/cardBgTexture.png') repeat;
 }
 

@@ -1,4 +1,4 @@
-import './topWhiteSpace.css';
+import './styles/topWhiteSpace-style.css';
 
 type TopWhiteSpacePropType = {
   variant: 'light' | 'dark';

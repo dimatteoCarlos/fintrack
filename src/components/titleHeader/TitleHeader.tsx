@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import LeftArrowDarkSvg from '../../assets/LeftArrowDarkSvg.svg';
-import './titleHeader-style.css';
+import './styles/titleHeader-style.css';
 
 // /------TitleHeader--------
 //title matches with the main route name

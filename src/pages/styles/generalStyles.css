@@ -136,8 +136,7 @@ body {
   width: 88%;
   margin: 0 auto;
   border-radius: 1rem;
-  padding: 0.5rem 0;
-  /* border: 5px solid purple; */
+  padding: 1rem 1.625rem;
 }
 
 /*general styles*/

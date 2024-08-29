@@ -60,10 +60,8 @@ export function showDate(date: Date, countryFormat = 'es-ES') {
 
   return formattedDate;
 }
-
 //-------------------------
 export function capitlizeFirstWord(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
 //-------------------------

@@ -1,5 +1,5 @@
 //-------Add / Edit Button-----------C
-
+//applied styles : generalStyles.css
 import { ReactNode } from 'react';
 
 type OpenAddEditBtnPropType = {
@@ -13,7 +13,6 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
-
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);
