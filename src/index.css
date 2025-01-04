@@ -82,17 +82,27 @@ input[type='number'] {
 
 button {
   background-color: transparent;
-  border: none;
   outline: none;
   font-family: inherit;
   padding: 0;
   cursor: pointer;
+  /* border: none; */
 }
 
 [class*='icon'] {
   cursor: pointer;
 }
 
-.bordered{
-  border:4px solid cyan;
+input::placeholder {
+  color: gray;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.8; /* Adjust visibility */}
+  
+textarea::placeholder {
+  color: gray;
+  font-size: 14px;
+  font-style: italic;
+  opacity: 0.8; /* Adjust visibility */
 }
+

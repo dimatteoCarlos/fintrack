@@ -10,7 +10,7 @@ import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
 import Categories from './pages/budget/categories/Categories.tsx';
 // import CategoryDetail from './pages/budget/categories/CategoryDetail.tsx';
-import Pockets from './pages/budget/pockets/Pockets.tsx';
+// import Pockets from './pages/budget/pockets/Pockets.tsx';
 // import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
 
 import Debtors from './pages/debts/debtors/Debtors.tsx';
@@ -19,7 +19,7 @@ import Debtors from './pages/debts/debtors/Debtors.tsx';
 // import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
 
 // import Accounts from './pages/overview/accounts/Accounts.tsx';
-// import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
 // import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
@@ -113,7 +113,8 @@ function App() {
     // },
     {
       path: '/overview/accounts/:accountId',
-      element: <CategoryDetail />,
+     element: <AccountDetail />,
+      // element: <CategoryDetail />,
     },
   ]);
 

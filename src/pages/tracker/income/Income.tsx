@@ -1,7 +1,7 @@
 //
-import '../../styles/generalStyles.css';
+// import '../../styles/generalStyles.css';
 import { useEffect, useState } from 'react';
-import { changeCurrency } from '../../../helpers/functions.ts';
+// import { changeCurrency } from '../../../helpers/functions.ts';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
@@ -66,7 +66,7 @@ function Income() {
   //-----------------
   //input income data state variables
   const initialIncomeData = {
-    amount: '0,000.00',
+    amount: 0,
     account: '',
     source: '',
     note: '',

@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 export type FetchResponse<R> = {
   data: R | null;
   isLoading: boolean;
-  error: Error | null;
+  error: Error | string | null;
 };
 
-export function useFetch<R>( url: string): FetchResponse<R> {
+export function useFetch<R>(url: string): FetchResponse<R> {
   const [data, setData] = useState<R | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null | string>(null);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -24,14 +24,17 @@ export function useFetch<R>( url: string): FetchResponse<R> {
         // console.log({ respData });
         setData(respData);
       } else {
-        throw new Error(`Unexpected status code: ${response.status}`);
+        const errMsg = `Unexpected status code: ${response.status}`;
+        console.log(errMsg);
+        throw new Error(errMsg);
       }
     } catch (err: unknown) {
       if (err) {
         const safeError =
           err instanceof Error ? err : new Error('Unexpected error');
-        console.error(safeError);
+        console.error('error:', safeError);
         setData(null);
+        setError(safeError);
       }
     } finally {
       setIsLoading(false);
@@ -50,7 +53,3 @@ export function useFetch<R>( url: string): FetchResponse<R> {
 
   return { data, isLoading, error };
 }
-
-
-//agregar tooltip a botones que no tienen label
-
