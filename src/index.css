@@ -1,0 +1,98 @@
+/*
+https://www.figma.com/design/izE8HcSvsNFm3AVFErXWyP/Fintrack
+*/
+/* @import './pages/styles/generalStyles.css'; */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+body,
+:root,
+:after,
+:before,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  line-height: 1.5;
+  font-synthesis: weight;
+  color-scheme: light dark;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --dark: #141414;
+  --light: white;
+  --creme: #e8e4da;
+  --textColor: #141414;
+  --topH: 22%;
+  
+  --primary: lightgreen;
+  --secondary: #7f7f7f;
+}
+
+input::placeholder,
+:after,
+:before {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #1b1b1b;
+  background-color: var(--dark);
+}
+
+a {
+  text-decoration: none;
+}
+input,
+span {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
+
+/*Hide Input Number Arrows*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/*Firefox*/
+input[type='number'] {
+  -moz-appearance: none;
+  appearance: none;
+}
+/*-----------------------*/
+* {
+  font-family: inherit;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  padding: 0;
+  cursor: pointer;
+}
+
+[class*='icon'] {
+  cursor: pointer;
+}
+
+.bordered{
+  border:4px solid cyan;
+}
