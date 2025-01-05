@@ -11,6 +11,7 @@ import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBad
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { DebtorsListType } from '../../../types/types.ts';
 import { url_debtors } from '../../../endpoints.ts';
+import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -176,19 +177,26 @@ function Debts() {
           </div>
 
           <div className='card--title'>Note</div>
-          <div className='card__screen'>
-            <textarea
-              className='input__note__description'
-              placeholder='Description'
-              onChange={textareaTrackDataHandler}
-              name='note'
-              rows={3}
-              maxLength={150}
-              value={Data.note}
-            />
-          </div>
 
-          <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
+          <div
+            className='note--expense'
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <div className='card__screen ' style={{ flex: 0.9 }}>
+              <textarea
+                className='input__note__description'
+                placeholder='Description'
+                onChange={textareaTrackDataHandler}
+                name='note'
+                rows={3}
+                maxLength={150}
+                value={Data.note}
+              />
+            </div>
+
+            <FormPlusBtn onClickHandler={onSaveHandler} />
+          </div>
+          {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
         </div>
       </article>
     </>

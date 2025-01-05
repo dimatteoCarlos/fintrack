@@ -14,6 +14,7 @@ import {
   SourceType,
 } from '../../../types/types.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
+import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 
 function Income() {
   //temporary values
@@ -143,19 +144,26 @@ function Income() {
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
           <div className='card--title'>Note</div>
 
-          <div className='card__screen'>
-            <textarea
-              className='input__note__description'
-              placeholder='Description'
-              onChange={textareaTrackDataHandler}
-              name='note'
-              rows={3}
-              maxLength={150}
-              value={incomeData.note}
-            />
+          <div
+            className='note--expense'
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <div className='card__screen ' style={{ flex: 0.9 }}>
+              <textarea
+                className='input__note__description'
+                placeholder='Description'
+                onChange={textareaTrackDataHandler}
+                name='note'
+                rows={3}
+                maxLength={150}
+                value={incomeData.note}
+              />
+            </div>
+
+            <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
         </div>
-        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
+        {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
       </article>
     </>
   );

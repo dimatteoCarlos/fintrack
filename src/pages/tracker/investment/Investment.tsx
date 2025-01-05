@@ -9,6 +9,7 @@ import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBad
 import { InvestmentAccountsType } from '../../../types/types.ts';
 import { url_investment_acc } from '../../../endpoints.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
+import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -177,20 +178,27 @@ function Investment() {
 
           <div className='card--title'>Note</div>
 
-          <div className='card__screen'>
-            <textarea
-              className='input__note__description'
-              placeholder='Description'
-              onChange={textareaTrackDataHandler}
-              name='note'
-              rows={3}
-              maxLength={150}
-              value={investmentData.note}
-            />
+         
+          <div
+            className='note--expense'
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <div className='card__screen ' style={{ flex: 0.9 }}>
+              <textarea
+                className='input__note__description'
+                placeholder='Description'
+                onChange={textareaTrackDataHandler}
+                name='note'
+                rows={3}
+                maxLength={150}
+                value={investmentData.note}
+              />
+            </div>
+
+            <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
-          {/* <CardNote note={investmentData.note} dataHandler={textareaTrackDataHandler}/> */}
         </div>
-        <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn>
+        {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
       </article>
     </>
   );

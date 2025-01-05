@@ -19,7 +19,6 @@
 
 .trackerStateIconButton:focus,
 .trackerStateIconButton:active,
-.trackerStateIconButton.active,
 .trackerStateIconButton:not(.active, :active):hover {
   border: 2px solid var(--creme);
   border-color: var(--creme);

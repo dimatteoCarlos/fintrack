@@ -9,11 +9,11 @@ import { BASE_URL } from '../../endpoints';
 import {
   BudgetType,
   IncomeInfoType,
-  IncomeType,
+  // IncomeType,
   ExpensesInfoType,
-  ExpenseType,
+  // ExpenseType,
   DebtorsListType,
-  DebtorType,
+  // DebtorType,
 } from '../../types/types';
 import { useFetch } from '../../hooks/useFetch';
 
@@ -58,7 +58,7 @@ function Overview() {
   const url_investment = BASE_URL + '/' + 'investment';
   const investment = useFetch<any>(url_investment);
 
-  //   categories
+  // categories
   // accounts
   // investment
 
@@ -88,6 +88,7 @@ function Overview() {
   return (
     <section className='content__presentation'>
       <div className='cards__presentation'>
+        
         <SavingGoals />
 
         <AccountBalance
@@ -103,6 +104,7 @@ function Overview() {
         <LastMovements />
 
         <LastDebts />
+
       </div>
     </section>
   );

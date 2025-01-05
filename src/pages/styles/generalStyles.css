@@ -1,3 +1,5 @@
+/*it just affects Layout.tsx so check wether it affetcs also its children to optimize*/
+
 :root {
   --dark: #141414;
   --secondary: #7f7f7f;
@@ -136,7 +138,7 @@ body {
   width: 88%;
   margin: 0 auto;
   border-radius: 1rem;
-  padding: 0.5rem 0;
+  /* padding: 0.5rem 0; */ /*check if there is  a conflict*/
   /* border: 5px solid purple; */
 }
 
@@ -169,5 +171,3 @@ body {
   border: none;
   border-radius: 0.125rem;
 }
-
-

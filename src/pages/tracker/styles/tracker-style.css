@@ -66,12 +66,11 @@
 /*---------------/*
 /*----card separator component-----*/
 .separator__container {
-  width: 88.5%;
+  width: 100%;
   position: absolute;
-  left: 5.75%;
-  top: 56%;
-  /* top: 54%; */
-  /* top: 54.25%; */
+  left: 0%;
+  top: 50%;
+  transform: translateY(-40%);
   background-color: transparent;
 }
 
@@ -117,6 +116,8 @@ article {
 .cards__presentation--tracker {
   padding: 1rem 1.625rem;
   background: url('../../../assets/cardBgTexture.png') repeat;
+  position: relative;
+  /* border:10px solid orange; */
 }
 
 .state__card--top,
@@ -167,7 +168,6 @@ article {
 
 /*------------------------*/
 
-/*------------------------*/
 .screen--concept {
   font-size: 0.875rem;
   font-weight: 500;

@@ -36,12 +36,16 @@ body,
   
   --primary: lightgreen;
   --secondary: #7f7f7f;
+
+  
 }
 
 input::placeholder,
+textarea::placeholder,
 :after,
 :before {
   background-color: transparent;
+  color:gray;
   border: none;
   padding: 0;
   margin: 0;
@@ -93,16 +97,19 @@ button {
   cursor: pointer;
 }
 
+.bordered{border:2px solid red;}
+/*
 input::placeholder {
   color: gray;
   font-size: 14px;
   font-style: italic;
-  opacity: 0.8; /* Adjust visibility */}
-  
+  opacity: 0.8;
+}  
 textarea::placeholder {
   color: gray;
   font-size: 14px;
   font-style: italic;
-  opacity: 0.8; /* Adjust visibility */
+  opacity: 0.8; 
 }
+*/
 

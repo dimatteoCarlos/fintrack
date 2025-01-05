@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
-// import { changeCurrency } from '../../../helpers/functions.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
   CategoriesType,
@@ -12,8 +10,14 @@ import {
   ExpenseAccountsType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
+import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+// import CardNote from '../components/CardNote.tsx';
+// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
+
 // import { CardTitle } from '../../../components/CardTitle.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
+// import { changeCurrency } from '../../../helpers/functions.ts';
+
 
 //------------------------------
 
@@ -161,27 +165,35 @@ function Expense() {
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
 
           <div className='card--title'>Note</div>
+          {/* <CardNote dataHandler={textareaTrackDataHandler} note={expenseData.note}/> */}
 
-          <div className='card__screen'>
-            <textarea
-              className='input__note__description'
-              placeholder='Description'
-              onChange={textareaTrackDataHandler}
-              name='note'
-              rows={3}
-              maxLength={150}
-              value={expenseData.note}
-            />
+          <div
+            className='note--expense'
+            style={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            <div className='card__screen ' style={{ flex: 0.9 }}>
+              <textarea
+                className='input__note__description'
+                placeholder='Description'
+                onChange={textareaTrackDataHandler}
+                name='note'
+                rows={3}
+                maxLength={150}
+                value={expenseData.note}
+              />
+            </div>
+
+            <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
+          {/* end of bottom */}
         </div>
-        {/* end of bottom */}
 
-        <FormSubmitBtn
+        {/* <FormSubmitBtn
           // btnTitle={'save'}
           onClickHandler={onSaveHandler}
         >
           {'save'}
-        </FormSubmitBtn>
+        </FormSubmitBtn> */}
       </article>
     </>
   );
