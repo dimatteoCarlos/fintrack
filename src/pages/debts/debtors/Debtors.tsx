@@ -6,7 +6,7 @@ import ListOfDebtors from '../components/ListOfDebtors';
 function Debtors() {
   const originRoute = useLocation().pathname;
   const navigateTo: NavigateFunction = useNavigate();
-  console.log(originRoute);
+  // console.log(originRoute);
 
   //functions
   const createNewProfile = (originRoute: string) => {

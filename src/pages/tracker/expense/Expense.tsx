@@ -95,7 +95,7 @@ function Expense() {
 
   function updateDataCurrency(currency: string) {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
-    console.log('selected starting point:', currency);
+    // console.log('selected starting point:', currency);
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -109,7 +109,9 @@ function Expense() {
   }
 
   function onSaveHandler() {
+    
     console.log('On Save Handler');
+
     console.log({ expenseData });
 
     //do the POST to the endpoint:

@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
+// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
+// import { , changeCurrency } from '../../../helpers/functions.ts';
 
-import { capitalize, changeCurrency } from '../../../helpers/functions.ts';
+import { capitalize } from '../../../helpers/functions.ts';
 import TrackerDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
@@ -27,7 +28,7 @@ function Debts() {
   //debtors
 
   const { data, error: fetchedError } = useFetch<DebtorsListType>(url_debtors);
-  console.log('data debtors:', data);
+  // console.log('data debtors:', data);
 
   //define what to do when error
   const debtors =
@@ -67,6 +68,7 @@ function Debts() {
   //-----useEffect--------
   useEffect(() => {
     setData((prev) => ({ ...prev, currency: currency }));
+    setCurrency(currency);
 
     setData((prev) => ({ ...prev, type: type }));
   }, [currency, type]);
@@ -82,7 +84,7 @@ function Debts() {
     e.preventDefault();
     setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-    console.log(Data);
+    // console.log(Data);
   }
 
   function toggleType() {
@@ -101,18 +103,18 @@ function Debts() {
   function updateDataCurrency(currency: string) {
     setData((data) => ({ ...data, currency: currency }));
     // setCurrency(currency);
-    console.log('selected starting point:', currency);
+    // console.log('selected starting point:', currency);
   }
 
-  function toggleCurrency() {
-    setCurrency((prev) => changeCurrency(prev));
-  }
+  // function toggleCurrency() {
+  //   setCurrency((prev) => changeCurrency(prev));
+  // }
 
   function onSaveHandler() {
     console.log('On Save Handler');
   }
 
-  function changeDate(selectedDate: Date): void {
+  function changeDateFn(selectedDate: Date): void {
     setData((prev) => ({ ...prev, date: selectedDate }));
     // console.log(Data);
   }
@@ -168,7 +170,7 @@ function Debts() {
               <div className='card--title'>Date</div>
               <div className='card__screen--date'>
                 <TrackerDatepicker
-                  changeDate={changeDate}
+                  changeDate={changeDateFn}
                   date={Data.date}
                   variant='tracker'
                 ></TrackerDatepicker>

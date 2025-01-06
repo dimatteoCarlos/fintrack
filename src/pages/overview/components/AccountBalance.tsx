@@ -55,7 +55,7 @@ function AccountBalance({
 
   const { data, isLoading, error } =
     useFetch<ExpenseAccountsType>(url_accounts);
-  console.log('accounts:', data, error, isLoading);
+  // console.log('accounts:', data, error, isLoading);
 
   const accountsToRender: AccountToRenderType[] =
     data && !isLoading && !error && data.accounts?.length
@@ -96,9 +96,7 @@ function AccountBalance({
         {/* Account Balance  */}
 
         {accountsToRender.map((account, indx) => {
-          const { nameAccount, concept, amount, type } = account;
-          console.log('🚀 ~ {accounts.map ~ concept:', concept);
-          //como envio los datos del account que se requieren renderizar cuando
+          const { nameAccount, amount, type } = account;
 
           {
             return (

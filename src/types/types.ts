@@ -109,6 +109,7 @@ export type DebtType = {
   total_amount_borrowed: number;
   total_amount_lent: number;
   transaction_count: number;
+  currency?:string;
 };
 
 //budget

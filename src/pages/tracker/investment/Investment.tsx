@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { InvestmentAccountsType } from '../../../types/types.ts';
-import { url_investment_acc } from '../../../endpoints.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+import { url_investment_acc } from '../../../endpoints.ts';
 // import { numberFormat } from '../../../helpers/functions.ts';
+// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 
 //------------------------------
 
@@ -25,7 +25,7 @@ function Investment() {
   //income accounts
   const { data, error: fetchedError } =
     useFetch<InvestmentAccountsType>(url_investment_acc);
-  console.log('data Investment:', data);
+  // console.log('data Investment:', data);
 
   const investmentAccounts =
     !fetchedError &&
@@ -77,7 +77,7 @@ function Investment() {
   function updateDataCurrency(currency: any) {
     setCurrency(currency);
     setInvestmentData((data) => ({ ...data, currency: currency }));
-    console.log('selected starting point:', currency);
+    // console.log('selected starting point:', currency);
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -178,7 +178,6 @@ function Investment() {
 
           <div className='card--title'>Note</div>
 
-         
           <div
             className='note--expense'
             style={{ display: 'flex', justifyContent: 'space-between' }}

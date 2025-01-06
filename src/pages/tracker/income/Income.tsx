@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
 import {
@@ -15,6 +14,7 @@ import {
 } from '../../../types/types.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 
 function Income() {
   //temporary values
@@ -47,7 +47,7 @@ function Income() {
   const { data: sources, error: fetchedError } =
     useFetch<SourcesType>(url_sources);
 
-  console.log('fetched:', { sources }, { fetchedError });
+  // console.log('fetched:', { sources }, { fetchedError });
 
   const sourceOptions = {
     title: sources ? 'Source of income' : 'No Sources available',
