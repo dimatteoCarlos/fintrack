@@ -63,7 +63,6 @@
   background-color: #1b1b1b;
 }
 
-/*---------------/*
 /*----card separator component-----*/
 .separator__container {
   width: 100%;
@@ -160,7 +159,14 @@ article {
 }
 
 .inputNumber::placeholder {
-  color: var(--dark);
+  color: gray;
+  font-weight: bold;
+  font-size: 20px;
+  font-size: 1.5rem;
+}
+
+.inputNumber::placeholder {
+  color: gray;
   font-weight: bold;
   font-size: 20px;
   font-size: 1.5rem;
@@ -268,6 +274,6 @@ textarea:invalid {
   background-color: orange;
 } */
 
-/*-----tracker datepicker  ---------*/
+
 
 /*-----------*/

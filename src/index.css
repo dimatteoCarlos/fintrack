@@ -27,29 +27,7 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-  --dark: #141414;
-  --light: white;
-  --creme: #e8e4da;
-  --textColor: #141414;
-  --topH: 22%;
-  
-  --primary: lightgreen;
-  --secondary: #7f7f7f;
 
-  
-}
-
-input::placeholder,
-textarea::placeholder,
-:after,
-:before {
-  background-color: transparent;
-  color:gray;
-  border: none;
-  padding: 0;
-  margin: 0;
-}
 
 body {
   background-color: #1b1b1b;
@@ -67,18 +45,7 @@ span {
   outline: none;
 }
 
-/*Hide Input Number Arrows*/
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
 
-/*Firefox*/
-input[type='number'] {
-  -moz-appearance: none;
-  appearance: none;
-}
 /*-----------------------*/
 * {
   font-family: inherit;
@@ -97,7 +64,9 @@ button {
   cursor: pointer;
 }
 
-.bordered{border:2px solid red;}
+.bordered {
+  border: 2px solid red;
+}
 /*
 input::placeholder {
   color: gray;
@@ -112,4 +81,3 @@ textarea::placeholder {
   opacity: 0.8; 
 }
 */
-

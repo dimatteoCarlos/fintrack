@@ -30,23 +30,24 @@ export function changeCurrency(currency: 'cop' | 'usd') {
 export function numberFormat(
   x: number | string,
   formatNumberCountry: string = 'en-US'
-) {
-  if (Number.isNaN(Number.parseFloat(x.toString()))) {
-    return 0;
+): string {
+  // Convertir la entrada a número. Si no es válido, devolver una cadena vacía.
+  const enteredNumber = parseFloat(x.toString());
+  
+  // Verificar si el valor es un número válido
+  if (isNaN(enteredNumber)) {
+    return '';  // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
   }
 
-  const enteredNumber = Number.parseFloat(x.toString());
-
+  // Crear el formateador de números con la configuración regional.
   const formatter = new Intl.NumberFormat(formatNumberCountry, {
     useGrouping: true,
   });
 
-  const formattedNumber = formatter.format(Number(enteredNumber));
-
-  console.log(formattedNumber);
-
-  return formattedNumber;
+  // Formatear el número y devolverlo
+  return formatter.format(enteredNumber);
 }
+
 //-------------------------
 
 export function showDate(date: Date, countryFormat = 'es-ES') {

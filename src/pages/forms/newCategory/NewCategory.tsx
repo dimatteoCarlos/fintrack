@@ -145,7 +145,7 @@ function NewCategory() {
             </div>
 
             <button
-              className={'bullet--input input__container'}
+              className={'input__container'}
               onClick={addHandler}
             >
               <PlusSignSvg />

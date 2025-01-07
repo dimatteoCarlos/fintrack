@@ -8,6 +8,7 @@
   --textColor: white;
   --textColor: #141414;
   --primary: #5b8c93;
+  --topH: 22%;
 }
 
 body {
@@ -95,7 +96,7 @@ body {
   padding-top: 2rem;
 }
 
-/*----Layout-------*/
+/*------Layout-------*/
 .home__layout {
   /* --figmaWidth:22.5rem;
   min-width: var(--figmaWidth); */
@@ -171,3 +172,29 @@ body {
   border: none;
   border-radius: 0.125rem;
 }
+
+/*input css rules */
+textarea::placeholder,
+textarea.input__note__description::placeholder,
+input::placeholder,
+input.inputNumber::placeholder {
+  color: gray;
+  background: transparent;
+  outline: none;
+  font-weight: lighter;
+  font-size: 1rem;
+}
+
+/*Hide Input Number Arrows*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/*Firefox*/
+input[type='number'] {
+  -moz-appearance: none;
+  appearance: none;
+}
+/******************/

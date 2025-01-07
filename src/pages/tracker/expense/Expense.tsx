@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
@@ -11,43 +10,48 @@ import {
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+import { useLocation } from 'react-router-dom';
+import { currencyFormat, numberFormat } from '../../../helpers/functions.ts';
+
 // import CardNote from '../components/CardNote.tsx';
 // import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 
-// import { CardTitle } from '../../../components/CardTitle.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
-// import { changeCurrency } from '../../../helpers/functions.ts';
-
 
 //------------------------------
 
 function Expense() {
   //temporary values
-  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+
+  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
-  // const formatNumberCountry = currencyOptions[defaultCurrency];
+  const formatNumberCountry = currencyOptions[defaultCurrency];
+  console.log('', { formatNumberCountry });
 
   //----Expense account Options Temporary values----------
+  const router = useLocation();
+  const trackerState = router.pathname.split('/')[2];
+  console.log({ trackerState });
 
-  const { data: accounts, error: fetchedError } =
+  //account options
+  const { data, error: fetchedError } =
     useFetch<ExpenseAccountsType>(url_accounts);
 
-  const optionsExpenseAccounts = accounts?.accounts
-    ? accounts.accounts.map((acc, _) => ({
+  const optionsExpenseAccounts = data?.accounts?.length
+    ? data.accounts.map((acc, _) => ({
         value: acc.name,
         label: acc.name,
       }))
-    : 'not info available';
-
-  // console.log('string', { optionsExpenseAccounts }, accounts?.accounts);
-  // console.dir( {optionsExpenseAccounts},accounts?.accounts);
+    : [
+        { value: 'acc.name_01', label: 'acc.name_01' },
+        { value: 'acc.name_02', label: 'acc.name_02' },
+        { value: 'acc.name_03', label: 'acc.name_03' },
+      ];
 
   const accountOptions = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
   };
-
-  //collar,broyde, others
 
   //--------
   const { data: categories } = useFetch<CategoriesType>(url_categories);
@@ -60,19 +64,29 @@ function Expense() {
     : null;
 
   const categoryOptions = {
-    title: optionsExpenseCategories
-      ? 'Category / Subategory'
-      : 'No Categories available',
+    title:
+      optionsExpenseCategories && !fetchedError
+        ? 'Category / Subategory'
+        : 'No Categories available',
     options: optionsExpenseCategories ?? [
       { value: 'category_01', label: 'Category_01 / SubCategory X' },
       { value: 'category_02', label: 'Category_02 / SubCategory X' },
       { value: 'category_03', label: 'Category_03 / SubCategory X' },
     ],
   };
+
   //-----------------
   //input expense data state variables
-  const initialExpenseData = {
-    amount: 0,
+  type ExpenseDataType = {
+    amount: number | string | undefined;
+    account: string;
+    category: string;
+    note: string;
+    currency: string;
+  };
+
+  const initialExpenseData: ExpenseDataType = {
+    amount: undefined,
     account: '',
     category: '',
     note: '',
@@ -83,36 +97,58 @@ function Expense() {
   const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
 
+  // const [validationMessages, setValidationMessages] = useState<{
+  //   [key: string]: string;
+  // }>({});
+
   //-----useEffect--------
   useEffect(() => {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }, [currency]);
 
   //----functions--------
-  // function toggleCurrency() {
-  //   setCurrency((prev) => changeCurrency(prev));
-  // }
 
   function updateDataCurrency(currency: string) {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
-    // console.log('selected starting point:', currency);
   }
 
-  function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateTrackerData(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     e.preventDefault();
+
     setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+    console.log(
+      'updateTrackerData:',
+      { [e.target.name]: e.target.value },
+      currency
+    );
   }
 
-  function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  }
+  // function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  //   e.preventDefault();
+  //   setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // }
+
+  // function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
+  //   e.preventDefault();
+  //   setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  // }
 
   function onSaveHandler() {
-    
     console.log('On Save Handler');
 
-    console.log({ expenseData });
+    console.log({ expenseData }); //aqui amount esta como numero
+
+    const formattedNumber = numberFormat(expenseData.amount || 0);
+    setExpenseData((prev) => ({ ...prev, amount: formattedNumber })); //se carga en state como string, obedeciendo el formato, pero error de typescript
+
+    console.log(
+      'num formato string:',
+      { formattedNumber },
+      typeof formattedNumber
+    );
 
     //do the POST to the endpoint:
 
@@ -133,16 +169,16 @@ function Expense() {
           <div className='card__screen'>
             <input
               className='inputNumber'
-              type='number'
-              placeholder={initialExpenseData.amount.toString()}
-              onChange={inputTrackDataHandler}
               name='amount'
-              value={expenseData.amount}
-            />
+              type='number'
+              placeholder={`${trackerState}s`}
+              // value={numberFormat(
+              //   Number(expenseData?.amount) || 0
+              // )}
 
-            {/* <div className='icon-currency tracker' onClick={toggleCurrency}>
-              {currency.toUpperCase()}
-            </div> */}
+              value={Number(expenseData?.amount) || ''}
+              onChange={updateTrackerData}
+            />
 
             <CurrencyBadge
               variant={'tracker'}
@@ -151,18 +187,24 @@ function Expense() {
           </div>
 
           <div className='card--title'>Account</div>
-
-          <SelectComponent dropDownOptions={accountOptions} />
+          <SelectComponent
+            dropDownOptions={accountOptions}
+            setSelectState={setExpenseData}
+            optionKeySelected='account'
+          />
         </div>
-
         {/* end of top */}
+
         <CardSeparator />
 
         {/*start of bottom */}
-
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>Category</div>
-          <SelectComponent dropDownOptions={categoryOptions} />
+          <SelectComponent
+            dropDownOptions={categoryOptions}
+            setSelectState={setExpenseData}
+            optionKeySelected='category'
+          />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
 
@@ -177,7 +219,7 @@ function Expense() {
               <textarea
                 className='input__note__description'
                 placeholder='Description'
-                onChange={textareaTrackDataHandler}
+                onChange={updateTrackerData}
                 name='note'
                 rows={3}
                 maxLength={150}

@@ -34,6 +34,7 @@ function SummaryDetailBox({ summaryData }: SummaryDetailPropType) {
               {/* {currencyFormat(defaultCurrency, amount, formatNumberCountry)} */}
               {/* {amount.toFixed(2)} */}
               {/* {new Intl.NumberFormat('en-US').format(amount)} */}
+              
               {numberFormat(amount, formatNumberCountry)}
             </span>
           </div>

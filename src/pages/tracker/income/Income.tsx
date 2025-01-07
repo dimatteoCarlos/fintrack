@@ -86,7 +86,7 @@ function Income() {
   function updateDataCurrency(currency: any) {
     setCurrency(currency);
     setIncomeData((data) => ({ ...data, currency: currency }));
-    console.log('selected starting point:', currency);
+    console.log('updateDataCurrency:', currency);
   }
 
   function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {

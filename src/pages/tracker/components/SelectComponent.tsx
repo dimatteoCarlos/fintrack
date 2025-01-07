@@ -4,11 +4,7 @@ import Select, { components } from 'react-select';
 import ArrowDownDarkSvg from '../../../assets/ArrowDownDarkSvg.svg';
 
 // Define las opciones para el select
-// const options1 = [
-//   { value: 'account_01', label: 'Account_01' },
-//   { value: 'account_02', label: 'Account_02' },
-//   { value: 'account_03', label: 'Account_03' },
-// ];
+
 
 const customStyles = {
   container: (baseStyles: any) => ({
@@ -63,15 +59,15 @@ const DropdownIndicator = (props: any) => {
   );
 };
 
-export type SelectComponentPropType = {
-  options: {
-    value: any;
-    label: string;
-  }[];
-};
+// export type SelectComponentPropType = {
+//   options: {
+//     value: any;
+//     label: string;
+//   }[];
+// };
 
 // Define el componente
-function SelectComponent({ dropDownOptions }: any) {
+function SelectComponent({ dropDownOptions, setSelectState, optionKeySelected }: any) {
   const { title, options } = dropDownOptions;
   // console.log(title, options)
 
@@ -79,7 +75,9 @@ function SelectComponent({ dropDownOptions }: any) {
   const handleChange = (
     selectedOption: { value: any; label: string } | null
   ) => {
-    console.log('Opción seleccionada:', selectedOption);
+    console.log('tests:', optionKeySelected, setSelectState((prev:any)=>({...prev, [optionKeySelected]:selectedOption?.value})))
+    // setSelectState((prev:any)=>({...prev, optionKeySelected:selectedOption}), )
+    // console.log('Opción seleccionada:', selectedOption);
   };
 
   return (
