@@ -1,10 +1,10 @@
 // Importa React y el componente Select de react-select
 
 import Select, { components } from 'react-select';
+import { useRef, useEffect } from 'react';
 import ArrowDownDarkSvg from '../../../assets/ArrowDownDarkSvg.svg';
 
 // Define las opciones para el select
-
 
 const customStyles = {
   container: (baseStyles: any) => ({
@@ -67,17 +67,37 @@ const DropdownIndicator = (props: any) => {
 // };
 
 // Define el componente
-function SelectComponent({ dropDownOptions, setSelectState, optionKeySelected }: any) {
+function SelectComponent({
+  dropDownOptions,
+  setSelectState,
+  optionKeySelected,
+  isReset,
+  setIsReset,
+}: any) {
   const { title, options } = dropDownOptions;
+
+  const selectRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (isReset && selectRef) {
+      selectRef.current.clearValue();
+      setIsReset(false);
+    }
+  }, [isReset]);
   // console.log(title, options)
 
   // Función para manejar el cambio en el select
   const handleChange = (
     selectedOption: { value: any; label: string } | null
   ) => {
-    console.log('tests:', optionKeySelected, setSelectState((prev:any)=>({...prev, [optionKeySelected]:selectedOption?.value})))
-    // setSelectState((prev:any)=>({...prev, optionKeySelected:selectedOption}), )
-    // console.log('Opción seleccionada:', selectedOption);
+    // console.log('tests:', optionKeySelected);
+
+    setSelectState((prev: any) => ({
+      ...prev,
+      [optionKeySelected]: selectedOption?.value,
+    }));
+
+    console.log('Opción seleccionada:', selectedOption);
   };
 
   return (
@@ -91,6 +111,13 @@ function SelectComponent({ dropDownOptions, setSelectState, optionKeySelected }:
         components={{ DropdownIndicator }}
         isSearchable
         defaultValue={title ? title : options[0]}
+        isClearable
+        ref={selectRef}
+
+        // Asigna el valor actual del select
+        // value={dropDownOptions.options.find(
+        //   (option: { value: string }) => option.value === optionKeySelected.value
+        // ) || null}
       />
     </>
   );

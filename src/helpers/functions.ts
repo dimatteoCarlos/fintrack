@@ -33,10 +33,10 @@ export function numberFormat(
 ): string {
   // Convertir la entrada a número. Si no es válido, devolver una cadena vacía.
   const enteredNumber = parseFloat(x.toString());
-  
+
   // Verificar si el valor es un número válido
   if (isNaN(enteredNumber)) {
-    return '';  // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
+    return ''; // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
   }
 
   // Crear el formateador de números con la configuración regional.
@@ -68,3 +68,27 @@ export function capitalize(word: string) {
 }
 
 //-------------------------
+
+export function validationData(stateToValidate: {
+  [key: string]: string | number | undefined | null;
+}) {
+  const errorValidationMessages: { [key: string]: string } = {};
+
+  for (const key in stateToValidate) {
+    const value = stateToValidate[key];
+
+    if (!value) {
+      errorValidationMessages[key] = `* Please provide the ${capitalize(key)}`;
+      continue;
+    }
+
+    if (typeof value === 'number' && value < 0) {
+      errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
+    }
+
+    if (typeof value === 'string' && !value) {
+      errorValidationMessages[key] = `* Please provide the ${capitalize(key)}`;
+    }
+  }
+  return errorValidationMessages;
+} //fn

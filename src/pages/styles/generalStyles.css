@@ -198,3 +198,12 @@ input[type='number'] {
   appearance: none;
 }
 /******************/
+
+.validation__errMsg {
+  color: #fc0c0c;
+  font-size: 0.7rem;
+
+  font-family: cursive;
+  font-style: italic;
+  font-weight: normal;
+}

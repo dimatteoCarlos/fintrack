@@ -11,11 +11,14 @@ import {
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { currencyFormat, numberFormat } from '../../../helpers/functions.ts';
+import {
+  capitalize,
+  numberFormat,
+  validationData,
+} from '../../../helpers/functions.ts';
 
 // import CardNote from '../components/CardNote.tsx';
 // import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-
 // import { numberFormat } from '../../../helpers/functions.ts';
 
 //------------------------------
@@ -26,12 +29,13 @@ function Expense() {
   const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
   const formatNumberCountry = currencyOptions[defaultCurrency];
+
   console.log('', { formatNumberCountry });
 
   //----Expense account Options Temporary values----------
   const router = useLocation();
   const trackerState = router.pathname.split('/')[2];
-  console.log({ trackerState });
+  // console.log({ trackerState });
 
   //account options
   const { data, error: fetchedError } =
@@ -53,7 +57,7 @@ function Expense() {
     options: optionsExpenseAccounts,
   };
 
-  //--------
+  //category options
   const { data: categories } = useFetch<CategoriesType>(url_categories);
 
   const optionsExpenseCategories = !fetchedError
@@ -96,10 +100,11 @@ function Expense() {
   //---states-------------
   const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
+  const [isReset, setIsReset] = useState<boolean>(false);
 
-  // const [validationMessages, setValidationMessages] = useState<{
-  //   [key: string]: string;
-  // }>({});
+  const [validationMessages, setValidationMessages] = useState<{
+    [key: string]: string;
+  }>({});
 
   //-----useEffect--------
   useEffect(() => {
@@ -117,7 +122,9 @@ function Expense() {
   ) {
     e.preventDefault();
 
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const valueToSave =
+      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+    setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
 
     console.log(
       'updateTrackerData:',
@@ -125,6 +132,35 @@ function Expense() {
       currency
     );
   }
+
+  // function validationData(stateToValidate: {
+  //   [key: string]: string | number | undefined | null;
+  // }) {
+  //   const errorValidationMessages: { [key: string]: string } = {};
+
+  //   for (const key in stateToValidate) {
+  //     const value = stateToValidate[key];
+
+  //     if (!value) {
+  //       errorValidationMessages[key] = `* Please provide the ${capitalize(
+  //         key
+  //       )}`;
+  //       continue;
+  //     }
+
+  //     if (typeof value === 'number' && value < 0) {
+  //       errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
+  //     }
+
+  //     if (typeof value === 'string' && !value) {
+  //       errorValidationMessages[key] = `* Please provide the ${capitalize(
+  //         key
+  //       )}`;
+  //     }
+  //   }
+  //   return errorValidationMessages;
+  // }
+  //fn
 
   // function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
   //   e.preventDefault();
@@ -142,7 +178,8 @@ function Expense() {
     console.log({ expenseData }); //aqui amount esta como numero
 
     const formattedNumber = numberFormat(expenseData.amount || 0);
-    setExpenseData((prev) => ({ ...prev, amount: formattedNumber })); //se carga en state como string, obedeciendo el formato, pero error de typescript
+    //se carga en state como string, obedeciendo el formato, pero error de typescript
+    //  setExpenseData((prev) => ({ ...prev, amount: formattedNumber }));
 
     console.log(
       'num formato string:',
@@ -150,11 +187,25 @@ function Expense() {
       typeof formattedNumber
     );
 
+    //validation of data entered
+    const newValidationMessages = validationData(expenseData);
+    console.log('validation mgs:', newValidationMessages);
+
+    if (Object.values(newValidationMessages).length > 0) {
+      setValidationMessages(newValidationMessages);
+      console.log('validation');
+      return;
+    }
+    
     //do the POST to the endpoint:
 
-    //reset
+    //reset the state and the selected options on select component
+
+    // setExpenseData((prev)=>({...prev, initialExpenseData}));
+    setIsReset(true);
     setExpenseData(initialExpenseData);
     setCurrency(defaultCurrency);
+    setValidationMessages({});
   }
 
   //--------------------------
@@ -164,7 +215,13 @@ function Expense() {
       <article className='expense' style={{ color: 'inherit' }}>
         {/* start of top */}
         <div className='state__card--top'>
-          <div className='card--title'>Amount</div>
+          <div className='card--title'>
+            Amount
+            <span className='validation__errMsg'>
+              {' '}
+              {validationMessages['amount']}
+            </span>
+          </div>
 
           <div className='card__screen'>
             <input
@@ -186,11 +243,20 @@ function Expense() {
             />
           </div>
 
-          <div className='card--title'>Account</div>
+          <div className='card--title'>
+            Account{' '}
+            <span className='validation__errMsg'>
+              {' '}
+              {validationMessages['account']}
+            </span>
+          </div>
           <SelectComponent
             dropDownOptions={accountOptions}
             setSelectState={setExpenseData}
             optionKeySelected='account'
+            isReset={isReset}
+            setIsReset={setIsReset}
+            selectedValue={expenseData['account']}
           />
         </div>
         {/* end of top */}
@@ -199,16 +265,31 @@ function Expense() {
 
         {/*start of bottom */}
         <div className='state__card--bottom'>
-          <div className='card--title card--title--top'>Category</div>
+          <div className='card--title card--title--top'>
+            Category{' '}
+            <span className='validation__errMsg'>
+              {' '}
+              {validationMessages['category']}
+            </span>
+          </div>
           <SelectComponent
             dropDownOptions={categoryOptions}
             setSelectState={setExpenseData}
             optionKeySelected='category'
+            isReset={isReset}
+            setIsReset={setIsReset}
+            seletedValue={expenseData['category']}
           />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
 
-          <div className='card--title'>Note</div>
+          <div className='card--title'>
+            Note{' '}
+            <span className='validation__errMsg'>
+              {' '}
+              {validationMessages['note']}
+            </span>
+          </div>
           {/* <CardNote dataHandler={textareaTrackDataHandler} note={expenseData.note}/> */}
 
           <div
