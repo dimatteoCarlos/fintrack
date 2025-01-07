@@ -43,6 +43,18 @@ export type ExpenseType = {
 };
 
 //income
+
+export type IncomeAccountsType = {
+  accounts?: IncomeAccountType[] | null;
+};
+export type IncomeAccountType = {
+  id: number;
+  name: string; //in the future specify the possible names as a union of string types
+  description: string;
+  type: string; //specify the possible types as a union of string types
+  currency: string;
+  balance: number;
+};
 export type IncomeInfoType = {
   count: number;
   incomes: IncomeType[] | null;
@@ -109,7 +121,7 @@ export type DebtType = {
   total_amount_borrowed: number;
   total_amount_lent: number;
   transaction_count: number;
-  currency?:string;
+  currency?: string;
 };
 
 //budget
@@ -119,3 +131,5 @@ export type BudgetType = {
   category_name: string; //in the future specify the names as a union of specific string types
   category_id: number;
 };
+
+export type CurrencyType = 'usd' | 'cop' | 'eur'

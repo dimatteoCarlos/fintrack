@@ -1,3 +1,4 @@
+//src/ages/tracker/expense/Expense.tsx
 import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
@@ -6,33 +7,27 @@ import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
   CategoriesType,
   CategoryType,
+  CurrencyType,
   ExpenseAccountsType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import {
-  capitalize,
-  numberFormat,
-  validationData,
-} from '../../../helpers/functions.ts';
+import { numberFormat, validationData } from '../../../helpers/functions.ts';
 
 // import CardNote from '../components/CardNote.tsx';
 // import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
+const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+const defaultCurrency = 'usd';
+const formatNumberCountry = currencyOptions[defaultCurrency];
+console.log('', { formatNumberCountry });
+
 //------------------------------
 
 function Expense() {
-  //temporary values
-
-  const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  const defaultCurrency = 'usd';
-  const formatNumberCountry = currencyOptions[defaultCurrency];
-
-  console.log('', { formatNumberCountry });
-
-  //----Expense account Options Temporary values----------
+  //----Expense account Options -------
   const router = useLocation();
   const trackerState = router.pathname.split('/')[2];
   // console.log({ trackerState });
@@ -41,7 +36,7 @@ function Expense() {
   const { data, error: fetchedError } =
     useFetch<ExpenseAccountsType>(url_accounts);
 
-  const optionsExpenseAccounts = data?.accounts?.length
+  const optionsExpenseAccounts = (!fetchedError && data?.accounts?.length)
     ? data.accounts.map((acc, _) => ({
         value: acc.name,
         label: acc.name,
@@ -58,10 +53,11 @@ function Expense() {
   };
 
   //category options
-  const { data: categories } = useFetch<CategoriesType>(url_categories);
+  const { data: categoryData, error: categoryError } =
+    useFetch<CategoriesType>(url_categories);
 
-  const optionsExpenseCategories = !fetchedError
-    ? categories?.categories?.map((cat: CategoryType) => ({
+  const optionsExpenseCategories = !categoryError
+    ? categoryData?.categories?.map((cat: CategoryType) => ({
         value: cat.name,
         label: cat.name,
       }))
@@ -69,13 +65,13 @@ function Expense() {
 
   const categoryOptions = {
     title:
-      optionsExpenseCategories && !fetchedError
+      optionsExpenseCategories && !categoryError
         ? 'Category / Subategory'
         : 'No Categories available',
     options: optionsExpenseCategories ?? [
-      { value: 'category_01', label: 'Category_01 / SubCategory X' },
-      { value: 'category_02', label: 'Category_02 / SubCategory X' },
-      { value: 'category_03', label: 'Category_03 / SubCategory X' },
+      { value: 'category_01', label: 'Category_01 / SubCategory 01' },
+      { value: 'category_02', label: 'Category_02 / SubCategory 02' },
+      { value: 'category_03', label: 'Category_03 / SubCategory 03' },
     ],
   };
 
@@ -94,12 +90,12 @@ function Expense() {
     account: '',
     category: '',
     note: '',
-    currency: 'usd',
+    currency: defaultCurrency,
   };
 
   //---states-------------
   const [expenseData, setExpenseData] = useState(initialExpenseData);
-  const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
+  const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [isReset, setIsReset] = useState<boolean>(false);
 
   const [validationMessages, setValidationMessages] = useState<{
@@ -113,7 +109,8 @@ function Expense() {
 
   //----functions--------
 
-  function updateDataCurrency(currency: string) {
+  function updateDataCurrency(currency: CurrencyType) {
+    setCurrency(currency);
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }
 
@@ -196,7 +193,7 @@ function Expense() {
       console.log('validation');
       return;
     }
-    
+
     //do the POST to the endpoint:
 
     //reset the state and the selected options on select component
@@ -218,7 +215,6 @@ function Expense() {
           <div className='card--title'>
             Amount
             <span className='validation__errMsg'>
-              {' '}
               {validationMessages['amount']}
             </span>
           </div>
@@ -268,7 +264,6 @@ function Expense() {
           <div className='card--title card--title--top'>
             Category{' '}
             <span className='validation__errMsg'>
-              {' '}
               {validationMessages['category']}
             </span>
           </div>
@@ -286,7 +281,6 @@ function Expense() {
           <div className='card--title'>
             Note{' '}
             <span className='validation__errMsg'>
-              {' '}
               {validationMessages['note']}
             </span>
           </div>
