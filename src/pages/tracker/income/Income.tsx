@@ -1,37 +1,39 @@
-//
-// import '../../styles/generalStyles.css';
+//src/ages/tracker/expense/Income.tsx
 import { useEffect, useState } from 'react';
-// import { changeCurrency } from '../../../helpers/functions.ts';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
 import {
-  ExpenseAccountsType,
+  IncomeAccountsType,
   SourcesType,
   SourceType,
 } from '../../../types/types.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
-// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
+import { useLocation } from 'react-router-dom';
+
+const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+const defaultCurrency = 'usd';
+const formatNumberCountry = currencyOptions[defaultCurrency];
+console.log(formatNumberCountry);
 
 function Income() {
-  //temporary values
-  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  const defaultCurrency = 'usd';
-  // const formatNumberCountry = currencyOptions[defaultCurrency];
-  // console.log(formatNumberCountry);
+  //---- Income account Options ----------
+  const { pathname } = useLocation();
+  const trackerState = pathname.split('/')[2];
 
-  //----Income account Options Temporary values----------
   //income accounts
-  const { data: accounts } = useFetch<ExpenseAccountsType>(url_accounts);
+  const { data, error: errorAccount } =
+    useFetch<IncomeAccountsType>(url_accounts); //income and expense acc are the same
 
-  const optionsIncomeAccounts = accounts?.accounts?.map((acc) => ({
-    value: acc.name,
-    label: acc.name,
-  }));
-  // ??'No income account info available'
+  const optionsIncomeAccounts =
+    (!errorAccount && data?.accounts) ??
+    data?.accounts?.map((acc) => ({
+      value: acc.name,
+      label: acc.name,
+    }));
 
   const accountOptions = {
     title: 'Available Account',
@@ -44,14 +46,14 @@ function Income() {
   };
   //--------
   //income sources
-  const { data: sources, error: fetchedError } =
+  const { data: sources, error: errorSources } =
     useFetch<SourcesType>(url_sources);
 
   // console.log('fetched:', { sources }, { fetchedError });
 
   const sourceOptions = {
     title: sources ? 'Source of income' : 'No Sources available',
-    options: !fetchedError
+    options: !errorSources
       ? sources?.sources?.map((src: SourceType) => ({
           value: src.name,
           label: src.name,
