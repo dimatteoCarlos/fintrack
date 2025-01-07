@@ -158,7 +158,7 @@ function Income() {
 
     //do the POST to the endpoint:
     console.log('income:', { incomeData });
-    
+
     //reset values
     setIsReset(true);
     setIncomeData(initialIncomeData);
@@ -183,7 +183,7 @@ function Income() {
             <input
               className='inputNumber'
               type='number'
-              placeholder={`${trackerState}s`}
+              placeholder={`${trackerState}`}
               onChange={updateTrackerData}
               name='amount'
               value={Number(incomeData?.amount) || ''}
@@ -257,7 +257,6 @@ function Income() {
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
         </div>
-        {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
       </article>
     </>
   );

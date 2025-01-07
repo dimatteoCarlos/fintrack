@@ -224,7 +224,7 @@ function Expense() {
               className='inputNumber'
               name='amount'
               type='number'
-              placeholder={`${trackerState}s`}
+              placeholder={`${trackerState}`}
               // value={numberFormat(
               //   Number(expenseData?.amount) || 0
               // )}
