@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { changeCurrency } from '../../helpers/functions';
 import './styles/currency-style.css'
+import { CurrencyType } from '../../types/types';
 
 type CurrencyBadgePropType = {
   variant: string;
-  updateOutsideCurrencyData?: (currency: string) => void;
+  updateOutsideCurrencyData?: (currency: CurrencyType) => void;
 };
 function CurrencyBadge({
   variant,
