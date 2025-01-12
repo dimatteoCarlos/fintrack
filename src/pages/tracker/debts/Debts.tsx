@@ -1,5 +1,5 @@
 //pages/tracker/debts/debts.tsx
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 
@@ -28,6 +28,20 @@ const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //------------------------------
+const initialTrackerData: DebtsTrackerDataType = {
+  amount: undefined,
+  debtor: '',
+  currency: defaultCurrency,
+  type: 'lend',
+  date: new Date(),
+  note: '',
+};
+
+const debtorOptionsDefault = [
+  { value: 'debtor_01', label: 'debtor_01' },
+  { value: 'debtor_02', label: 'debtor_02' },
+  { value: 'debtor_03', label: 'debtor_03' },
+];
 
 function Debts() {
   const trackerState = useLocation().pathname.split('/')[2];
@@ -37,7 +51,9 @@ function Debts() {
     data: dataDebtors,
     error: fetchedError,
     isLoading,
-  } = useFetch<DebtorsListType>(url_debtors);
+  } = useFetch<DebtorsListType>(url_debtors); //apply deboune
+
+  // console.log('debtors datatrack:', dataDebtors);
 
   //define what to do when error
   const debtors =
@@ -53,28 +69,17 @@ function Debts() {
 
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
-    options: debtors ?? [
-      { value: 'debtor_01', label: 'debtor_01' },
-      { value: 'debtor_02', label: 'debtor_02' },
-      { value: 'debtor_03', label: 'debtor_03' },
-    ],
+    options: debtors ?? debtorOptionsDefault,
   };
-  //-----------------
-  //input debts data state variables
 
-  const initialTrackerData: DebtsTrackerDataType = {
-    amount: undefined,
-    debtor: '',
-    currency: defaultCurrency,
-    type: 'lend',
-    date: new Date(),
-    note: '',
-  };
+  //-----------------
+  //input debts datatrack state variables
 
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [type, setType] = useState<DebtsTypeMovementType>('lend');
-  const [data, setData] = useState<DebtsTrackerDataType>(initialTrackerData);
+  const [datatrack, setDataTrack] =
+    useState<DebtsTrackerDataType>(initialTrackerData);
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
@@ -89,42 +94,47 @@ function Debts() {
     const valueToSave =
       e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
 
-    setData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+    setDataTrack((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
+  //---
 
-  function updateDataCurrency(currency: CurrencyType) {
-    setCurrency(currency);
-    setData((prev) => ({ ...prev, currency: currency }));
-    // console.log('selected updateDataCurrency point:', currency);
-  }
-
-  function toggleType() {
+  const updateDataCurrency = useCallback(
+    (currency: CurrencyType) => {
+      setCurrency(currency);
+      setDataTrack((prev) => ({ ...prev, currency: currency }));
+    },
+    [currency]
+  );
+  //---
+  const toggleType = useCallback(() => {
     setType((prev: DebtsTypeMovementType) =>
       prev === 'lend' ? 'borrow' : 'lend'
     );
-  }
+  }, [type]);
 
   function changeDateFn(selectedDate: Date): void {
-    setData((prev) => ({ ...prev, date: selectedDate }));
+    setDataTrack((prev) => ({ ...prev, date: selectedDate }));
     // console.log(Data);
   }
 
   function onSaveHandler() {
     console.log('On Save Handler');
-    const formattedNumber = numberFormat(data.amount || 0);
+    const formattedNumber = numberFormat(datatrack.amount || 0);
     console.log(
       'formatted amount as a string:',
       { formattedNumber },
       typeof formattedNumber
     );
 
-    //-------entered data validation messages -----------
-    const newValidationMessages = validationData(data);
+    //-------entered datatrack validation messages -----------
+
+    const newValidationMessages = validationData(datatrack);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
+
     //----------------------------
     //do the post to the endpoint api
 
@@ -132,11 +142,14 @@ function Debts() {
     //reset values
 
     setIsReset(true);
-    setData(initialTrackerData);
-    updateDataCurrency(defaultCurrency);
+    setDataTrack({
+      ...initialTrackerData,
+      date: new Date(),
+      currency: defaultCurrency,
+    });
     setValidationMessages({});
     setType('lend');
-    setData((prev) => ({ ...prev, date: new Date() }));
+    updateDataCurrency(defaultCurrency);
 
     setTimeout(() => {
       setIsReset(false);
@@ -147,8 +160,8 @@ function Debts() {
   useEffect(() => {
     updateDataCurrency(currency);
 
-    setData((prev) => ({ ...prev, currency: currency }));
-    setData((prev) => ({ ...prev, type: type }));
+    setDataTrack((prev) => ({ ...prev, currency: currency }));
+    setDataTrack((prev) => ({ ...prev, type: type }));
   }, [currency, type]);
 
   //------------
@@ -172,7 +185,7 @@ function Debts() {
               placeholder={trackerState}
               onChange={updateTrackerData}
               name='amount'
-              value={data.amount || ''}
+              value={datatrack.amount || ''}
             />
 
             <div className='account__currency'>
@@ -192,11 +205,11 @@ function Debts() {
           </div>
           <SelectComponent
             dropDownOptions={debtorOptions}
-            setSelectState={setData}
+            setSelectState={setDataTrack}
             isReset={isReset}
             setIsReset={setIsReset}
             optionKeySelected='debtor'
-            selectedValue={data['debtor']}
+            selectedValue={datatrack['debtor']}
           />
         </div>
 
@@ -216,7 +229,7 @@ function Debts() {
               <div className='card__screen--date'>
                 <Datepicker
                   changeDate={changeDateFn}
-                  date={data.date}
+                  date={datatrack.date}
                   variant='tracker'
                   isReset={isReset}
                 ></Datepicker>
@@ -243,7 +256,7 @@ function Debts() {
                 name='note'
                 rows={3}
                 maxLength={150}
-                value={data.note}
+                value={datatrack.note}
               />
             </div>
 
