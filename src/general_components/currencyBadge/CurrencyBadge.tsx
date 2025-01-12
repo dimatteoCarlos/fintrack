@@ -5,18 +5,14 @@ import { CurrencyType } from '../../types/types';
 type CurrencyBadgePropType = {
   variant: string;
   updateOutsideCurrencyData?: (currency: CurrencyType) => void;
-  currency:CurrencyType
-  setCurrency?:React.Dispatch<React.SetStateAction<CurrencyType>>
-
+  currency: CurrencyType;
+  setCurrency?: React.Dispatch<React.SetStateAction<CurrencyType>>;
 };
 function CurrencyBadge({
   variant,
   updateOutsideCurrencyData,
-  currency
+  currency,
 }: CurrencyBadgePropType) {
-  // const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  // const defaultCurrency = 'usd';
-
   //----functions------------
   function toggleCurrency() {
     const newCurrency = changeCurrency(currency);
