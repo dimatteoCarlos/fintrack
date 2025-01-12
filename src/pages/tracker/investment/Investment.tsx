@@ -1,34 +1,50 @@
 import { useEffect, useState } from 'react';
-
-import SelectComponent from '../components/SelectComponent.tsx';
-import CardSeparator from '../components/CardSeparator.tsx';
-
-import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
-import { InvestmentAccountsType } from '../../../types/types.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
+
+import CardSeparator from '../components/CardSeparator.tsx';
+import SelectComponent from '../components/SelectComponent.tsx';
+import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
+import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+
+import {
+  CurrencyType,
+  InvestmentAccountsType,
+  InvestmentTypeMovementType,
+} from '../../../types/types.ts';
 import { url_investment_acc } from '../../../endpoints.ts';
-// import { numberFormat } from '../../../helpers/functions.ts';
-// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
+import {
+  numberFormat,
+  validationData,
+  CURRENCY_OPTIONS,
+} from '../../../helpers/functions.ts';
+
+import { useLocation } from 'react-router-dom';
 
 //------------------------------
 
 function Investment() {
-  const defaultCurrency = 'usd';
+  const defaultCurrency: CurrencyType = 'usd';
   //temporary values
-  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  // const formatNumberCountry = currencyOptions[defaultCurrency];
-  // console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
 
-  //----Investment Options Temporary values----------
-  //income accounts
-  const { data, error: fetchedError } =
-    useFetch<InvestmentAccountsType>(url_investment_acc);
-  // console.log('data Investment:', data);
+  const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+  console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
+
+  //----Investment account Options----------
+  const { pathname } = useLocation();
+  const trackerState = pathname.split('/')[2];
+
+  //investment accounts
+  const {
+    data,
+    error: fetchedError,
+    isLoading,
+  } = useFetch<InvestmentAccountsType>(url_investment_acc);
 
   const investmentAccounts =
+    !isLoading &&
     !fetchedError &&
+    data?.accounts?.length &&
     data?.accounts?.map((acc) => ({
       value: acc.name,
       label: acc.name,
@@ -48,10 +64,20 @@ function Investment() {
 
   //-----------------
   //input investment data state variables
-  const initialInvestmentData = {
-    amount: 0,
+
+  type InvestmentDataType = {
+    amount: number | string | undefined;
+    account: string;
+    currency: CurrencyType;
+    type: InvestmentTypeMovementType;
+    date: Date;
+    note: string;
+  };
+
+  const initialInvestmentData: InvestmentDataType = {
+    amount: undefined,
     account: '',
-    currency: 'usd',
+    currency: defaultCurrency,
     type: 'deposit',
     date: new Date(),
     note: '',
@@ -59,51 +85,38 @@ function Investment() {
   //---states------
   const [investmentData, setInvestmentData] = useState(initialInvestmentData);
 
-  const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
+  const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
 
-  const [typeInv, setTypeInv] = useState<'deposit' | 'withdraw'>('deposit');
+  const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
+  // const [isReset, setIsReset] = useState<boolean>(false);
 
-  //-----useEffect--------
-  useEffect(() => {
-    setInvestmentData((prev) => ({ ...prev, currency: currency }));
 
-    setInvestmentData((prev) => ({ ...prev, type: typeInv }));
 
-    //It shows previous state data
-    // console.log(investmentData);
-  }, [currency, typeInv]);
-updateDataCurrency
+  const [validationMessages, setValidationMessages] = useState<{
+    [key: string]: string;
+  }>({});
+
   //----functions--------
-  function updateDataCurrency(currency: any) {
+  function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
     setInvestmentData((data) => ({ ...data, currency: currency }));
     // console.log('selected updateDataCurrency point:', currency);
   }
-
-  function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  //-----------
+  function updateTrackerData(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     e.preventDefault();
-    setInvestmentData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+    const valueToSave =
+      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+    setInvestmentData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
 
-  function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
-    setInvestmentData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-    console.log(investmentData);
-  }
-
-  function toggleTypeInv() {
-    const current = (typeInv: 'deposit' | 'withdraw') => {
-      if (typeInv == 'deposit') {
-        return 'withdraw';
-      } else if (typeInv == 'withdraw') {
-        return 'deposit';
-      } else {
-        return 'deposit';
-      }
-    };
-    setTypeInv((prev) => current(prev));
-    // console.log('current:', current, typeof current);
+  function toggleInvestmentType() {
+    setTypeInv((prev: InvestmentTypeMovementType) =>
+      prev === 'deposit' ? 'withdraw' : 'deposit'
+    );
   }
 
   function onSaveHandler() {
@@ -114,6 +127,12 @@ updateDataCurrency
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
     // console.log(investmentData);
   }
+
+  //-----useEffect--------
+  useEffect(() => {
+    updateDataCurrency;
+    setInvestmentData((prev) => ({ ...prev, type: typeInv }));
+  }, [currency, typeInv]);
 
   //--------------------------
 
@@ -128,7 +147,7 @@ updateDataCurrency
               className='inputNumber'
               type='number'
               placeholder={'0,000.00'}
-              onChange={inputTrackDataHandler}
+              onChange={updateTrackerData}
               name='amount'
               value={`${investmentData.amount}`}
 
@@ -157,7 +176,10 @@ updateDataCurrency
           <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
               <div className='card--title'>Type</div>
-              <button className='card__screen--type' onClick={toggleTypeInv}>
+              <button
+                className='card__screen--type'
+                onClick={toggleInvestmentType}
+              >
                 <div className='screen--concept'>{typeInv}</div>
               </button>
             </div>
@@ -186,7 +208,7 @@ updateDataCurrency
               <textarea
                 className='input__note__description'
                 placeholder='Description'
-                onChange={textareaTrackDataHandler}
+                onChange={updateTrackerData}
                 name='note'
                 rows={3}
                 maxLength={150}
