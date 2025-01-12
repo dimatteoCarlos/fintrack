@@ -4,9 +4,9 @@ import { StatusSquare } from '../boxComponents';
 import './styles/summaryDetailBox-style.css';
 
 //temporary values------------
-const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 const defaultCurrency = 'usd';
-const formatNumberCountry = currencyOptions[defaultCurrency];
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 
 //----------------------------
 
@@ -34,7 +34,6 @@ function SummaryDetailBox({ summaryData }: SummaryDetailPropType) {
               {/* {currencyFormat(defaultCurrency, amount, formatNumberCountry)} */}
               {/* {amount.toFixed(2)} */}
               {/* {new Intl.NumberFormat('en-US').format(amount)} */}
-              
               {numberFormat(amount, formatNumberCountry)}
             </span>
           </div>

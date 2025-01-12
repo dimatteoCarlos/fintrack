@@ -1,5 +1,5 @@
 //TrackerDatePicker.tsx
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './styles/datepicker-styles.css';
@@ -18,11 +18,13 @@ type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
   variant?: 'tracker' | 'form' | 'light' | 'dark';
+  isReset?: boolean;
 };
 
 function Datepicker({
   date = new Date(),
   changeDate,
+  isReset,
   variant,
 }: DatePickerProps) {
   // Handle state selected date
@@ -30,15 +32,24 @@ function Datepicker({
 
   //Handle date changes
   const dateChangeHandler = (date: Date) => {
-    setSelectedDate(date);
-    changeDate(date);
-    showDate(date);
+    const dateChanged = isReset ? new Date() : date;
+
+    console.log('isReset:', isReset, 'datechanged:', showDate(dateChanged));
+
+    setSelectedDate(dateChanged);
+    changeDate(dateChanged);
   };
+
+  useEffect(() => {
+    if (isReset) {
+      setSelectedDate(new Date());
+    }
+  }, [isReset]);
 
   return (
     <DatePicker
-      selected={selectedDate}
-      onChange={(selectedDate) => dateChangeHandler(selectedDate!)}
+      selected={isReset ? new Date() : selectedDate}
+      onChange={(date) => dateChangeHandler(date!)}
       showYearDropdown
       scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'

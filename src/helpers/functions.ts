@@ -1,5 +1,7 @@
 import { CurrencyType } from "../types/types";
 
+import { CurrencyType } from "../types/types";
+
 //-------------------------
 export function currencyFormat(
   chosenCurrency = 'USD',
@@ -19,6 +21,8 @@ export function digitRound(n = Number.MIN_VALUE, digit = 2) {
 }
 
 //-------------------------
+export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+//-------------------------
 export function changeCurrency(currency: CurrencyType) {
   if (currency.toLocaleLowerCase() == 'usd') {
     return 'cop';
@@ -27,6 +31,26 @@ export function changeCurrency(currency: CurrencyType) {
   } else {
     return 'usd';
   }
+}
+//-------------------------
+type OpcType = {
+  currentOpc: string | boolean;
+  opc1: string | boolean;
+  opc2: string | boolean;
+};
+
+export function genericToggle({ currentOpc, opc1, opc2 }: OpcType) {
+  const current = () => {
+    const defaultOpc = opc1;
+    if (currentOpc == opc1) {
+      return opc2;
+    } else if (currentOpc == opc2) {
+      return opc1;
+    } else {
+      return defaultOpc;
+    }
+  };
+  return current();
 }
 //-------------------------
 export function numberFormat(
@@ -72,7 +96,7 @@ export function capitalize(word: string) {
 //-------------------------
 
 export function validationData(stateToValidate: {
-  [key: string]: string | number | undefined | null;
+  [key: string]: string | number | Date | undefined | null ;
 }) {
   const errorValidationMessages: { [key: string]: string } = {};
 

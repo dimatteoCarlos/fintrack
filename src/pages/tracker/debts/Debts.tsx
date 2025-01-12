@@ -1,38 +1,48 @@
+//pages/tracker/debts/debts.tsx
 import { useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 
 import SelectComponent from '../components/SelectComponent.tsx';
-// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-// import { , changeCurrency } from '../../../helpers/functions.ts';
 
 import { capitalize } from '../../../helpers/functions.ts';
-import TrackerDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-import { DebtorsListType } from '../../../types/types.ts';
 import { url_debtors } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
-// import { numberFormat } from '../../../helpers/functions.ts';
+import { useLocation } from 'react-router-dom';
+import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
+import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
+// import { , changeCurrency } from '../../../helpers/functions.ts';
+import { CurrencyType, DebtorsListType, DebtsTrackerDataType } from '../../../types/types.ts';
+import { numberFormat } from '../../../helpers/functions.ts';
 
+//temporary values
+const defaultCurrency: CurrencyType = 'usd';
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
+
+
+
+
+const trackerState = useLocation().pathname
 //------------------------------
 
 function Debts() {
-  //temporary values
-  // const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  const defaultCurrency = 'usd';
-  // const formatNumberCountry = currencyOptions[defaultCurrency];
-  // console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
-
-  //----Debts Options Temporary values----------
+  //----Debts Options----------
   //debtors
-
-  const { data, error: fetchedError } = useFetch<DebtorsListType>(url_debtors);
+  const {
+    data,
+    error: fetchedError,
+    isLoading,
+  } = useFetch<DebtorsListType>(url_debtors);
   // console.log('data debtors:', data);
 
   //define what to do when error
   const debtors =
     !fetchedError &&
+    !isLoading &&
+    data?.debtors?.length &&
     data?.debtors?.map((debtor) => ({
       value: debtor.first_name + debtor.last_name,
       label: `${capitalize(debtor.first_name)}, ${capitalize(
@@ -41,7 +51,7 @@ function Debts() {
     }));
 
   const debtorOptions = {
-    title: 'Debtors',
+    title: debtors ? 'Debtors' : 'No info. available',
     options: debtors ?? [
       { value: 'debtor_01', label: 'debtor_01' },
       { value: 'debtor_02', label: 'debtor_02' },
@@ -50,20 +60,22 @@ function Debts() {
   };
   //-----------------
   //input debts data state variables
-  const initialData = {
-    amount: 0,
+
+  const initialData:DebtsTrackerDataType= {
+    amount: undefined,
     account: '',
-    currency: 'usd',
-    type: 'deposit',
+    currency: defaultCurrency,
+    type: 'lend',
     date: new Date(),
     note: '',
   };
+  
   //---states------
-  const [Data, setData] = useState(initialData);
+  const [Data, setData] = useState<DebtsTrackerDataType>(initialData);
 
   const [type, setType] = useState<'lend' | 'borrow'>('lend');
 
-  const [currency, setCurrency] = useState<'usd' | 'cop'>(defaultCurrency);
+  const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
 
   //-----useEffect--------
   useEffect(() => {
@@ -145,6 +157,7 @@ function Debts() {
               <CurrencyBadge
                 updateOutsideCurrencyData={updateDataCurrency}
                 variant='tracker'
+                currency={currency}
               ></CurrencyBadge>
             </div>
           </div>
@@ -169,11 +182,11 @@ function Debts() {
             <div className='card__typeDate--date'>
               <div className='card--title'>Date</div>
               <div className='card__screen--date'>
-                <TrackerDatepicker
+                <Datepicker
                   changeDate={changeDateFn}
                   date={Data.date}
                   variant='tracker'
-                ></TrackerDatepicker>
+                ></Datepicker>
               </div>
             </div>
           </div>

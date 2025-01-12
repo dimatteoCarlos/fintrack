@@ -6,9 +6,9 @@ import { CardTitle } from '../../../general_components/CardTitle';
 import { StatusSquare } from '../../../general_components/boxComponents';
 
 //temporary values------------
-const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 const defaultCurrency = 'usd';
-const formatNumberCountry = currencyOptions[defaultCurrency];
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 
 //Temporary Dummy data
 //Saving Goals

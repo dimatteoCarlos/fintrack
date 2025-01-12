@@ -89,11 +89,14 @@ export type SourceType = {
 export type InvestmentAccountsType = {
   accounts?: InvestmentAccountType[] | null;
 };
+
+export type InvestmentTypeMovementType = 'deposit' | 'withdraw' 
+
 export type InvestmentAccountType = {
   id: number;
   name: string;
   description: string;
-  type: string;
+  type:InvestmentTypeMovementType// string;//specify the possible types as a union of string types
   currency: string;
   balance: number;
 };

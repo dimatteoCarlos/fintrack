@@ -230,7 +230,7 @@ function Income() {
             selectedValue={incomeData['source']}
           />
 
-          {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
+
           <div className='card--title'>
             Note
             <span className='validation__errMsg'>

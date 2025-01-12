@@ -19,9 +19,9 @@ import { numberFormat, validationData } from '../../../helpers/functions.ts';
 // import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 // import { numberFormat } from '../../../helpers/functions.ts';
 
-const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
+const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 const defaultCurrency = 'usd';
-const formatNumberCountry = currencyOptions[defaultCurrency];
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
 
 //------------------------------
@@ -36,16 +36,17 @@ function Expense() {
   const { data, error: fetchedError } =
     useFetch<ExpenseAccountsType>(url_accounts);
 
-  const optionsExpenseAccounts = (!fetchedError && data?.accounts?.length)
-    ? data.accounts.map((acc, _) => ({
-        value: acc.name,
-        label: acc.name,
-      }))
-    : [
-        { value: 'acc.name_01', label: 'acc.name_01' },
-        { value: 'acc.name_02', label: 'acc.name_02' },
-        { value: 'acc.name_03', label: 'acc.name_03' },
-      ];
+  const optionsExpenseAccounts =
+    !fetchedError && data?.accounts?.length
+      ? data.accounts.map((acc, _) => ({
+          value: acc.name,
+          label: acc.name,
+        }))
+      : [
+          { value: 'acc.name_01', label: 'acc.name_01' },
+          { value: 'acc.name_02', label: 'acc.name_02' },
+          { value: 'acc.name_03', label: 'acc.name_03' },
+        ];
 
   const accountOptions = {
     title: 'Available Account',
@@ -123,11 +124,11 @@ function Expense() {
       e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
     setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
 
-    console.log(
-      'updateTrackerData:',
-      { [e.target.name]: e.target.value },
-      currency
-    );
+    // console.log(
+    //   'updateTrackerData:',
+    //   { [e.target.name]: e.target.value },
+    //   currency
+    // );
   }
 
   // function validationData(stateToValidate: {
@@ -186,7 +187,7 @@ function Expense() {
 
     //validation of data entered
     const newValidationMessages = validationData(expenseData);
-    console.log('validation mgs:', newValidationMessages);
+    // console.log('validation mgs:', newValidationMessages);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
@@ -284,6 +285,7 @@ function Expense() {
               {validationMessages['note']}
             </span>
           </div>
+
           {/* <CardNote dataHandler={textareaTrackDataHandler} note={expenseData.note}/> */}
 
           <div

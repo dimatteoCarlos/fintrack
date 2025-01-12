@@ -3,9 +3,9 @@ import { useFetch } from '../../../hooks/useFetch.tsx';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
 import {
   CurrencyType,
@@ -22,14 +22,11 @@ import {
 import { useLocation } from 'react-router-dom';
 
 //------------------------------
+const defaultCurrency: CurrencyType = 'usd';
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
 
 function Investment() {
-  const defaultCurrency: CurrencyType = 'usd';
-  //temporary values
-
-  const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
-  console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
-
   //----Investment account Options----------
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
@@ -88,9 +85,7 @@ function Investment() {
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
 
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
-  // const [isReset, setIsReset] = useState<boolean>(false);
-
-
+  const [isReset, setIsReset] = useState<boolean>(false);
 
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
@@ -99,7 +94,7 @@ function Investment() {
   //----functions--------
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
-    setInvestmentData((data) => ({ ...data, currency: currency }));
+    setInvestmentData((prev) => ({ ...prev, currency: currency }));
     // console.log('selected updateDataCurrency point:', currency);
   }
   //-----------
@@ -121,16 +116,48 @@ function Investment() {
 
   function onSaveHandler() {
     console.log('On Save Handler');
+    const formattedNumber = numberFormat(investmentData.amount || 0);
+    console.log(
+      'num formato string:',
+      { formattedNumber },
+      typeof formattedNumber
+    );
+
+    //validation of entered data
+    const newValidationMessages = validationData(investmentData);
+    // console.log('validation mgs:', newValidationMessages);
+
+    if (Object.values(newValidationMessages).length > 0) {
+      setValidationMessages(newValidationMessages);
+      return;
+    }
+
+    //do the POST to the endpoint:
+
+    //reset values
+    setIsReset(true);
+    setInvestmentData(initialInvestmentData); //check this
+
+    setTypeInv('deposit');
+    updateDataCurrency(defaultCurrency);
+    setInvestmentData((prev) => ({ ...prev, date: new Date() }));
+    setValidationMessages({});
+
+    // after a delay, change isReset to false
+    setTimeout(() => {
+      setIsReset(false);
+    }, 1500);
   }
 
   function changeInvestmentDate(selectedDate: Date): void {
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
+
     // console.log(investmentData);
   }
 
   //-----useEffect--------
   useEffect(() => {
-    updateDataCurrency;
+    updateDataCurrency(currency);
     setInvestmentData((prev) => ({ ...prev, type: typeInv }));
   }, [currency, typeInv]);
 
@@ -140,23 +167,23 @@ function Investment() {
     <>
       <article className='investment' style={{ color: 'inherit' }}>
         <div className='state__card--top'>
+          <div className='card--title'>
+            Amount
+            <span className='validation__errMsg'>
+              {validationMessages['amount']}
+            </span>
+          </div>
           <div className='card--title'>Amount<span className='validation__errMsg'>{validationMessages['amount']}</span></div>
 
           <div className='card__screen'>
             <input
               className='inputNumber'
               type='number'
-              placeholder={'0,000.00'}
+              placeholder={trackerState}
               onChange={updateTrackerData}
               name='amount'
-              value={`${investmentData.amount}`}
-
-              // value={`${numberFormat(Number.parseFloat(investmentData.amount), formatNumberCountry)}`}
+              value={investmentData.amount || ''}
             />
-
-            {/* <div className='icon-currency' onClick={toggleCurrency}>
-              {currency.toUpperCase()}
-            </div> */}
 
             <div className='account__currency'>
               <CurrencyBadge
@@ -167,7 +194,7 @@ function Investment() {
             </div>
           </div>
 
-          <div className='card--title'>Account<span className='validation__errMsg'>{validationMessages['Account']}</span></div>
+          <div className='card--title'>Account</div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>
         <CardSeparator />
@@ -188,18 +215,17 @@ function Investment() {
             <div className='card__typeDate--date'>
               <div className='card--title'> Date </div>
               <div className='card__screen--date'>
-                {/* <TrackerDatepicker */}
                 <Datepicker
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
                   variant={'tracker'}
+                  isReset={isReset}
                 ></Datepicker>
-                {/* ></TrackerDatepicker> */}
               </div>
             </div>
           </div>
 
-          <div className='card--title'>Note<span className='validation__errMsg'>{validationMessages['Note']}</span></div>
+          <div className='card--title'>Note</div>
 
           <div
             className='note--expense'

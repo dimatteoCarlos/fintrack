@@ -110,8 +110,8 @@ function SelectComponent({
         closeMenuOnSelect={true}
         components={{ DropdownIndicator }}
         isSearchable
-        defaultValue={title ? title : options[0]}
         isClearable
+        defaultValue={title ? title : options[0]}
         ref={selectRef}
 
         // Asigna el valor actual del select
