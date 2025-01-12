@@ -5,7 +5,7 @@ import CardSeparator from '../components/CardSeparator.tsx';
 
 import SelectComponent from '../components/SelectComponent.tsx';
 
-import { capitalize } from '../../../helpers/functions.ts';
+import { capitalize, validationData } from '../../../helpers/functions.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_debtors } from '../../../endpoints.ts';
@@ -14,7 +14,12 @@ import { useLocation } from 'react-router-dom';
 import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 // import { , changeCurrency } from '../../../helpers/functions.ts';
-import { CurrencyType, DebtorsListType, DebtsTrackerDataType } from '../../../types/types.ts';
+import {
+  CurrencyType,
+  DebtorsListType,
+  DebtsTrackerDataType,
+  DebtsTypeMovementType,
+} from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
 
 //temporary values
@@ -22,28 +27,24 @@ const defaultCurrency: CurrencyType = 'usd';
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
-
-
-
-const trackerState = useLocation().pathname
 //------------------------------
 
 function Debts() {
-  //----Debts Options----------
+  const trackerState = useLocation().pathname.split('/')[2];
+  //----Debtors Options----------
   //debtors
   const {
-    data,
+    data: dataDebtors,
     error: fetchedError,
     isLoading,
   } = useFetch<DebtorsListType>(url_debtors);
-  // console.log('data debtors:', data);
 
   //define what to do when error
   const debtors =
     !fetchedError &&
     !isLoading &&
-    data?.debtors?.length &&
-    data?.debtors?.map((debtor) => ({
+    dataDebtors?.debtors?.length &&
+    dataDebtors?.debtors?.map((debtor) => ({
       value: debtor.first_name + debtor.last_name,
       label: `${capitalize(debtor.first_name)}, ${capitalize(
         debtor.last_name
@@ -61,69 +62,46 @@ function Debts() {
   //-----------------
   //input debts data state variables
 
-  const initialData:DebtsTrackerDataType= {
+  const initialTrackerData: DebtsTrackerDataType = {
     amount: undefined,
-    account: '',
+    debtor: '',
     currency: defaultCurrency,
     type: 'lend',
     date: new Date(),
     note: '',
   };
-  
+
   //---states------
-  const [Data, setData] = useState<DebtsTrackerDataType>(initialData);
-
-  const [type, setType] = useState<'lend' | 'borrow'>('lend');
-
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
+  const [type, setType] = useState<DebtsTypeMovementType>('lend');
+  const [data, setData] = useState<DebtsTrackerDataType>(initialTrackerData);
+  const [validationMessages, setValidationMessages] = useState<{
+    [key: string]: string;
+  }>({});
+  const [isReset, setIsReset] = useState<boolean>(false);
 
-  //-----useEffect--------
-  useEffect(() => {
-    setData((prev) => ({ ...prev, currency: currency }));
-    setCurrency(currency);
+  //----Functions ------
 
-    setData((prev) => ({ ...prev, type: type }));
-  }, [currency, type]);
-
-  //----functions--------
-
-  function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateTrackerData(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     e.preventDefault();
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const valueToSave =
+      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+
+    setData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
 
-  function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-    // console.log(Data);
+  function updateDataCurrency(currency: CurrencyType) {
+    setCurrency(currency);
+    setData((prev) => ({ ...prev, currency: currency }));
+    // console.log('selected updateDataCurrency point:', currency);
   }
 
   function toggleType() {
-    const current = (type: 'lend' | 'borrow') => {
-      if (type == 'lend') {
-        return 'borrow';
-      } else if (type == 'borrow') {
-        return 'lend';
-      } else {
-        return 'lend';
-      }
-    };
-    setType((prev) => current(prev));
-  }
-
-  function updateDataCurrency(currency: string) {
-    setData((data) => ({ ...data, currency: currency }));
-    // setCurrency(currency);
-    // console.log('selected starting point:', currency);
-  }
-
-  // function toggleCurrency() {
-  //   setCurrency((prev) => changeCurrency(prev));
-  // }
-
-  function onSaveHandler() {
-    console.log('On Save Handler');
+    setType((prev: DebtsTypeMovementType) =>
+      prev === 'lend' ? 'borrow' : 'lend'
+    );
   }
 
   function changeDateFn(selectedDate: Date): void {
@@ -131,27 +109,71 @@ function Debts() {
     // console.log(Data);
   }
 
+  function onSaveHandler() {
+    console.log('On Save Handler');
+    const formattedNumber = numberFormat(data.amount || 0);
+    console.log(
+      'formatted amount as a string:',
+      { formattedNumber },
+      typeof formattedNumber
+    );
+
+    //-------entered data validation messages -----------
+    const newValidationMessages = validationData(data);
+
+    if (Object.values(newValidationMessages).length > 0) {
+      setValidationMessages(newValidationMessages);
+      return;
+    }
+    //----------------------------
+    //do the post to the endpoint api
+
+    //----------------------------
+    //reset values
+
+    setIsReset(true);
+    setData(initialTrackerData);
+    updateDataCurrency(defaultCurrency);
+    setValidationMessages({});
+    setType('lend');
+    setData((prev) => ({ ...prev, date: new Date() }));
+
+    setTimeout(() => {
+      setIsReset(false);
+    }, 1000);
+  }
+
+  //-----useEffect--------
+  useEffect(() => {
+    updateDataCurrency(currency);
+
+    setData((prev) => ({ ...prev, currency: currency }));
+    setData((prev) => ({ ...prev, type: type }));
+  }, [currency, type]);
+
+  //------------
   //--------------------------
 
   return (
     <>
       <article className='debts' style={{ color: 'inherit' }}>
         <div className='state__card--top'>
-          <div className='card--title'>Amount</div>
+          <div className='card--title'>
+            Amount
+            <span className='validation__errMsg'>
+              {validationMessages['amount']}
+            </span>
+          </div>
 
           <div className='card__screen'>
             <input
               className='inputNumber'
               type='number'
-              placeholder='0,000.00'
-              onChange={inputTrackDataHandler}
+              placeholder={trackerState}
+              onChange={updateTrackerData}
               name='amount'
-              value={`${Data.amount}`}
+              value={data.amount || ''}
             />
-
-            {/* <div className='icon-currency' onClick={toggleCurrency}>
-              {currency.toUpperCase()}
-            </div> */}
 
             <div className='account__currency'>
               <CurrencyBadge
@@ -162,14 +184,24 @@ function Debts() {
             </div>
           </div>
 
-          <div className='card--title'>Debtor</div>
-          <SelectComponent dropDownOptions={debtorOptions} />
+          <div className='card--title'>
+            Debtor
+            <span className='validation__errMsg'>
+              {validationMessages['debtor']}
+            </span>
+          </div>
+          <SelectComponent
+            dropDownOptions={debtorOptions}
+            setSelectState={setData}
+            isReset={isReset}
+            setIsReset={setIsReset}
+            optionKeySelected='debtor'
+            selectedValue={data['debtor']}
+          />
         </div>
 
         <div className='state__card--bottom'>
           <CardSeparator />
-
-          {/* IS NECESARY TO APPLY DEBOUNCE TO INPUT AND TEXTAREA?*/}
 
           <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
@@ -184,14 +216,20 @@ function Debts() {
               <div className='card__screen--date'>
                 <Datepicker
                   changeDate={changeDateFn}
-                  date={Data.date}
+                  date={data.date}
                   variant='tracker'
+                  isReset={isReset}
                 ></Datepicker>
               </div>
             </div>
           </div>
 
-          <div className='card--title'>Note</div>
+          <div className='card--title'>
+            Note
+            <span className='validation__errMsg'>
+              {validationMessages['note']}
+            </span>
+          </div>
 
           <div
             className='note--expense'
@@ -201,17 +239,16 @@ function Debts() {
               <textarea
                 className='input__note__description'
                 placeholder='Description'
-                onChange={textareaTrackDataHandler}
+                onChange={updateTrackerData}
                 name='note'
                 rows={3}
                 maxLength={150}
-                value={Data.note}
+                value={data.note}
               />
             </div>
 
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
-          {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
         </div>
       </article>
     </>
