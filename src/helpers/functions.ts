@@ -1,3 +1,5 @@
+import { CurrencyType } from "../types/types";
+
 //-------------------------
 export function currencyFormat(
   chosenCurrency = 'USD',
@@ -17,7 +19,7 @@ export function digitRound(n = Number.MIN_VALUE, digit = 2) {
 }
 
 //-------------------------
-export function changeCurrency(currency: 'cop' | 'usd') {
+export function changeCurrency(currency: CurrencyType) {
   if (currency.toLocaleLowerCase() == 'usd') {
     return 'cop';
   } else if (currency.toLocaleLowerCase() == 'cop') {
@@ -92,3 +94,5 @@ export function validationData(stateToValidate: {
   }
   return errorValidationMessages;
 } //fn
+
+export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' }

@@ -140,7 +140,7 @@ function Investment() {
     <>
       <article className='investment' style={{ color: 'inherit' }}>
         <div className='state__card--top'>
-          <div className='card--title'>Amount</div>
+          <div className='card--title'>Amount<span className='validation__errMsg'>{validationMessages['amount']}</span></div>
 
           <div className='card__screen'>
             <input
@@ -162,11 +162,12 @@ function Investment() {
               <CurrencyBadge
                 updateOutsideCurrencyData={updateDataCurrency}
                 variant='tracker'
+                currency={currency}
               ></CurrencyBadge>
             </div>
           </div>
 
-          <div className='card--title'>Account</div>
+          <div className='card--title'>Account<span className='validation__errMsg'>{validationMessages['Account']}</span></div>
           <SelectComponent dropDownOptions={accountOptions} />
         </div>
         <CardSeparator />
@@ -198,7 +199,7 @@ function Investment() {
             </div>
           </div>
 
-          <div className='card--title'>Note</div>
+          <div className='card--title'>Note<span className='validation__errMsg'>{validationMessages['Note']}</span></div>
 
           <div
             className='note--expense'

@@ -132,4 +132,8 @@ export type BudgetType = {
   category_id: number;
 };
 
-export type CurrencyType = 'usd' | 'cop' | 'eur'
+export type CurrencyType = 'usd' | 'cop' | 'eur';
+
+export type InvestmentTypeMovementType = 'deposit' | 'withdraw';
+
+export type CURRENCY_OPTIONSTYPE = { usd: 'en-US'; cop: 'cop-CO'; eur: 'en-US' };
