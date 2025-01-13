@@ -67,6 +67,9 @@ button {
 .bordered {
   border: 2px solid red;
 }
+
+
+
 /*
 input::placeholder {
   color: gray;
