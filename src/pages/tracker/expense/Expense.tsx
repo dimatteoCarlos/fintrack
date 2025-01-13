@@ -1,4 +1,4 @@
-//src/ages/tracker/expense/Expense.tsx
+//src/pages/tracker/expense/Expense.tsx
 import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
@@ -13,24 +13,51 @@ import {
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { numberFormat, validationData } from '../../../helpers/functions.ts';
+import {
+  numberFormat,
+  validationData,
+  CURRENCY_OPTIONS,
+} from '../../../helpers/functions.ts';
+import {} from '../../../helpers/functions.ts';
 
-// import CardNote from '../components/CardNote.tsx';
-// import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-// import { numberFormat } from '../../../helpers/functions.ts';
-
-const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 const defaultCurrency = 'usd';
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
 
+//input expense data state variables
+type ExpenseDataType = {
+  amount: number | string | undefined;
+  account: string;
+  category: string;
+  note: string;
+  currency: string;
+};
+
+const initialExpenseData: ExpenseDataType = {
+  amount: undefined,
+  account: '',
+  category: '',
+  note: '',
+  currency: defaultCurrency,
+};
 //------------------------------
+
+const categoryOptionsDefault = [
+  { value: 'category_01', label: 'Category_01 / SubCategory 01' },
+  { value: 'category_02', label: 'Category_02 / SubCategory 02' },
+  { value: 'category_03', label: 'Category_03 / SubCategory 03' },
+];
+
+const accountOptionsDefault = [
+  { value: 'acc.name_01', label: 'acc.name_01' },
+  { value: 'acc.name_02', label: 'acc.name_02' },
+  { value: 'acc.name_03', label: 'acc.name_03' },
+];
 
 function Expense() {
   //----Expense account Options -------
   const router = useLocation();
   const trackerState = router.pathname.split('/')[2];
-  // console.log({ trackerState });
 
   //account options
   const { data, error: fetchedError } =
@@ -42,11 +69,7 @@ function Expense() {
           value: acc.name,
           label: acc.name,
         }))
-      : [
-          { value: 'acc.name_01', label: 'acc.name_01' },
-          { value: 'acc.name_02', label: 'acc.name_02' },
-          { value: 'acc.name_03', label: 'acc.name_03' },
-        ];
+      : accountOptionsDefault;
 
   const accountOptions = {
     title: 'Available Account',
@@ -69,34 +92,12 @@ function Expense() {
       optionsExpenseCategories && !categoryError
         ? 'Category / Subategory'
         : 'No Categories available',
-    options: optionsExpenseCategories ?? [
-      { value: 'category_01', label: 'Category_01 / SubCategory 01' },
-      { value: 'category_02', label: 'Category_02 / SubCategory 02' },
-      { value: 'category_03', label: 'Category_03 / SubCategory 03' },
-    ],
-  };
-
-  //-----------------
-  //input expense data state variables
-  type ExpenseDataType = {
-    amount: number | string | undefined;
-    account: string;
-    category: string;
-    note: string;
-    currency: string;
-  };
-
-  const initialExpenseData: ExpenseDataType = {
-    amount: undefined,
-    account: '',
-    category: '',
-    note: '',
-    currency: defaultCurrency,
+    options: optionsExpenseCategories ?? categoryOptionsDefault,
   };
 
   //---states-------------
-  const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
+  const [expenseData, setExpenseData] = useState(initialExpenseData);
   const [isReset, setIsReset] = useState<boolean>(false);
 
   const [validationMessages, setValidationMessages] = useState<{
@@ -105,7 +106,7 @@ function Expense() {
 
   //-----useEffect--------
   useEffect(() => {
-    setExpenseData((prev) => ({ ...prev, currency: currency }));
+    updateDataCurrency(currency);
   }, [currency]);
 
   //----functions--------
@@ -123,69 +124,20 @@ function Expense() {
     const valueToSave =
       e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
     setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
-
-    // console.log(
-    //   'updateTrackerData:',
-    //   { [e.target.name]: e.target.value },
-    //   currency
-    // );
   }
-
-  // function validationData(stateToValidate: {
-  //   [key: string]: string | number | undefined | null;
-  // }) {
-  //   const errorValidationMessages: { [key: string]: string } = {};
-
-  //   for (const key in stateToValidate) {
-  //     const value = stateToValidate[key];
-
-  //     if (!value) {
-  //       errorValidationMessages[key] = `* Please provide the ${capitalize(
-  //         key
-  //       )}`;
-  //       continue;
-  //     }
-
-  //     if (typeof value === 'number' && value < 0) {
-  //       errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
-  //     }
-
-  //     if (typeof value === 'string' && !value) {
-  //       errorValidationMessages[key] = `* Please provide the ${capitalize(
-  //         key
-  //       )}`;
-  //     }
-  //   }
-  //   return errorValidationMessages;
-  // }
-  //fn
-
-  // function inputTrackDataHandler(e: React.ChangeEvent<HTMLInputElement>) {
-  //   e.preventDefault();
-  //   setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  // }
-
-  // function textareaTrackDataHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
-  //   e.preventDefault();
-  //   setExpenseData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  // }
 
   function onSaveHandler() {
     console.log('On Save Handler');
 
-    console.log({ expenseData }); //aqui amount esta como numero
-
     const formattedNumber = numberFormat(expenseData.amount || 0);
-    //se carga en state como string, obedeciendo el formato, pero error de typescript
-    //  setExpenseData((prev) => ({ ...prev, amount: formattedNumber }));
 
     console.log(
-      'num formato string:',
+      'formatted amount as a string:',
       { formattedNumber },
       typeof formattedNumber
     );
 
-    //validation of data entered
+    //validation of entered data
     const newValidationMessages = validationData(expenseData);
     // console.log('validation mgs:', newValidationMessages);
 
@@ -204,6 +156,8 @@ function Expense() {
     setExpenseData(initialExpenseData);
     setCurrency(defaultCurrency);
     setValidationMessages({});
+
+    setTimeout(() => setIsReset(false), 500);
   }
 
   //--------------------------
@@ -237,6 +191,7 @@ function Expense() {
             <CurrencyBadge
               variant={'tracker'}
               updateOutsideCurrencyData={updateDataCurrency}
+              currency={currency}
             />
           </div>
 
@@ -250,9 +205,9 @@ function Expense() {
           <SelectComponent
             dropDownOptions={accountOptions}
             setSelectState={setExpenseData}
-            optionKeySelected='account'
             isReset={isReset}
             setIsReset={setIsReset}
+            optionKeySelected='account'
             selectedValue={expenseData['account']}
           />
         </div>
