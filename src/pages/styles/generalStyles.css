@@ -98,19 +98,26 @@ body {
 
 /*------Layout-------*/
 .home__layout {
-  /* --figmaWidth:22.5rem;
-  min-width: var(--figmaWidth); */
-  /* height: 50rem; */
-  max-height: 54rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-
+ 
+  /* --figmaWidth:22.5rem;
+  min-width: var(--figmaWidth); */
   min-width: 26rem;
   max-width: 37.5rem;
   padding-bottom: 1rem;
+
+  overflow-x:auto;
+
+}
+
+.home__layout {
+  position: relative;
+  height:100vh;
+  min-height:51rem;
+  max-height:52rem;
 }
 
 .home__header {
@@ -150,8 +157,8 @@ body {
   top: var(--topSpaceHeight);
   left: 0;
   background-color: var(--light);
-  /* background-color: orange; */
   z-index: 1;
+  /* background-color: orange; */
 }
 
 .headerContent__container {
