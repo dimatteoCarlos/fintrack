@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch.tsx';
+import { url_investment_acc } from '../../../endpoints.ts';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
@@ -12,7 +13,7 @@ import {
   InvestmentAccountsType,
   InvestmentTypeMovementType,
 } from '../../../types/types.ts';
-import { url_investment_acc } from '../../../endpoints.ts';
+
 import {
   numberFormat,
   validationData,
@@ -22,10 +23,38 @@ import {
 import { useLocation } from 'react-router-dom';
 
 //------------------------------
+//temporary values
 const defaultCurrency: CurrencyType = 'usd';
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
-console.log('🚀 ~ Investment ~ formatNumberCountry:', formatNumberCountry);
+console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
+//input investment data state variables
+
+type InvestmentDataType = {
+  amount: number | string | undefined;
+  account: string;
+  currency: CurrencyType;
+  type: InvestmentTypeMovementType;
+  date: Date;
+  note: string;
+};
+
+const initialInvestmentData: InvestmentDataType = {
+  amount: undefined,
+  account: '',
+  currency: defaultCurrency,
+  type: 'deposit',
+  date: new Date(),
+  note: '',
+};
+
+const accountOptionsDefault = [
+  { value: 'account_01', label: 'Account_01' },
+  { value: 'account_02', label: 'Account_02' },
+  { value: 'account_03', label: 'Account_03' },
+  { value: 'account_04', label: 'Account_04' },
+];
+//-----------------------------------------
 function Investment() {
   //----Investment account Options----------
   const { pathname } = useLocation();
@@ -47,42 +76,16 @@ function Investment() {
       label: acc.name,
     }));
 
-  //define what to do when error and when 'No income account info available'
-
   const accountOptions = {
     title: 'Available Account',
-    options: investmentAccounts ?? [
-      { value: 'account_01', label: 'Account_01' },
-      { value: 'account_02', label: 'Account_02' },
-      { value: 'account_03', label: 'Account_03' },
-      { value: 'account_04', label: 'Account_04' },
-    ],
+    options: investmentAccounts ?? accountOptionsDefault,
   };
 
   //-----------------
-  //input investment data state variables
 
-  type InvestmentDataType = {
-    amount: number | string | undefined;
-    account: string;
-    currency: CurrencyType;
-    type: InvestmentTypeMovementType;
-    date: Date;
-    note: string;
-  };
-
-  const initialInvestmentData: InvestmentDataType = {
-    amount: undefined,
-    account: '',
-    currency: defaultCurrency,
-    type: 'deposit',
-    date: new Date(),
-    note: '',
-  };
   //---states------
-  const [investmentData, setInvestmentData] = useState(initialInvestmentData);
-
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
+  const [investmentData, setInvestmentData] = useState(initialInvestmentData);
 
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
   const [isReset, setIsReset] = useState<boolean>(false);
@@ -92,11 +95,15 @@ function Investment() {
   }>({});
 
   //----functions--------
-  function updateDataCurrency(currency: CurrencyType) {
-    setCurrency(currency);
-    setInvestmentData((prev) => ({ ...prev, currency: currency }));
-    // console.log('selected updateDataCurrency point:', currency);
-  }
+
+  const updateDataCurrency = useCallback(
+    (currency: CurrencyType) => {
+      setCurrency(currency);
+      setInvestmentData((prev) => ({ ...prev, currency: currency }));
+    },
+    [currency]
+  );
+
   //-----------
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -105,15 +112,20 @@ function Investment() {
 
     const valueToSave =
       e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+
     setInvestmentData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
 
-  function toggleInvestmentType() {
+  const toggleInvestmentType = useCallback(() => {
     setTypeInv((prev: InvestmentTypeMovementType) =>
       prev === 'deposit' ? 'withdraw' : 'deposit'
     );
+  }, [typeInv]);
+  //--
+  function changeInvestmentDate(selectedDate: Date): void {
+    setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
   }
-
+  //----
   function onSaveHandler() {
     console.log('On Save Handler');
     const formattedNumber = numberFormat(investmentData.amount || 0);
@@ -125,14 +137,16 @@ function Investment() {
 
     //validation of entered data
     const newValidationMessages = validationData(investmentData);
-    // console.log('validation mgs:', newValidationMessages);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
 
-    //do the POST to the endpoint:
+    //----------------------------
+    //do the post to the endpoint api
+
+    //----------------------------
 
     //reset values
     setIsReset(true);
@@ -146,13 +160,7 @@ function Investment() {
     // after a delay, change isReset to false
     setTimeout(() => {
       setIsReset(false);
-    }, 1500);
-  }
-
-  function changeInvestmentDate(selectedDate: Date): void {
-    setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
-
-    // console.log(investmentData);
+    }, 500);
   }
 
   //-----useEffect--------
@@ -173,7 +181,6 @@ function Investment() {
               {validationMessages['amount']}
             </span>
           </div>
-          <div className='card--title'>Amount<span className='validation__errMsg'>{validationMessages['amount']}</span></div>
 
           <div className='card__screen'>
             <input
@@ -194,8 +201,20 @@ function Investment() {
             </div>
           </div>
 
-          <div className='card--title'>Account</div>
-          <SelectComponent dropDownOptions={accountOptions} />
+          <div className='card--title'>
+            Account
+            <span className='validation__errMsg'>
+              {validationMessages['account']}
+            </span>
+          </div>
+          <SelectComponent
+            dropDownOptions={accountOptions}
+            setSelectState={setInvestmentData}
+            isReset={isReset}
+            setIsReset={setIsReset}
+            optionKeySelected='account'
+            selectedValue={investmentData['account']}
+          />
         </div>
         <CardSeparator />
 
@@ -225,7 +244,12 @@ function Investment() {
             </div>
           </div>
 
-          <div className='card--title'>Note</div>
+          <div className='card--title'>
+            Note
+            <span className='validation__errMsg'>
+              {validationMessages['note']}
+            </span>
+          </div>
 
           <div
             className='note--expense'
@@ -246,7 +270,6 @@ function Investment() {
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
         </div>
-        {/* <FormSubmitBtn onClickHandler={onSaveHandler}>{'save'}</FormSubmitBtn> */}
       </article>
     </>
   );
