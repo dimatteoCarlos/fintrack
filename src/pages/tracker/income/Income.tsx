@@ -1,13 +1,8 @@
 //src/pages/tracker/expense/Income.tsx
-import { useCallback, useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import {
-  capitalize,
-  validationData,
-  numberFormat,
-} from '../../../helpers/functions.ts';
+import { validationData, numberFormat } from '../../../helpers/functions.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
@@ -50,6 +45,13 @@ const incomeOptionsDefault = [
   { value: 'account_02', label: 'Account_02' },
   { value: 'account_03', label: 'Account_03' },
   { value: 'account_04', label: 'Account_04' },
+];
+
+const sourceOptionsDefault = [
+  { value: 'source_01', label: 'source_01' },
+  { value: 'source_02', label: 'source_02' },
+  { value: 'source_03', label: 'source_03' },
+  { value: 'source_04', label: 'source_04' },
 ];
 
 function Income() {
@@ -97,12 +99,7 @@ function Income() {
             value: src.name,
             label: src.name,
           }))
-        : [
-            { value: 'source_01', label: 'source_01' },
-            { value: 'source_02', label: 'source_02' },
-            { value: 'source_03', label: 'source_03' },
-            { value: 'source_04', label: 'source_04' },
-          ],
+        : sourceOptionsDefault,
   };
 
   // console.log('SOURCES:', { sourceOptions });
@@ -167,7 +164,7 @@ function Income() {
 
     setTimeout(() => {
       setIsReset(false);
-    }, 1000);
+    }, 500);
   }
 
   //--------------------------
