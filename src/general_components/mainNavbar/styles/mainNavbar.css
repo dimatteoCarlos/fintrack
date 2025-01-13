@@ -12,11 +12,11 @@
 
 .mainNavbar__container {
   border: none;
-
+  position:sticky;
+  bottom: 0.5%;
 }
 
 /* .mainNavbarButton:not(:active) {
-  
   border: 1px solid red;
 } */
 
@@ -48,5 +48,4 @@
   font-size: var(--fsz);
   text-transform: capitalize;
   font-weight: 600;
-
 }
