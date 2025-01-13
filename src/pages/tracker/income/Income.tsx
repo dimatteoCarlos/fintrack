@@ -1,8 +1,13 @@
-//src/ages/tracker/expense/Income.tsx
-import { useEffect, useState } from 'react';
+//src/pages/tracker/expense/Income.tsx
+import { useCallback, useEffect, useState } from 'react';
 
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
+import {
+  capitalize,
+  validationData,
+  numberFormat,
+} from '../../../helpers/functions.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
@@ -14,12 +19,38 @@ import {
 import { url_accounts, url_sources } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { numberFormat, validationData } from '../../../helpers/functions.ts';
+import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
 
-const currencyOptions = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-const defaultCurrency = 'usd';
-const formatNumberCountry = currencyOptions[defaultCurrency];
+//temporary values
+const defaultCurrency: CurrencyType = 'usd';
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 console.log(formatNumberCountry);
+
+//input income data state variables
+
+type IncomeDataType = {
+  amount: number | string | undefined;
+  account: string;
+  source: string;
+  note: string;
+  currency: string;
+};
+
+const initialIncomeData: IncomeDataType = {
+  amount: undefined,
+  account: '',
+  source: '',
+  note: '',
+  currency: defaultCurrency,
+};
+
+const incomeOptionsDefault = [
+  { value: 'account_01', label: 'Account_01' },
+  { value: 'account_02', label: 'Account_02' },
+  { value: 'account_03', label: 'Account_03' },
+  { value: 'account_04', label: 'Account_04' },
+];
 
 function Income() {
   //---- Income account Options ----------
@@ -41,12 +72,7 @@ function Income() {
           value: acc.name,
           label: acc.name,
         }))
-      : [
-          { value: 'account_01', label: 'Account_01' },
-          { value: 'account_02', label: 'Account_02' },
-          { value: 'account_03', label: 'Account_03' },
-          { value: 'account_04', label: 'Account_04' },
-        ];
+      : incomeOptionsDefault;
 
   // console.log('accounts:', { optionsIncomeAccounts });
 
@@ -81,43 +107,23 @@ function Income() {
 
   // console.log('SOURCES:', { sourceOptions });
 
-  //-----------------
-  //input income data state variables
-
-  type IncomeDataType = {
-    amount: number | string | undefined;
-    account: string;
-    source: string;
-    note: string;
-    currency: string;
-  };
-
-  const initialIncomeData: IncomeDataType = {
-    amount: undefined,
-    account: '',
-    source: '',
-    note: '',
-    currency: defaultCurrency,
-  };
-
   //---states------
+  const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
     useState<IncomeDataType>(initialIncomeData);
-  const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
-  const [isReset, setIsReset] = useState<boolean>(false);
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
+  const [isReset, setIsReset] = useState<boolean>(false);
 
   //-----useEffect--------
   useEffect(() => {
-    setIncomeData((prev) => ({ ...prev, currency: currency }));
+    updateDataCurrency(currency);
   }, [currency]);
 
   //----functions--------
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
-    // setIncomeData((data) => ({ ...data, currency: currency }));
     setIncomeData((prev) => ({ ...prev, currency: currency }));
     // console.log('updateDataCurrency:', currency);
   }
@@ -130,40 +136,38 @@ function Income() {
     const valueToSave =
       e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
     setIncomeData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
-
-    // console.log(
-    //   'updateTrackerData:',
-    //   { [e.target.name]: e.target.value },
-    //   currency
-    // );
   }
   //-----------
   function onSaveHandler() {
     console.log('On Save Handler');
     const formattedNumber = numberFormat(incomeData.amount || 0);
     console.log(
-      'num formato string:',
+      'formatted amount as a string:',
       { formattedNumber },
       typeof formattedNumber
     );
 
     //validation of entered data
     const newValidationMessages = validationData(incomeData);
-    // console.log('validation mgs:', newValidationMessages);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
 
-    //do the POST to the endpoint:
+    //do the POST to the api endpoint:
     console.log('income:', { incomeData });
+    //----------------------------
 
     //reset values
     setIsReset(true);
     setIncomeData(initialIncomeData);
     setCurrency(defaultCurrency);
     setValidationMessages({});
+
+    setTimeout(() => {
+      setIsReset(false);
+    }, 1000);
   }
 
   //--------------------------
@@ -192,6 +196,7 @@ function Income() {
             <CurrencyBadge
               variant={'tracker'}
               updateOutsideCurrencyData={updateDataCurrency}
+              currency={currency}
             />
           </div>
 
@@ -205,9 +210,9 @@ function Income() {
           <SelectComponent
             dropDownOptions={accountOptions}
             setSelectState={setIncomeData}
-            optionKeySelected='account'
             isReset={isReset}
             setIsReset={setIsReset}
+            optionKeySelected='account'
             selectedValue={incomeData['account']}
           />
         </div>
@@ -221,15 +226,15 @@ function Income() {
               {validationMessages['source']}
             </span>
           </div>
+
           <SelectComponent
             dropDownOptions={sourceOptions}
             setSelectState={setIncomeData}
-            optionKeySelected='source'
             isReset={isReset}
             setIsReset={setIsReset}
+            optionKeySelected='source'
             selectedValue={incomeData['source']}
           />
-
 
           <div className='card--title'>
             Note
