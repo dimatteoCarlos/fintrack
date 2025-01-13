@@ -18,15 +18,14 @@ function BudgetButton() {
         to='/budget/categories'
         className={`${classNavLink} ${isBtnActive}`}
       >
-        <div className='iconContainer flx-col-center'>
-  
         <Tooltip
-        tipText={capitalize(btnName)}
-        isActive={isBtnActive ? true : false}
-      >
-                  <WalletSvg />
-            </Tooltip>
+          tipText={capitalize(btnName)}
+          isActive={isBtnActive ? true : false}
+        >
+          <div className='iconContainer flx-col-center'>
+            <WalletSvg />
           </div>
+        </Tooltip>
 
         <span className='button--label'>{`budget`}</span>
       </NavLink>

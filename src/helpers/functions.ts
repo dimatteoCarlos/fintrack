@@ -1,6 +1,4 @@
-import { CurrencyType } from "../types/types";
-
-import { CurrencyType } from "../types/types";
+import { CurrencyType } from '../types/types';
 
 //-------------------------
 export function currencyFormat(
@@ -33,25 +31,33 @@ export function changeCurrency(currency: CurrencyType) {
   }
 }
 //-------------------------
+
 type OpcType = {
-  currentOpc: string | boolean;
-  opc1: string | boolean;
-  opc2: string | boolean;
+  currentOpc: any;
+  opc1: any;
+  opc2: any;
+  opc3: any;
 };
 
-export function genericToggle({ currentOpc, opc1, opc2 }: OpcType) {
-  const current = () => {
-    const defaultOpc = opc1;
-    if (currentOpc == opc1) {
-      return opc2;
-    } else if (currentOpc == opc2) {
-      return opc1;
-    } else {
-      return defaultOpc;
-    }
-  };
-  return current();
+export function genericToggle({ currentOpc, opc1, opc2, opc3 }: OpcType) {
+  // Crear un arreglo con las opciones
+  const options = [opc1, opc2, opc3];
+
+  // Encontrar el índice de la opción actual en el arreglo
+  const currentIndex = options.indexOf(currentOpc);
+
+  // Si no se encuentra la opción actual (caso inesperado), retornar la primera opción
+  if (currentIndex === -1) {
+    return opc1;
+  }
+
+  // Calcular el siguiente índice cíclicamente
+  const nextIndex = (currentIndex + 1) % options.length;
+
+  // Retornar la siguiente opción
+  return options[nextIndex];
 }
+
 //-------------------------
 export function numberFormat(
   x: number | string,
@@ -96,7 +102,7 @@ export function capitalize(word: string) {
 //-------------------------
 
 export function validationData(stateToValidate: {
-  [key: string]: string | number | Date | undefined | null ;
+  [key: string]: string | number | Date | undefined | null;
 }) {
   const errorValidationMessages: { [key: string]: string } = {};
 
@@ -118,5 +124,3 @@ export function validationData(stateToValidate: {
   }
   return errorValidationMessages;
 } //fn
-
-export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' }

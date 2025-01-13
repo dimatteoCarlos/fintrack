@@ -21,7 +21,6 @@ export function useFetch<R>(url: string): FetchResponse<R> {
 
       if (response.status >= 200 && response.status < 300) {
         const respData = (await response.data) as R;
-        // console.log({ respData });
         setData(respData);
       } else {
         const errMsg = `Unexpected status code: ${response.status}`;

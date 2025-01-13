@@ -1,5 +1,7 @@
 import OverviewSvg from '../../assets/mainNavbarSvg/OverviewSvg.svg';
 import { NavLink, useLocation } from 'react-router-dom';
+import Tooltip from '../tooltip/Tooltip';
+import { capitalize } from '../../helpers/functions';
 
 const classNavLink = `mainNavbarButton ${({
   isActive,
@@ -9,12 +11,22 @@ const classNavLink = `mainNavbarButton ${({
 
 function OverviewButton() {
   const btnName = 'overview';
-  const isBtnActive = useLocation().pathname.split('/')[1]==btnName?'active':'';
+  const isBtnActive =
+    useLocation().pathname.split('/')[1] == btnName ? 'active' : '';
+
   return (
     <>
-   <NavLink to='/overview/accounts' className={`${classNavLink} ${isBtnActive}`}>
+      <NavLink
+        to='/overview/accounts'
+        className={`${classNavLink} ${isBtnActive}`}
+      >
         <div className='iconContainer flx-col-center'>
-          <OverviewSvg />
+          <Tooltip
+            tipText={capitalize(btnName)}
+            isActive={isBtnActive ? true : false}
+          >
+            <OverviewSvg />
+          </Tooltip>
         </div>
 
         <span className='button--label'>{`overview`}</span>

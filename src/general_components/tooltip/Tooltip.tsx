@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/tooltip.css'
+import './styles/tooltip.css';
 type TooltipPropType = {
   tipText: string;
   children: React.ReactNode;
@@ -8,8 +8,12 @@ type TooltipPropType = {
 const Tooltip = ({ tipText, children, isActive }: TooltipPropType) => {
   //state
   const [isVisible, setIsVisible] = useState<boolean>(!isActive);
-  const handleMouseEnter = () => {setIsVisible(true); console.log('mouseEnter', {isActive}, {isVisible})}
-  const handleMouseLeave = () => {setIsVisible(false); console.log('mouseLeave')}
+  const handleMouseEnter = () => {
+    setIsVisible(true); //console.log('mouseEnter', {isActive}, {isVisible})
+  };
+  const handleMouseLeave = () => {
+    setIsVisible(false); //console.log('mouseLeave')
+  };
 
   return (
     <div

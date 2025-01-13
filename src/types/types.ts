@@ -90,21 +90,20 @@ export type InvestmentAccountsType = {
   accounts?: InvestmentAccountType[] | null;
 };
 
-export type InvestmentTypeMovementType = 'deposit' | 'withdraw' 
+export type InvestmentTypeMovementType = 'deposit' | 'withdraw';
 
 export type InvestmentAccountType = {
   id: number;
   name: string;
   description: string;
-  type:InvestmentTypeMovementType// string;//specify the possible types as a union of string types
+  type: InvestmentTypeMovementType; // string;//specify the possible types as a union of string types
   currency: string;
   balance: number;
 };
 
-//debtors
-export type DebtorsListType = { debtors: DebtorType[] };
-
-export type DebtorType = {
+//debtors-tracker
+export type DebtorsListType = { debtors: DebtorDataType[] };
+export type DebtorDataType = {
   id: number;
   name: string;
   first_name: string;
@@ -112,6 +111,19 @@ export type DebtorType = {
   description: string;
 };
 
+export type DebtsTypeMovementType = 'lend' | 'borrow';
+
+export type DebtsTrackerDataType = {
+  amount: number | string | undefined;
+  debtor: string;
+  currency: CurrencyType;
+  type: DebtsTypeMovementType;
+  date: Date;
+  note: string;
+};
+
+//--------------------------------
+//--------------------------------
 //debts
 export type DebtsType = {
   result?: DebtType[] | null;
@@ -137,6 +149,8 @@ export type BudgetType = {
 
 export type CurrencyType = 'usd' | 'cop' | 'eur';
 
-export type InvestmentTypeMovementType = 'deposit' | 'withdraw';
-
-export type CURRENCY_OPTIONSTYPE = { usd: 'en-US'; cop: 'cop-CO'; eur: 'en-US' };
+export type CURRENCY_OPTIONSTYPE = {
+  usd: 'en-US';
+  cop: 'cop-CO';
+  eur: 'en-US';
+};

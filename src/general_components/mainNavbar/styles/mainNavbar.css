@@ -8,16 +8,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* height: 4rem; */
-  /* border-radius: 0.75rem; */
 }
 
 .mainNavbar__container {
-/* margin-bottom: 1rem; */
-border:none;
+  border: none;
 
 }
+
+/* .mainNavbarButton:not(:active) {
+  
+  border: 1px solid red;
+} */
 
 .mainNavbarButton.active {
   border-radius: 0.75rem;
@@ -35,7 +36,6 @@ border:none;
   background-color: var(--creme);
 
   color: var(--dark);
-  /* transition: 1s ease; */
 }
 
 .mainNavbarButton .button--label {
@@ -49,5 +49,4 @@ border:none;
   text-transform: capitalize;
   font-weight: 600;
 
-  /* font-weight: bold; */
 }
