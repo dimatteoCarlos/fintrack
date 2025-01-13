@@ -48,10 +48,7 @@
   width: 80%;
   margin: 0 auto;
   align-self: center;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  background-color: #1b1b1b;
 
   gap: 0.15rem;
 
@@ -60,7 +57,10 @@
 
 .trackerNavbar__container,
 .total__container {
-  background-color: #1b1b1b;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /*----card separator component-----*/
@@ -116,7 +116,12 @@ article {
   padding: 1rem 1.625rem;
   background: url('../../../assets/cardBgTexture.png') repeat;
   position: relative;
-  /* border:10px solid orange; */
+
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+  /* border: 10px solid orange; */
 }
 
 .state__card--top,
@@ -272,7 +277,5 @@ textarea:invalid {
   text-align: center;
   background-color: orange;
 } */
-
-
 
 /*-----------*/
