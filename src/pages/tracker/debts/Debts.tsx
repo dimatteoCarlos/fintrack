@@ -13,7 +13,7 @@ import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.t
 import { useLocation } from 'react-router-dom';
 import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
-// import { , changeCurrency } from '../../../helpers/functions.ts';
+
 import {
   CurrencyType,
   DebtorsListType,
@@ -27,7 +27,7 @@ const defaultCurrency: CurrencyType = 'usd';
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
-//------------------------------
+//input debts datatrack variables
 const initialTrackerData: DebtsTrackerDataType = {
   amount: undefined,
   debtor: '',
@@ -73,7 +73,6 @@ function Debts() {
   };
 
   //-----------------
-  //input debts datatrack state variables
 
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
@@ -114,7 +113,6 @@ function Debts() {
 
   function changeDateFn(selectedDate: Date): void {
     setDataTrack((prev) => ({ ...prev, date: selectedDate }));
-    // console.log(Data);
   }
 
   function onSaveHandler() {
@@ -126,7 +124,7 @@ function Debts() {
       typeof formattedNumber
     );
 
-    //-------entered datatrack validation messages -----------
+    //-------entered datatrack validation messages --------
 
     const newValidationMessages = validationData(datatrack);
 
@@ -153,7 +151,7 @@ function Debts() {
 
     setTimeout(() => {
       setIsReset(false);
-    }, 1000);
+    }, 500);
   }
 
   //-----useEffect--------
@@ -164,7 +162,6 @@ function Debts() {
     setDataTrack((prev) => ({ ...prev, type: type }));
   }, [currency, type]);
 
-  //------------
   //--------------------------
 
   return (
