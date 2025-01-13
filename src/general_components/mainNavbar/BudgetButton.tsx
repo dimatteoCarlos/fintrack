@@ -1,5 +1,7 @@
 import WalletSvg from '../../assets/mainNavbarSvg/WalletSvg.svg';
 import { NavLink, useLocation } from 'react-router-dom';
+import Tooltip from '../tooltip/Tooltip';
+import { capitalize } from '../../helpers/functions';
 
 const classNavLink = `mainNavbarButton
 ${({ isActive }: { isActive: boolean }) => (isActive ? 'active' : '')}
@@ -17,8 +19,14 @@ function BudgetButton() {
         className={`${classNavLink} ${isBtnActive}`}
       >
         <div className='iconContainer flx-col-center'>
-          <WalletSvg />
-        </div>
+  
+        <Tooltip
+        tipText={capitalize(btnName)}
+        isActive={isBtnActive ? true : false}
+      >
+                  <WalletSvg />
+            </Tooltip>
+          </div>
 
         <span className='button--label'>{`budget`}</span>
       </NavLink>
