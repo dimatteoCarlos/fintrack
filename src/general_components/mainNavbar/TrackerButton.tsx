@@ -1,5 +1,7 @@
 import AddSvg from '../../assets/mainNavbarSvg/AddSvg.svg';
 import { NavLink, useLocation } from 'react-router-dom';
+import Tooltip from '../tooltip/Tooltip';
+import { capitalize } from '../../helpers/functions';
 
 
 
@@ -17,9 +19,13 @@ function TrackerButton() {
   return (
     <>
       <NavLink to='/tracker/expense' className={`${classNavLink} ${isBtnActive}`}>
+        <Tooltip
+        tipText={capitalize(btnName)}
+        isActive={isBtnActive ? true : false}>
         <div className='iconContainer flx-col-center'>
           <AddSvg />
         </div>
+          </Tooltip>
 
         <span className='button--label'>{`tracker`}</span>
       </NavLink>
