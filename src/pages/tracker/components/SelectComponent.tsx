@@ -97,7 +97,7 @@ function SelectComponent({
       [optionKeySelected]: selectedOption?.value,
     }));
 
-    console.log('Opción seleccionada:', selectedOption);
+    // console.log('Opción seleccionada:', selectedOption);
   };
 
   return (
