@@ -1,10 +1,9 @@
 // Importar React y el componente Select de react-select
 
 import Select, { components } from 'react-select';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
-import ArrowDownLightSvg from '../../assets/ArrowDownSvg.svg';
-import { DEFAULT_DEBTOR_TYPE } from '../../helpers/constants';
+import ArrowDownLightSvg from '../../assets/ArrowDownLightSvg.svg';
 
 // styles and components of DropDownSelection
 
@@ -26,6 +25,7 @@ const customStyles = {
     color: 'var(--creme)',
     fontWeight: '500',
     fontSize: '0.875rem',
+    // border:'1px solid red',
 
     // '&:hover': {
     //   border: 'none',
@@ -35,6 +35,7 @@ const customStyles = {
   placeholder: (baseStyles: any) => ({
     ...baseStyles,
     color: '#141414',
+    // border:'1px solid red',
   }),
 
   menu: (baseStyles: any) => ({
@@ -116,8 +117,9 @@ const formCustomStyles = {
 };
 
 //-------internal selection components------
-const DropdownIndicator = (props: any, variant: string) => {
+const DropdownIndicator = (props: any) => {
   // console.log(variant);
+  const { variant } = props.selectProps;
 
   return (
     <components.DropdownIndicator
@@ -163,15 +165,12 @@ const variantCustomStyles = {
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
-
   isReset,
-  setIsReset,
 }: // optionKeySelected,
 DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;
 
   const selectRef = useRef<any>(null);
-
   useEffect(() => {
     if (isReset && selectRef) {
       selectRef.current.clearValue();
@@ -191,18 +190,12 @@ DropdownSelectPropType) {
   const handleChange = (
     // selectedOption: { value: any; label: string } | null
     selectedOption: any
-    // optionKeySelected: any
   ) => {
     updateOptionHandler(
       selectedOption
       // , optionKeySelected
     );
-    console.log(
-      'Opción seleccionada: desde DropDownSelection',
-      selectedOption
-      // ,
-      // { optionKeySelected }
-    );
+    console.log('Opción seleccionada: desde DropDownSelection', selectedOption);
   };
 
   return (
@@ -216,12 +209,11 @@ DropdownSelectPropType) {
         components={{ DropdownIndicator }}
         isSearchable
         isClearable
-        // value={title ? title : options[0]}
-        // value={options.find(option => option.value == profileData.type)}
         defaultValue={title ? title : options[0]}
         ref={selectRef}
-
-        // defaultValue={[options[0]]}
+        {
+          ...{ variant } //is the way to pass custom props to internal selecProps
+        }
       />
     </>
   );
