@@ -16,6 +16,8 @@ import { useLocation } from 'react-router-dom';
 import { numberFormat, validationData } from '../../../helpers/functions.ts';
 import {} from '../../../helpers/functions.ts';
 import {
+  ACCOUNT_OPTIONS_DEFAULT,
+  CATEGORY_OPTIONS_DEFAULT,
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
@@ -42,18 +44,6 @@ const initialExpenseData: ExpenseDataType = {
 };
 //------------------------------
 
-const categoryOptionsDefault = [
-  { value: 'category_01', label: 'Category_01 / SubCategory 01' },
-  { value: 'category_02', label: 'Category_02 / SubCategory 02' },
-  { value: 'category_03', label: 'Category_03 / SubCategory 03' },
-];
-
-const accountOptionsDefault = [
-  { value: 'acc.name_01', label: 'acc.name_01' },
-  { value: 'acc.name_02', label: 'acc.name_02' },
-  { value: 'acc.name_03', label: 'acc.name_03' },
-];
-
 function Expense() {
   //----Expense account Options -------
   const router = useLocation();
@@ -72,7 +62,7 @@ function Expense() {
           value: acc.name,
           label: acc.name,
         }))
-      : accountOptionsDefault;
+      : ACCOUNT_OPTIONS_DEFAULT;
 
   const accountOptions = {
     title: 'Available Account',
@@ -95,7 +85,7 @@ function Expense() {
       optionsExpenseCategories && !categoryError
         ? 'Category / Subategory'
         : 'No Categories available',
-    options: optionsExpenseCategories ?? categoryOptionsDefault,
+    options: optionsExpenseCategories ?? CATEGORY_OPTIONS_DEFAULT,
   };
 
   //---states-------------
