@@ -12,7 +12,12 @@ function Debtors() {
   const createNewProfile = (originRoute: string) => {
     navigateTo(originRoute + '/new_profile', {
       state: { previousRoute: originRoute },
+
+      
+
     });
+
+
   };
 
   return (
@@ -27,6 +32,7 @@ function Debtors() {
             btnFunction={createNewProfile}
             btnFunctionArg={originRoute}
             btnPreviousRoute={originRoute}
+
           >
             <div className='open__btn__label'>New Debtor</div>
           </OpenAddEditBtn>

@@ -1,11 +1,11 @@
 import { BoxContainer, BoxRow } from './boxComponents';
 import { currencyFormat } from '../../../helpers/functions';
 import { useFetch } from '../../../hooks/useFetch';
-import { DebtsType } from '../../../types/types';
+import { DebtorType, DebtsType } from '../../../types/types';
 import { url_debtors_debt } from '../../../endpoints';
 
 export type DebtsToRender = {
-  type?: 'debtor' | 'lender';
+  type?: DebtorType;
   debtor_name: string;
   total_amount_borrowed: number;
   total_amount_lent: number;
@@ -14,10 +14,7 @@ export type DebtsToRender = {
   transaction_count?: number;
 };
 
-const typeOfDebtorfn = (
-  borrowed: number,
-  lent: number
-): 'debtor' | 'lender' => {
+const typeOfDebtorfn = (borrowed: number, lent: number): DebtorType => {
   const diff = lent - borrowed;
   // const type = diff > 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
   const type = diff >= 0 ? 'debtor' : 'lender';
@@ -25,51 +22,51 @@ const typeOfDebtorfn = (
   return type;
 };
 
+//Temporarily Dummy data
+const defaultDebts: DebtsToRender[] = [
+  {
+    debtor_name: 'name',
+
+    total_amount_borrowed: 0,
+    total_amount_lent: 0,
+    net_amount: 0,
+    type: 'debtor',
+  },
+  {
+    debtor_name: 'name',
+
+    total_amount_borrowed: 0,
+    total_amount_lent: 0,
+    net_amount: 0,
+    type: 'lender',
+  },
+  {
+    debtor_name: 'name',
+
+    total_amount_borrowed: 0,
+    total_amount_lent: 0,
+    net_amount: 0,
+    type: 'debtor',
+  },
+  {
+    debtor_name: 'name',
+
+    total_amount_borrowed: 0,
+    total_amount_lent: 0,
+    net_amount: 0,
+    type: 'debtor',
+  },
+  {
+    debtor_name: 'name',
+
+    total_amount_borrowed: 0,
+    total_amount_lent: 0,
+    net_amount: 0,
+    type: 'lender',
+  },
+];
+
 function ListOfDebtors() {
-  //Temporarily Dummy data
-  const defaultDebts: DebtsToRender[] = [
-    {
-      debtor_name: 'name',
-
-      total_amount_borrowed: 0,
-      total_amount_lent: 0,
-      net_amount: 0,
-      type: 'debtor',
-    },
-    {
-      debtor_name: 'name',
-
-      total_amount_borrowed: 0,
-      total_amount_lent: 0,
-      net_amount: 0,
-      type: 'lender',
-    },
-    {
-      debtor_name: 'name',
-
-      total_amount_borrowed: 0,
-      total_amount_lent: 0,
-      net_amount: 0,
-      type: 'debtor',
-    },
-    {
-      debtor_name: 'name',
-
-      total_amount_borrowed: 0,
-      total_amount_lent: 0,
-      net_amount: 0,
-      type: 'debtor',
-    },
-    {
-      debtor_name: 'name',
-
-      total_amount_borrowed: 0,
-      total_amount_lent: 0,
-      net_amount: 0,
-      type: 'lender',
-    },
-  ];
-
   const { data, isLoading, error } = useFetch<DebtsType>(url_debtors_debt);
   // console.log('data:', data);
 
@@ -119,8 +116,10 @@ function ListOfDebtors() {
               <BoxRow>
                 <BoxRow>
                   <div className='flx-row-sb'>
-                    <span className='status__square'></span>
-                    <div className='box__subtitle'>{transactionType} </div>
+                    <span className='status__square'> </span>
+                    <div className='box__subtitle'>
+                      &nbsp; {transactionType}{' '}
+                    </div>
                   </div>
                 </BoxRow>
               </BoxRow>

@@ -14,24 +14,24 @@ import {
   InvestmentTypeMovementType,
 } from '../../../types/types.ts';
 
-import {
-  numberFormat,
-  validationData,
-  CURRENCY_OPTIONS,
-} from '../../../helpers/functions.ts';
+import { numberFormat, validationData } from '../../../helpers/functions.ts';
 
 import { useLocation } from 'react-router-dom';
+import {
+  CURRENCY_OPTIONS,
+  DEFAULT_CURRENCY,
+} from '../../../helpers/constants.ts';
 
 //------------------------------
 //temporary values
-const defaultCurrency: CurrencyType = 'usd';
+const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input investment data state variables
 
 type InvestmentDataType = {
-  amount: number | string | undefined;
+  amount: number;
   account: string;
   currency: CurrencyType;
   type: InvestmentTypeMovementType;
@@ -40,7 +40,7 @@ type InvestmentDataType = {
 };
 
 const initialInvestmentData: InvestmentDataType = {
-  amount: undefined,
+  amount: 0.0,
   account: '',
   currency: defaultCurrency,
   type: 'deposit',
@@ -111,7 +111,7 @@ function Investment() {
     e.preventDefault();
 
     const valueToSave =
-      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
 
     setInvestmentData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }

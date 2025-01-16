@@ -6,13 +6,13 @@ import { CreateNewAccountPropType } from '../Overview';
 import { url_accounts } from '../../../endpoints';
 import { useFetch } from '../../../hooks/useFetch';
 import { ExpenseAccountsType } from '../../../types/types';
+import { CURRENCY_OPTIONS } from '../../../helpers/constants';
 
 function AccountBalance({
   createNewAccount,
   originRoute,
 }: CreateNewAccountPropType) {
   // //temporary values------------
-  const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
   const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 

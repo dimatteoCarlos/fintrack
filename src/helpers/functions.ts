@@ -1,4 +1,5 @@
 import { CurrencyType } from '../types/types';
+import { DATE_TIME_FORMAT_DEFAULT } from './constants';
 
 //-------------------------
 export function currencyFormat(
@@ -18,8 +19,6 @@ export function digitRound(n = Number.MIN_VALUE, digit = 2) {
   return Math.round(n * Math.pow(10, digit)) / Math.pow(10, digit);
 }
 
-//-------------------------
-export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 //-------------------------
 export function changeCurrency(currency: CurrencyType) {
   if (currency.toLocaleLowerCase() == 'usd') {
@@ -82,7 +81,7 @@ export function numberFormat(
 
 //-------------------------
 
-export function showDate(date: Date, countryFormat = 'es-ES') {
+export function showDate(date: Date, countryFormat = DATE_TIME_FORMAT_DEFAULT) {
   const formattedDate = date.toLocaleDateString(countryFormat, {
     weekday: 'short',
     year: 'numeric',
@@ -95,6 +94,11 @@ export function showDate(date: Date, countryFormat = 'es-ES') {
 }
 
 //-------------------------
+export function isDateValid(dateStr: any) {
+  return !isNaN(Number(new Date(dateStr))); //check if a valid timestamp is resturned
+}
+
+//-----------------------
 export function capitalize(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }

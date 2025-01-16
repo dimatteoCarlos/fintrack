@@ -14,10 +14,13 @@ import {
 import { url_accounts, url_sources } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
+import {
+  DEFAULT_CURRENCY,
+  CURRENCY_OPTIONS,
+} from '../../../helpers/constants.ts';
 
 //temporary values
-const defaultCurrency: CurrencyType = 'usd';
+const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 console.log(formatNumberCountry);
@@ -25,7 +28,7 @@ console.log(formatNumberCountry);
 //input income data state variables
 
 type IncomeDataType = {
-  amount: number | string | undefined;
+  amount: number;
   account: string;
   source: string;
   note: string;
@@ -33,21 +36,21 @@ type IncomeDataType = {
 };
 
 const initialIncomeData: IncomeDataType = {
-  amount: undefined,
+  amount: 0.0000,
   account: '',
   source: '',
   note: '',
   currency: defaultCurrency,
 };
 
-const incomeOptionsDefault = [
+const iNCOME_OPTIONS_DEFAULT = [
   { value: 'account_01', label: 'Account_01' },
   { value: 'account_02', label: 'Account_02' },
   { value: 'account_03', label: 'Account_03' },
   { value: 'account_04', label: 'Account_04' },
 ];
 
-const sourceOptionsDefault = [
+const sORCE_OPTIONS_DEFAULT = [
   { value: 'source_01', label: 'source_01' },
   { value: 'source_02', label: 'source_02' },
   { value: 'source_03', label: 'source_03' },
@@ -74,7 +77,7 @@ function Income() {
           value: acc.name,
           label: acc.name,
         }))
-      : incomeOptionsDefault;
+      : iNCOME_OPTIONS_DEFAULT;
 
   // console.log('accounts:', { optionsIncomeAccounts });
 
@@ -99,7 +102,7 @@ function Income() {
             value: src.name,
             label: src.name,
           }))
-        : sourceOptionsDefault,
+        : sORCE_OPTIONS_DEFAULT,
   };
 
   // console.log('SOURCES:', { sourceOptions });
@@ -131,7 +134,7 @@ function Income() {
     e.preventDefault();
 
     const valueToSave =
-      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
     setIncomeData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
   //-----------
@@ -187,7 +190,7 @@ function Income() {
               placeholder={`${trackerState}`}
               onChange={updateTrackerData}
               name='amount'
-              value={Number(incomeData?.amount) || ''}
+              value={(incomeData.amount)}
             />
 
             <CurrencyBadge

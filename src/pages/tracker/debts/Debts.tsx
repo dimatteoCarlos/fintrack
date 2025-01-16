@@ -11,7 +11,6 @@ import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_debtors } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { CURRENCY_OPTIONS } from '../../../helpers/functions.ts';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 
 import {
@@ -21,27 +20,26 @@ import {
   DebtsTypeMovementType,
 } from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
+import {
+  CURRENCY_OPTIONS,
+  DEBTOR_OPTIONS_DEFAULT,
+  DEFAULT_CURRENCY,
+} from '../../../helpers/constants.ts';
 
 //temporary values
-const defaultCurrency: CurrencyType = 'usd';
+const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input debts datatrack variables
 const initialTrackerData: DebtsTrackerDataType = {
-  amount: undefined,
+  amount: 0.0,
   debtor: '',
   currency: defaultCurrency,
   type: 'lend',
   date: new Date(),
   note: '',
 };
-
-const debtorOptionsDefault = [
-  { value: 'debtor_01', label: 'debtor_01' },
-  { value: 'debtor_02', label: 'debtor_02' },
-  { value: 'debtor_03', label: 'debtor_03' },
-];
 
 function Debts() {
   const trackerState = useLocation().pathname.split('/')[2];
@@ -69,7 +67,7 @@ function Debts() {
 
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
-    options: debtors ?? debtorOptionsDefault,
+    options: debtors ?? DEBTOR_OPTIONS_DEFAULT,
   };
 
   //-----------------
@@ -91,7 +89,7 @@ function Debts() {
   ) {
     e.preventDefault();
     const valueToSave =
-      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
 
     setDataTrack((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }

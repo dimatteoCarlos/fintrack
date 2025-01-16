@@ -13,20 +13,20 @@ import {
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import {
-  numberFormat,
-  validationData,
-  CURRENCY_OPTIONS,
-} from '../../../helpers/functions.ts';
+import { numberFormat, validationData } from '../../../helpers/functions.ts';
 import {} from '../../../helpers/functions.ts';
+import {
+  CURRENCY_OPTIONS,
+  DEFAULT_CURRENCY,
+} from '../../../helpers/constants.ts';
 
-const defaultCurrency = 'usd';
+const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
 
 //input expense data state variables
 type ExpenseDataType = {
-  amount: number | string | undefined;
+  amount: number;
   account: string;
   category: string;
   note: string;
@@ -34,7 +34,7 @@ type ExpenseDataType = {
 };
 
 const initialExpenseData: ExpenseDataType = {
-  amount: undefined,
+  amount: 0.0,
   account: '',
   category: '',
   note: '',
@@ -60,11 +60,14 @@ function Expense() {
   const trackerState = router.pathname.split('/')[2];
 
   //account options
-  const { data, error: fetchedError } =
-    useFetch<ExpenseAccountsType>(url_accounts);
+  const {
+    data,
+    error: fetchedError,
+    isLoading,
+  } = useFetch<ExpenseAccountsType>(url_accounts);
 
   const optionsExpenseAccounts =
-    !fetchedError && data?.accounts?.length
+    !fetchedError && !isLoading && data?.accounts?.length
       ? data.accounts.map((acc, _) => ({
           value: acc.name,
           label: acc.name,
@@ -122,7 +125,7 @@ function Expense() {
     e.preventDefault();
 
     const valueToSave =
-      e.target.name === 'amount' ? Number(e.target.value) : e.target.value;
+      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
     setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
 
@@ -151,7 +154,6 @@ function Expense() {
 
     //reset the state and the selected options on select component
 
-    // setExpenseData((prev)=>({...prev, initialExpenseData}));
     setIsReset(true);
     setExpenseData(initialExpenseData);
     setCurrency(defaultCurrency);
@@ -181,10 +183,10 @@ function Expense() {
               type='number'
               placeholder={`${trackerState}`}
               // value={numberFormat(
-              //   Number(expenseData?.amount) || 0
+              //    parseFloat(expenseData?.amount) || 0
               // )}
 
-              value={Number(expenseData?.amount) || ''}
+              value={expenseData?.amount}
               onChange={updateTrackerData}
             />
 

@@ -173,8 +173,10 @@ body {
 
 /*StatusSquare*/
 .status__square {
-  height: 0.5rem;
-  width: 0.5rem;
+  /* height: 0.5rem;
+  width: 0.5rem; */
+  height: 0.75rem;
+  width: 0.75rem;
   background-color: #5b8c93;
   border: none;
   border-radius: 0.125rem;

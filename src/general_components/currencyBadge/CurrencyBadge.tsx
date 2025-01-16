@@ -1,13 +1,14 @@
 import { changeCurrency } from '../../helpers/functions';
-import './styles/currency-style.css';
 import { CurrencyType } from '../../types/types';
+import './styles/currency-style.css';
 
 type CurrencyBadgePropType = {
   variant: string;
-  updateOutsideCurrencyData?: (currency: CurrencyType) => void;
   currency: CurrencyType;
+  updateOutsideCurrencyData?: (currency: CurrencyType) => void;
   setCurrency?: React.Dispatch<React.SetStateAction<CurrencyType>>;
 };
+
 function CurrencyBadge({
   variant,
   updateOutsideCurrencyData,

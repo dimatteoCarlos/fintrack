@@ -70,9 +70,10 @@ const DropdownIndicator = (props: any) => {
 function SelectComponent({
   dropDownOptions,
   setSelectState,
-  optionKeySelected,
+  
   isReset,
   setIsReset,
+  optionKeySelected,
 }: any) {
   const { title, options } = dropDownOptions;
 
@@ -81,7 +82,7 @@ function SelectComponent({
   useEffect(() => {
     if (isReset && selectRef) {
       selectRef.current.clearValue();
-      setIsReset(false);
+      setIsReset(false); //check wether this reset affects others like datepicker
     }
   }, [isReset]);
   // console.log(title, options)

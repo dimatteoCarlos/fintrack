@@ -1,3 +1,5 @@
+import { DATE_TIME_FORMAT_DEFAULT } from '../../helpers/constants';
+import { isDateValid } from '../../helpers/functions';
 import { BoxContainer, BoxRow } from '../boxComponents';
 
 export type ListContenPropType = {
@@ -11,9 +13,6 @@ export type ListContenPropType = {
 };
 
 function ListContent({ listOfItems }: ListContenPropType) {
-  function isDateValid(dateStr: any) {
-    return !isNaN(Number(new Date(dateStr)));
-  }
 
   return (
     <>
@@ -36,7 +35,7 @@ function ListContent({ listOfItems }: ListContenPropType) {
 
                 {!!date && isDateValid(date) && (
                   <div className='box__subtitle'>
-                    {`${new Intl.DateTimeFormat('es-ES').format(
+                    {`${new Intl.DateTimeFormat(DATE_TIME_FORMAT_DEFAULT).format(
                       new Date(date)
                     )}`}
                   </div>

@@ -104,7 +104,7 @@ function App() {
     //   element: <AccountDetail />,
     // },
     // {
-    //   path: '/overview/accounts/:accountId',
+    //   path: '/overview/accounts/:accountId',/
     //   element: <DebtorDetail />,
     // },
     // {

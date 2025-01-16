@@ -1,8 +1,8 @@
+import { CURRENCY_OPTIONS } from '../../../helpers/constants';
 import { currencyFormat } from '../../../helpers/functions';
 
 function BudgetBigBoxResult() {
   //temporary values------------
-  const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
   const defaultCurrency = 'usd';
   const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 

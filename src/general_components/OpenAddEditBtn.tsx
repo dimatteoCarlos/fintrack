@@ -13,10 +13,10 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
-
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);
+
     console.log(
       'Add new or Edit Item (category, pocket, debtor, account, ecc.)'
     );
@@ -30,6 +30,7 @@ function OpenAddEditBtn({
       {children}
     </button>
   );
+  
 }
 
 export default OpenAddEditBtn;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import { Link, useLocation } from 'react-router-dom';
@@ -9,31 +9,25 @@ import DropDownSelection from '../../../general_components/dropdownSelection/Dro
 import '../styles/forms-styles.css';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
-  DebtorNewProfileType,
-  DebtsTypeMovementType,
-  DebtType,
+  // DebtorNewProfileType,
+  // DebtsTypeMovementType,
+  // DebtType,
   ExpenseAccountsType,
 } from '../../../types/types.ts';
 import { url_accounts } from '../../../endpoints.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
-  DEFAULT_DEBTOR_TYPE,
+  TYPEDEBTS_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
 import { validationData } from '../../../helpers/functions.ts';
 
-// const formTitle = 'New Profile';
-/*
- */
 //------------------------
 //Account Options
 
 //Type Options
 const typeSelectionProp = {
-  title: 'type', //select type
-  options: [
-    { value: 'lending', label: 'Lending' },
-    { value: 'borrowing', label: 'Borrowing' },
-  ],
+  title: 'select type', //select type
+  options: TYPEDEBTS_OPTIONS_DEFAULT,
   variant: 'form', //define the customStyle to use in selection dropdown component
 };
 
@@ -43,7 +37,7 @@ const initialNewProfileData = {
   lastname: '',
   account: '',
   type: '',
-  amount: 0,
+  amount: 0.0,
 };
 
 type ProfileDataType = {
@@ -51,7 +45,7 @@ type ProfileDataType = {
   lastname: string;
   account: string | number;
   type: string;
-  amount: number | string | undefined;
+  amount: number;
 };
 
 //-----------------------
@@ -92,11 +86,16 @@ function NewProfile() {
   //---functions-----
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
+    const { name, value } = e.target;
+
     const valueToSave =
-      e.target.name === 'amount'
-        ? Number(e.target.value) //NO ACEPTA VALORES QUE EMPIEZAN POR 0,  0.001 POR EJEMPLO
-        : e.target.value;
-    setProfileData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+      name === 'amount'
+        ? value !== ''
+          ? parseFloat(value.replace(',', '.')) // Reemplazar coma por punto
+          : 0
+        : value;
+
+    setProfileData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   function typeSelectHandler(selectedOption: any) {
@@ -104,25 +103,15 @@ function NewProfile() {
       console.log('selectedOption desde typeSelectHandler', { selectedOption });
       setProfileData((prev: any) => ({ ...prev, type: selectedOption.value }));
     } else {
-      console.log('No option selected for type');
+      console.log(`No option selected for ${'type'}`);
     }
-
-    // setProfileData((prev: any) => ({ ...prev, type: selectedOption.value }));
   }
 
-  function accountSelectHandler(
-    selectedOption: any
-    // , optionKeySelected: any
-  ) {
+  function accountSelectHandler(selectedOption: any) {
     setProfileData((prev: any) => ({
       ...prev,
       account: selectedOption?.value,
     }));
-
-    // setProfileData((prev: any) => ({
-    //   ...prev,
-    //   [optionKeySelected]: selectedOption?.value,
-    // }));
 
     console.log(
       'selectedOption desde accountSelectHandler NewProfile',
@@ -134,21 +123,24 @@ function NewProfile() {
     e.preventDefault();
     console.log('onSubmitForm');
 
-    const newValidationMessages = validationData(profileData);
+    //--
+    const newValidationMessages = { ...validationData(profileData) };
+    console.log('mensajes:', { newValidationMessages });
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
 
-    //POST the new profile data into database?
-console.log('data to POST:', {profileData})
-    //reset form values
+    //--
+    //POST the new profile data into database
+    console.log('data to POST:', { profileData });
+
+    //resetting form values
     setIsReset(true);
 
     setValidationMessages({});
-    
-    
+
     setTimeout(() => setIsReset(false), 500);
     setProfileData(initialNewProfileData);
     console.log('submit form button');
@@ -213,14 +205,12 @@ console.log('data to POST:', {profileData})
               <label className='label form__title'>{'Add Money'}</label>
 
               {/* accounts*/}
-
               <DropDownSelection
                 dropDownOptions={accountSelectionProp}
                 updateOptionHandler={accountSelectHandler}
                 optionKeySelected='account'
                 isReset={isReset}
                 setIsReset={setIsReset}
-                // optionKeySelected={profileData['account']}
               />
 
               <span className='validation__errMsg'>
@@ -229,11 +219,14 @@ console.log('data to POST:', {profileData})
 
               <input
                 type='number'
+                step={0.0000001}
+                min={0.0}
                 className={`input__container input__container--amount`}
                 placeholder={`0`}
                 name={'amount'}
                 onChange={inputHandler}
-                value={Number(profileData.amount) || ''}
+                // value={profileData.amount? String(profileData.amount) : ''}
+                value={profileData.amount}
                 style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
               />
 
@@ -251,19 +244,16 @@ console.log('data to POST:', {profileData})
               </label>
 
               {/* action debtor type */}
-
               <DropDownSelection
                 dropDownOptions={typeSelectionProp}
                 updateOptionHandler={typeSelectHandler}
                 isReset={isReset}
                 setIsReset={setIsReset}
-                optionKeySelected='type'
               />
             </div>
           </div>
 
           {/* save */}
-
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
           </div>

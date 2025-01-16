@@ -1,10 +1,10 @@
+import { CURRENCY_OPTIONS } from '../../helpers/constants';
 import { numberFormat } from '../../helpers/functions';
-// import { currencyFormat } from '../../../helpers/functions';
 import { StatusSquare } from '../boxComponents';
 import './styles/summaryDetailBox-style.css';
+// import { currencyFormat } from '../../../helpers/functions';
 
 //temporary values------------
-const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 const defaultCurrency = 'usd';
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 

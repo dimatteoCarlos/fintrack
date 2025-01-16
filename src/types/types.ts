@@ -29,6 +29,7 @@ export type ExpensesInfoType = {
   limit: number;
   offset: number;
 };
+
 export type ExpenseType = {
   id: number;
   date: string;
@@ -113,8 +114,10 @@ export type DebtorDataType = {
 
 export type DebtsTypeMovementType = 'lend' | 'borrow';
 
+export type DebtorNewProfileType = 'lending' | 'borrowing';
+
 export type DebtsTrackerDataType = {
-  amount: number | string | undefined;
+  amount: number;
   debtor: string;
   currency: CurrencyType;
   type: DebtsTypeMovementType;
@@ -148,6 +151,8 @@ export type BudgetType = {
 };
 
 export type CurrencyType = 'usd' | 'cop' | 'eur';
+
+export type DebtorType= 'debtor' | 'lender';
 
 export type CURRENCY_OPTIONSTYPE = {
   usd: 'en-US';

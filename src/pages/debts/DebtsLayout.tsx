@@ -5,7 +5,10 @@ import Debtors from './debtors/Debtors.tsx';
 import './styles/debts-styles.css';
 
 function DebtsLayout() {
+
   //temporary values------------
+  //get the debtors info from, endpoint:
+  //data: from debts movements, group the movements by debtor, consolidate the amounts (lend-borrow), also total lent and borrowed by debtor, and general total.
 
   const bigScreenInfo = [{ title: "you're owed", amount: 0 }];
 
@@ -23,3 +26,5 @@ function DebtsLayout() {
 }
 
 export default DebtsLayout;
+
+

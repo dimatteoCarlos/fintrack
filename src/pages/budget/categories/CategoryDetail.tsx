@@ -1,11 +1,11 @@
-import React from 'react'
-
 function CategoryDetail() {
   return (
     <>
-         <div className="" style={{color:'yellow'}}>CategoryDetail</div>
+      <div className='' style={{ color: 'yellow' }}>
+        CategoryDetail
+      </div>
     </>
-  )
+  );
 }
 
-export default CategoryDetail
+export default CategoryDetail;

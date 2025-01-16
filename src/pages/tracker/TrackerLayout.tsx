@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom';
 import { currencyFormat } from '../../helpers/functions';
 
 import './styles/tracker-style.css';
+import { CURRENCY_OPTIONS, DEFAULT_CURRENCY } from '../../helpers/constants';
 
 function TrackerLayout() {
   //temporary values------------
-  const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-  const defaultCurrency = 'usd';
+  const defaultCurrency = DEFAULT_CURRENCY;
   const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 
   const availableBudget = 0;
