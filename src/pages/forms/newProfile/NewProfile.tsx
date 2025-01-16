@@ -32,13 +32,7 @@ const typeSelectionProp = {
 };
 
 //----Temporary values----------
-const initialNewProfileData = {
-  name: '',
-  lastname: '',
-  account: '',
-  type: '',
-  amount: 0.0,
-};
+
 
 type ProfileDataType = {
   name: string;
@@ -46,6 +40,14 @@ type ProfileDataType = {
   account: string | number;
   type: string;
   amount: number;
+};
+
+const initialNewProfileData: ProfileDataType = {
+  name: '',
+  lastname: '',
+  account: '',
+  type: '',
+  amount: 0.0,
 };
 
 //-----------------------
