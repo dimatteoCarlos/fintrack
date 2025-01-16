@@ -1,15 +1,10 @@
 // Importar React y el componente Select de react-select
 
 import Select, { components } from 'react-select';
+import { useEffect, useRef } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
 import ArrowDownLightSvg from '../../assets/ArrowDownSvg.svg';
-
-// Define las opciones para el select
-// const options1 = [
-//   { value: 'account_01', label: 'Account_01' },
-//   { value: 'account_02', label: 'Account_02' },
-//   { value: 'account_03', label: 'Account_03' },
-// ];
+import { DEFAULT_DEBTOR_TYPE } from '../../helpers/constants';
 
 // styles and components of DropDownSelection
 
@@ -144,10 +139,18 @@ export type DropdownSelectPropType = {
     }[];
     variant: string;
   };
-  updateOptionHandler: (selectedOption: {
-    value: string;
-    label: string;
-  }) => void;
+
+  updateOptionHandler: (
+    selectedOption: {
+      value: any;
+      label: string;
+    } | null
+    // optionKeySelected: any
+  ) => void;
+
+  isReset?: boolean;
+  setIsReset?: any; //fix later
+  optionKeySelected?: any;
 };
 
 const variantCustomStyles = {
@@ -160,8 +163,22 @@ const variantCustomStyles = {
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
-}: DropdownSelectPropType) {
+
+  isReset,
+  setIsReset,
+}: // optionKeySelected,
+DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;
+
+  const selectRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (isReset && selectRef) {
+      selectRef.current.clearValue();
+      // setIsReset(false);
+      //check wether this reset affects others like datepicker
+    }
+  }, [isReset]);
 
   const selectedCustomStyles =
     variant === 'tracker'
@@ -171,9 +188,21 @@ function DropDownSelection({
   // console.log(title, options)
 
   // Function to handle the change on selected option state
-  const handleChange = (selectedOption: any) => {
-    updateOptionHandler(selectedOption);
-    console.log('Opción seleccionada:', selectedOption);
+  const handleChange = (
+    // selectedOption: { value: any; label: string } | null
+    selectedOption: any
+    // optionKeySelected: any
+  ) => {
+    updateOptionHandler(
+      selectedOption
+      // , optionKeySelected
+    );
+    console.log(
+      'Opción seleccionada: desde DropDownSelection',
+      selectedOption
+      // ,
+      // { optionKeySelected }
+    );
   };
 
   return (
@@ -186,6 +215,12 @@ function DropDownSelection({
         closeMenuOnSelect={true}
         components={{ DropdownIndicator }}
         isSearchable
+        isClearable
+        // value={title ? title : options[0]}
+        // value={options.find(option => option.value == profileData.type)}
+        defaultValue={title ? title : options[0]}
+        ref={selectRef}
+
         // defaultValue={[options[0]]}
       />
     </>
