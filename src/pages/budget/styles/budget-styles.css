@@ -94,9 +94,15 @@
   font-size: 1rem;
   line-height: 1.625rem;
   white-space: 10px;
-  cursor:pointer;
 
   text-transform: capitalize;
+}
+
+.box__title--category__name {
+  cursor: pointer;
+}
+.box__title--category__name:hover {
+  color: cyan f;
 }
 
 .box__title--spent {
@@ -173,19 +179,30 @@ button.line__container {
   border-left: 3px dashed var(--light);
 }
 
-.tile__title {
+/*copy it also for overview*/
+.budgetLayout .tile__title {
   color: var(--light);
   font-size: 0.875rem;
   font-weight: 400;
+  text-transform: capitalize;
+  /* color: red; */
 }
 
-.tile__subtitle {
-  color: #5b5b5b;
+.budgetLayout .tile__subtitle {
+  color: #5b5b5b; /*this color is figma, but I can't see it*/
+  color: #bdb1b1;
+  /* color: var(--creme); */
   font-size: 0.625rem;
   letter-spacing: 1px;
   font-weight: 400;
+
+  text-transform: capitalize;
 }
 
-.tile__right .tile__title {
+.budgetLayout .tile__subtitle--opc {
+  opacity: 0.9 !important;
+  /* color: lightgreen; */
+}
+.budgetLayout .tile__right .tile__title {
   font-weight: 500;
 }
