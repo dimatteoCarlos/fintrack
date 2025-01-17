@@ -8,8 +8,8 @@ import Expense from './pages/tracker/expense/Expense.tsx';
 import Income from './pages/tracker/income/Income.tsx';
 import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
-import Categories from './pages/budget/categories/Categories.tsx';
-// import CategoryDetail from './pages/budget/categories/CategoryDetail.tsx';
+import BudgetPresentation from './pages/budget/components/BudgetPresentation.tsx';
+// import CategoryDetail from './pages/budget/presentation/CategoryDetail.tsx';
 // import Pockets from './pages/budget/pockets/Pockets.tsx';
 // import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
 
@@ -62,11 +62,11 @@ function App() {
           path: '/budget',
           element: <BudgetLayout />,
           children: [
-            { path: '/budget/categories', element: <Categories /> },
+            { path: '/budget/presentation', element: <BudgetPresentation /> },
           ],
-          // { path: '/budget/categories/new', element: <NewCategory /> },
+          // { path: '/budget/presentation/new', element: <NewCategory /> },
           // {
-          //   path: '/budget/categories/:categoryId',
+          //   path: '/budget/presentation/:categoryId',
           //   element: <CategoryDetail />,
           // },
           // { path: '/budget/pockets', element: <Pockets /> },
@@ -95,8 +95,9 @@ function App() {
       ],
     },
     { path: '/accounting', element: <Accounting /> },
-    { path: '/budget/categories/new_category', element: <NewCategory /> },
-    { path: '/budget/categories/new_pocket', element: <NewPocket /> },
+
+    { path: '/budget/presentation/new_category', element: <NewCategory /> },
+    { path: '/budget/presentation/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/accounts/new_account', element: <NewAccount /> },
     // {
@@ -113,7 +114,7 @@ function App() {
     // },
     {
       path: '/overview/accounts/:accountId',
-     element: <AccountDetail />,
+      element: <AccountDetail />,
       // element: <CategoryDetail />,
     },
   ]);

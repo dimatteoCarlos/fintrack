@@ -16,7 +16,7 @@ export const CATEGORY_OPTIONS_DEFAULT = [
   { value: 'category_03', label: 'Category_03 / SubCategory 03' },
 ];
 
-//---
+//tracker/income
 export const INCOME_OPTIONS_DEFUALT = [
   { value: 'account_01', label: 'Account_01' },
   { value: 'account_02', label: 'Account_02' },
@@ -37,8 +37,6 @@ export const DEBTOR_OPTIONS_DEFAULT = [
   { value: 'debtor_02', label: 'debtor_02' },
   { value: 'debtor_03', label: 'debtor_03' },
 ];
-
-
 
 export const DEFAULT_DEBTOR_TYPE = 'lending';
 

@@ -15,7 +15,7 @@ function BudgetButton() {
   return (
     <>
       <NavLink
-        to='/budget/categories'
+        to='/budget/presentation'
         className={`${classNavLink} ${isBtnActive}`}
       >
         <Tooltip

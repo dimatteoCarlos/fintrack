@@ -3,7 +3,7 @@ import {
   StatusSquare,
 } from '../../../general_components/boxComponents.tsx';
 import { currencyFormat } from '../../../helpers/functions.ts';
-import { CurrencyType, StatusType } from '../../../types/types.ts';
+import { CurrencyType} from '../../../types/types.ts';
 // import { useFetch } from '../../../hooks/useFetch.tsx';
 
 export type CategoriesToRenderType = {

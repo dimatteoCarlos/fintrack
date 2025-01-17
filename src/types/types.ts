@@ -143,12 +143,14 @@ export type DebtType = {
 };
 
 //budget
-export type BudgetType = {
-  amount: number;
-  spent: number;
-  category_name: string; //in the future specify the names as a union of specific string types
+export type CategoryBudgetType = {
+  category_name: string; 
   category_id: number;
+  budget: number; //amount
+  spent: number;
 };
+
+export type StatusType = boolean;
 
 export type CurrencyType = 'usd' | 'cop' | 'eur';
 
@@ -159,3 +161,5 @@ export type CURRENCY_OPTIONSTYPE = {
   cop: 'cop-CO';
   eur: 'en-US';
 };
+
+

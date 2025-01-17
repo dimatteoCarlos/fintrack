@@ -1,4 +1,4 @@
-import { CurrencyType } from '../types/types';
+import { CurrencyType, StatusType } from '../types/types';
 import { DATE_TIME_FORMAT_DEFAULT } from './constants';
 
 //-------------------------
@@ -128,3 +128,12 @@ export function validationData(stateToValidate: {
   }
   return errorValidationMessages;
 } //fn
+
+const statusFn = (budget: number = 100, spent: number = 100): StatusType => {
+  const diff = budget - spent;
+  // const type = diff >= 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
+  // const type = diff <= 0 ? 'alert' : '';
+  const type = diff >= 0;
+
+  return type;
+};
