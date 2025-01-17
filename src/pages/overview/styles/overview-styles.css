@@ -50,8 +50,10 @@
 /*----CardTitle -----*/
 
 .overviewLayout .presentation__card__title__container {
+
   /* padding: 1rem 0 0rem 0; */
-  /* border: 1px solid red; */
+  border: none;
+
 }
 
 .presentation__card--title {
