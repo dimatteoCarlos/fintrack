@@ -1,14 +1,14 @@
 import { TitleHeader } from '../../general_components/titleHeader/TitleHeader';
 
-import Categories from './categories/Categories';
+import BudgetPresentation from './components/BudgetPresentation';
 import BudgetBigBoxResult from './components/BudgetBigBoxResult';
 import './styles/budget-styles.css';
 import './styles/budget-styles.css';
 
 function BudgetLayout() {
   //temporary values------------
-  //get the categories and pockets info from endpoints (unknowns):
-  //data: from expenses? or budget movements, group the movements related to budget? by category, compare total expenses from grouped or totalized expense movements , to  budget (this budget has to be attatched to a timestep or date, and so the expenses), then calculate the remaining and reder it.
+  //get the categories and pockets info from endpoints (unknowns yet):
+  //data: from expenses? or budget movements, group the movements related to budget? by category, compare - total expenses from grouped or totalized expense movements - to  budget (this budget has to be attatched to a timestep or date, and so the expenses), then calculate the remaining and reder it. It is important to define the currency rules handling to follow when totalizing amounts of any kind.
 
   //yo diria que es tener el presupuesto total, y la distribucion del ppto en el tiempo, y comparar con los gastos totales y con los gastos distribuidos en el tiempo, es decir, comparar el plan vs. el real.
 
@@ -31,10 +31,8 @@ function BudgetLayout() {
             <TitleHeader></TitleHeader>
           </div>
         </div>
-
         <BudgetBigBoxResult />
-
-        <Categories />
+        <BudgetPresentation />
       </div>
     </>
   );
