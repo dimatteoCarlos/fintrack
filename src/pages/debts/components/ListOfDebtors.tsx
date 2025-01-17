@@ -3,6 +3,7 @@ import { currencyFormat } from '../../../helpers/functions';
 import { useFetch } from '../../../hooks/useFetch';
 import { DebtorType, DebtsType } from '../../../types/types';
 import { url_debtors_debt } from '../../../endpoints';
+import { StatusSquare } from '../../../general_components/boxComponents';
 
 export type DebtsToRender = {
   type?: DebtorType;
@@ -116,7 +117,10 @@ function ListOfDebtors() {
               <BoxRow>
                 <BoxRow>
                   <div className='flx-row-sb'>
-                    <span className='status__square'> </span>
+                    {/* <span className='status__square'> </span> */}
+                    <StatusSquare
+                      alert={transactionType == 'Lender' ? 'alert' : ''}
+                    />
                     <div className='box__subtitle'>
                       &nbsp; {transactionType}{' '}
                     </div>
