@@ -3,9 +3,20 @@ export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 
 export const DEFAULT_CURRENCY = 'usd';
 
+//tracker/expense
+export const ACCOUNT_OPTIONS_DEFAULT = [
+  { value: 'acc.name_01', label: 'acc.name_01' },
+  { value: 'acc.name_02', label: 'acc.name_02' },
+  { value: 'acc.name_03', label: 'acc.name_03' },
+];
 
+export const CATEGORY_OPTIONS_DEFAULT = [
+  { value: 'category_01', label: 'Category_01 / SubCategory 01' },
+  { value: 'category_02', label: 'Category_02 / SubCategory 02' },
+  { value: 'category_03', label: 'Category_03 / SubCategory 03' },
+];
 
-
+//---
 export const INCOME_OPTIONS_DEFUALT = [
   { value: 'account_01', label: 'Account_01' },
   { value: 'account_02', label: 'Account_02' },
@@ -31,11 +42,6 @@ export const DEBTOR_OPTIONS_DEFAULT = [
 
 export const DEFAULT_DEBTOR_TYPE = 'lending';
 
-export const ACCOUNT_OPTIONS_DEFAULT = [
-  { value: 'acc.name_01', label: 'acc.name_01' },
-  { value: 'acc.name_02', label: 'acc.name_02' },
-  { value: 'acc.name_03', label: 'acc.name_03' },
-];
 
 export const TYPEDEBTS_OPTIONS_DEFAULT = [
   { value: 'lending', label: 'Lending' },

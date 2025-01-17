@@ -11,6 +11,9 @@ export function BoxRow({ children }: ChildrenPropType) {
   return <div className='box__row flx-row-sb'>{children}</div>;
 }
 
-export function StatusSquare({ children }: any) {
-  return <span className='status__square'>{children}</span>;
+export function StatusSquare({ children, alert }: any) {
+  // console.log('alert:', alert)
+  // return <span className='status__square'>{children}</span>;
+  return <span className={`status__square ${alert}`}>{children}</span>;
 }
+

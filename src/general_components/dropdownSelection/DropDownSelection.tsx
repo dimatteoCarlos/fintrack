@@ -1,7 +1,7 @@
 // Importar React y el componente Select de react-select
 
 import Select, { components } from 'react-select';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
 import ArrowDownLightSvg from '../../assets/ArrowDownLightSvg.svg';
 

@@ -18,7 +18,7 @@ export type DebtsToRender = {
 const typeOfDebtorfn = (borrowed: number, lent: number): DebtorType => {
   const diff = lent - borrowed;
   // const type = diff > 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
-  const type = diff >= 0 ? 'debtor' : 'lender';
+  const type = diff >= 0 ? 'debtor' : 'lender'; //debtor y lender usar constantes
 
   return type;
 };
@@ -103,8 +103,8 @@ function ListOfDebtors() {
           } = debtor;
           const transactionType =
             -total_amount_borrowed + total_amount_lent < 0
-              ? 'Lender'
-              : 'Debtor';
+              ? 'lender'
+              : 'debtor';
           return (
             <BoxContainer key={indx}>
               <BoxRow>
@@ -119,7 +119,7 @@ function ListOfDebtors() {
                   <div className='flx-row-sb'>
                     {/* <span className='status__square'> </span> */}
                     <StatusSquare
-                      alert={transactionType == 'Lender' ? 'alert' : ''}
+                      alert={transactionType == 'lender' ? 'alert' : ''}
                     />
                     <div className='box__subtitle'>
                       &nbsp; {transactionType}{' '}

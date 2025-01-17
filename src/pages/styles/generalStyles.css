@@ -102,22 +102,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
- 
+
   /* --figmaWidth:22.5rem;
   min-width: var(--figmaWidth); */
   min-width: 26rem;
   max-width: 37.5rem;
   padding-bottom: 1rem;
 
-  overflow-x:auto;
-
+  overflow-x: auto;
 }
 
 .home__layout {
   position: relative;
-  height:100vh;
-  min-height:51rem;
-  max-height:52rem;
+  height: 100vh;
+  min-height: 51rem;
+  max-height: 52rem;
 }
 
 .home__header {
@@ -178,8 +177,13 @@ body {
   height: 0.75rem;
   width: 0.75rem;
   background-color: #5b8c93;
+
   border: none;
   border-radius: 0.125rem;
+}
+
+.status__square.alert {
+  background-color: #c97474;
 }
 
 /*input css rules */

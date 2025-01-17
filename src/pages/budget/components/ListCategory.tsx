@@ -3,8 +3,8 @@ import {
   StatusSquare,
 } from '../../../general_components/boxComponents.tsx';
 import { currencyFormat } from '../../../helpers/functions.ts';
-import { useFetch } from '../../../hooks/useFetch.tsx';
 import { CurrencyType } from '../../../types/types.ts';
+import { useFetch } from '../../../hooks/useFetch.tsx';
 
 export type CategoriesToRender = {
   categoryName: string;
@@ -87,6 +87,13 @@ function ListCategory() {
         })
       : defaultCategoryBudget;
 
+  //functions
+  function onCategoryHandler(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.preventDefault();
+    
+    console.log('budget and category movements', e.currentTarget); // creo que deberia incluir la fecha en el reporte
+  }
+
   return (
     <>
       {/*LIST CATEGORY  */}
@@ -98,7 +105,11 @@ function ListCategory() {
           return (
             <div className='box__container .flx-row-sb' key={indx}>
               <BoxRow>
-                <div className='box__title box__title--category__name'>
+                <div id={categoryName}
+                  className='box__title box__title--category__name '
+               
+                  onClick={(e)=>onCategoryHandler(e)}
+                >
                   {categoryName}{' '}
                 </div>
                 <div className='box__title--spent'>
