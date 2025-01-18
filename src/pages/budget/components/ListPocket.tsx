@@ -8,11 +8,6 @@ import { CurrencyType } from '../../../types/types';
 // import { useFetch } from '../../../hooks/useFetch.tsx';
 
 export type PocketsToRenderType = {
-  // name: 'Name',
-  //     description: 'Description',
-  //     saved: 'Saved',
-  //     goal: '/Goal',
-
   pocketName: string;
   description: string;
   saved: number;
@@ -39,8 +34,9 @@ const defaultPocketList: PocketsToRenderType[] = [
   {
     pocketName: 'Name Pocket 03',
     description: 'Description 03',
-    saved: Math.random() * 100,
-    goal: Math.random() * 100,
+    saved: 500,
+    goal: 98,
+    currency: 'eur',
   },
   {
     pocketName: 'Name Pocket 04',
@@ -55,6 +51,7 @@ function ListPocket() {
   //List Pocket
   //DATA FETCHING
   //const{ data, isLoading, error } = useFetch<PokcketsType>(url_budget_pocket);//Data Fetching //Este endpoint no existe
+
   //temporary values
   let data: PocketsToRenderType[] = [],
     isLoading = false,
@@ -72,8 +69,8 @@ function ListPocket() {
       : defaultPocketList;
 
   // en el backend: generar la data segun estructura de los datos a renderizar, es decir,
-  //agrupar para cada pocket el saved y el goal, de cada uno sde los movimientos, la sumatoria de saved se refleja en el saved, ,  y el status seria el resultado de la resta entre el budget - expense de cada categoria, o si se prefiere reflejar el status de una vez.
-  //no se esta claro, si los valores o informacion se obtendra de los movimientos de expense realizados en cada categoria.
+  //agrupar para cada pocket el saved y el goal, de cada uno de los movimientos almacenados, la sumatoria de saved se refleja en el saved, ,  y el status seria el resultado de la resta entre el budget - expense de cada categoria, o si se prefiere reflejar el status de una vez, haciendo calculo en backend.
+  //no estoy claro, si los valores o informacion se obtendra de los movimientos de expense realizados en cada categoria, seria desde backend.
 
   return (
     <article className='list__main__container'>

@@ -175,29 +175,43 @@ label,
 .targetAmount.input__container {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0 0.5rem 0.5rem;
+  align-items: center;
+  padding: 0.25rem 1rem 0.5rem 0.5rem;
+  gap: 0.25rem;
 
   height: 4.25rem;
   width: 100%;
 
   text-transform: capitalize;
-
   /* background-color: red; */
+}
+.label__target {
+  flex: 40%;
+  font-size: 1rem;
+}
+
+.target__label__amount {
+  display: flex;
+}
+
+.target__label__saved {
+  width: 100%;
+  color: #857f7f;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
 }
 
 .input__targetAmount {
-  text-align-last: left;
+  flex: 60%;
+  text-align-last: right;
   background-color: transparent;
   border: none;
   outline: none;
-  padding: 0;
-  margin: 0;
-  resize: none;
   width: 100%;
-  overflow-y: hidden;
+
+  /* padding: 0; */
+  /* margin: 0; */
+  /* overflow-y: hidden; */
   /* background-color: orange; */
 }
 
@@ -205,9 +219,6 @@ label,
   background-color: transparent;
   color: #5b5b5b;
   text-transform: capitalize;
-  /* padding: 0rem; */
-
-  /* width: max-content; Why is LIMITED?*/
 }
 
 textarea:invalid {
@@ -217,14 +228,16 @@ textarea:invalid {
 /*------------*/
 /*--Date Picker input form--*/
 
-.form__datepicker__container {
+/* .form__datepicker__container {
   border: 1px solid var(--creme);
   height: 2.625em;
   border-radius: 1rem;
   padding: 0.5rem;
   width: 100%;
   background-color: transparent;
-}
+    display: flex;
+  flex-direction: column;
+} */
 
 /*--New Account--*/
 .account__dateAndCurrency {

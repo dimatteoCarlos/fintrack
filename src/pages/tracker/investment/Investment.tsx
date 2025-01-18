@@ -121,10 +121,12 @@ function Investment() {
       prev === 'deposit' ? 'withdraw' : 'deposit'
     );
   }, [typeInv]);
+
   //--
   function changeInvestmentDate(selectedDate: Date): void {
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
   }
+
   //----
   function onSaveHandler() {
     console.log('On Save Handler');
@@ -136,7 +138,7 @@ function Investment() {
     );
 
     //validation of entered data
-    const newValidationMessages = validationData(investmentData);
+    const newValidationMessages = {...validationData(investmentData)};
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
@@ -145,17 +147,17 @@ function Investment() {
 
     //----------------------------
     //do the post to the endpoint api
-
+//ENDPOINT
     //----------------------------
 
     //reset values
     setIsReset(true);
+    setValidationMessages({});
     setInvestmentData(initialInvestmentData); //check this
 
     setTypeInv('deposit');
     updateDataCurrency(defaultCurrency);
     setInvestmentData((prev) => ({ ...prev, date: new Date() }));
-    setValidationMessages({});
 
     // after a delay, change isReset to false
     setTimeout(() => {
@@ -231,15 +233,17 @@ function Investment() {
               </button>
             </div>
 
-            <div className='card__typeDate--date'>
-              <div className='card--title'> Date </div>
-              <div className='card__screen--date'>
+            <div className='card__typeDate--date  '>
+              <div className='card--title '> Date </div>
+              <div className='card__screen--date '>
+
                 <Datepicker
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
                   variant={'tracker'}
                   isReset={isReset}
                 ></Datepicker>
+                
               </div>
             </div>
           </div>

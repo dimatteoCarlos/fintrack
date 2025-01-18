@@ -31,9 +31,7 @@ const typeSelectionProp = {
   variant: 'form', //define the customStyle to use in selection dropdown component
 };
 
-//----Temporary values----------
-
-
+//----Temporary initial values----------
 type ProfileDataType = {
   name: string;
   lastname: string;
@@ -62,7 +60,8 @@ function NewProfile() {
   }>({});
 
   const [isReset, setIsReset] = useState<boolean>(false);
-
+  
+//data fetching for options selections
   const {
     data,
     isLoading,
