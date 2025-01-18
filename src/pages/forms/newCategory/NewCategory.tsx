@@ -3,9 +3,11 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
-import { Link, useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import '../styles/forms-styles.css';
+import { validationData } from '../../../helpers/functions.ts';
 
 //---------Form Field Names----------
 // const formTitle = 'New Category';
@@ -42,40 +44,49 @@ export const tileLabels = [
 ];
 //------------------------------------
 
-const initialNewCategoryData = {
-  category: '',
-  subcategory: '',
-  budget: 0.0,
-  nature: '',
-};
-
 type CategoryDataType = {
   category: string;
   subcategory: string;
-  budget: string | number;
+  budget: number | string;
   nature: string;
+};
+
+const initialNewCategoryData: CategoryDataType = {
+  category: '',
+  subcategory: '',
+  budget: '',
+  nature: '',
 };
 
 //-------------------------
 function NewCategory() {
-  const location = useLocation();
-  //---states------
+  // const location = useLocation();
+  //---states------n
   const [categoryData, setCategoryData] = useState<CategoryDataType>(
     initialNewCategoryData
   );
   const [activeCategory, setActiveCategory] = useState('');
 
-  // console.log('🚀 ~ NewCategory ~ location:', location);
+  const [validationMessages, setValidationMessages] = useState<{
+    [key: string]: string;
+  }>({});
 
+  //functions
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
-    setCategoryData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+    const { name, value } = e.target;
+
+    const valueToSave =
+      name === 'budget' ? (value !== '' ? parseFloat(value) : 0) : value;
+
+    setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     //adding function
-    console.log('addHandler');
+    console.log('addHandler subcategory to define');
   }
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -85,15 +96,31 @@ function NewCategory() {
     setActiveCategory(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
   }
-
+  //--
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    console.log(categoryData);
+    console.log('onSubmitForm');
+
+    //--
+    const newValidationMessages = { ...validationData(categoryData) };
+    console.log('mensajes:', { newValidationMessages });
+
+    if (Object.values(newValidationMessages).length > 0) {
+      setValidationMessages(newValidationMessages);
+      return;
+    }
+
+    //--
     //function to save categoryData in DB
+    //POST the new profile data into database
+    console.log('data to POST:', { categoryData });
+
+    //resetting form values
     setActiveCategory('');
     setCategoryData(initialNewCategoryData);
+    setValidationMessages({});
   }
-
+  //-----------------------
   return (
     <section className='page__container'>
       <TopWhiteSpace variant={'dark'} />
@@ -108,6 +135,7 @@ function NewCategory() {
             relative='path'
             className='iconLeftArrow'
           > */}
+
           <Link to='..' relative='path' className='iconLeftArrow'>
             <LeftArrowSvg />
           </Link>
@@ -119,7 +147,12 @@ function NewCategory() {
         <form className='form__box'>
           <div className='container--categoryName form__container'>
             <div className='input__box'>
-              <label className='label form__title'>{'Category Name'}</label>
+              <label htmlFor='category' className='label form__title'>
+                {'Category Name'}&nbsp;
+                <div className='validation__errMsg'>
+                  {validationMessages['category']}
+                </div>
+              </label>
 
               <input
                 type='text'
@@ -132,7 +165,12 @@ function NewCategory() {
             </div>
 
             <div className='input__box'>
-              <label className='label form__title'>{'subcategory'}</label>
+              <label htmlFor='subcategory' className='label form__title'>
+                {'subcategory'}&nbsp;
+                <div className='validation__errMsg'>
+                  {validationMessages['subcategory']}
+                </div>
+              </label>
 
               <input
                 type='text'
@@ -144,31 +182,37 @@ function NewCategory() {
               />
             </div>
 
-            <button
-              className={'input__container'}
-              onClick={addHandler}
-            >
+            <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
             </button>
 
             <div className='input__box'>
-              <label className='label form__title'>{'budget'}</label>
+              <label htmlFor='budget' className='label form__title'>
+                {'budget'}&nbsp;
+                <div className='validation__errMsg'>
+                  {validationMessages['budget']}
+                </div>
+              </label>
 
               <input
-                // type='text'
-                type='number'
                 className={`input__container`}
-                placeholder={`amount`}
+                type='number'
                 name={'budget'}
+                placeholder={`amount`}
                 onChange={inputHandler}
-                value={categoryData.budget}
+                value={categoryData['budget']}
               />
             </div>
           </div>
 
           {/* convert to a Component of tiles or badges */}
           <div className='container--nature'>
-            <div className='form__title form__title--tiles'>{tileTitle}</div>
+            <div className='form__title form__title--tiles'>
+              {tileTitle}
+              <div className='validation__errMsg'>
+                {validationMessages['category']}
+              </div>
+            </div>
 
             <div className='nature__tiles'>
               {tileLabels.map((label, indx) => {

@@ -53,6 +53,7 @@ function NewPocket() {
     const { name, value } = e.target;
 
     const valueToSave =
+      // name === 'target' ? (value !== '' ? parseFloat(value) : 0) : value;
       name === 'target' ? (value !== '' ? parseFloat(value) : 0) : value;
 
     setPocketData((prev) => ({ ...prev, [name]: valueToSave }));
@@ -71,8 +72,7 @@ function NewPocket() {
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     console.log('onSubmitForm');
-    //function to handle pocketData
-    console.log('submit function', 'data:', pocketData);
+
     //--
     const newValidationMessages = { ...validationData(pocketData) };
     console.log('mensajes:', { newValidationMessages });
