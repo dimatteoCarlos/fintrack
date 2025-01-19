@@ -1,5 +1,6 @@
 //src/pages/tracker/expense/Expense.tsx
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+// import { useEffect } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
@@ -124,12 +125,12 @@ function Expense() {
     console.log('On Save Handler');
 
     //temporarily 'till defining format for numbers. Options: as number, as string with format
-    // const formattedNumber = numberFormat(expenseData.amount || 0);
-    // console.log(
-    //   'formatted amount as a string:',
-    //   { formattedNumber },
-    //   typeof formattedNumber
-    // );
+    const formattedNumber = numberFormat(expenseData.amount || 0);
+    console.log(
+      'Expense formatted amount as a string:',
+      { formattedNumber },
+      typeof formattedNumber
+    );
     //----------------------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
@@ -140,9 +141,8 @@ function Expense() {
       return;
     }
 
-    //do the POST to the endpoint:
     //POST ENDPOINT HERE
-    console.log("Expense data state to Post:",expenseData)
+    console.log('Expense data state to Post:', expenseData);
 
     //reset the state and the selected options on select component
 
@@ -173,6 +173,7 @@ function Expense() {
               className='inputNumber'
               name='amount'
               type='number'
+              step='any'
               placeholder={`${trackerState}`}
               // value={numberFormat(
               //    parseFloat(expenseData?.amount) || 0

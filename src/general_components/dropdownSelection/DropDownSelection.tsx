@@ -139,7 +139,7 @@ export type DropdownSelectPropType = {
       value: string;
       label: string;
     }[];
-    variant: string;
+    variant?: string;
   };
 
   updateOptionHandler: (
@@ -152,7 +152,7 @@ export type DropdownSelectPropType = {
 
   isReset?: boolean;
   setIsReset?: any; //fix later
-  optionKeySelected?: any;
+  optionKeySelected?: any; //is it needed?
 };
 
 const variantCustomStyles = {
@@ -165,7 +165,8 @@ const variantCustomStyles = {
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
-  isReset,
+  isReset
+  
 }: // optionKeySelected,
 DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;

@@ -1,5 +1,5 @@
 //src/pages/tracker/expense/Income.tsx
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import { validationData, numberFormat } from '../../../helpers/functions.ts';
@@ -18,6 +18,7 @@ import {
   DEFAULT_CURRENCY,
   CURRENCY_OPTIONS,
 } from '../../../helpers/constants.ts';
+import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -36,21 +37,21 @@ type IncomeDataType = {
 };
 
 const initialIncomeData: IncomeDataType = {
-  amount: 0.0000,
+  amount: 0.0,
   account: '',
   source: '',
   note: '',
   currency: defaultCurrency,
 };
 
-const iNCOME_OPTIONS_DEFAULT = [
+const INCOME_OPTIONS_DEFAULT = [
   { value: 'account_01', label: 'Account_01' },
   { value: 'account_02', label: 'Account_02' },
   { value: 'account_03', label: 'Account_03' },
   { value: 'account_04', label: 'Account_04' },
 ];
 
-const sORCE_OPTIONS_DEFAULT = [
+const SORCE_OPTIONS_DEFAULT = [
   { value: 'source_01', label: 'source_01' },
   { value: 'source_02', label: 'source_02' },
   { value: 'source_03', label: 'source_03' },
@@ -77,7 +78,7 @@ function Income() {
           value: acc.name,
           label: acc.name,
         }))
-      : iNCOME_OPTIONS_DEFAULT;
+      : INCOME_OPTIONS_DEFAULT;
 
   // console.log('accounts:', { optionsIncomeAccounts });
 
@@ -102,7 +103,7 @@ function Income() {
             value: src.name,
             label: src.name,
           }))
-        : sORCE_OPTIONS_DEFAULT,
+        : SORCE_OPTIONS_DEFAULT,
   };
 
   // console.log('SOURCES:', { sourceOptions });
@@ -116,11 +117,6 @@ function Income() {
   }>({});
   const [isReset, setIsReset] = useState<boolean>(false);
 
-  //-----useEffect--------
-  useEffect(() => {
-    updateDataCurrency(currency);
-  }, [currency]);
-
   //----functions--------
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
@@ -132,12 +128,12 @@ function Income() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     e.preventDefault();
+    const { name, value } = e.target;
 
-    const valueToSave =
-      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
-    setIncomeData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+    const valueToSave = name === 'amount' ? parseFloat(value) : value;
+    setIncomeData((prev) => ({ ...prev, [name]: valueToSave }));
   }
-  //-----------
+  //------------------------
   function onSaveHandler() {
     console.log('On Save Handler');
     const formattedNumber = numberFormat(incomeData.amount || 0);
@@ -155,9 +151,9 @@ function Income() {
       return;
     }
 
-    //do the POST to the api endpoint:
-    console.log('income:', { incomeData });
-    //----------------------------
+    //POST ENDPOINT HERE
+    console.log('Income data state to Post:', incomeData);
+    //------------------------
 
     //reset values
     setIsReset(true);
@@ -190,7 +186,7 @@ function Income() {
               placeholder={`${trackerState}`}
               onChange={updateTrackerData}
               name='amount'
-              value={(incomeData.amount)}
+              value={incomeData.amount}
             />
 
             <CurrencyBadge
@@ -226,6 +222,7 @@ function Income() {
               {validationMessages['source']}
             </span>
           </div>
+
 
           <SelectComponent
             dropDownOptions={sourceOptions}

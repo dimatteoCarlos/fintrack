@@ -31,7 +31,7 @@ export function useFetch<R>(url: string): FetchResponse<R> {
       if (err) {
         const safeError =
           err instanceof Error ? err : new Error('Unexpected error');
-        console.error('error:', safeError);
+        console.error('error:', safeError.message);
         setData(null);
         setError(safeError);
       }
