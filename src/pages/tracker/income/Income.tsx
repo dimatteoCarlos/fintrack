@@ -18,7 +18,6 @@ import {
   DEFAULT_CURRENCY,
   CURRENCY_OPTIONS,
 } from '../../../helpers/constants.ts';
-import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -183,6 +182,7 @@ function Income() {
             <input
               className='inputNumber'
               type='number'
+              step='any'
               placeholder={`${trackerState}`}
               onChange={updateTrackerData}
               name='amount'
@@ -222,7 +222,6 @@ function Income() {
               {validationMessages['source']}
             </span>
           </div>
-
 
           <SelectComponent
             dropDownOptions={sourceOptions}
