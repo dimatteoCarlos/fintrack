@@ -89,7 +89,7 @@ function App() {
           children: [
             // { index: true, element: <Account /> },//what would be this?
             { index: true, element: <Overview /> },
-            { path: '/overview/accounts', element: <Overview /> },
+            // { path: '/overview/accounts', element: <Overview /> },
           ],
         },
       ],
@@ -99,11 +99,13 @@ function App() {
     { path: '/budget/new_category', element: <NewCategory /> },
     { path: '/budget/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
-    { path: '/overview/accounts/new_account', element: <NewAccount /> },
-    // {
-    //   path: '/overview/accounts/:accountId',
-    //   element: <AccountDetail />,
-    // },
+    { path: '/overview/new_account', element: <NewAccount /> },
+
+    {
+      path: '/overview/accounts/:accountId',
+      element: <AccountDetail />,
+    },
+
     // {
     //   path: '/overview/accounts/:accountId',/
     //   element: <DebtorDetail />,
@@ -112,11 +114,10 @@ function App() {
     //   path: '/overview/accounts/:accountId',
     //   element: <PocketDetail />,
     // },
-    {
-      path: '/overview/accounts/:accountId',
-      element: <AccountDetail />,
-      // element: <CategoryDetail />,
-    },
+    // {
+    //   path: '/overview/accounts/:accountId',
+    //   element: <AccountDetail />,
+    // },
   ]);
 
   return (
