@@ -3,31 +3,11 @@ import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
 
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
-// import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import '../styles/forms-styles.css';
 import { validationData } from '../../../helpers/functions.ts';
-
-//---------Form Field Names----------
-// const formTitle = 'New Category';
-
-// export const newCategoryFormLabels: {
-//   [key: string]: string | JSX.Element | number;
-// }[] = [
-//   {
-//     labelText: 'Category Name',
-//     className: 'label--text',
-//     content: 'Category Name',
-//   },
-//   {
-//     labelText: 'Subcategory',
-//     className: 'label--text',
-//     content: 'Category Name',
-//   },
-//   { labelText: '', className: 'iconContent', content: <PlusSignSvg /> },
-//   { labelText: 'Budget', className: 'label--text', content: 'Amount' },
-// ];
+// import { useLocation } from 'react-router-dom';
 
 //---------------
 export const tileTitle = 'Category Nature';
@@ -47,14 +27,14 @@ export const tileLabels = [
 type CategoryDataType = {
   category: string;
   subcategory: string;
-  budget: number | string;
+  amount: number; //amount?
   nature: string;
 };
 
 const initialNewCategoryData: CategoryDataType = {
   category: '',
   subcategory: '',
-  budget: '',
+  amount: 0.0,
   nature: '',
 };
 
@@ -77,8 +57,7 @@ function NewCategory() {
 
     const { name, value } = e.target;
 
-    const valueToSave =
-      name === 'budget' ? (value !== '' ? parseFloat(value) : 0) : value;
+    const valueToSave = name == 'amount' ? parseFloat(value) : value;
 
     setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
   }
@@ -101,9 +80,9 @@ function NewCategory() {
     e.preventDefault();
     console.log('onSubmitForm');
 
-    //--
+    //--data form validation
     const newValidationMessages = { ...validationData(categoryData) };
-    console.log('mensajes:', { newValidationMessages });
+    // console.log('mensajes:', { newValidationMessages });
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
@@ -111,8 +90,7 @@ function NewCategory() {
     }
 
     //--
-    //function to save categoryData in DB
-    //POST the new profile data into database
+    //POST the new category data into database POST endpoint
     console.log('data to POST:', { categoryData });
 
     //resetting form values
@@ -125,24 +103,17 @@ function NewCategory() {
     <section className='page__container'>
       <TopWhiteSpace variant={'dark'} />
 
-      {/* main title component */}
       <div className='page__content'>
-        {/* main__title could be a component */}
-
         <div className='main__title--container'>
-          {/* <Link
-            to={location.state.previousRoute}
-            relative='path'
-            className='iconLeftArrow'
-          > */}
+          {/* <Link to={location.state.previousRoute} relative='path' className='iconLeftArrow'
+          > */
+          /*this works but another way was used */}
 
           <Link to='..' relative='path' className='iconLeftArrow'>
             <LeftArrowSvg />
           </Link>
           <div className='form__title'>{'New Category'}</div>
         </div>
-
-        {/*  */}
 
         <form className='form__box'>
           <div className='container--categoryName form__container'>
@@ -184,10 +155,11 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
+              {/* Defining functionalitiy and data structure is PENDING */}
             </button>
 
             <div className='input__box'>
-              <label htmlFor='budget' className='label form__title'>
+              <label htmlFor='amount' className='label form__title'>
                 {'budget'}&nbsp;
                 <div className='validation__errMsg'>
                   {validationMessages['budget']}
@@ -195,12 +167,13 @@ function NewCategory() {
               </label>
 
               <input
-                className={`input__container`}
+                className={'input__container'}
+                name='amount'
                 type='number'
-                name={'budget'}
-                placeholder={`amount`}
+                step='any'
+                placeholder={'amount'}
+                value={categoryData?categoryData.amount:0.00}
                 onChange={inputHandler}
-                value={categoryData['budget']}
               />
             </div>
           </div>
