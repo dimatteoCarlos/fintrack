@@ -6,3 +6,4 @@ export const url_categories = BASE_URL + '/' + 'categories';
 export const url_investment_acc = BASE_URL + '/' + 'investment-accounts';
 export const url_investment = BASE_URL + '/' + 'investment';
 export const url_sources = BASE_URL + '/' + 'sources';
+export const url_budget = BASE_URL + '/' + 'budget';
