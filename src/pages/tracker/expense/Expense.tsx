@@ -22,10 +22,11 @@ import {
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
 
+//-----temporarily 'till decide how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
-
+//------------------------------------------------------
 //input expense data state variables
 type ExpenseDataType = {
   amount: number;
@@ -98,9 +99,9 @@ function Expense() {
   }>({});
 
   //-----useEffect--------
-  useEffect(() => {
-    updateDataCurrency(currency);
-  }, [currency]);
+  // useEffect(() => {
+  //   updateDataCurrency(currency);
+  // }, [currency]);
 
   //----functions--------
 
@@ -122,25 +123,26 @@ function Expense() {
   function onSaveHandler() {
     console.log('On Save Handler');
 
-    const formattedNumber = numberFormat(expenseData.amount || 0);
-
-    console.log(
-      'formatted amount as a string:',
-      { formattedNumber },
-      typeof formattedNumber
-    );
-
+    //temporarily 'till defining format for numbers. Options: as number, as string with format
+    // const formattedNumber = numberFormat(expenseData.amount || 0);
+    // console.log(
+    //   'formatted amount as a string:',
+    //   { formattedNumber },
+    //   typeof formattedNumber
+    // );
+    //----------------------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
     // console.log('validation mgs:', newValidationMessages);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
-      console.log('validation');
       return;
     }
 
     //do the POST to the endpoint:
+    //POST ENDPOINT HERE
+    console.log("Expense data state to Post:",expenseData)
 
     //reset the state and the selected options on select component
 
