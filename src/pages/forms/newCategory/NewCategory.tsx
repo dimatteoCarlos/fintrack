@@ -5,11 +5,11 @@ import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpa
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-import '../styles/forms-styles.css';
 import { validationData } from '../../../helpers/functions.ts';
 // import { useLocation } from 'react-router-dom';
+import '../styles/forms-styles.css';
 
-//---------------
+//----Category Nature Tiles-----------
 export const tileTitle = 'Category Nature';
 
 export const tileLabels = [
@@ -53,23 +53,22 @@ function NewCategory() {
 
   //functions
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
+    // e.preventDefault();
 
     const { name, value } = e.target;
-
     const valueToSave = name == 'amount' ? parseFloat(value) : value;
 
     setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+    // e.preventDefault();
     //adding function
     console.log('addHandler subcategory to define');
   }
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+    // e.preventDefault();
     // console.log('natureHandler', e.currentTarget.id);
     const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
     setActiveCategory(activeNature);
@@ -97,6 +96,7 @@ function NewCategory() {
     setActiveCategory('');
     setCategoryData(initialNewCategoryData);
     setValidationMessages({});
+
   }
   //-----------------------
   return (
@@ -172,7 +172,7 @@ function NewCategory() {
                 type='number'
                 step='any'
                 placeholder={'amount'}
-                value={categoryData?categoryData.amount:0.00}
+                value={categoryData ? categoryData.amount : 0.0}
                 onChange={inputHandler}
               />
             </div>

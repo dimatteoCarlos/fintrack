@@ -16,8 +16,7 @@ function Overview() {
 
   const location = useLocation();
   const originRoute = location.pathname;
-  // console.log({ originRoute });
-
+  console.log({ originRoute });
 
   function createNewAccount(originRoute: string) {
     navigateTo(originRoute + '/new_account', {
@@ -28,7 +27,6 @@ function Overview() {
   return (
     <section className='content__presentation'>
       <div className='cards__presentation'>
-        
         <SavingGoals />
 
         <AccountBalance
@@ -44,7 +42,6 @@ function Overview() {
         <LastMovements />
 
         <LastDebts />
-
       </div>
     </section>
   );

@@ -46,6 +46,24 @@ export const TYPEDEBTS_OPTIONS_DEFAULT = [
   { value: 'borrowing', label: 'Borrowing' },
 ];
 
+//overview/new_account
+export const ACCOUNT_TYPE_DEFAULT = 
+ [
+    {
+      value: 'accountType_01',
+      label: 'Account Type 01',
+    },
+    {
+      value: 'accountType_02',
+      label: 'Account Type 02',
+    },
+    {
+      value: 'accountType_03',
+      label: 'Account Type 03',
+    },
+  ]
+
+
 
 
 

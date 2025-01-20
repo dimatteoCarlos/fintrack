@@ -11,7 +11,6 @@ import { CurrencyType } from '../../../types/types.ts';
 import FormDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import '../styles/forms-styles.css';
 
-//---------Form Field Names-------------
 //----Temporary initial values----------
 type PocketDataType = {
   name: string;

@@ -105,7 +105,6 @@ function Expense() {
   // }, [currency]);
 
   //----functions--------
-
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
     setExpenseData((prev) => ({ ...prev, currency: currency }));
@@ -121,9 +120,9 @@ function Expense() {
     setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
 
-  function onSaveHandler() {
+  function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
-
+    e.preventDefault();
     //temporarily 'till defining format for numbers. Options: as number, as string with format
     const formattedNumber = numberFormat(expenseData.amount || 0);
     console.log(
@@ -131,6 +130,7 @@ function Expense() {
       { formattedNumber },
       typeof formattedNumber
     );
+
     //----------------------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
@@ -147,8 +147,8 @@ function Expense() {
     //reset the state and the selected options on select component
 
     setIsReset(true);
-    setExpenseData(initialExpenseData);
     setCurrency(defaultCurrency);
+    setExpenseData(initialExpenseData);
     setValidationMessages({});
 
     setTimeout(() => setIsReset(false), 500);

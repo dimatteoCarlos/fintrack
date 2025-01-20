@@ -165,8 +165,7 @@ const variantCustomStyles = {
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
-  isReset
-  
+  isReset,
 }: // optionKeySelected,
 DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;

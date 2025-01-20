@@ -17,7 +17,7 @@ function OverviewButton() {
   return (
     <>
       <NavLink
-        to='/overview/accounts'
+        to='/overview'
         className={`${classNavLink} ${isBtnActive}`}
       >
         <div className='iconContainer flx-col-center'>

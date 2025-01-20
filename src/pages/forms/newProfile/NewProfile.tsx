@@ -109,7 +109,7 @@ function NewProfile() {
   }
 
   function accountSelectHandler(selectedOption: any) {
-    setProfileData((prev: any) => ({
+    setProfileData((prev: ProfileDataType) => ({
       ...prev,
       account: selectedOption?.value,
     }));
@@ -119,6 +119,7 @@ function NewProfile() {
       selectedOption
     );
   }
+
   //------------------
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -142,9 +143,10 @@ function NewProfile() {
 
     setValidationMessages({});
 
-    setTimeout(() => setIsReset(false), 500);
     setProfileData(initialNewProfileData);
     console.log('submit form button');
+
+    setTimeout(() => setIsReset(false), 500);
   }
 
   return (

@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { currencyFormat } from '../../../helpers/functions';
 import { CardTitle } from '../../../general_components/CardTitle';
-import OpenAddEditBtn from '../../../general_components/OpenAddEditBtn';
 import { CreateNewAccountPropType } from '../Overview';
 import { url_accounts } from '../../../endpoints';
 import { useFetch } from '../../../hooks/useFetch';
 import { ExpenseAccountsType } from '../../../types/types';
 import { CURRENCY_OPTIONS } from '../../../helpers/constants';
+
+import OpenAddEditBtn from '../../../general_components/OpenAddEditBtn';
 
 function AccountBalance({
   createNewAccount,
@@ -101,7 +102,7 @@ function AccountBalance({
           {
             return (
               <Link
-                to={`/overview/accounts/:${indx}`}
+                to={`/overview/:${indx}`}
                 className='tile__container tile__container--account flx-col-sb'
                 key={`account-${indx}`}
               >
@@ -117,6 +118,8 @@ function AccountBalance({
           }
         })}
       </article>
+
+      
       {
         <OpenAddEditBtn
           btnFunction={createNewAccount}

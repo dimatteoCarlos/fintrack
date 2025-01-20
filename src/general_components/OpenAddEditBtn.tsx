@@ -13,12 +13,14 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
+  btnPreviousRoute
+
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);
 
     console.log(
-      'Add new or Edit Item (category, pocket, debtor, account, ecc.)'
+      'Add new or Edit Item (category, pocket, debtor, account, ecc.)', btnFunctionArg
     );
   }
 
