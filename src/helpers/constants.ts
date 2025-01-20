@@ -63,8 +63,4 @@ export const ACCOUNT_TYPE_DEFAULT =
     },
   ]
 
-
-
-
-
 export const DATE_TIME_FORMAT_DEFAULT='es-ES'

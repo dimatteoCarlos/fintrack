@@ -6,56 +6,64 @@ import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 import ListContent from '../../../general_components/listContent/ListContent';
 import { CardTitle } from '../../../general_components/CardTitle';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn';
-import '../styles/forms-styles.css';
-
 import FormDatepicker from '../../../general_components/datepicker/Datepicker';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge';
+import { DEFAULT_CURRENCY } from '../../../helpers/constants';
 
 // import { StatusSquare } from '../../../components/boxComponents.tsx';
 // import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
 // import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+
 import '../styles/forms-styles.css';
+import { capitalize } from '../../../helpers/functions';
 
 function AccountDetail() {
   //temporary data
 
   const accountInfo = {
-    name: 'Account Name',
-    balance: '0',
-    type: 'Type',
+    name: 'Account Name Detail',
+    balance: 123654.017,
+    type: 'tipo detail',
     date: new Date(),
-    currency: 'usd',
+    currency: 'eur',
   };
 
   //Last Movements
   const lastMovements = [
     {
-      categoryName: 'Category Name',
+      categoryName: 'Category Name_01',
       record: 'Record',
       description: 'Description',
       date: new Date(),
     },
 
     {
-      categoryName: 'Category Name',
+      categoryName: 'Category Name_02',
       record: 'Record',
       description: 'Description',
-      date: new Date(),
+      date: new Date().setDate(
+        new Date().getDate() - Math.floor(Math.random() * 31)
+      ),
     },
     {
-      categoryName: 'Category Name',
+      categoryName: 'Category Name_05',
       record: 'Record',
       description: 'Description',
-      date: new Date(),
+      date: new Date().setDate(
+        new Date().getDate() - Math.floor(Math.random() * 31)
+      ),
     },
     {
-      categoryName: 'Category Name',
+      categoryName: 'Category Name_06',
       record: 'Record',
       description: 'Description',
-      date: new Date(),
+      date: new Date().setDate(
+        new Date().getDate() - Math.floor(Math.random() * 31)
+      ),
     },
   ];
 
+  //data from endpoint request for info account, and for last movements
   const initialAccountDetail = {
     accountInfo,
     lastMovements,
@@ -64,13 +72,7 @@ function AccountDetail() {
   const [accountDetail, setAccountDetail] = useState(initialAccountDetail);
 
   //--functions---
-  function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    setAccountDetail((prevState) => ({
-      ...prevState,
-      accountInfo: { ...accountInfo, [e.target.name]: e.target.value },
-    }));
-  }
+
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('submit btn clicked');
     e.preventDefault();
@@ -105,11 +107,11 @@ function AccountDetail() {
       <TopWhiteSpace variant={'dark'} />
       <div className='page__content'>
         <div className='main__title--container'>
-          <Link to='..' relative='path' className='iconLeftArrow'>
+          <Link to='/overview' relative='path' className='iconLeftArrow'>
             <LeftArrowLightSvg />
           </Link>
           <div className='form__title'>{accountDetail.accountInfo.name}</div>
-          <Link to='accounts/edit' className='flx-col-center icon3dots'>
+          <Link to='edit' className='flx-col-center icon3dots'>
             <Dots3LightSvg />
           </Link>
         </div>
@@ -117,29 +119,19 @@ function AccountDetail() {
         <form className='form__box'>
           <div className='form__container'>
             <div className='input__box'>
-              {/* <div className='label form__title'>{Object.entries(accountInfo)[1][0]}</div> */}
-              {/* <div className='label form__title'>{Object.keys(accountInfo)[1]}</div> */}
               <div className='label form__title'>{`current balance`}</div>
-              <input
-                type='text'
-                className='input__container'
-                name='balance'
-                placeholder='0,000.00'
-                value={accountDetail.accountInfo.balance}
-                onChange={inputHandler}
-              />
+
+              <div className='input__container' style={{ padding: '0.5rem' }}>
+                {accountDetail.accountInfo.balance}
+              </div>
             </div>
 
             <div className='input__box'>
               <label className='label form__title'>{'account type'}</label>
-              <input
-                type='text'
-                className='input__container'
-                name='type'
-                placeholder='type'
-                value={accountDetail.accountInfo.type}
-                onChange={inputHandler}
-              />
+
+              <p className='input__container' style={{ padding: '0.5rem' }}>
+                {capitalize(accountDetail.accountInfo.type)}
+              </p>
             </div>
 
             <div className='account__dateAndCurrency'>
@@ -164,6 +156,8 @@ function AccountDetail() {
                 <CurrencyBadge
                   variant='form'
                   updateOutsideCurrencyData={updateCurrency}
+                  // apparently there's a currency datum associated to each account
+                  currency={DEFAULT_CURRENCY}
                 />
               </div>
             </div>

@@ -1,6 +1,6 @@
 import AccountingBox from './components/AccountingBox';
 import LeftArrowSvg from '../../assets/LeftArrowSvg.svg';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import TopWhiteSpace from '../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import './styles/accounting-styles.css';
 

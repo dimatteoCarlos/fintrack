@@ -4,6 +4,7 @@ import LastMovements from './components/LastMovements';
 import LastDebts from './components/LastDebts';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 
+
 import InvestmentAccountBalance from './components/InvestmentAccBalance';
 
 export type CreateNewAccountPropType = {
@@ -16,7 +17,7 @@ function Overview() {
 
   const location = useLocation();
   const originRoute = location.pathname;
-  console.log({ originRoute });
+  // console.log({ originRoute });
 
   function createNewAccount(originRoute: string) {
     navigateTo(originRoute + '/new_account', {

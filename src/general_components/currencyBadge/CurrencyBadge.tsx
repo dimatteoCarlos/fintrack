@@ -18,7 +18,7 @@ function CurrencyBadge({
   function toggleCurrency() {
     const newCurrency = changeCurrency(currency);
     updateOutsideCurrencyData!(newCurrency);
-    console.log('🚀 ~ toggleCurrency ~ newCurrency:', newCurrency);
+    // console.log('🚀 ~ toggleCurrency ~ newCurrency:', newCurrency);
   }
 
   return (

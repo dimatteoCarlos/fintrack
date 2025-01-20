@@ -19,7 +19,7 @@ export type ExpenseAccountType = {
   name: string; //in the future specify the possible names as a union of string types
   description: string;
   type: string;
-  currency: string;
+  currency: CurrencyType;
   balance: number;
 };
 
