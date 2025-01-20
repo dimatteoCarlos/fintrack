@@ -5,7 +5,7 @@ type ChildrenPropType = { children?: React.ReactNode; previousRoute: string };
 //--------------------------------------------------------
 export function SeeMore({ children, previousRoute }: ChildrenPropType) {
   function onClickHandler() {
-    console.log('Message:', 'This is the See More page rendering');
+    console.log('Message:', 'See More is a wraping component to render its children');
   }
 
   return (
