@@ -143,10 +143,14 @@ export type DebtType = {
 };
 
 //budget
+export type CategoryBudgetListType={
+  budgets?:CategoryBudgetType[]
+}
+
 export type CategoryBudgetType = {
   category_name: string; 
   category_id: number;
-  budget: number; //amount
+  amount: number; //amount
   spent: number;
 };
 

@@ -151,7 +151,7 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
-              {/* Defining functionalitiy and data structure of this category and subcategories is PENDING */}
+              {/* Defining functionalitiy and data structure of this add button for category and subcategories is PENDING */}
             </button>
 
             <div className='input__box'>

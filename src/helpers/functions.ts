@@ -67,7 +67,7 @@ export function numberFormat(
 
   // Verificar si el valor es un número válido
   if (isNaN(enteredNumber)) {
-    return ''; // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
+    return ''; //  devolver '' o adecuar para lanzar un error
   }
 
   // Crear el formateador de números con la configuración regional.
@@ -80,49 +80,20 @@ export function numberFormat(
 }
 
 //-------------------------
-
 export // Lista de códigos de monedas más comunes según ISO 4217 (ejemplo)
-const validCurrencyCodes = [
+const validCurrencyCodes = new Set([
   'USD',
   'EUR',
-  'GBP',
-  'JPY',
-  'AUD',
-  'CAD',
-  'CHF',
-  'CNY',
-  'SEK',
-  'NZD',
-  'MXN',
-  'SGD',
-  'HKD',
-  'NOK',
-  'KRW',
-  'TRY',
-  'INR',
-  'BRL',
-  'ZAR',
-  'RUB',
-  'PLN',
-  'DKK',
-  'HUF',
-  'ILS',
-  'CZK',
-  'THB',
-  'MYR',
-  'PHP',
-  'IDR',
-  'KRW',
-  'SAR',
-  'EGP',
-  'CLP',
   'COP',
-  'ARS',
-  'COP',
-  'VND',
-  'PKR',
-  'MAD',
-];
+  //'GBP', 'JPY',
+  // 'AUD', 'CAD', 'CHF',
+  // 'CNY', 'SEK',
+  // 'NZD', 'MXN', 'SGD',
+  // 'HKD', 'NOK', 'KRW', 'TRY', 'INR', 'BRL',
+  // 'ZAR', 'RUB', 'PLN', 'DKK', 'HUF',
+  // 'ILS', 'CZK', 'THB', 'MYR', 'PHP', 'IDR',
+  // 'KRW', 'SAR', 'EGP', 'CLP', 'ARS', 'VND', 'PKR', 'MAD',
+]);
 
 // Función para validar un código de moneda basado en ISO 4217
 export function isValidCurrencyCode(currency: string): boolean {
@@ -130,35 +101,38 @@ export function isValidCurrencyCode(currency: string): boolean {
   const upperCurrency = currency.toUpperCase();
 
   // Verificar si el código está en la lista de códigos válidos
-  if (validCurrencyCodes.includes(upperCurrency)) {
-    return true;
-  }
-
+  //Method 1
+  return validCurrencyCodes.has(upperCurrency);
+  //-------------------------
+  //Method 2
+  // if (validCurrencyCodes.has(upperCurrency)) {
+  //   return true;
+  // }
   // Si el código no está en la lista, intentar con Intl.NumberFormat
-  try {
-    new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: upperCurrency,
-    }).format(100);
-    return true; // Si no lanza error, el código de moneda es válido
-  } catch (e) {
-    return false; // Si lanza error, el código de moneda no es válido
-  }
+  // try {
+  //   new Intl.NumberFormat('en-US', {
+  //     style: 'currency',
+  //     currency: upperCurrency,
+  //   }).format(100);
+  //   return true; // Si no lanza error, el código de moneda es válido
+  // } catch (e) {
+  //   return false; // Si lanza error, el código de moneda no es válido
+  // }
 }
 
 // Función para formatear números con soporte opcional de moneda y decimales
 export function numberFormatCurrency(
   x: number | string,
-  formatNumberCountry: string = 'en-US',
+  decimals: number = 2, // Argumento opcional para el número de decimales (predeterminado: 2)
   currency?: string, // Argumento opcional para la moneda
-  decimals: number = 2 // Argumento opcional para el número de decimales (predeterminado: 2)
+  formatNumberCountry: string = 'en-US'
 ): string {
   // Convertir la entrada a número. Si no es válido, devolver una cadena vacía.
   const enteredNumber = parseFloat(x.toString());
 
   // Verificar si el valor es un número válido
   if (isNaN(enteredNumber)) {
-    return ''; // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
+    return 'Not a valid number, please try again';
   }
 
   // Si se proporciona un código de moneda y es válido, usamos ese formato
@@ -233,6 +207,7 @@ export function validationData(stateToValidate: {
   return errorValidationMessages;
 } //fn
 
+//adapt to the business rule to use
 export const statusFn = (
   budget: number = 100,
   spent: number = 100
@@ -241,6 +216,5 @@ export const statusFn = (
   // const type = diff >= 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
   // const type = diff <= 0 ? 'alert' : '';
   const type = diff >= 0;
-
   return type;
 };

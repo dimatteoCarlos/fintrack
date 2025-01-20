@@ -2,7 +2,10 @@
 
 import { StatusSquare } from '../../../general_components/boxComponents';
 import { DEFAULT_CURRENCY } from '../../../helpers/constants';
-import { currencyFormat } from '../../../helpers/functions';
+import {
+  currencyFormat,
+  numberFormatCurrency,
+} from '../../../helpers/functions';
 import { CurrencyType } from '../../../types/types';
 
 // import { useFetch } from '../../../hooks/useFetch.tsx';
@@ -96,7 +99,13 @@ function ListPocket() {
               <div className='tile__subtitle flx-row-sb'>
                 <span className='tile__subtitle tile__subtitle--opc'>
                   goal:{' '}
-                  {currencyFormat(currency ?? DEFAULT_CURRENCY, goal, 'en-US')}{' '}
+                  {/* {currencyFormat(currency ?? DEFAULT_CURRENCY, goal, 'en-US')}{' '} */}
+                  {numberFormatCurrency(
+                    goal,
+                    0,
+                    currency ?? DEFAULT_CURRENCY,
+                    'en-US'
+                  )}
                   &nbsp;
                 </span>
 

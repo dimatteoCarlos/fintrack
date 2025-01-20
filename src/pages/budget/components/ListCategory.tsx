@@ -5,6 +5,7 @@ import {
 import {
   currencyFormat,
   numberFormat,
+  numberFormatCurrency,
   // divide,
 } from '../../../helpers/functions.ts';
 import {
@@ -14,6 +15,7 @@ import {
 } from '../../../types/types.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_budget } from '../../../endpoints.ts';
+import { DEFAULT_CURRENCY } from '../../../helpers/constants.ts';
 
 export type CategoryToRenderType = CategoryBudgetType & {
   currency?: CurrencyType;
@@ -125,7 +127,12 @@ function ListCategory() {
                         : (divide(-diff, budget) * 100).toFixed(0) + '%'} */}
                       &nbsp;
                       {/* {`${currency ?? '$'}${diff.toFixed(0)}`} */}
-                      {numberFormat(diff, 0, currency ?? 'USD', 'en-US')}
+                      {numberFormatCurrency(
+                        diff,
+                        0,
+                        currency ?? DEFAULT_CURRENCY,
+                        'en-US'
+                      )}
                     </div>
                   </div>
                 </BoxRow>
