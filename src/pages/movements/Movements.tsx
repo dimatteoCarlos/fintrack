@@ -1,11 +1,25 @@
-import React from 'react'
+import { useLocation } from 'react-router-dom';
+import LogoMenuIcon from '../../general_components/header/LogoMenuIcon';
+import { SeeMore } from '../overview/components/SeeMore';
 
 function Movements() {
+  const { pathname } = useLocation();
+  const routes = pathname.split('/');
+  const movementsOf = routes[3].toUpperCase();
+  const previousRoute = '/' + routes[1];
+  // console.log('location:', pathname, useLocation(), routes, previousRoute);
+
+  const Message = `You navigated to the page that should render all the ${movementsOf} Movements. \n  Defining the "Endpoints" for data fetching of all the movements with its data structure, and the Rendering VIEWS design are PENDNG`;
+  console.log('Message:', Message);
+
   return (
     <>
-      Movements
+      <SeeMore previousRoute={previousRoute}>
+        <LogoMenuIcon />
+        {Message}
+      </SeeMore>
     </>
-  )
+  );
 }
 
-export default Movements
+export default Movements;

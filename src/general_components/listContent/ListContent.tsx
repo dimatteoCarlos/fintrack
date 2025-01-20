@@ -13,7 +13,6 @@ export type ListContenPropType = {
 };
 
 function ListContent({ listOfItems }: ListContenPropType) {
-
   return (
     <>
       <div className='list__main__container'>
@@ -35,9 +34,9 @@ function ListContent({ listOfItems }: ListContenPropType) {
 
                 {!!date && isDateValid(date) && (
                   <div className='box__subtitle'>
-                    {`${new Intl.DateTimeFormat(DATE_TIME_FORMAT_DEFAULT).format(
-                      new Date(date)
-                    )}`}
+                    {`${new Intl.DateTimeFormat(
+                      DATE_TIME_FORMAT_DEFAULT
+                    ).format(new Date(date))}`}
                   </div>
                 )}
               </BoxRow>

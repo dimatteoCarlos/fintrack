@@ -47,7 +47,7 @@ function LastDebts() {
         <ListMovementContent listOfItems={latestDebtsrecords} />
       </article>
 
-      <Link className='seeMore' to={''}>
+      <Link className='seeMore' to={'/overview/movements/debt'}>
         <div className='link'>{'See More'}</div> <ChevronRightSvg />{' '}
       </Link>
     </>

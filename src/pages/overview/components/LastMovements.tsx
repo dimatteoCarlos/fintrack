@@ -8,9 +8,9 @@ function LastMovements() {
 
   const lastMovements = [
     {
-      categoryName: 'Category Name',
-      record: 'Record',
-      description: 'Description',
+      categoryName: 'Category Name', //category of expense
+      record: 'Record', //data or title?
+      description: 'Description', //data
       date: new Date(),
     },
 
@@ -41,12 +41,13 @@ function LastMovements() {
         <div className='presentation__card__title__container'>
           <CardTitle>{'Last Movements'}</CardTitle>
         </div>
+
         <div className='main__subtitle'>Last 30 days</div>
 
         <ListContent listOfItems={lastMovements} />
       </article>
 
-      <Link className='seeMore' to={''}>
+      <Link className='seeMore' to={'/overview/movements/expense'}>
         <div className='link' onClick={() => console.log('See More')}>
           {'See More'}
         </div>

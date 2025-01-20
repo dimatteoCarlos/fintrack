@@ -36,6 +36,7 @@ import NewPocket from './pages/forms/newPocket/NewPocket.tsx';
 import NewProfile from './pages/forms/newProfile/NewProfile.tsx';
 import NewAccount from './pages/forms/newAccount/NewAccount.tsx';
 import Overview from './pages/overview/Overview.tsx';
+import Movements from './pages/movements/Movements.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -45,7 +46,7 @@ function App() {
       errorElement: <NotFoundPage />,
 
       children: [
-        { index: true, element: <Navigate to='/tracker/expense' /> },
+        { index: true, element: <Navigate to='/tracker' /> },
         {
           path: '/tracker',
           element: <TrackerLayout />,
@@ -94,30 +95,38 @@ function App() {
         },
       ],
     },
+
     { path: '/accounting', element: <Accounting /> },
 
+    //forms new item
     { path: '/budget/new_category', element: <NewCategory /> },
     { path: '/budget/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/new_account', element: <NewAccount /> },
 
+    //show movements
+    {
+      path: '/overview/movements/expense',
+      element: <Movements />,
+    },
+    {
+      path: '/overview/movements/debt',
+      element: <Movements />,
+    },
+    //show detailed item
     {
       path: '/overview/accounts/:accountId',
       element: <AccountDetail />,
     },
-
     // {
-    //   path: '/overview/accounts/:accountId',/
+    //   path: '/overview/debtors/:accountId',/
     //   element: <DebtorDetail />,
     // },
     // {
-    //   path: '/overview/accounts/:accountId',
+    //   path: '/overview/pockets/:accountId',
     //   element: <PocketDetail />,
     // },
-    // {
-    //   path: '/overview/accounts/:accountId',
-    //   element: <AccountDetail />,
-    // },
+    //
   ]);
 
   return (

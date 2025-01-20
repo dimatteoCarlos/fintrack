@@ -16,6 +16,7 @@ function BudgetPresentation() {
       state: { previousRoute: originRoute },
     });
   };
+  
   const createNewPocket = (originRoute: string) => {
     navigateTo(originRoute + '/new_pocket', {
       state: { previousRoute: originRoute },
