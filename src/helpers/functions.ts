@@ -81,6 +81,110 @@ export function numberFormat(
 
 //-------------------------
 
+export // Lista de códigos de monedas más comunes según ISO 4217 (ejemplo)
+const validCurrencyCodes = [
+  'USD',
+  'EUR',
+  'GBP',
+  'JPY',
+  'AUD',
+  'CAD',
+  'CHF',
+  'CNY',
+  'SEK',
+  'NZD',
+  'MXN',
+  'SGD',
+  'HKD',
+  'NOK',
+  'KRW',
+  'TRY',
+  'INR',
+  'BRL',
+  'ZAR',
+  'RUB',
+  'PLN',
+  'DKK',
+  'HUF',
+  'ILS',
+  'CZK',
+  'THB',
+  'MYR',
+  'PHP',
+  'IDR',
+  'KRW',
+  'SAR',
+  'EGP',
+  'CLP',
+  'COP',
+  'ARS',
+  'COP',
+  'VND',
+  'PKR',
+  'MAD',
+];
+
+// Función para validar un código de moneda basado en ISO 4217
+export function isValidCurrencyCode(currency: string): boolean {
+  // Convertir el código a mayúsculas para comparación uniforme
+  const upperCurrency = currency.toUpperCase();
+
+  // Verificar si el código está en la lista de códigos válidos
+  if (validCurrencyCodes.includes(upperCurrency)) {
+    return true;
+  }
+
+  // Si el código no está en la lista, intentar con Intl.NumberFormat
+  try {
+    new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: upperCurrency,
+    }).format(100);
+    return true; // Si no lanza error, el código de moneda es válido
+  } catch (e) {
+    return false; // Si lanza error, el código de moneda no es válido
+  }
+}
+
+// Función para formatear números con soporte opcional de moneda y decimales
+export function numberFormatCurrency(
+  x: number | string,
+  formatNumberCountry: string = 'en-US',
+  currency?: string, // Argumento opcional para la moneda
+  decimals: number = 2 // Argumento opcional para el número de decimales (predeterminado: 2)
+): string {
+  // Convertir la entrada a número. Si no es válido, devolver una cadena vacía.
+  const enteredNumber = parseFloat(x.toString());
+
+  // Verificar si el valor es un número válido
+  if (isNaN(enteredNumber)) {
+    return ''; // Puedes devolver '' o lanzar un error si prefieres un manejo más estricto.
+  }
+
+  // Si se proporciona un código de moneda y es válido, usamos ese formato
+  if (currency && isValidCurrencyCode(currency)) {
+    const formatter = new Intl.NumberFormat(formatNumberCountry, {
+      style: 'currency',
+      currency,
+      useGrouping: true,
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals,
+    });
+    return formatter.format(enteredNumber); // Devolvemos el número formateado como moneda
+  }
+
+  // Si no se proporciona moneda, usamos solo la configuración regional para números
+  const formatter = new Intl.NumberFormat(formatNumberCountry, {
+    useGrouping: true,
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+  // Formatear el número y devolverlo
+  return formatter.format(enteredNumber);
+}
+//-----------
+
 export function showDate(date: Date, countryFormat = DATE_TIME_FORMAT_DEFAULT) {
   const formattedDate = date.toLocaleDateString(countryFormat, {
     weekday: 'short',
@@ -129,7 +233,10 @@ export function validationData(stateToValidate: {
   return errorValidationMessages;
 } //fn
 
-const statusFn = (budget: number = 100, spent: number = 100): StatusType => {
+export const statusFn = (
+  budget: number = 100,
+  spent: number = 100
+): StatusType => {
   const diff = budget - spent;
   // const type = diff >= 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
   // const type = diff <= 0 ? 'alert' : '';
