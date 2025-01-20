@@ -208,7 +208,6 @@ function NewCategory() {
           </div>
 
           {/* save */}
-
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
           </div>

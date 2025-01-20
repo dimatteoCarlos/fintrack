@@ -13,14 +13,15 @@ function OpenAddEditBtn({
   children,
   btnFunction,
   btnFunctionArg,
-  btnPreviousRoute
-
+  btnPreviousRoute,
 }: OpenAddEditBtnPropType): JSX.Element {
   function onClickHandler() {
     btnFunction(btnFunctionArg);
 
     console.log(
-      'Add new or Edit Item (category, pocket, debtor, account, ecc.)', btnFunctionArg
+      'Add new or Edit Item (category, pocket, debtor, account, ecc.)',
+      btnFunctionArg,
+      { btnPreviousRoute }
     );
   }
 
@@ -32,7 +33,6 @@ function OpenAddEditBtn({
       {children}
     </button>
   );
-  
 }
 
 export default OpenAddEditBtn;

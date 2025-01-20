@@ -17,13 +17,13 @@ export type InvestmentAccountToRenderType = {
   type: string;
   currency: string;
 };
-
+//PENDIENTE REGLA DE NEGOCIO PARA VALORAR EL STATUS SQUARE Y PASAR EL ALERT
 function InvestmentAccountBalance({
   createNewAccount,
   originRoute,
 }: CreateNewAccountPropType) {
   //Investment temporary data
-  //questions: does status have some conditional or variable style? semaforo?
+  //questions: does status have some conditional or variable style? semaforo? cual es la regla de negocio?
   //seems that balanceType has at least two possible values: loss / profit or earned
   //capital could be the amount of the investment or not needed?
   //factual balance is datum or calculated?
@@ -67,7 +67,7 @@ function InvestmentAccountBalance({
           <StatusSquare />
         </span>
       ),
-      balanceType: '% Earned',
+      balanceType: '% Profit',
       currency: 'usd',
       type: 'type',
     },
@@ -81,7 +81,7 @@ function InvestmentAccountBalance({
           <StatusSquare />
         </span>
       ),
-      balanceType: '% Earned',
+      balanceType: '% Profit',
       currency: 'cop',
       type: 'type',
     },
@@ -92,24 +92,24 @@ function InvestmentAccountBalance({
   // console.log('Investment_accounts:', data, error, isLoading);
 
   const accountsToRender: InvestmentAccountToRenderType[] =
-    data && !error && !isLoading
-      ? defaultInvestmentAcc
-      : //temporaryly commented
-        // data.accounts?.map((acc) => ({
-        //     title1: acc.name,
-        //     subtitle1: 'capital invested',
-        //     capital: acc.balance,
-        //     title2: 'factual balance',
-        //     type: acc.type,
-        //     balanceType: '% earned',
-        //     currency: acc.currency,
-        //     status: (
-        //       <span>
-        //         <StatusSquare />
-        //       </span>
-        //     ),
-        //   }))
-        defaultInvestmentAcc;
+    data && !error && !isLoading && data?.accounts?.length
+      ? // ? defaultInvestmentAcc
+        //temporaryly commented
+        data?.accounts?.map((acc) => ({
+          title1: acc.name,
+          subtitle1: 'capital invested',
+          capital: acc.balance,
+          title2: 'factual balance',
+          type: acc.type,
+          balanceType: '% earned',
+          currency: acc.currency,
+          status: (
+            <span>
+              <StatusSquare />
+            </span>
+          ),
+        }))
+      : defaultInvestmentAcc;
 
   return (
     <>

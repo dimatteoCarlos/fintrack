@@ -60,27 +60,15 @@ function AccountBalance({
 
   const accountsToRender: AccountToRenderType[] =
     data && !isLoading && !error && data.accounts?.length
-      ? defaultAccounts
-      : //temporaryly commented
-        // data.accounts.map((acc) => ({
-        //   nameAccount: acc.name,
-        //   concept: 'balance', //it is important to know the data stored in database
-        //   amount: acc.balance,
-        //   type: acc.type,
-        // }))
-
-        defaultAccounts;
-
-  // const navigateTo: NavigateFunction = useNavigate();
-
-  // const location = useLocation();
-  // const originRoute = location.pathname;
-
-  // function createNewAccount(originRoute: string) {
-  //   navigateTo(originRoute + '/new_account', {
-  //     state: { previousRoute: originRoute },
-  //   });
-  // }
+      ? // ? defaultAccounts
+        //temporaryly commented
+        data?.accounts?.map((acc) => ({
+          nameAccount: acc.name,
+          concept: 'balance', //it is important to know the data stored in database
+          amount: acc.balance,
+          type: acc.type,
+        }))
+      : defaultAccounts;
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -95,10 +83,8 @@ function AccountBalance({
       </div>
       <article className='goals__account'>
         {/* Account Balance  */}
-
         {accountsToRender.map((account, indx) => {
           const { nameAccount, amount, type } = account;
-
           {
             return (
               <Link
@@ -119,7 +105,6 @@ function AccountBalance({
         })}
       </article>
 
-      
       {
         <OpenAddEditBtn
           btnFunction={createNewAccount}
