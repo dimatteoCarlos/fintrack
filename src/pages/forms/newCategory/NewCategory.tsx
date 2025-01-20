@@ -53,8 +53,6 @@ function NewCategory() {
 
   //functions
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    // e.preventDefault();
-
     const { name, value } = e.target;
     const valueToSave = name == 'amount' ? parseFloat(value) : value;
 
@@ -62,13 +60,11 @@ function NewCategory() {
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
-    // e.preventDefault();
     //adding function
     console.log('addHandler subcategory to define');
   }
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
-    // e.preventDefault();
     // console.log('natureHandler', e.currentTarget.id);
     const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
     setActiveCategory(activeNature);
@@ -96,7 +92,6 @@ function NewCategory() {
     setActiveCategory('');
     setCategoryData(initialNewCategoryData);
     setValidationMessages({});
-
   }
   //-----------------------
   return (
@@ -155,7 +150,7 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
-              {/* Defining functionalitiy and data structure is PENDING */}
+              {/* Defining functionalitiy and data structure of this category and subcategories is PENDING */}
             </button>
 
             <div className='input__box'>
