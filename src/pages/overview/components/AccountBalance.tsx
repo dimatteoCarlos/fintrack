@@ -33,31 +33,32 @@ function AccountBalance({
     {
       nameAccount: 'acc name_1',
       concept: 'balance',
-      balance: 0,
+      balance: 0.932546,
       id: 2001,
-
+      currency: 'cop',
       type: 'type1',
     },
     {
       nameAccount: 'acc name',
       concept: 'balance',
-      balance: 999999999.99,
+      balance: 9999999.99,
       id: 2002,
       type: 'type2',
     },
     {
       nameAccount: 'acc name',
       concept: 'balance', //field
-      balance: 0,
+      balance: 987654.365,
       id: 2003,
       type: 'type2',
+      currency: 'eur',
     },
     {
       nameAccount: 'acc name',
       concept: 'balance',
-      balance: 0,
+      balance: 123456.02,
       id: 2004,
-      type: 'type4',
+      type: 'usd',
     },
   ];
 
@@ -69,15 +70,16 @@ function AccountBalance({
     data && !isLoading && !error && data.accounts?.length
       ? // ? ACCOUNT_DEFAULT
         //temporaryly commented
-        data?.accounts?.map((acc, indx) => ({
-          nameAccount: acc.name,
-          concept: 'balance', //it is important to know the data structure from backend
-          balance: acc.balance,
-          type: acc.type,
-          id: acc.id ?? `${acc.name + '_' + indx}`,
-          currency: acc.currency ?? defaultCurrency,
-        }))
-      : ACCOUNT_DEFAULT;
+        ACCOUNT_DEFAULT
+      : // ?  data?.accounts?.map((acc, indx) => ({
+        //     nameAccount: acc.name,
+        //     concept: 'balance', //it is important to know the data structure from backend
+        //     balance: acc.balance,
+        //     type: acc.type,
+        //     id: acc.id ?? `${acc.name + '_' + indx}`,
+        //     currency: acc.currency ?? defaultCurrency,
+        //   }))
+        ACCOUNT_DEFAULT;
 
   if (isLoading) {
     return <div>Loading...</div>;

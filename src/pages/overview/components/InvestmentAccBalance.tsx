@@ -93,22 +93,22 @@ function InvestmentAccountBalance({
 
   const accountsToRender: InvestmentAccountToRenderType[] =
     data && !error && !isLoading && data?.accounts?.length
-      ? // ? defaultInvestmentAcc
+       ? defaultInvestmentAcc
         //temporaryly commented
-        data?.accounts?.map((acc) => ({
-          title1: acc.name,
-          subtitle1: 'capital invested',
-          capital: acc.balance,
-          title2: 'factual balance',
-          type: acc.type,
-          balanceType: '% earned',
-          currency: acc.currency,
-          status: (
-            <span>
-              <StatusSquare />
-            </span>
-          ),
-        }))
+        // ?   data?.accounts?.map((acc) => ({
+        //   title1: acc.name,
+        //   subtitle1: 'capital invested',
+        //   capital: acc.balance,
+        //   title2: 'factual balance',
+        //   type: acc.type,
+        //   balanceType: '% earned',
+        //   currency: acc.currency,
+        //   status: (
+        //     <span>
+        //       <StatusSquare />
+        //     </span>
+        //   ),
+        // }))
       : defaultInvestmentAcc;
 
   return (
