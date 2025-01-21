@@ -32,6 +32,7 @@ import Movements from './pages/movements/Movements.tsx';
 import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
 import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
+import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 // import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 function App() {
@@ -112,12 +113,12 @@ function App() {
       element: <DebtorDetail />,
     },
     {
-      path: '/budget/:categoryId',
+      path: '/budget/categories/:categoryId',
       element: <CategoryDetail />,
     },
     {
       path: '/budget/pockets/:pocketId',
-      // element: <PocketDetail />,
+      element: <PocketDetail />,
     },
     //
   ]);

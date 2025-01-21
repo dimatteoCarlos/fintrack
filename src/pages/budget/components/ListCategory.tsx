@@ -29,7 +29,6 @@ const defaultCategoryBudget: CategoryToRenderType[] = [
     amount: Math.random() * 100,
     currency: 'usd',
     category_id: Math.round(Math.floor(Math.random() * 100)),
-
   },
   {
     category_name: 'Category Name 2',
@@ -68,7 +67,7 @@ function ListCategory() {
   //DATA FETCHING
   const { data, isLoading, error } =
     useFetch<CategoryBudgetListType>(url_budget);
-  console.log(data);//Los Datos actuales no tienen el campo "category_nature"
+  console.log(data); //Los Datos actuales no tienen el campo "category_nature"
 
   //-------
   const budgetList: CategoryToRenderType[] =
@@ -106,7 +105,7 @@ function ListCategory() {
           return (
             <div className='box__container .flx-row-sb' key={indx}>
               <BoxRow>
-                <Link to={`/budget/:${category_id}`}>
+                <Link to={`/budget/categories/:${category_id}`}>
                   <div className='box__title box__title--category__name hover '>
                     {category_name}{' '}
                   </div>

@@ -17,11 +17,11 @@ function CategoryDetail() {
   // const [categoryDetail, setCategoryDetail] = useState(null);
 
   //temporary data
-  const categoryInfo = {
-    name: 'Category',
-    account: '',
-    amount: '0',
-  };
+  // const categoryInfo = {
+  //   name: 'Category',
+  //   account: '',
+  //   amount: '0',
+  // };
 
   //summary data
   const summaryData = {
@@ -106,7 +106,7 @@ function CategoryDetail() {
         <TopWhiteSpace variant={'dark'} />
         <div className='page__content'>
           <div className='main__title--container'>
-            <Link to='..' relative='path' className='iconLeftArrow'>
+            <Link to='/budget' relative='path' className='iconLeftArrow'>
               <LeftArrowLightSvg />
             </Link>
             <div className='form__title'>{'Category'}</div>

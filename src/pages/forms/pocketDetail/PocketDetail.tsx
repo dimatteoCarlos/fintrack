@@ -49,6 +49,7 @@ function PocketDetail() {
   };
 
   const [pocketDetail, setPocketDetail] = useState(initialPocketDetail);
+  const [isReset, setIsReset] = useState<boolean>(false);
 
   //--functions---
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -64,13 +65,15 @@ function PocketDetail() {
     setPocketDetail(initialPocketDetail);
   }
 
-  function accountSelectHandler(selectedOption: {
-    value: string;
-    label: string;
-  }) {
+  function accountSelectHandler(
+    selectedOption: {
+      value: any;
+      label: string;
+    } | null
+  ) {
     setPocketDetail((prev) => ({
       ...prev,
-      pocketInfo: { ...pocketInfo, account: selectedOption.value },
+      pocketInfo: { ...pocketInfo, account: selectedOption?.value },
     }));
     console.log('selectedOption', selectedOption);
   }
@@ -88,7 +91,7 @@ function PocketDetail() {
         <TopWhiteSpace variant={'dark'} />
         <div className='page__content'>
           <div className='main__title--container'>
-            <Link to='..' relative='path' className='iconLeftArrow'>
+            <Link to='/budget' relative='path' className='iconLeftArrow'>
               <LeftArrowLightSvg />
             </Link>
             <div className='form__title'>{pocketInfo.name}</div>
@@ -133,6 +136,8 @@ function PocketDetail() {
             <DropDownSelection
               dropDownOptions={accountSelectionProp}
               updateOptionHandler={accountSelectHandler}
+              isReset={isReset}
+              setIsReset={setIsReset}
             />
 
             <div className='inputAmountAndPlusSign'>

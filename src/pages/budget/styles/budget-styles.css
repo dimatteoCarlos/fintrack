@@ -160,6 +160,9 @@ button.line__container {
 .card__tile__pocket {
   background-color: #1b1b1b;
 }
+.card__tile__pocket:hover {
+  border-color: cyan;
+}
 
 .card__tile__pocket .tile__left {
   width: 60%;
