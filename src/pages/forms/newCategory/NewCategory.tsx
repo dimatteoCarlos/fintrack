@@ -59,8 +59,8 @@ function NewCategory() {
     setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
-  function addHandler() {
-    // e: React.MouseEvent<HTMLButtonElement>
+  function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
     //adding function
     console.log('addHandler subcategory to define');
   }
