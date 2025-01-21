@@ -27,20 +27,27 @@ export const tileLabels = [
 type CategoryDataType = {
   category: string;
   subcategory: string;
-  amount: number; //amount?
+  amount: number;
   nature: string;
 };
 
-const initialNewCategoryData: CategoryDataType = {
-  category: '',
-  subcategory: '',
-  amount: 0.0,
-  nature: '',
-};
+// const initialNewCategoryData: CategoryDataType = {
+//   category: '',
+//   subcategory: '',
+//   amount: 0,
+//   nature: '',
+// };
 
 //-------------------------
 function NewCategory() {
   // const location = useLocation();
+
+  const initialNewCategoryData: CategoryDataType = {
+    category: '',
+    subcategory: '',
+    amount: 0.0,
+    nature: '',
+  };
   //---states------n
   const [categoryData, setCategoryData] = useState<CategoryDataType>(
     initialNewCategoryData
@@ -53,17 +60,16 @@ function NewCategory() {
 
   //functions
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
+    // e.preventDefault();
     const { name, value } = e.target;
     const valueToSave = name == 'amount' ? parseFloat(value) : value;
-
     setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     //adding function
-    console.log('addHandler subcategory to define');
+    console.log('addHandler subcategory method PENDING to define');
   }
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -79,7 +85,8 @@ function NewCategory() {
     console.log('onSubmitForm');
 
     //--data form validation
-    const newValidationMessages = { ...validationData(categoryData) };
+    const newValidationMessages = validationData(categoryData);
+    // const newValidationMessages = { ...validationData(categoryData) };
     // console.log('mensajes:', { newValidationMessages });
 
     if (Object.values(newValidationMessages).length > 0) {
@@ -88,8 +95,8 @@ function NewCategory() {
     }
 
     //--
-    //POST the new category data into database POST endpoint
-    console.log('data to POST:', { categoryData });
+    //new category data into database //POST ENDPOINT HERE
+    console.log('New category data to POST:', { categoryData });
 
     //resetting form values
     setActiveCategory('');
@@ -155,24 +162,23 @@ function NewCategory() {
               <PlusSignSvg />
 
               {/* Defining functionalitiy and data structure of this add button for category and subcategories is PENDING */}
-              
             </button>
 
             <div className='input__box'>
               <label htmlFor='amount' className='label form__title'>
                 {'budget'}&nbsp;
                 <div className='validation__errMsg'>
-                  {validationMessages['budget']}
+                  {validationMessages['amount']}
                 </div>
               </label>
 
               <input
                 className={'input__container'}
-                name='amount'
                 type='number'
                 step='any'
+                name='amount'
                 placeholder={'amount'}
-                value={categoryData ? categoryData.amount : 0.0}
+                value={categoryData.amount}
                 onChange={inputHandler}
               />
             </div>

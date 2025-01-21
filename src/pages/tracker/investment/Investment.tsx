@@ -138,7 +138,7 @@ function Investment() {
     );
 
     //validation of entered data
-    const newValidationMessages = {...validationData(investmentData)};
+    const newValidationMessages = { ...validationData(investmentData) };
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
@@ -147,7 +147,7 @@ function Investment() {
 
     //----------------------------
     //do the post to the endpoint api
-//ENDPOINT
+    //ENDPOINT
     //----------------------------
 
     //reset values
@@ -187,11 +187,12 @@ function Investment() {
           <div className='card__screen'>
             <input
               className='inputNumber'
-              type='number'
-              placeholder={trackerState}
-              onChange={updateTrackerData}
               name='amount'
-              value={investmentData.amount || ''}
+              type='number'
+              step='any'
+              placeholder={`${trackerState}`}
+              onChange={updateTrackerData}
+              value={investmentData.amount}
             />
 
             <div className='account__currency'>
@@ -236,14 +237,12 @@ function Investment() {
             <div className='card__typeDate--date  '>
               <div className='card--title '> Date </div>
               <div className='card__screen--date '>
-
                 <Datepicker
                   changeDate={changeInvestmentDate}
                   date={investmentData.date}
                   variant={'tracker'}
                   isReset={isReset}
                 ></Datepicker>
-                
               </div>
             </div>
           </div>

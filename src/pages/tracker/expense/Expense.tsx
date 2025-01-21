@@ -123,7 +123,7 @@ function Expense() {
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
     e.preventDefault();
-    //temporarily 'till defining format for numbers. Options: as number, as string with format
+    //temporarily 'till defining what format the numbers will be saved. Options: in ddbb as number, when showing as string with format
     const formattedNumber = numberFormat(expenseData.amount || 0);
     console.log(
       'Expense formatted amount as a string:',
@@ -175,10 +175,6 @@ function Expense() {
               type='number'
               step='any'
               placeholder={`${trackerState}`}
-              // value={numberFormat(
-              //    parseFloat(expenseData?.amount) || 0
-              // )}
-
               value={expenseData?.amount}
               onChange={updateTrackerData}
             />

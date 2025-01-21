@@ -175,12 +175,13 @@ function Debts() {
 
           <div className='card__screen'>
             <input
+              name='amount'
               className='inputNumber'
               type='number'
+              step='any'
               placeholder={trackerState}
               onChange={updateTrackerData}
-              name='amount'
-              value={datatrack.amount || ''}
+              value={datatrack.amount}
             />
 
             <div className='account__currency'>
