@@ -30,5 +30,5 @@ export function DebtsBigBoxResult({ bigScreenInfo }: BigBoxResultPropType) {
     </div>
   );
 }
-//------------------
+
 export default DebtsBigBoxResult;
