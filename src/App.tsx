@@ -33,7 +33,6 @@ import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
 import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
 import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
 import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
-// import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -76,11 +75,7 @@ function App() {
         {
           path: '/overview',
           element: <OverviewLayout />,
-          children: [
-            // { index: true, element: <Account /> },//what would be this?
-            { index: true, element: <Overview /> },
-            // { path: '/overview/accounts', element: <Overview /> },
-          ],
+          children: [{ index: true, element: <Overview /> }],
         },
       ],
     },
