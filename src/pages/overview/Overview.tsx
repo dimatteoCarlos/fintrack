@@ -4,7 +4,6 @@ import LastMovements from './components/LastMovements';
 import LastDebts from './components/LastDebts';
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 
-
 import InvestmentAccountBalance from './components/InvestmentAccBalance';
 
 export type CreateNewAccountPropType = {

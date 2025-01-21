@@ -3,6 +3,8 @@ import { CardTitle } from '../../../general_components/CardTitle';
 import OpenAddEditBtn from '../../../general_components/OpenAddEditBtn';
 import ListOfDebtors from '../components/ListOfDebtors';
 
+//shares css styles from general styles and budget styles
+
 function Debtors() {
   const originRoute = useLocation().pathname;
   const navigateTo: NavigateFunction = useNavigate();

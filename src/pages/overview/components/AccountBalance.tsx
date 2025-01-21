@@ -88,7 +88,7 @@ function AccountBalance({
       {/*EXPENSE ACCOUNTS  */}
       <div className='presentation__card__title__container flx-row-sb'>
         <CardTitle>Accounts Balance</CardTitle>
-        <Link className='flx-col-center icon ' to={'/accounts/edit'}></Link>
+        <Link className='flx-col-center icon ' to={'edit'}></Link>
       </div>
 
       <article className='goals__account'>

@@ -4,6 +4,7 @@ import { useFetch } from '../../../hooks/useFetch';
 import { DebtorType, DebtsType } from '../../../types/types';
 import { url_debtors_debt } from '../../../endpoints';
 import { StatusSquare } from '../../../general_components/boxComponents';
+import { Link } from 'react-router-dom';
 
 export type DebtsToRender = {
   type?: DebtorType;
@@ -13,6 +14,7 @@ export type DebtsToRender = {
   net_amount: number;
   currency?: string;
   transaction_count?: number;
+  debtor_id?: number;
 };
 
 const typeOfDebtorfn = (borrowed: number, lent: number): DebtorType => {
@@ -27,6 +29,7 @@ const typeOfDebtorfn = (borrowed: number, lent: number): DebtorType => {
 const defaultDebts: DebtsToRender[] = [
   {
     debtor_name: 'name',
+    debtor_id: 2,
 
     total_amount_borrowed: 0,
     total_amount_lent: 0,
@@ -35,6 +38,7 @@ const defaultDebts: DebtsToRender[] = [
   },
   {
     debtor_name: 'name',
+    debtor_id: 1,
 
     total_amount_borrowed: 0,
     total_amount_lent: 0,
@@ -43,6 +47,7 @@ const defaultDebts: DebtsToRender[] = [
   },
   {
     debtor_name: 'name',
+    debtor_id: 3,
 
     total_amount_borrowed: 0,
     total_amount_lent: 0,
@@ -51,6 +56,7 @@ const defaultDebts: DebtsToRender[] = [
   },
   {
     debtor_name: 'name',
+    debtor_id: 11,
 
     total_amount_borrowed: 0,
     total_amount_lent: 0,
@@ -59,6 +65,7 @@ const defaultDebts: DebtsToRender[] = [
   },
   {
     debtor_name: 'name',
+    debtor_id: 10,
 
     total_amount_borrowed: 0,
     total_amount_lent: 0,
@@ -69,7 +76,7 @@ const defaultDebts: DebtsToRender[] = [
 
 function ListOfDebtors() {
   const { data, isLoading, error } = useFetch<DebtsType>(url_debtors_debt);
-  // console.log('data:', data);
+  console.log('data:', data);
 
   const debtList: DebtsToRender[] =
     data && !isLoading && !error && data.result?.length
@@ -79,6 +86,7 @@ function ListOfDebtors() {
             total_amount_borrowed,
             total_amount_lent,
             net_amount,
+            debtor_id,
           } = debt;
 
           return {
@@ -87,6 +95,7 @@ function ListOfDebtors() {
             total_amount_lent,
             net_amount,
             type: typeOfDebtorfn(total_amount_borrowed, total_amount_lent),
+            debtor_id,
           };
         })
       : defaultDebts;
@@ -100,6 +109,7 @@ function ListOfDebtors() {
             total_amount_borrowed,
             total_amount_lent,
             net_amount,
+            debtor_id,
           } = debtor;
           const transactionType =
             -total_amount_borrowed + total_amount_lent < 0
@@ -108,16 +118,18 @@ function ListOfDebtors() {
           return (
             <BoxContainer key={indx}>
               <BoxRow>
-                <div className='box__title'>{name}</div>
+                <Link to={`/debts/debtors/:${debtor_id}`}>
+                  <div className='debtor box__title hover'>{name}</div>
+                </Link>
                 <div className='box__title'>
                   {' '}
                   {currencyFormat('usd', net_amount, 'en-US')}
                 </div>
               </BoxRow>
+
               <BoxRow>
                 <BoxRow>
                   <div className='flx-row-sb'>
-                    {/* <span className='status__square'> </span> */}
                     <StatusSquare
                       alert={transactionType == 'lender' ? 'alert' : ''}
                     />

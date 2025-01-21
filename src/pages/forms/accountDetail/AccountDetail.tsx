@@ -14,8 +14,8 @@ import { DEFAULT_CURRENCY } from '../../../helpers/constants';
 // import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
 // import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 
-import '../styles/forms-styles.css';
 import { capitalize } from '../../../helpers/functions';
+import '../styles/forms-styles.css';
 
 function AccountDetail() {
   //temporary data

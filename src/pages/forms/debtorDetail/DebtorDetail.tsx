@@ -8,17 +8,23 @@ import { CardTitle } from '../../../general_components/CardTitle.tsx';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
-import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+// import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import '../styles/forms-styles.css';
+//
 
 function DebtorDetail() {
-  //temporary data
+  //temporary dummy data
+  // Data must come from DATA FETCHING ENDPOINT API BACKEND
+
   const debtorInfo = {
-    name: 'Name, LastName',
-    account: '',
-    amount: '0',
+    debtor_name: 'Name, Lastname Selected',
+    debtor_id: 1,
+    total_amount_borrowed: 100,
+    total_amount_lent: 90,
+    net_amount: -10,
+    type: 'lender',
   };
 
   //summary data
@@ -26,8 +32,7 @@ function DebtorDetail() {
     title: 'amount',
     amount: 2222.11,
     subtitle1: '',
-    subtitle2: 'type',
-    status: <StatusSquare />,
+    subtitle2: 'type', //lender or debtor
   };
 
   //Account Options
@@ -40,6 +45,11 @@ function DebtorDetail() {
     ],
     variant: 'form', //define the custom styles to use in selection dropdown component
   };
+
+  // const transactionType =
+  //   -total_amount_borrowed + total_amount_lent < 0
+  //     ? 'lender'
+  //     : 'debtor';
 
   //Last Movements
   const lastMovements = [
@@ -76,6 +86,7 @@ function DebtorDetail() {
   };
 
   const [debtorDetail, setDebtorDetail] = useState(initialDebtorDetail);
+  const [isReset, setIsReset] = useState<boolean>(false);
 
   //--functions---
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -92,13 +103,15 @@ function DebtorDetail() {
     setDebtorDetail(initialDebtorDetail);
   }
 
-  function accountSelectHandler(selectedOption: {
-    value: string;
-    label: string;
-  }) {
+  function accountSelectHandler(
+    selectedOption: {
+      value: any;
+      label: string;
+    } | null
+  ) {
     setDebtorDetail((prev) => ({
       ...prev,
-      debtorInfo: { ...debtorInfo, account: selectedOption.value },
+      debtorInfo: { ...debtorInfo, account: selectedOption?.value },
     }));
     console.log('selectedOption', selectedOption);
   }
@@ -108,57 +121,62 @@ function DebtorDetail() {
       <section className='page__container'>
         <TopWhiteSpace variant={'dark'} />
         <div className='page__content'>
-          <div className='main__title--container'>
-            <Link to='..' relative='path' className='iconLeftArrow'>
+          <div className='main__title--container '>
+            <Link to='/debts' relative='path' className='iconLeftArrow'>
               <LeftArrowLightSvg />
             </Link>
-            <div className='form__title'>{debtorInfo.name}</div>
-            <Link to='accounts/edit' className='flx-col-center icon3dots'>
+            <div className='form__title'>
+              {debtorDetail.debtorInfo.debtor_name}
+            </div>
+            <Link to='edit' className='flx-col-center icon3dots'>
               <Dots3LightSvg />
             </Link>
           </div>
-        </div>
 
-        <SummaryDetailBox summaryData={summaryData}></SummaryDetailBox>
+          <SummaryDetailBox summaryData={summaryData}></SummaryDetailBox>
 
-        <form className='form__box'>
-          <div className='form__container'>
-            <div className='input__box'>
-              <label className='label form__title'>{'Add Money'}</label>
+          <form className='form__box'>
+            <div className='form__container'>
+              <div className='input__box'>
+                <label className='label form__title'>{'Add Money'}</label>
 
-              <DropDownSelection
-                dropDownOptions={accountSelectionProp}
-                updateOptionHandler={accountSelectHandler}
-              />
-
-              <div className='inputAmountAndPlusSign'>
-                <input
-                  type='text'
-                  className={`input__container input__container--amount`}
-                  placeholder={`0,00`}
-                  name={'amount'}
-                  onChange={inputHandler}
-                  value={debtorDetail.debtorInfo.amount}
-                  style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+                <DropDownSelection
+                  dropDownOptions={accountSelectionProp}
+                  updateOptionHandler={accountSelectHandler}
+                  isReset={isReset}
+                  setIsReset={setIsReset}
                 />
 
-                <Link to='' className='flx-col-center iconPlusSign'>
-                  <PlusSignSvg />
-                </Link>
+                <div className='inputAmountAndPlusSign'>
+                  <input
+                    type='text'
+                    className={`input__container input__container--amount`}
+                    placeholder={`0,00`}
+                    name={'amount'}
+                    onChange={inputHandler}
+                    value={debtorDetail.debtorInfo.net_amount}
+                    style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+                  />
+
+                  {/* Do not know what this plus sign does */}
+                  <Link to='' className='flx-col-center iconPlusSign'>
+                    <PlusSignSvg />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className='presentation__card__title__container'>
-            <CardTitle>{'Last Movements'}</CardTitle>
-          </div>
+            <div className='presentation__card__title__container'>
+              <CardTitle>{'Last Movements'}</CardTitle>
+            </div>
 
-          <ListContent listOfItems={lastMovements} />
+            <ListContent listOfItems={lastMovements} />
 
-          <div className='submit__btn__container'>
-            <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
-          </div>
-        </form>
+            <div className='submit__btn__container'>
+              <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
+            </div>
+          </form>
+        </div>
       </section>
     </>
   );

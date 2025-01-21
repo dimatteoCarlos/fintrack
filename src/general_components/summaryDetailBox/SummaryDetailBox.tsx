@@ -16,12 +16,12 @@ type SummaryDetailPropType = {
     amount: number;
     subtitle1: string;
     subtitle2: string;
-    status: JSX.Element;
+    status?: JSX.Element;
   };
 };
 
 function SummaryDetailBox({ summaryData }: SummaryDetailPropType) {
-  const { title, subtitle1, subtitle2, amount } = summaryData;
+  const { title, subtitle1, subtitle2: type, amount } = summaryData;
   return (
     <>
       <div className='summary__container'>
@@ -41,8 +41,9 @@ function SummaryDetailBox({ summaryData }: SummaryDetailPropType) {
           <div className='summary__data--subtitle1'>{subtitle1}</div>
 
           <div className='summary__data--status '>
-            <StatusSquare />{' '}
-            <div className='summary__data--subtitle2'>{subtitle2}</div>
+            {/* status: */}
+            <StatusSquare alert={type == 'lender' ? 'alert' : ''} />
+            <div className='summary__data--subtitle2'>{type}</div>
           </div>
         </div>
       </div>

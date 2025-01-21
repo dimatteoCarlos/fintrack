@@ -80,7 +80,6 @@ function App() {
           children: [
             { index: true, element: <Debtors /> },
             { path: '/debts/debtors', element: <Debtors /> },
-            { path: '/debts/debtors/:debtorId', element: <DebtorDetail /> },
           ],
         },
 
@@ -118,14 +117,15 @@ function App() {
       path: '/overview/accounts/:accountId',
       element: <AccountDetail />,
     },
-    // {
-    //   path: '/overview/debtors/:accountId',/
-    //   element: <DebtorDetail />,
-    // },
-    // {
-    //   path: '/overview/pockets/:accountId',
-    //   element: <PocketDetail />,
-    // },
+
+    {
+      path: '/debts/debtors/:debtorId',
+      element: <DebtorDetail />,
+    },
+    {
+      path: '/budget/pockets/:pocketId',
+      // element: <PocketDetail />,
+    },
     //
   ]);
 
