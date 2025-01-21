@@ -67,6 +67,7 @@ function NewCategory() {
 
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
     // console.log('natureHandler', e.currentTarget.id);
+    e.preventDefault();
     const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
     setActiveCategory(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
