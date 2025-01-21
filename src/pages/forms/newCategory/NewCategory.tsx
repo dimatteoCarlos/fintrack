@@ -53,6 +53,7 @@ function NewCategory() {
 
   //functions
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
     const { name, value } = e.target;
     const valueToSave = name == 'amount' ? parseFloat(value) : value;
 
