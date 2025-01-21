@@ -1,11 +1,14 @@
-import { CURRENCY_OPTIONS } from '../../../helpers/constants';
+//-------BudgetBigBoxResult---------
+//Parent:BudgetLayout.tsx
+import { CURRENCY_OPTIONS, DEFAULT_CURRENCY } from '../../../helpers/constants';
 import { currencyFormat } from '../../../helpers/functions';
 
-function BudgetBigBoxResult() {
-  //temporary values------------
-  const defaultCurrency = 'usd';
-  const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+//temporary values------------
+const defaultCurrency = DEFAULT_CURRENCY;
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 
+function BudgetBigBoxResult() {
+  //these data are coming from: backend calculations fetched here or will be received as props?
   const resultAmount = 0;
   const remaining = 0;
 
