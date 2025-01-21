@@ -9,7 +9,8 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
-// import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import '../styles/forms-styles.css';
 //
@@ -89,12 +90,17 @@ function DebtorDetail() {
   const [isReset, setIsReset] = useState<boolean>(false);
 
   //--functions---
-  function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  // function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
+  //   e.preventDefault();
+  //   setDebtorDetail((prevState) => ({
+  //     ...prevState,
+  //     debtorInfo: { ...debtorInfo, [e.target.name]: e.target.value },
+  //   }));
+  // }
+
+  function addMoneyHandler(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    setDebtorDetail((prevState) => ({
-      ...prevState,
-      debtorInfo: { ...debtorInfo, [e.target.name]: e.target.value },
-    }));
+    console.log('click on plus sign button');
   }
 
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
@@ -147,8 +153,8 @@ function DebtorDetail() {
                   setIsReset={setIsReset}
                 />
 
-                <div className='inputAmountAndPlusSign'>
-                  <input
+                <div className='inputAmountAndPlusSign '>
+                  {/* <input
                     type='text'
                     className={`input__container input__container--amount`}
                     placeholder={`0,00`}
@@ -156,12 +162,26 @@ function DebtorDetail() {
                     onChange={inputHandler}
                     value={debtorDetail.debtorInfo.net_amount}
                     style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
-                  />
+                  /> */}
+                  <div
+                    className={`input__container input__container--amount`}
+                    style={{
+                      fontSize: '1.25rem',
+                      padding: '0 0.75rem',
+                      width: '85%',
+                    }}
+                  >
+                    {' '}
+                    {debtorDetail.debtorInfo.net_amount}
+                  </div>
 
                   {/* Do not know what this plus sign does */}
-                  {/* <Link to='' className='flx-col-center iconPlusSign'>
+                  <button
+                    className='flx-col-center iconPlusSign'
+                    onClick={addMoneyHandler}
+                  >
                     <PlusSignSvg />
-                  </Link> */}
+                  </button>
                 </div>
               </div>
             </div>
