@@ -9,7 +9,7 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
-import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
+// import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import '../styles/forms-styles.css';
 //
@@ -159,9 +159,9 @@ function DebtorDetail() {
                   />
 
                   {/* Do not know what this plus sign does */}
-                  <Link to='' className='flx-col-center iconPlusSign'>
+                  {/* <Link to='' className='flx-col-center iconPlusSign'>
                     <PlusSignSvg />
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

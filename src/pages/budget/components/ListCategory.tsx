@@ -16,6 +16,7 @@ import {
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_budget } from '../../../endpoints.ts';
 import { DEFAULT_CURRENCY } from '../../../helpers/constants.ts';
+import { Link } from 'react-router-dom';
 
 export type CategoryToRenderType = CategoryBudgetType & {
   currency?: CurrencyType;
@@ -28,6 +29,7 @@ const defaultCategoryBudget: CategoryToRenderType[] = [
     amount: Math.random() * 100,
     currency: 'usd',
     category_id: Math.round(Math.floor(Math.random() * 100)),
+
   },
   {
     category_name: 'Category Name 2',
@@ -58,6 +60,7 @@ function ListCategory() {
   // let data: CategoriesToRenderType[] = [],
   //   isLoading = false,
   //   error = null;
+
   // en el backend: generar la data segun estructura de los datos a renderizar, es decir,
   //agrupar para cada caategoria, expenses y  budgets, y cualquier otra; la sumatoria de los expense se refleja en el spent, y la sumatoria de los budget de cada categoria seria el budget por categoria o por subcategoria? hay que definir,  y el status seria el resultado de la resta entre el budget - expense de cada categoria, o si se prefiere reflejar el status de una vez desde el backend?.
   //no se esta claro, si los valores o informacion se obtendra de los movimientos de expenses, realizados en cada categoria y budget...definir proc de calculo.
@@ -65,7 +68,7 @@ function ListCategory() {
   //DATA FETCHING
   const { data, isLoading, error } =
     useFetch<CategoryBudgetListType>(url_budget);
-  // console.log(data);
+  console.log(data);//Los Datos actuales no tienen el campo "category_nature"
 
   //-------
   const budgetList: CategoryToRenderType[] =
@@ -83,31 +86,31 @@ function ListCategory() {
       : defaultCategoryBudget;
 
   //functions
-  function onCategoryHandler(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    e.preventDefault();
-    console.log('budget and category movements', e.currentTarget); // creo que deberia incluir la fecha en el reporte
-  }
 
   return (
     <>
       {/*LIST CATEGORY  */}
 
-      <article className='list__main__container'>
+      <article className='list__main__container '>
         {budgetList.map((category, indx) => {
-          const { category_name, spent, amount: budget, currency } = category;
+          const {
+            category_name,
+            spent,
+            amount: budget,
+            currency,
+            category_id,
+          } = category;
           const diff = Math.round(budget - spent);
           const statusAlert = diff <= 0;
 
           return (
             <div className='box__container .flx-row-sb' key={indx}>
               <BoxRow>
-                <div
-                  id={category_name} //or category_id taken from data base
-                  className='box__title box__title--category__name '
-                  onClick={(e) => onCategoryHandler(e)}
-                >
-                  {category_name}{' '}
-                </div>
+                <Link to={`/budget/:${category_id}`}>
+                  <div className='box__title box__title--category__name hover '>
+                    {category_name}{' '}
+                  </div>
+                </Link>
 
                 <div className='box__title--spent'>
                   spent: {currencyFormat(currency, spent, 'en-US')}{' '}

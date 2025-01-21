@@ -26,7 +26,7 @@ function BudgetPresentation() {
   return (
     <>
       <section className='content__presentation'>
-        <div className='cards__presentation'>
+        <div className='cards__presentation '>
           <CardTitle>Category List</CardTitle>
 
           <ListCategory />
@@ -40,6 +40,7 @@ function BudgetPresentation() {
           </OpenAddEditBtn>
 
           <CardTitle>Pockets</CardTitle>
+
           <ListPocket />
 
           <OpenAddEditBtn

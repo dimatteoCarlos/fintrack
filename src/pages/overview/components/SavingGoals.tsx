@@ -50,7 +50,7 @@ function SavingGoals() {
       <div className='presentation__card__title__container main flx-row-sb'>
         <CardTitle>Saving Goals</CardTitle>
         <div className='presentation__card--title'></div>
-        <Link className='flx-col-center icon ' to={'/accounts/edit'}>
+        <Link className='flx-col-center icon ' to={'edit'}>
           <Dots3LightSvg />{' '}
         </Link>
       </div>

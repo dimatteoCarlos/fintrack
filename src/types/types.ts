@@ -97,7 +97,7 @@ export type InvestmentAccountType = {
   id: number;
   name: string;
   description: string;
-  type: InvestmentTypeMovementType; // string;//specify the possible types as a union of string types
+  type: InvestmentTypeMovementType;
   currency: string;
   balance: number;
 };
@@ -143,12 +143,12 @@ export type DebtType = {
 };
 
 //budget
-export type CategoryBudgetListType={
-  budgets?:CategoryBudgetType[]
-}
+export type CategoryBudgetListType = {
+  budgets?: CategoryBudgetType[];
+};
 
 export type CategoryBudgetType = {
-  category_name: string; 
+  category_name: string;
   category_id: number;
   amount: number; //amount
   spent: number;
@@ -158,12 +158,10 @@ export type StatusType = boolean;
 
 export type CurrencyType = 'usd' | 'cop' | 'eur';
 
-export type DebtorType= 'debtor' | 'lender';
+export type DebtorType = 'debtor' | 'lender';
 
 export type CURRENCY_OPTIONSTYPE = {
   usd: 'en-US';
   cop: 'cop-CO';
   eur: 'en-US';
 };
-
-

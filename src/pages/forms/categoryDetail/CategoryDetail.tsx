@@ -12,9 +12,9 @@ import SummaryDetailBox from '../../../general_components/summaryDetailBox/Summa
 
 import '../styles/forms-styles.css';
 
-function categoryDetail() {
+function CategoryDetail() {
   const [activeCategory, setActiveCategory] = useState('');
-  const [categoryDetail, setCategoryDetail] = useState(null);
+  // const [categoryDetail, setCategoryDetail] = useState(null);
 
   //temporary data
   const categoryInfo = {
@@ -111,7 +111,7 @@ function categoryDetail() {
             </Link>
             <div className='form__title'>{'Category'}</div>
             {/* <div className='form__title'>{categoryInfo.name}</div> */}
-            <Link to='accounts/edit' className='flx-col-center icon3dots'>
+            <Link to='edit' className='flx-col-center icon3dots'>
               <Dots3LightSvg />
             </Link>
           </div>
@@ -157,4 +157,4 @@ function categoryDetail() {
   );
 }
 
-export default categoryDetail;
+export default CategoryDetail;

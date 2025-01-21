@@ -8,35 +8,31 @@ import Expense from './pages/tracker/expense/Expense.tsx';
 import Income from './pages/tracker/income/Income.tsx';
 import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
+
 import BudgetPresentation from './pages/budget/components/BudgetPresentation.tsx';
-// import CategoryDetail from './pages/budget/CategoryDetail.tsx';
-// import Pockets from './pages/budget/pockets/Pockets.tsx';
-// import PocketDetail from './pages/budget/pockets/PocketDetail.tsx';
-
 import Debtors from './pages/debts/debtors/Debtors.tsx';
-// import DebtorDetail from './pages/debts/debtors/DebtorDetail.tsx';
-
-// import AccountDetail from './pages/overview/accounts/AccountDetail.tsx';
-
-// import Accounts from './pages/overview/accounts/Accounts.tsx';
-import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
-import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
-// import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
-// import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
 
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
 import BudgetLayout from './pages/budget/BudgetLayout.tsx';
 import DebtsLayout from './pages/debts/DebtsLayout.tsx';
 import OverviewLayout from './pages/overview/OverviewLayout.tsx';
+
 import NotFoundPage from './pages/error/NotFoundPage.tsx';
+
 import Accounting from './pages/accounting/Accounting.tsx';
+
 import NewCategory from './pages/forms/newCategory/NewCategory.tsx';
 import NewPocket from './pages/forms/newPocket/NewPocket.tsx';
 import NewProfile from './pages/forms/newProfile/NewProfile.tsx';
 import NewAccount from './pages/forms/newAccount/NewAccount.tsx';
 import Overview from './pages/overview/Overview.tsx';
 import Movements from './pages/movements/Movements.tsx';
+
+import AccountDetail from './pages/forms/accountDetail/AccountDetail.tsx';
+import DebtorDetail from './pages/forms/debtorDetail/DebtorDetail.tsx';
+import CategoryDetail from './pages/forms/categoryDetail/CategoryDetail.tsx';
+// import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 function App() {
   const router = createBrowserRouter([
@@ -65,13 +61,6 @@ function App() {
           children: [
             { path: '/budget/presentation', element: <BudgetPresentation /> },
           ],
-          // { path: '/budget/new', element: <NewCategory /> },
-          // {
-          //   path: '/budget/:categoryId',
-          //   element: <CategoryDetail />,
-          // },
-          // { path: '/budget/pockets', element: <Pockets /> },
-          // { path: '/budget/pockets/:pocketId', element: <PocketDetail /> },
         },
 
         {
@@ -121,6 +110,10 @@ function App() {
     {
       path: '/debts/debtors/:debtorId',
       element: <DebtorDetail />,
+    },
+    {
+      path: '/budget/:categoryId',
+      element: <CategoryDetail />,
     },
     {
       path: '/budget/pockets/:pocketId',

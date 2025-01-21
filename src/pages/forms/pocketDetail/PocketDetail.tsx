@@ -92,7 +92,7 @@ function PocketDetail() {
               <LeftArrowLightSvg />
             </Link>
             <div className='form__title'>{pocketInfo.name}</div>
-            <Link to='accounts/edit' className='flx-col-center icon3dots'>
+            <Link to='edit' className='flx-col-center icon3dots'>
               <Dots3LightSvg />
             </Link>
           </div>
