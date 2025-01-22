@@ -1,7 +1,7 @@
 //FormPlusBtn.tsx
 
 
-import PlusSvg from '../../assets/trackerNavbarSvg/PlusSvg.svg';
+import Plusvg from '../../assets/trackerNavbarSvg/PlusSvg.svg';
 type FormPlusBtnPropType = {
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
@@ -29,7 +29,7 @@ function FormPlusBtn({ onClickHandler }: FormPlusBtnPropType) {
           (e.currentTarget.style.transform = 'translateY(0)')
         }
       >
-        <PlusSvg />
+        <Plusvg />
       </button>
     </div>
   );

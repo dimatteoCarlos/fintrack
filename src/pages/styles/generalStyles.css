@@ -105,6 +105,8 @@ body {
   justify-content: space-between;
 
   min-width: var(--figmaWidth);
+  max-width:40rem;
+
   padding-bottom: 1rem;
 
   overflow-x: auto;
