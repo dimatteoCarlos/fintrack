@@ -9,6 +9,7 @@
   --textColor: #141414;
   --primary: #5b8c93;
   --topH: 22%;
+  --figmaWidth: 22.5rem;
 }
 
 body {
@@ -103,10 +104,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  /* --figmaWidth:22.5rem;
-  min-width: var(--figmaWidth); */
-  min-width: 26rem;
-  max-width: 37.5rem;
+  min-width: var(--figmaWidth);
   padding-bottom: 1rem;
 
   overflow-x: auto;
@@ -115,8 +113,7 @@ body {
 .home__layout {
   position: relative;
   height: 100vh;
-  min-height: 51rem;
-  max-height: 52rem;
+  min-height: 50rem;
 }
 
 .home__header {
@@ -221,7 +218,7 @@ input[type='number'] {
   font-weight: normal;
 }
 
-.hover:hover{
-color:cyan;
-cursor:pointer;
+.hover:hover {
+  color: cyan;
+  cursor: pointer;
 }
