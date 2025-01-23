@@ -27,6 +27,11 @@ import {
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
+
+// ********************PENDEINTE
+// INCLUIR VALIDACION POR NOTACION cientifica, hacer un componente input que incluya validacion en tiemo real, evaluar si mantener la validacion global al hacer submit, manejo de los mensajes de validacion.
+//verificar opciones inputmode para que aparezca solo teclado numerico, validacion con patter html, de una en el input
+
 //------------------------------------------------------
 //input expense data state variables
 type ExpenseDataType = {

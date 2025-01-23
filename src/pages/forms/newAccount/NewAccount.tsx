@@ -39,7 +39,7 @@ const initialNewAccountData = {
   name: '', //'Account Name',
   type: '', //'Account Type',
   date: new Date(), //'Starting Point'
-  amount: '', // 'Value'
+  amount: "", // 'Value'
   currency: 'usd',
 };
 
@@ -182,6 +182,7 @@ function NewAccount() {
                     date={accountData.date}
                     variant={'form'}
                     isReset={isReset}
+                    
                   ></FormDatepicker>
                 </div>
               </div>

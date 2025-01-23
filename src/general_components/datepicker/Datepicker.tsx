@@ -53,6 +53,7 @@ function Datepicker({
       scrollableMonthYearDropdown
       placeholderText='DD/MM/YYYY'
       dateFormat='dd/MMM/YYY'
+      customInput={<input inputMode='none'/>} //not showing mobile keyboard
       className={
         variant == 'tracker' || variant == 'light'
           ? 'tracker__inside__datepicker'

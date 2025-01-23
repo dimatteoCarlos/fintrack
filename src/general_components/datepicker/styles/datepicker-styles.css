@@ -99,13 +99,13 @@
 }
 
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-upcoming {
-  background: url('../../assets/ArrowDownDarkSvg.svg') no-repeat center;
+  background: url('../../../assets/ArrowDownDarkSvg.svg') no-repeat center;
   transform: rotate(180deg);
   top: 1px;
 }
 
 a.react-datepicker__navigation.react-datepicker__navigation--years.react-datepicker__navigation--years-previous {
-  background: url('../../assets/ArrowDownDarkSvg.svg') no-repeat center;
+  background: url('../../../assets/ArrowDownDarkSvg.svg') no-repeat center;
   top: 1px;
 }
 
