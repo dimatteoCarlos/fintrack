@@ -117,7 +117,7 @@ export type DebtsTypeMovementType = 'lend' | 'borrow';
 export type DebtorNewProfileType = 'lending' | 'borrowing';
 
 export type DebtsTrackerDataType = {
-  amount: number;
+  amount: number | "";
   debtor: string;
   currency: CurrencyType;
   type: DebtsTypeMovementType;

@@ -15,7 +15,7 @@ import '../styles/forms-styles.css';
 type PocketDataType = {
   name: string;
   note: string;
-  target: number;
+  target: number | "";
   saved?: number;
   date: Date;
   currency?: CurrencyType;
@@ -23,7 +23,7 @@ type PocketDataType = {
 const initialNewPocketData: PocketDataType = {
   name: '',
   note: '',
-  target: 0.0,
+  target: "",
   date: new Date(),
 };
 

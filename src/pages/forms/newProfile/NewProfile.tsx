@@ -37,7 +37,7 @@ type ProfileDataType = {
   lastname: string;
   account: string | number;
   type: string;
-  amount: number;
+  amount: number | "";
 };
 
 const initialNewProfileData: ProfileDataType = {
@@ -45,7 +45,7 @@ const initialNewProfileData: ProfileDataType = {
   lastname: '',
   account: '',
   type: '',
-  amount: 0.0,
+  amount: "",
 };
 
 //-----------------------

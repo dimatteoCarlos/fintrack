@@ -31,7 +31,7 @@ type AccountDataType = {
   name: string;
   date: Date;
   type: string;
-  amount: number;
+  amount: number | '';
   currency: string;
 };
 
@@ -39,7 +39,7 @@ const initialNewAccountData = {
   name: '', //'Account Name',
   type: '', //'Account Type',
   date: new Date(), //'Starting Point'
-  amount: 0.0, // 'Value'
+  amount: '', // 'Value'
   currency: 'usd',
 };
 
@@ -208,7 +208,7 @@ function NewAccount() {
                 className='input__container input__container--amount'
                 type='number'
                 step='any'
-                placeholder='0.00'
+                placeholder=''
                 name='amount'
                 onChange={inputHandler}
                 value={accountData.amount}

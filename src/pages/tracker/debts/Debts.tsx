@@ -33,7 +33,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input debts datatrack variables
 const initialTrackerData: DebtsTrackerDataType = {
-  amount: 0.0,
+  amount: "",
   debtor: '',
   currency: defaultCurrency,
   type: 'lend',

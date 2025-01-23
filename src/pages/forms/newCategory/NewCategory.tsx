@@ -27,7 +27,7 @@ export const tileLabels = [
 type CategoryDataType = {
   category: string;
   subcategory: string;
-  amount: number;
+  amount: number | "";
   nature: string;
 };
 
@@ -45,7 +45,7 @@ function NewCategory() {
   const initialNewCategoryData: CategoryDataType = {
     category: '',
     subcategory: '',
-    amount: 0.0,
+    amount: "",
     nature: '',
   };
   //---states------n

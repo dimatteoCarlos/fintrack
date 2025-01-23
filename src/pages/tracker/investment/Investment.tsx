@@ -31,7 +31,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 //input investment data state variables
 
 type InvestmentDataType = {
-  amount: number;
+  amount: number | "";
   account: string;
   currency: CurrencyType;
   type: InvestmentTypeMovementType;
@@ -40,7 +40,7 @@ type InvestmentDataType = {
 };
 
 const initialInvestmentData: InvestmentDataType = {
-  amount: 0.0,
+  amount: "",
   account: '',
   currency: defaultCurrency,
   type: 'deposit',

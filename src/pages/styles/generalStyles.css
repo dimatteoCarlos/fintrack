@@ -191,8 +191,9 @@ body {
 /*input css rules */
 textarea::placeholder,
 textarea.input__note__description::placeholder,
-input::placeholder,
-input.inputNumber::placeholder {
+input::placeholder
+/* input.inputNumber::placeholder */
+ {
   color: gray;
   background: transparent;
   outline: none;

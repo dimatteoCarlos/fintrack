@@ -28,7 +28,7 @@ console.log(formatNumberCountry);
 //input income data state variables
 
 type IncomeDataType = {
-  amount: number;
+  amount: number  | "";
   account: string;
   source: string;
   note: string;
