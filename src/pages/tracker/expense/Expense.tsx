@@ -30,7 +30,7 @@ console.log('', { formatNumberCountry });
 //------------------------------------------------------
 //input expense data state variables
 type ExpenseDataType = {
-  amount: number;
+  amount: number | '';
   account: string;
   category: string;
   note: string;
@@ -38,7 +38,7 @@ type ExpenseDataType = {
 };
 
 const initialExpenseData: ExpenseDataType = {
-  amount: 0.0,
+  amount: '',
   account: '',
   category: '',
   note: '',
@@ -110,14 +110,66 @@ function Expense() {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }
 
+  // function checkNumberValue(value: number | string) {
+  //   console.log('value:', typeof value);
+  //   const result =
+  //     typeof value === 'number'
+  //       ? value
+  //       : value !== '' && !isNaN(parseFloat(value))
+  //       ? parseFloat(value.trim().replace(',', '.'))
+  //       : NaN;
+  //   if (isNaN(result)) {
+  //     setValidationMessages((prev) => ({
+  //       ...prev,
+  //       [validationMessages['amount']]: 'Please insert a valid number',
+  //     }));
+  //   }
+
+  //   return result;
+  // }
+  function checkNumberValue(value: number | string) {
+    console.log('value:', typeof value);
+
+    // Si el valor es un número, lo devolvemos directamente
+    let result =
+      typeof value === 'number'
+        ? value
+        : value !== '' && !isNaN(parseFloat(value.replace(',', '.')))
+        ? parseFloat(value.trim().replace(',', '.')) // Normalizamos la coma a punto y parseamos
+        : NaN;
+
+    // Si el resultado es NaN, mostramos el mensaje de validación
+    if (isNaN(result)) {
+      setValidationMessages((prev) => ({
+        ...prev,
+        amount: 'Please insert a valid number',
+      }));
+    }
+
+    return result;
+  }
+
   function updateTrackerData(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+    // e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    e.preventDefault();
+    // e.preventDefault();
+    const { name, value } = e.currentTarget;
+    // const { name, value } = e.target;
 
     const valueToSave =
-      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
-    setExpenseData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+      name === 'amount' && !isNaN(checkNumberValue(value))
+        ? checkNumberValue(value)
+        : value;
+
+    // const valueToSave =
+    //   name === 'amount' && !isNaN(parseFloat(value)) && value.trim() !== ''
+    //     ? value.includes(',')
+    //       ? parseFloat(value.replace(',', '.'))
+    //       : parseFloat(value)
+    //     : value;
+
+    setExpenseData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -134,7 +186,7 @@ function Expense() {
     //----------------------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
-    // console.log('validation mgs:', newValidationMessages);
+    console.log('validation mgs:', newValidationMessages);
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
@@ -176,7 +228,8 @@ function Expense() {
               step='any'
               placeholder={`${trackerState}`}
               value={expenseData?.amount}
-              onChange={updateTrackerData}
+              onInput={updateTrackerData}
+              // onChange={updateTrackerData}
             />
 
             <CurrencyBadge
@@ -252,6 +305,7 @@ function Expense() {
 
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
+
           {/* end of bottom */}
         </div>
 

@@ -196,6 +196,12 @@ export function validationData(stateToValidate: {
       continue;
     }
 
+
+    if (typeof value === 'number' && value < 0) {
+      errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
+      continue;
+    }
+
     if (typeof value === 'number' && value < 0) {
       errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
     }
