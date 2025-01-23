@@ -207,7 +207,7 @@ DropdownSelectPropType) {
         styles={selectedCustomStyles}
         closeMenuOnSelect={true}
         components={{ DropdownIndicator }}
-        isSearchable
+        isSearchable={false}
         isClearable
         defaultValue={title ? title : options[0]}
         ref={selectRef}
