@@ -9,7 +9,7 @@ function Movements() {
   const previousRoute = '/' + routes[1];
   // console.log('location:', pathname, useLocation(), routes, previousRoute);
 
-  const Message = `You've navigated to the page that should render all the ${movementsOf} Movements.\n Defining the "Endpoints" for data fetching of all the movements with its data structure, and the Rendering VIEWS design are PENDING`;
+  const Message = `You've navigated to a page that should render all the ${movementsOf} Movements.\n  "Endpoints" for data fetching of all the movements with its data structure, and the Rendering VIEWS design are PENDING`;
   console.log('Message:', Message);
 
   return (

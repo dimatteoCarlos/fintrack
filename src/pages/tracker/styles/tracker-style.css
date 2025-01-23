@@ -139,7 +139,7 @@ article {
 
 .card--title--top {
   padding: 2rem 0 0.5rem 0;
-  /* border: 1px solid red; */
+
 }
 
 .card__screen {
@@ -150,6 +150,8 @@ article {
   align-items: center;
   justify-content: space-between;
   color: var(--dark);
+
+ height:auto;
 }
 
 .inputNumber {

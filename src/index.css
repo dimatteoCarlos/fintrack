@@ -27,8 +27,6 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 body {
   background-color: #1b1b1b;
   background-color: var(--dark);
@@ -45,7 +43,6 @@ span {
   border: none;
   outline: none;
 }
-
 
 /*-----------------------*/
 * {
@@ -68,20 +65,3 @@ button {
 .bordered {
   border: 2px solid red;
 }
-
-
-
-/*
-input::placeholder {
-  color: gray;
-  font-size: 14px;
-  font-style: italic;
-  opacity: 0.8;
-}  
-textarea::placeholder {
-  color: gray;
-  font-size: 14px;
-  font-style: italic;
-  opacity: 0.8; 
-}
-*/

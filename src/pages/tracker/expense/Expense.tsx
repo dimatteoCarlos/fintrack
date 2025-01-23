@@ -238,7 +238,7 @@ function Expense() {
             className='note--expense'
             style={{ display: 'flex', justifyContent: 'space-between' }}
           >
-            <div className='card__screen ' style={{ flex: 0.9 }}>
+            <div className='card__screen  ' style={{ flex: 0.95 }}>
               <textarea
                 className='input__note__description'
                 placeholder='Description'

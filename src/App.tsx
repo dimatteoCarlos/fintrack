@@ -36,13 +36,16 @@ import PocketDetail from './pages/forms/pocketDetail/PocketDetail.tsx';
 
 function App() {
   const router = createBrowserRouter([
+    //pages
+    //pages/Layout
     {
       path: '/',
       element: <Layout />,
       errorElement: <NotFoundPage />,
 
       children: [
-        { index: true, element: <Navigate to='/tracker' /> },
+        //pages/tracker
+        { index: true, element: <Navigate to='/tracker/expense' /> },
         {
           path: '/tracker',
           element: <TrackerLayout />,
@@ -54,7 +57,7 @@ function App() {
             { path: '/tracker/debts', element: <Debts /> },
           ],
         },
-
+        // main navbar pages
         {
           path: '/budget',
           element: <BudgetLayout />,
@@ -97,6 +100,7 @@ function App() {
       path: '/overview/movements/debt',
       element: <Movements />,
     },
+
     //show detailed item
     {
       path: '/overview/accounts/:accountId',

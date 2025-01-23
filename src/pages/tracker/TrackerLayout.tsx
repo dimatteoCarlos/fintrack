@@ -15,9 +15,10 @@ function TrackerLayout() {
   //-------------------------------
 
   return (
-    <div className='trackerLayout'>
+    <>
+      {/* <div className='trackerLayout bordered'> */}
       <div className='layout__header'>
-        <div className='headerContent__container'>
+        <div className='headerContent__container '>
           <LogoMenuIcon />
 
           <div className={`displayScreen ${'light'}`}>
@@ -37,15 +38,15 @@ function TrackerLayout() {
       </div>
 
       <TrackerNavbar />
-
       <>
-        <div className='content__presentation'>
-          <div className='cards__presentation cards__presentation--tracker'>
-            <Outlet />
-          </div>
+        {/* <div className='content__presentation  '> */}
+        <div className='cards__presentation  cards__presentation--tracker'>
+          <Outlet />
         </div>
+        {/* </div> */}
       </>
-    </div>
+      {/* </div> */}
+    </>
   );
 }
 

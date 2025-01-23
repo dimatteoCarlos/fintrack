@@ -17,7 +17,7 @@ function CardNote({ dataHandler, note }: CardNotePropType) {
           placeholder='Description'
           onChange={dataHandler}
           name='note'
-          rows={3}
+          rows={2}
           maxLength={150}
           value={note}
         />

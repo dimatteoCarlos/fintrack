@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 function TrackerExpenseButton() {
   return (
     <>
-      <div className='trackerStateButton__container'>
+      <div className='trackerStateButton__container '>
         <NavLink
           to='/tracker/expense'
-          className={`flx-col-center trackerStateIconButton ${(isActive: {
+          className={`flx-col-center trackerStateIconButton  ${(isActive: {
             isActive: boolean;
           }) => (isActive ? 'active' : '')}`}
         >
