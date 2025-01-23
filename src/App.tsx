@@ -45,6 +45,7 @@ function App() {
 
       children: [
         //pages/tracker
+        // { index: true, element: <Navigate to='/tracker/expense' /> },
         { index: true, element: <Navigate to='/tracker/expense' /> },
         {
           path: '/tracker',
