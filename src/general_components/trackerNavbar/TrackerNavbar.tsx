@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 import TrackerDebtsButton from './trackerStateButtons/TrackerDebtsButton';
 import TrackerExpenseButton from './trackerStateButtons/TrackerExpenseButton';
 import TrackerIncomeButton from './trackerStateButtons/TrackerIncomeButton';
