@@ -119,7 +119,7 @@ export function isValidCurrencyCode(currency: string): boolean {
   //   return false; // Si lanza error, el código de moneda no es válido
   // }
 }
-
+//-----------------------
 // Función para formatear números con soporte opcional de moneda y decimales
 export function numberFormatCurrency(
   x: number | string,
@@ -185,7 +185,9 @@ export function capitalize(word: string) {
 
 export function validationData(stateToValidate: {
   [key: string]: string | number | Date | undefined | null;
-}) {
+}): {
+  [key: string]: string;
+} {
   const errorValidationMessages: { [key: string]: string } = {};
 
   for (const key in stateToValidate) {
@@ -195,7 +197,6 @@ export function validationData(stateToValidate: {
       errorValidationMessages[key] = `* Please provide the ${capitalize(key)}`;
       continue;
     }
-
 
     if (typeof value === 'number' && value < 0) {
       errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
@@ -213,11 +214,105 @@ export function validationData(stateToValidate: {
   return errorValidationMessages;
 } //fn
 
+//-------------------------
+//-------
+export function checkNumberFormatValue(value: string): {
+  formatMessage: string;
+  valueNumber: string;
+  valueToSave: number;
+  isError: boolean;
+} {
+  console.log('value:', value, typeof value);
+  const notMatching = /([^0-9.,])/g; // Pattern for invalid characters
+  const onlyDotDecimalSep = /^\d*(\.\d*)?$/g; //Normal US numeric Format
+  const onlyCommaDecimalSep = /^\d*(\,\d*)$/g; // Only comma as decimal separator, ES numeric format
+  const commaSepFormat = /^(\d{1,3})(,\d{3})*(\.\d*)?$/g; //Comma as thousands separator, point as decimal, US format
+  const dotSepFormat = /^(\d{1,3})(\.\d{3})*(,\d*)?$/g; //Dots as thousands separator, comma as decimal UK format
+
+  //no matching character
+  if (notMatching.test(value)) {
+    return {
+      formatMessage: `not a valid number: ${value.match(notMatching)}`,
+      isError: true,
+      valueNumber: value.toString(),
+      valueToSave: 0,
+    };
+  }
+  //normal number
+  if (onlyDotDecimalSep.test(value)) {
+    const valueNumber = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
+
+    return {
+      formatMessage: 'normal numeric input', //'no separators with optional dot as decimal sep ',
+      valueNumber: valueNumber.toString(),
+      valueToSave: valueNumber,
+      isError: false,
+    };
+  }
+
+  //only comma decimal
+
+  if (onlyCommaDecimalSep.test(value)) {
+    const valueNumber = !isNaN(parseFloat(value.replace(',', '.')))
+      ? parseFloat(value.replace(',', '.'))
+      : 0;
+
+    return {
+      formatMessage: ' comma as decimal-sep.',
+      valueNumber: valueNumber.toString(),
+      valueToSave: valueNumber,
+      isError: false,
+    };
+  }
+
+  //comma separator, decimal dot
+  if (commaSepFormat.test(value)) {
+    const valueNumber = !isNaN(parseFloat(value.replace(/,/g, '')))
+      ? parseFloat(value.replace(/,/g, ''))
+      : 0;
+
+    return {
+      formatMessage: 'comma as thounsand-sep , dot as decimal-sep',
+      valueToSave: valueNumber,
+      valueNumber: value.toString(),
+      isError: false,
+    };
+  }
+
+  //dot as thousand separator, comma as decimal separator
+  if (dotSepFormat.test(value)) {
+    const valueNumber = !isNaN(
+      parseFloat(value.replace(/\./g, '').replace(',', '.'))
+    )
+      ? parseFloat(
+          parseFloat(value.replace(/\./g, '').replace(',', '.')).toFixed(2)
+        ) //seems that toFixed does not work - revisar
+      : 0;
+
+    return {
+      formatMessage: 'dot as thousand-sep, comma as decimal-sep',
+      valueToSave: valueNumber,
+      valueNumber: value.toString(),
+      isError: false,
+    };
+  }
+
+  //----
+
+  return {
+    formatMessage: `format number not valid`,
+    isError: true,
+    valueNumber: '',
+    valueToSave: 0,
+  };
+}
+
 //adapt to the business rule to use
 export const statusFn = (
   budget: number = 100,
   spent: number = 100
 ): StatusType => {
+  //Definir reglas de negocio
   const diff = budget - spent;
   // const type = diff >= 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
   // const type = diff <= 0 ? 'alert' : '';

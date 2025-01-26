@@ -12,8 +12,5 @@ export function BoxRow({ children }: ChildrenPropType) {
 }
 
 export function StatusSquare({ children, alert }: any) {
-  // console.log('alert:', alert)
-  // return <span className='status__square'>{children}</span>;
   return <span className={`status__square ${alert}`}>{children}</span>;
 }
-

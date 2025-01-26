@@ -14,7 +14,11 @@ import {
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
-import { numberFormat, validationData } from '../../../helpers/functions.ts';
+import {
+  checkNumberFormatValue,
+  numberFormat,
+  validationData,
+} from '../../../helpers/functions.ts';
 import {} from '../../../helpers/functions.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
@@ -22,18 +26,14 @@ import {
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
+// import CardNote from '../components/CardNote.tsx';
 
 //-----temporarily 'till decide how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
-// console.log('', { formatNumberCountry });
+console.log('', { formatNumberCountry });
 
-// ********************PENDEINTE
-// INCLUIR VALIDACION POR NOTACION cientifica, hacer un componente input que incluya validacion en tiemo real, evaluar si mantener la validacion global al hacer submit, manejo de los mensajes de validacion.
-//verificar opciones inputmode para que aparezca solo teclado numerico, validacion con patter html, de una en el input
-
-//PROBAR formData para actualizar los valores de los inputs del formulario, mientras se evaluan como string, y se muestra el mensaje de validacion en tiempo real, paralelamente,  MANEJAR aparte los valores que se grabaran en el estado expense data, convirtiendolos a numero estandar, tal vez sea otra funcion de conversion a numero, mientra la que ya escribi sea para validar el estado de validacion, mientras se guarda el resultado, para actualizar el estado, que luego va al backend para guardarlo en bse de datos como numero, etc.
-
+// ********************PENDIENTE: convertir componentes reusables, definir alguans reglas de negocio para status. Establecer como es el manejo de los currency, data fetching from backend, edition  pages design, buttons and functionality and integration to backend as post (Updating, deleting, patching), definir en overview lo que se refleja en los goals, definir funcionalidad de los pockets y manejo de la informacion. Todo el proceso de calculo en el backend.
 //------------------------------------------------------
 //input expense data state variables
 type ExpenseDataType = {
@@ -52,7 +52,6 @@ const initialExpenseData: ExpenseDataType = {
   currency: defaultCurrency,
 };
 
-// type FormNumberInputType = Omit<ExpenseDataType, 'amount'> & { amount: string };
 type FormNumberInputType = { amount: string };
 
 const initialFormData: FormNumberInputType = {
@@ -120,98 +119,6 @@ function Expense() {
     setCurrency(currency);
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }
-  //-------
-  function checkNumberFormatValue(value: string): {
-    formatMessage: string;
-    valueNumber: string;
-    valueToSave: number;
-    isError: boolean;
-  } {
-    console.log('value:', value, typeof value);
-    const onlyDotDecimalSep = /^\d*(\.\d*)?$/g; //Normal numeric Format
-    const commaSepFormat = /^(\d{1,3})(,\d{3})*(\.\d*)?$/g;
-    const dotSepFormat = /^(\d{1,3})(\.\d{3})*(,\d*)?$/g;
-    const onlyCommaDecimalSep = /^\d*(\,\d*)$/g;
-    const notMatching = /([^0-9.,])/g;
-
-    //no matching character
-    if (notMatching.test(value)) {
-      return {
-        formatMessage: `not a valid number: ${value.match(notMatching)}`,
-        isError: true,
-        valueNumber: value.toString(),
-        valueToSave: 0,
-      };
-    }
-    //normal number
-    if (onlyDotDecimalSep.test(value)) {
-      const valueNumber = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
-
-      return {
-        formatMessage: 'normal numeric input', //'no separators with optional dot as decimal sep ',
-        valueNumber: valueNumber.toString(),
-        valueToSave: valueNumber,
-        isError: false,
-      };
-    }
-
-    //only comma decimal
-
-    if (onlyCommaDecimalSep.test(value)) {
-      const valueNumber = !isNaN(parseFloat(value.replace(',', '.')))
-        ? parseFloat(value.replace(',', '.'))
-        : 0;
-
-      return {
-        formatMessage: ' comma as dec. sep.',
-        valueNumber: valueNumber.toString(),
-        valueToSave: valueNumber,
-        isError: false,
-      };
-    }
-
-    //comma separator, decimal dot
-    if (commaSepFormat.test(value)) {
-      const valueNumber = !isNaN(parseFloat(value.replace(/,/g, '')))
-        ? parseFloat(value.replace(/,/g, ''))
-        : 0;
-
-      return {
-        formatMessage: 'comma as th-sep , dot as dec-sep',
-        valueToSave: valueNumber,
-        valueNumber: value.toString(),
-        isError: false,
-      };
-    }
-
-    //dot as thousand separator, comma as decimal separator
-    if (dotSepFormat.test(value)) {
-      const valueNumber = !isNaN(
-        parseFloat(value.replace(/\./g, '').replace(',', '.'))
-      )
-        ? parseFloat(
-            parseFloat(value.replace(/\./g, '').replace(',', '.')).toFixed(2)
-          ) //fixed does not work
-        : 0;
-
-      return {
-        formatMessage: 'dot th-sep, comma dec-sep',
-        valueToSave: valueNumber,
-        valueNumber: value.toString(),
-        isError: false,
-      };
-    }
-
-    //----
-
-    return {
-      formatMessage: `Number format not valid`,
-      isError: true,
-      valueNumber: '',
-      valueToSave: 0,
-    };
-  }
-
   //===
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -305,9 +212,9 @@ function Expense() {
               className='validation__errMsg'
               style={{
                 color: `${
-                  validationMessages['amount']?.includes('Format')
-                    ? 'green'
-                    : 'red'
+                  validationMessages['amount']?.includes('Error:') //attention to flag 'Error:' in messages
+                    ? 'red'
+                    : 'green'
                 }`,
               }}
             >

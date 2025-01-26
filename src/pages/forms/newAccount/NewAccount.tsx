@@ -31,7 +31,7 @@ type AccountDataType = {
   name: string;
   date: Date;
   type: string;
-  amount: number | '';
+  amount: number | string; //later verifyin and fixed input
   currency: string;
 };
 
@@ -39,7 +39,7 @@ const initialNewAccountData = {
   name: '', //'Account Name',
   type: '', //'Account Type',
   date: new Date(), //'Starting Point'
-  amount: "", // 'Value'
+  amount: '', // 'Value'
   currency: 'usd',
 };
 
@@ -182,7 +182,6 @@ function NewAccount() {
                     date={accountData.date}
                     variant={'form'}
                     isReset={isReset}
-                    
                   ></FormDatepicker>
                 </div>
               </div>

@@ -122,6 +122,7 @@ function ListCategory() {
                     <StatusSquare alert={statusAlert ? 'alert' : ''} />
                     <div className='box__subtitle'>
                       &nbsp;
+                      {/* HAY QUE DEFINIR LA REGLA PARA ESTABLECER EL STATUS */}
                       {/* {'status:'}{' '} */}
                       {/* {currencyFormat(currency, diff, 'en-US')}{' '} */}
                       {/* {budget === 0
