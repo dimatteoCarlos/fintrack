@@ -272,7 +272,7 @@ export function checkNumberFormatValue(value: string): {
       : 0;
 
     return {
-      formatMessage: 'comma as thounsand-sep , dot as decimal-sep',
+      formatMessage: 'comma as thousand-sep, dot as decml-sep',
       valueToSave: valueNumber,
       valueNumber: value.toString(),
       isError: false,

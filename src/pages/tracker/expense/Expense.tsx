@@ -129,7 +129,7 @@ function Expense() {
     const { name, value } = e.target;
 
     //-----------
-    //the flag for number quantity type is amount in the name. need to fix it to put it in general receiven the numeric  name associated to the numeric input field to evaluate, it may be various field from formData. Evaluar un solo componente DropDownSelection
+    //the flag for number quantity type is amount in the name. need to fix it to put it in general . neet to identificy the numeric  name associated to the numeric input field to evaluate, it may be various field from formData. Evaluar un solo componente DropDownSelection
 
     if (name === 'amount') {
       const { formatMessage, valueNumber, isError, valueToSave } =
@@ -213,9 +213,9 @@ function Expense() {
               className='validation__errMsg'
               style={{
                 color: `${
-                  validationMessages['amount']?.includes('Error:') //attention to flag 'Error:' in messages
-                    ? 'red'
-                    : 'green'
+                  validationMessages['amount']?.includes('Format:') //attention to flag 'Format:' in messages
+                    ? 'green'
+                    : 'red'
                 }`,
               }}
             >
