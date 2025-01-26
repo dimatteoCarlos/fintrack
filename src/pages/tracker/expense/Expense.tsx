@@ -1,18 +1,12 @@
 //src/pages/tracker/expense/Expense.tsx
 import { useState } from 'react';
-// import { useEffect } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-import {
-  CategoriesType,
-  CategoryType,
-  CurrencyType,
-  ExpenseAccountsType,
-} from '../../../types/types.ts';
-import { url_accounts, url_categories } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+
+//---
 import { useLocation } from 'react-router-dom';
 import {
   checkNumberFormatValue,
@@ -21,6 +15,13 @@ import {
 } from '../../../helpers/functions.ts';
 import {} from '../../../helpers/functions.ts';
 import {
+  CategoriesType,
+  CategoryType,
+  CurrencyType,
+  ExpenseAccountsType,
+} from '../../../types/types.ts';
+import { url_accounts, url_categories } from '../../../endpoints.ts';
+import {
   ACCOUNT_OPTIONS_DEFAULT,
   CATEGORY_OPTIONS_DEFAULT,
   CURRENCY_OPTIONS,
@@ -28,7 +29,7 @@ import {
 } from '../../../helpers/constants.ts';
 // import CardNote from '../components/CardNote.tsx';
 
-//-----temporarily 'till decide how to handle currencies
+//-----temporarily data 'till deciding how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('', { formatNumberCountry });
@@ -128,7 +129,7 @@ function Expense() {
     const { name, value } = e.target;
 
     //-----------
-    //the flag for number quantity type is amount in the name. need to fix it to put it in general receiven the numeric  name associated to the numeric input field to evaluate, it may be various field from formData
+    //the flag for number quantity type is amount in the name. need to fix it to put it in general receiven the numeric  name associated to the numeric input field to evaluate, it may be various field from formData. Evaluar un solo componente DropDownSelection
 
     if (name === 'amount') {
       const { formatMessage, valueNumber, isError, valueToSave } =
@@ -204,7 +205,7 @@ function Expense() {
   return (
     <>
       <form className='expense' style={{ color: 'inherit' }}>
-        {/* start of card top */}
+        {/* start of TOP CARD */}
         <div className='state__card--top'>
           <div className='card--title'>
             Amount
@@ -256,11 +257,11 @@ function Expense() {
             selectedValue={expenseData['account']}
           />
         </div>
-        {/* end of card top */}
+        {/* end of TOP CARD */}
 
         <CardSeparator />
 
-        {/*start of card bottom */}
+        {/*start of BOTTOM CARD */}
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>
             Category{' '}
@@ -307,7 +308,7 @@ function Expense() {
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
 
-          {/* end of bottom */}
+          {/* end of BOTTOM CARD */}
         </div>
       </form>
     </>

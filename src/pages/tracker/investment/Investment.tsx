@@ -26,7 +26,7 @@ import {
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
-// console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
+console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input investment data state variables
 
