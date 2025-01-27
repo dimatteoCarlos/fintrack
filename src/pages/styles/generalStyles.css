@@ -10,7 +10,7 @@
   --primary: #5b8c93;
   --figmaWidth: 22.5rem;
   --topSpaceHeight: 2.75rem;
-  --topH: 22%;
+  /* --topH: 22%; */
 }
 
 body {
@@ -135,7 +135,7 @@ body {
 }
 
 .content__presentation {
-  display: flex-root;
+  display: flex;
   flex-direction: column;
   padding: 5rem 0 1.5rem 0;
   align-items: center;
@@ -192,8 +192,7 @@ body {
 textarea::placeholder,
 textarea.input__note__description::placeholder,
 input::placeholder
-/* input.inputNumber::placeholder */
- {
+/* input.inputNumber::placeholder */ {
   color: gray;
   background: transparent;
   outline: none;

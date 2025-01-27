@@ -18,13 +18,14 @@ body,
 }
 
 :root {
-  line-height: 1.5;
+  /* line-height: 1.5; */
   font-synthesis: weight;
   color-scheme: light dark;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 body {
@@ -58,9 +59,7 @@ button {
   /* border: none; */
 }
 
-[class*='icon'] {
-  cursor: pointer;
-}
+
 
 .bordered {
   border: 2px solid red;

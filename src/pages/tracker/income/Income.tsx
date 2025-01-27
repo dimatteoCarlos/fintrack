@@ -36,7 +36,7 @@ type IncomeDataType = {
 };
 
 const initialIncomeData: IncomeDataType = {
-  amount: 0.0,
+  amount: "",
   account: '',
   source: '',
   note: '',
