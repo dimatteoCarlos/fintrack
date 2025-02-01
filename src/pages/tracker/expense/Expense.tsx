@@ -27,6 +27,7 @@ import {
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
+import TopCard from '../components/TopCard.tsx';
 // import CardNote from '../components/CardNote.tsx';
 
 //-----temporarily data 'till deciding how to handle currencies
@@ -200,14 +201,35 @@ function Expense() {
     setTimeout(() => setIsReset(false), 500);
   }
 
+  //-------Top Card elements
+  const topCardElements = {
+    titles: { title1: 'amount', title2: 'account' },
+    value: formData.amount,
+    selectOptions: accountOptions,
+  };
+
   //--------------------------
 
   return (
     <>
       <form className='expense' style={{ color: 'inherit' }}>
+        
         {/* start of TOP CARD */}
+
+        <TopCard
+          topCardElements={topCardElements}
+          validationMessages={validationMessages}
+          updateTrackerData={updateTrackerData}
+          trackerName={trackerState}
+          currency={currency}
+          updateCurrency={updateDataCurrency}
+          selectedValue={expenseData.account}
+          setSelectState={setExpenseData}
+          isReset={isReset}
+          setIsReset={setIsReset}
+        />
         <div className='state__card--top'>
-          <div className='card--title'>
+          {/* <div className='card--title'>
             Amount
             <span
               className='validation__errMsg'
@@ -221,9 +243,9 @@ function Expense() {
             >
               {validationMessages['amount']}
             </span>
-          </div>
+          </div> */}
 
-          <div className='card__screen'>
+          {/* <div className='card__screen'>
             <input
               className='inputNumber'
               name='amount'
@@ -238,25 +260,26 @@ function Expense() {
               updateOutsideCurrencyData={updateDataCurrency}
               currency={currency}
             />
-          </div>
+          </div> */}
 
-          <div className='card--title'>
+          {/* <div className='card--title'>
             Account{' '}
             <span className='validation__errMsg'>
               {' '}
               {validationMessages['account']}
             </span>
-          </div>
-
+          </div> */}
+          {/* 
           <SelectComponent
             dropDownOptions={accountOptions}
             setSelectState={setExpenseData}
+            selectedValue={expenseData['account']}
             isReset={isReset}
             setIsReset={setIsReset}
             optionKeySelected='account'
-            selectedValue={expenseData['account']}
-          />
+          /> */}
         </div>
+
         {/* end of TOP CARD */}
 
         <CardSeparator />
@@ -272,10 +295,10 @@ function Expense() {
           <SelectComponent
             dropDownOptions={categoryOptions}
             setSelectState={setExpenseData}
+            seletedValue={expenseData['category']}
             optionKeySelected='category'
             isReset={isReset}
             setIsReset={setIsReset}
-            seletedValue={expenseData['category']}
           />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
