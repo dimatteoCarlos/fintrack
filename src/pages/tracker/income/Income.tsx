@@ -2,8 +2,11 @@
 import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import { validationData, numberFormat } from '../../../helpers/functions.ts';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
+import {
+  validationData,
+  numberFormat,
+  checkNumberFormatValue,
+} from '../../../helpers/functions.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
   CurrencyType,
@@ -12,12 +15,19 @@ import {
   SourceType,
 } from '../../../types/types.ts';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
-import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+
 import { useLocation } from 'react-router-dom';
 import {
   DEFAULT_CURRENCY,
   CURRENCY_OPTIONS,
+  SOURCE_OPTIONS_DEFAULT,
+  INCOME_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
+import TopCard from '../components/TopCard.tsx';
+import CardNoteSave from '../components/CardNoteSave.tsx';
+
+// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
+// import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -28,7 +38,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 //input income data state variables
 
 type IncomeDataType = {
-  amount: number  | "";
+  amount: number;
   account: string;
   source: string;
   note: string;
@@ -36,26 +46,19 @@ type IncomeDataType = {
 };
 
 const initialIncomeData: IncomeDataType = {
-  amount: "",
+  amount: 0,
   account: '',
   source: '',
   note: '',
   currency: defaultCurrency,
 };
+//------------------------------
+type FormNumberInputType = { amount: string };
 
-const INCOME_OPTIONS_DEFAULT = [
-  { value: 'account_01', label: 'Account_01' },
-  { value: 'account_02', label: 'Account_02' },
-  { value: 'account_03', label: 'Account_03' },
-  { value: 'account_04', label: 'Account_04' },
-];
-
-const SORCE_OPTIONS_DEFAULT = [
-  { value: 'source_01', label: 'source_01' },
-  { value: 'source_02', label: 'source_02' },
-  { value: 'source_03', label: 'source_03' },
-  { value: 'source_04', label: 'source_04' },
-];
+const initialFormData: FormNumberInputType = {
+  amount: '',
+};
+//------------------------------
 
 function Income() {
   //---- Income account Options ----------
@@ -95,14 +98,14 @@ function Income() {
 
   const sourceOptions = {
     title:
-      sources && !loadingSources ? 'Source of income' : 'No Sources available',
+      sources && !loadingSources ? 'Source of income' : 'No Source available',
     options:
       !errorSources && sources?.sources
         ? sources?.sources?.map((src: SourceType) => ({
             value: src.name,
             label: src.name,
           }))
-        : SORCE_OPTIONS_DEFAULT,
+        : SOURCE_OPTIONS_DEFAULT,
   };
 
   // console.log('SOURCES:', { sourceOptions });
@@ -111,9 +114,11 @@ function Income() {
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
     useState<IncomeDataType>(initialIncomeData);
+
+  const [formData, setFormData] = useState(initialFormData);
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
-  }>({});
+  }>(initialFormData);
   const [isReset, setIsReset] = useState<boolean>(false);
 
   //----functions--------
@@ -122,6 +127,53 @@ function Income() {
     setIncomeData((prev) => ({ ...prev, currency: currency }));
     // console.log('updateDataCurrency:', currency);
   }
+
+  //-----------
+  //**Check numeric format input** */
+
+  function inputNumberHandler<T>(
+    name: string,
+    value: string,
+    setFormData: React.Dispatch<React.SetStateAction<FormNumberInputType>>,
+    setValidationMessages: React.Dispatch<
+      React.SetStateAction<{
+        [key: string]: string;
+      }>
+    >,
+    setStateData: React.Dispatch<React.SetStateAction<T>>
+  ): void {
+    const { formatMessage, valueNumber, isError, valueToSave } =
+      checkNumberFormatValue(value);
+
+    // Actualizar el estado numerico en el formulario
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    console.log('from:', trackerState, {
+      formatMessage,
+      valueNumber,
+      isError,
+      valueToSave,
+    });
+
+    setValidationMessages((prev) => ({
+      ...prev,
+      [name]: ` * Format: ${formatMessage}`,
+    }));
+
+    if (isError) {
+      console.log('Number Format Error occurred');
+      setValidationMessages((prev) => ({
+        ...prev,
+        [name]: ` * Error: ${formatMessage}`,
+      }));
+    }
+
+    setStateData((prev) => ({ ...prev, [name]: valueToSave }));
+  }
+
   //-----------
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -129,12 +181,26 @@ function Income() {
     e.preventDefault();
     const { name, value } = e.target;
 
-    const valueToSave = name === 'amount' ? parseFloat(value) : value;
-    setIncomeData((prev) => ({ ...prev, [name]: valueToSave }));
+    if (name === 'amount') {
+      inputNumberHandler<IncomeDataType>(
+        name,
+        value,
+        setFormData,
+        setValidationMessages,
+        setIncomeData
+      );
+      // return;
+    } else {
+      setIncomeData((prev) => ({ ...prev, [name]: value }));
+    }
   }
+
+  //--------
+
   //------------------------
-  function onSaveHandler() {
+  function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
+    e.preventDefault();
     const formattedNumber = numberFormat(incomeData.amount || 0);
     console.log(
       'formatted amount as a string:',
@@ -159,59 +225,36 @@ function Income() {
     setIncomeData(initialIncomeData);
     setCurrency(defaultCurrency);
     setValidationMessages({});
+    setFormData(initialFormData);
 
     setTimeout(() => {
       setIsReset(false);
     }, 500);
   }
+  //-------Top Card elements
+  const topCardElements = {
+    titles: { title1: 'amount', title2: 'account' },
+    value: formData.amount,
+    selectOptions: accountOptions,
+  };
 
   //--------------------------
 
   return (
     <>
-      <article className='income' style={{ color: 'inherit' }}>
-        <div className='state__card--top'>
-          <div className='card--title'>
-            Amount
-            <span className='validation__errMsg'>
-              {validationMessages['amount']}
-            </span>
-          </div>
-
-          <div className='card__screen'>
-            <input
-              className='inputNumber'
-              type='number'
-              step='any'
-              placeholder={`${trackerState}`}
-              onChange={updateTrackerData}
-              name='amount'
-              value={incomeData.amount}
-            />
-
-            <CurrencyBadge
-              variant={'tracker'}
-              updateOutsideCurrencyData={updateDataCurrency}
-              currency={currency}
-            />
-          </div>
-
-          <div className='card--title'>
-            Account
-            <span className='validation__errMsg'>
-              {validationMessages['account']}
-            </span>
-          </div>
-
-          <SelectComponent
-            dropDownOptions={accountOptions}
-            setSelectState={setIncomeData}
-            isReset={isReset}
-            setIsReset={setIsReset}
-            optionKeySelected='account'
-            selectedValue={incomeData['account']}
-          />
-        </div>
+      <form className='income' style={{ color: 'inherit' }}>
+        <TopCard
+          topCardElements={topCardElements}
+          validationMessages={validationMessages}
+          updateTrackerData={updateTrackerData}
+          trackerName={trackerState}
+          currency={currency}
+          updateCurrency={updateDataCurrency}
+          selectedValue={incomeData.account}
+          setSelectState={setIncomeData}
+          isReset={isReset}
+          setIsReset={setIsReset}
+        />
 
         <CardSeparator />
 
@@ -232,33 +275,15 @@ function Income() {
             selectedValue={incomeData['source']}
           />
 
-          <div className='card--title'>
-            Note
-            <span className='validation__errMsg'>
-              {validationMessages['note']}
-            </span>
-          </div>
-
-          <div
-            className='note--expense'
-            style={{ display: 'flex', justifyContent: 'space-between' }}
-          >
-            <div className='card__screen ' style={{ flex: 0.9 }}>
-              <textarea
-                className='input__note__description'
-                placeholder='Description'
-                onChange={updateTrackerData}
-                name='note'
-                rows={3}
-                maxLength={150}
-                value={incomeData.note}
-              />
-            </div>
-
-            <FormPlusBtn onClickHandler={onSaveHandler} />
-          </div>
+          <CardNoteSave
+            title={'note'}
+            validationMessages={validationMessages}
+            dataHandler={updateTrackerData}
+            inputNote={incomeData.note}
+            onSaveHandler={onSaveHandler}
+          />
         </div>
-      </article>
+      </form>
     </>
   );
 }

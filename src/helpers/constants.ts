@@ -17,7 +17,7 @@ export const CATEGORY_OPTIONS_DEFAULT = [
 ];
 
 //tracker/income
-export const INCOME_OPTIONS_DEFUALT = [
+export const INCOME_OPTIONS_DEFAULT = [
   { value: 'account_01', label: 'Account_01' },
   { value: 'account_02', label: 'Account_02' },
   { value: 'account_03', label: 'Account_03' },

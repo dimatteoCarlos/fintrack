@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+// import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 // import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
 //---
@@ -28,7 +28,6 @@ import {
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
-import CardNote from '../components/CardNote.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
 // import CardNote from '../components/CardNote.tsx';
 
@@ -123,7 +122,7 @@ function Expense() {
     setCurrency(currency);
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }
-  //===
+  //=========
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     // e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement> // with currentTarget
@@ -134,6 +133,7 @@ function Expense() {
     //-----------
     //the flag for number quantity type is amount in the name. need to fix it to put it in general . neet to identificy the numeric  name associated to the numeric input field to evaluate, it may be various field from formData. Evaluar un solo componente DropDownSelection
 
+    //********************* */
     if (name === 'amount') {
       const { formatMessage, valueNumber, isError, valueToSave } =
         checkNumberFormatValue(value);
@@ -153,21 +153,19 @@ function Expense() {
 
       if (isError) {
         console.log('Number Format Error occurred');
-
         setValidationMessages((prev) => ({
           ...prev,
-          [name]: ` *Error: ${formatMessage}`,
+          [name]: ` * Error: ${formatMessage}`,
         }));
       }
-
       setExpenseData((prev) => ({ ...prev, [name]: valueToSave }));
       return;
     } else {
       setExpenseData((prev) => ({ ...prev, [name]: value }));
     }
   }
-
-  //---
+  //**************** */
+  //----------------
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
     e.preventDefault();
@@ -179,7 +177,7 @@ function Expense() {
       typeof formattedNumber
     );
 
-    //----------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
     // console.log('validation mgs:', newValidationMessages);

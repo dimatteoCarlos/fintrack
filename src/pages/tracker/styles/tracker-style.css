@@ -150,7 +150,7 @@ article {
   justify-content: space-between;
   color: var(--dark);
 
-  height: auto;
+  height: 100%;
 }
 
 .inputNumber {
