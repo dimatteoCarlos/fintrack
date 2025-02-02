@@ -27,7 +27,7 @@ export const tileLabels = [
 type CategoryDataType = {
   category: string;
   subcategory: string;
-  amount: number | "";
+  amount: number | '';
   nature: string;
 };
 
@@ -45,7 +45,7 @@ function NewCategory() {
   const initialNewCategoryData: CategoryDataType = {
     category: '',
     subcategory: '',
-    amount: "",
+    amount: '',
     nature: '',
   };
   //---states------n
@@ -189,7 +189,7 @@ function NewCategory() {
             <div className='form__title form__title--tiles'>
               {tileTitle}
               <div className='validation__errMsg'>
-                {validationMessages['category']}
+                {validationMessages['nature']}
               </div>
             </div>
 

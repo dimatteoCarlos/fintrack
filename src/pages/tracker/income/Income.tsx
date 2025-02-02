@@ -129,7 +129,7 @@ function Income() {
   }
 
   //-----------
-  //**Check numeric format input** */
+  //**Check numeric format input Function** convert to useHook */
 
   function inputNumberHandler<T>(
     name: string,
@@ -216,6 +216,7 @@ function Income() {
       return;
     }
 
+    //------------------------
     //POST ENDPOINT HERE
     console.log('Income data state to Post:', incomeData);
     //------------------------
