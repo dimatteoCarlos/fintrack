@@ -1,25 +1,23 @@
 import { ChangeEvent } from 'react';
 
 type CardNotePropType = {
-  note: string;
+  inputNote: string;
   dataHandler: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  title: string;
 };
 
-function CardNote({ dataHandler, note }: CardNotePropType) {
-
-  
+function CardNote({ dataHandler, inputNote, title }: CardNotePropType) {
   return (
     <>
-      <div className='card--title'>{'Note'}</div>
-      <div className='card__screen'>
+      <div className='card__screen description '>
         <textarea
           className='input__note__description'
           placeholder='Description'
-          onChange={dataHandler}
-          name='note'
-          rows={2}
+          name={title}
+          rows={3}
           maxLength={150}
-          value={note}
+          value={inputNote}
+          onChange={dataHandler}
         />
       </div>
     </>
