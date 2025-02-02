@@ -20,7 +20,10 @@ import { useLocation } from 'react-router-dom';
 import {
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
+  INVESTMENT_ACCOUNT_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
+import TopCard from '../components/TopCard.tsx';
+import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 
 //------------------------------
 //temporary values
@@ -31,7 +34,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 //input investment data state variables
 
 type InvestmentDataType = {
-  amount: number | "";
+  amount: number | '';
   account: string;
   currency: CurrencyType;
   type: InvestmentTypeMovementType;
@@ -40,7 +43,7 @@ type InvestmentDataType = {
 };
 
 const initialInvestmentData: InvestmentDataType = {
-  amount: "",
+  amount: '',
   account: '',
   currency: defaultCurrency,
   type: 'deposit',
@@ -48,19 +51,13 @@ const initialInvestmentData: InvestmentDataType = {
   note: '',
 };
 
-const accountOptionsDefault = [
-  { value: 'account_01', label: 'Account_01' },
-  { value: 'account_02', label: 'Account_02' },
-  { value: 'account_03', label: 'Account_03' },
-  { value: 'account_04', label: 'Account_04' },
-];
 //-----------------------------------------
 function Investment() {
   //----Investment account Options----------
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
 
-  //investment accounts
+  //investment accounts - from backend database
   const {
     data,
     error: fetchedError,
@@ -68,27 +65,32 @@ function Investment() {
   } = useFetch<InvestmentAccountsType>(url_investment_acc);
 
   const investmentAccounts =
-    !isLoading &&
-    !fetchedError &&
-    data?.accounts?.length &&
-    data?.accounts?.map((acc) => ({
-      value: acc.name,
-      label: acc.name,
-    }));
+    !isLoading && !fetchedError && data?.accounts?.length
+      ? data?.accounts?.map((acc) => ({
+          value: acc.name,
+          label: acc.name,
+        }))
+      : INVESTMENT_ACCOUNT_OPTIONS_DEFAULT;
 
-  const accountOptions = {
+  const optionsInvestmentAccounts = {
     title: 'Available Account',
-    options: investmentAccounts ?? accountOptionsDefault,
+    options: investmentAccounts,
   };
 
   //-----------------
+  type FormNumberInputType = { [key: string]: string };
 
+  const initialFormData: FormNumberInputType = {
+    amount: '',
+  };
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [investmentData, setInvestmentData] = useState(initialInvestmentData);
 
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
   const [isReset, setIsReset] = useState<boolean>(false);
+  const [formData, setFormData] =
+    useState<FormNumberInputType>(initialFormData);
 
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
@@ -96,6 +98,7 @@ function Investment() {
 
   //----functions--------
 
+  //---
   const updateDataCurrency = useCallback(
     (currency: CurrencyType) => {
       setCurrency(currency);
@@ -105,17 +108,29 @@ function Investment() {
   );
 
   //-----------
+  //use Hook to get the function inputNumbreHandler
+  //this function updates the states formData, ValidationMessages[name] and investmentData for [name] number input
+
+  const { inputNumberHandlerFn } = useInputNumberHandler(
+    setFormData,
+    setValidationMessages,
+    setInvestmentData
+  );
+
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     e.preventDefault();
+    const { name, value } = e.target;
 
-    const valueToSave =
-      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
-
-    setInvestmentData((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+    if (name === 'amount') {
+      inputNumberHandlerFn(name, value);
+    } else {
+      setInvestmentData((prev) => ({ ...prev, [name]: value }));
+    }
   }
 
+  //------------------------
   const toggleInvestmentType = useCallback(() => {
     setTypeInv((prev: InvestmentTypeMovementType) =>
       prev === 'deposit' ? 'withdraw' : 'deposit'
@@ -128,8 +143,9 @@ function Investment() {
   }
 
   //----
-  function onSaveHandler() {
+  function onSaveHandler(e: React.MouseEvent) {
     console.log('On Save Handler');
+    e.preventDefault();
     const formattedNumber = numberFormat(investmentData.amount || 0);
     console.log(
       'num formato string:',
@@ -172,56 +188,35 @@ function Investment() {
   }, [currency, typeInv]);
 
   //--------------------------
+  //-------Top Card elements
+  const topCardElements = {
+    titles: { title1: 'amount', title2: 'account' },
+    value: formData.amount,
+    selectOptions: optionsInvestmentAccounts,
+  };
+
+  //--------------------------
 
   return (
     <>
-      <article className='investment' style={{ color: 'inherit' }}>
-        <div className='state__card--top'>
-          <div className='card--title'>
-            Amount
-            <span className='validation__errMsg'>
-              {validationMessages['amount']}
-            </span>
-          </div>
+      <form className='investment' style={{ color: 'inherit' }}>
+        {/* TOP CARD START */}
+        <TopCard
+          topCardElements={topCardElements}
+          validationMessages={validationMessages}
+          updateTrackerData={updateTrackerData}
+          trackerName={trackerState}
+          currency={currency}
+          updateCurrency={updateDataCurrency}
+          selectedValue={investmentData.account}
+          setSelectState={setInvestmentData}
+          isReset={isReset}
+          setIsReset={setIsReset}
+        />
 
-          <div className='card__screen'>
-            <input
-              className='inputNumber'
-              name='amount'
-              type='number'
-              step='any'
-              placeholder={`${trackerState}`}
-              onChange={updateTrackerData}
-              value={investmentData.amount}
-            />
-
-            <div className='account__currency'>
-              <CurrencyBadge
-                updateOutsideCurrencyData={updateDataCurrency}
-                variant='tracker'
-                currency={currency}
-              ></CurrencyBadge>
-            </div>
-          </div>
-
-          <div className='card--title'>
-            Account
-            <span className='validation__errMsg'>
-              {validationMessages['account']}
-            </span>
-          </div>
-          <SelectComponent
-            dropDownOptions={accountOptions}
-            setSelectState={setInvestmentData}
-            isReset={isReset}
-            setIsReset={setIsReset}
-            optionKeySelected='account'
-            selectedValue={investmentData['account']}
-          />
-        </div>
         <CardSeparator />
 
-        {/* APPLY DEBOUNCE TO INPUT AND TEXTAREA*/}
+        {/* BOTTOM CARD START */}
         <div className='state__card--bottom'>
           <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
@@ -246,7 +241,7 @@ function Investment() {
               </div>
             </div>
           </div>
-
+          {/*  */}
           <div className='card--title'>
             Note
             <span className='validation__errMsg'>
@@ -273,7 +268,7 @@ function Investment() {
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
         </div>
-      </article>
+      </form>
     </>
   );
 }

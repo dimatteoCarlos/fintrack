@@ -118,7 +118,7 @@ function Income() {
   const [formData, setFormData] = useState(initialFormData);
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
-  }>(initialFormData);
+  }>({});
   const [isReset, setIsReset] = useState<boolean>(false);
 
   //----functions--------
@@ -146,10 +146,20 @@ function Income() {
       checkNumberFormatValue(value);
 
     // Actualizar el estado numerico en el formulario
-    setFormData({
+
+    setFormData((formData) => ({
       ...formData,
       [name]: value,
-    });
+    }));
+
+    setValidationMessages((prev) => ({
+      ...prev,
+      [name]: !isError
+        ? ` Format: ${formatMessage}`
+        : ` * Error: ${formatMessage}`,
+    }));
+
+    setStateData((prev) => ({ ...prev, [name]: valueToSave }));
 
     console.log('from:', trackerState, {
       formatMessage,
@@ -157,21 +167,6 @@ function Income() {
       isError,
       valueToSave,
     });
-
-    setValidationMessages((prev) => ({
-      ...prev,
-      [name]: ` * Format: ${formatMessage}`,
-    }));
-
-    if (isError) {
-      console.log('Number Format Error occurred');
-      setValidationMessages((prev) => ({
-        ...prev,
-        [name]: ` * Error: ${formatMessage}`,
-      }));
-    }
-
-    setStateData((prev) => ({ ...prev, [name]: valueToSave }));
   }
 
   //-----------
@@ -187,7 +182,7 @@ function Income() {
         value,
         setFormData,
         setValidationMessages,
-        setIncomeData
+        setIncomeData //depends on the tracker status
       );
       // return;
     } else {
@@ -244,6 +239,7 @@ function Income() {
   return (
     <>
       <form className='income' style={{ color: 'inherit' }}>
+        {/* TOP CARD START */}
         <TopCard
           topCardElements={topCardElements}
           validationMessages={validationMessages}
@@ -259,7 +255,9 @@ function Income() {
 
         <CardSeparator />
 
-        <div className='state__card--bottom'>
+        {/* BOTTOM CARD START */}
+
+        <div className='state__card--bottom '>
           <div className='card--title card--title--top'>
             Source
             <span className='validation__errMsg'>

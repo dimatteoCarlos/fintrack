@@ -31,6 +31,14 @@ export const SOURCE_OPTIONS_DEFAULT = [
   { value: 'source_04', label: 'source_04' },
 ];
 
+//tracker/investment
+export const INVESTMENT_ACCOUNT_OPTIONS_DEFAULT = [
+  { value: 'account_01', label: 'Investment_Account_01' },
+  { value: 'account_02', label: 'Investment_Account_02' },
+  { value: 'account_03', label: 'Investment_Account_03' },
+  { value: 'account_04', label: 'Investment_Account_04' },
+];
+
 //tracker/debts
 export const DEBTOR_OPTIONS_DEFAULT = [
   { value: 'debtor_01', label: 'debtor_01' },

@@ -111,7 +111,7 @@ function Expense() {
   const [isReset, setIsReset] = useState<boolean>(false);
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
-  }>(initialFormData);
+  }>({});
 
   const [expenseData, setExpenseData] = useState(initialExpenseData);
 
@@ -131,7 +131,7 @@ function Expense() {
     const { name, value } = e.target;
 
     //-----------
-    //the flag for number quantity type is amount in the name. need to fix it to put it in general . neet to identificy the numeric  name associated to the numeric input field to evaluate, it may be various field from formData. Evaluar un solo componente DropDownSelection
+    //the flag for number quantity type is amount in the name. . neeD to identify the name associated to the numeric input fieldS to evaluate, it may be SEVERAL fields from formData. // Pendiente:  Evaluar usar  un solo componente DropDownSelection
 
     //********************* */
     if (name === 'amount') {
@@ -164,7 +164,7 @@ function Expense() {
       setExpenseData((prev) => ({ ...prev, [name]: value }));
     }
   }
-  //**************** */
+
   //----------------
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
