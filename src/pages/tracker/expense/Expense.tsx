@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
+// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
 //---
 import { useLocation } from 'react-router-dom';
@@ -28,6 +28,8 @@ import {
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
+import CardNote from '../components/CardNote.tsx';
+import CardNoteSave from '../components/CardNoteSave.tsx';
 // import CardNote from '../components/CardNote.tsx';
 
 //-----temporarily data 'till deciding how to handle currencies
@@ -213,7 +215,6 @@ function Expense() {
   return (
     <>
       <form className='expense' style={{ color: 'inherit' }}>
-        
         {/* start of TOP CARD */}
 
         <TopCard
@@ -228,8 +229,8 @@ function Expense() {
           isReset={isReset}
           setIsReset={setIsReset}
         />
-        <div className='state__card--top'>
-          {/* <div className='card--title'>
+        {/* <div className='state__card--top'> */}
+        {/* <div className='card--title'>
             Amount
             <span
               className='validation__errMsg'
@@ -245,7 +246,7 @@ function Expense() {
             </span>
           </div> */}
 
-          {/* <div className='card__screen'>
+        {/* <div className='card__screen'>
             <input
               className='inputNumber'
               name='amount'
@@ -262,14 +263,14 @@ function Expense() {
             />
           </div> */}
 
-          {/* <div className='card--title'>
+        {/* <div className='card--title'>
             Account{' '}
             <span className='validation__errMsg'>
               {' '}
               {validationMessages['account']}
             </span>
           </div> */}
-          {/* 
+        {/* 
           <SelectComponent
             dropDownOptions={accountOptions}
             setSelectState={setExpenseData}
@@ -278,13 +279,14 @@ function Expense() {
             setIsReset={setIsReset}
             optionKeySelected='account'
           /> */}
-        </div>
+        {/* </div> */}
 
         {/* end of TOP CARD */}
 
         <CardSeparator />
 
         {/*start of BOTTOM CARD */}
+
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>
             Category{' '}
@@ -302,21 +304,30 @@ function Expense() {
           />
 
           {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
-
-          <div className='card--title'>
+          <CardNoteSave
+            title={'note'}
+            validationMessages={validationMessages}
+            dataHandler={updateTrackerData}
+            inputNote={expenseData.note}
+            onSaveHandler={onSaveHandler}
+          />
+          {/* <div className='card--title'>
             Note{' '}
             <span className='validation__errMsg'>
               {validationMessages['note']}
             </span>
-          </div>
+          </div> */}
 
-          {/* <CardNote dataHandler={textareaTrackDataHandler} note={expenseData.note}/> */}
-
-          <div
-            className='note--expense'
+          {/* <div
+            className='note--expense bordered'
             style={{ display: 'flex', justifyContent: 'space-between' }}
-          >
-            <div className='card__screen  ' style={{ flex: 0.95 }}>
+          > */}
+          {/* <div className='note__description bordered' style={{ flex: 0.95 }}> */}
+          {/* <CardNote
+                dataHandler={updateTrackerData}
+                inputNote={expenseData.note}
+              /> */}
+          {/* <div className='card__screen  ' style={{ flex: 0.95 }}>
               <textarea
                 className='input__note__description'
                 placeholder='Description'
@@ -326,10 +337,11 @@ function Expense() {
                 maxLength={150}
                 value={expenseData.note}
               />
-            </div>
+            </div> */}
+          {/* </div> */}
 
-            <FormPlusBtn onClickHandler={onSaveHandler} />
-          </div>
+          {/* <FormPlusBtn onClickHandler={onSaveHandler} /> */}
+          {/* </div> */}
 
           {/* end of BOTTOM CARD */}
         </div>
