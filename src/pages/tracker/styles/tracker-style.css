@@ -186,7 +186,6 @@ article {
 }
 
 /*-----CardNote---------------*/
-
 .input__note__description {
   font-size: 0.875rem;
   line-height: 1.2em;
@@ -268,10 +267,5 @@ textarea:invalid {
 
   /* border:1px solid red; */
 }
-
-/* .card__typeDate .screen--concept {
-  text-align: center;
-  background-color: orange;
-} */
 
 /*-----------*/
