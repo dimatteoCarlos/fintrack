@@ -246,7 +246,7 @@ export function checkNumberFormatValue(value: string): {
     const valueNumber = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
 
     return {
-      formatMessage: 'normal number', //'dot as decimal''no separators with optional dot as decimal sep ',
+      formatMessage: 'decimal point as std', //'dot as decimal''no separators with optional dot as decimal sep ',
       valueNumber: valueNumber.toString(),
       valueToSave: valueNumber,
       isError: false,
@@ -274,7 +274,7 @@ export function checkNumberFormatValue(value: string): {
       : 0;
 
     return {
-      formatMessage: 'comma as th-sep, dot as dec-sep',
+      formatMessage: 'comma as th-sep, point decimal',
       valueToSave: valueNumber,
       valueNumber: value.toString(),
       isError: false,
@@ -292,7 +292,7 @@ export function checkNumberFormatValue(value: string): {
       : 0;
 
     return {
-      formatMessage: 'dot as th-sep, comma as dec-sep',
+      formatMessage: 'dot as th-sep, comma as decimal',
       valueToSave: valueNumber,
       valueNumber: value.toString(),
       isError: false,

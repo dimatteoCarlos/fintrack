@@ -53,11 +53,12 @@
 /*MODIFIED DATE PICKER STYLES */
 
 .react-datepicker-popper {
+  /*don't know yet how to define this as a centered modal*/
   /* position: absolute; */
   /* transform: translate(61px, 311.818px) !important; */
   /* top:10rem !important;
   left: 0rem !important; */
-  left: 2.5rem !important;
+  left: -2rem !important;
 }
 
 .react-datepicker__triangle {

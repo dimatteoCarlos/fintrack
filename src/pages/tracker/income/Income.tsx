@@ -26,9 +26,6 @@ import {
 import TopCard from '../components/TopCard.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
 
-// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
-// import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
-
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
@@ -54,7 +51,6 @@ const initialIncomeData: IncomeDataType = {
 };
 //------------------------------
 type FormNumberInputType = { amount: string };
-
 const initialFormData: FormNumberInputType = {
   amount: '',
 };
@@ -227,6 +223,7 @@ function Income() {
       setIsReset(false);
     }, 500);
   }
+
   //-------Top Card elements
   const topCardElements = {
     titles: { title1: 'amount', title2: 'account' },

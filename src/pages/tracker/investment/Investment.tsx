@@ -1,21 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_investment_acc } from '../../../endpoints.ts';
-
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
-import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
-
 import {
   CurrencyType,
   InvestmentAccountsType,
   InvestmentTypeMovementType,
 } from '../../../types/types.ts';
-
 import { numberFormat, validationData } from '../../../helpers/functions.ts';
-
 import { useLocation } from 'react-router-dom';
 import {
   CURRENCY_OPTIONS,
@@ -24,15 +17,13 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
-
+import CardNoteSave from '../components/CardNoteSave.tsx';
 //------------------------------
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
-
 //input investment data state variables
-
 type InvestmentDataType = {
   amount: number | '';
   account: string;
@@ -50,13 +41,11 @@ const initialInvestmentData: InvestmentDataType = {
   date: new Date(),
   note: '',
 };
-
 //-----------------------------------------
 function Investment() {
   //----Investment account Options----------
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
-
   //investment accounts - from backend database
   const {
     data,
@@ -76,29 +65,22 @@ function Investment() {
     title: 'Available Account',
     options: investmentAccounts,
   };
-
   //-----------------
   type FormNumberInputType = { [key: string]: string };
-
   const initialFormData: FormNumberInputType = {
     amount: '',
   };
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [investmentData, setInvestmentData] = useState(initialInvestmentData);
-
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
   const [isReset, setIsReset] = useState<boolean>(false);
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
-
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
-
   //----functions--------
-
-  //---
   const updateDataCurrency = useCallback(
     (currency: CurrencyType) => {
       setCurrency(currency);
@@ -106,17 +88,15 @@ function Investment() {
     },
     [currency]
   );
-
   //-----------
-  //use Hook to get the function inputNumbreHandler
+  //use Hook: useInputNumberHandler to get the function inputNumberHandler
   //this function updates the states formData, ValidationMessages[name] and investmentData for [name] number input
-
   const { inputNumberHandlerFn } = useInputNumberHandler(
     setFormData,
     setValidationMessages,
     setInvestmentData
   );
-
+  //--
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
@@ -129,21 +109,22 @@ function Investment() {
       setInvestmentData((prev) => ({ ...prev, [name]: value }));
     }
   }
-
   //------------------------
-  const toggleInvestmentType = useCallback(() => {
-    setTypeInv((prev: InvestmentTypeMovementType) =>
-      prev === 'deposit' ? 'withdraw' : 'deposit'
-    );
-  }, [typeInv]);
-
+  const toggleInvestmentType = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      setTypeInv((prev: InvestmentTypeMovementType) =>
+        prev === 'deposit' ? 'withdraw' : 'deposit'
+      );
+    },
+    [typeInv]
+  );
   //--
   function changeInvestmentDate(selectedDate: Date): void {
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
   }
-
   //----
-  function onSaveHandler(e: React.MouseEvent) {
+  function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
     e.preventDefault();
     const formattedNumber = numberFormat(investmentData.amount || 0);
@@ -152,51 +133,41 @@ function Investment() {
       { formattedNumber },
       typeof formattedNumber
     );
-
     //validation of entered data
     const newValidationMessages = { ...validationData(investmentData) };
-
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //----------------------------
-    //do the post to the endpoint api
+    //do the post to the endpoint api, here
     //ENDPOINT
     //----------------------------
-
     //reset values
     setIsReset(true);
     setValidationMessages({});
     setInvestmentData(initialInvestmentData); //check this
-
     setTypeInv('deposit');
     updateDataCurrency(defaultCurrency);
     setInvestmentData((prev) => ({ ...prev, date: new Date() }));
-
     // after a delay, change isReset to false
     setTimeout(() => {
       setIsReset(false);
     }, 500);
   }
-
   //-----useEffect--------
   useEffect(() => {
     updateDataCurrency(currency);
     setInvestmentData((prev) => ({ ...prev, type: typeInv }));
   }, [currency, typeInv]);
-
-  //--------------------------
+  //------------------------
   //-------Top Card elements
   const topCardElements = {
     titles: { title1: 'amount', title2: 'account' },
     value: formData.amount,
     selectOptions: optionsInvestmentAccounts,
   };
-
   //--------------------------
-
   return (
     <>
       <form className='investment' style={{ color: 'inherit' }}>
@@ -213,9 +184,7 @@ function Investment() {
           isReset={isReset}
           setIsReset={setIsReset}
         />
-
         <CardSeparator />
-
         {/* BOTTOM CARD START */}
         <div className='state__card--bottom'>
           <div className='card__typeDate__container'>
@@ -237,36 +206,19 @@ function Investment() {
                   date={investmentData.date}
                   variant={'tracker'}
                   isReset={isReset}
-                ></Datepicker>
+                />
               </div>
             </div>
           </div>
           {/*  */}
-          <div className='card--title'>
-            Note
-            <span className='validation__errMsg'>
-              {validationMessages['note']}
-            </span>
-          </div>
 
-          <div
-            className='note--expense'
-            style={{ display: 'flex', justifyContent: 'space-between' }}
-          >
-            <div className='card__screen ' style={{ flex: 0.9 }}>
-              <textarea
-                className='input__note__description'
-                placeholder='Description'
-                onChange={updateTrackerData}
-                name='note'
-                rows={3}
-                maxLength={150}
-                value={investmentData.note}
-              />
-            </div>
-
-            <FormPlusBtn onClickHandler={onSaveHandler} />
-          </div>
+          <CardNoteSave
+            title={'note'}
+            validationMessages={validationMessages}
+            dataHandler={updateTrackerData}
+            inputNote={investmentData.note}
+            onSaveHandler={onSaveHandler}
+          />
         </div>
       </form>
     </>
