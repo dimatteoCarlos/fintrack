@@ -25,12 +25,10 @@ body,
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
 body {
-  background-color: #1b1b1b;
-  background-color: var(--dark);
+  background-color: var(--dark, #1b1b1b);
 }
 
 a {
@@ -58,8 +56,6 @@ button {
   cursor: pointer;
   /* border: none; */
 }
-
-
 
 .bordered {
   border: 2px solid red;

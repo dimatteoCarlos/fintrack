@@ -33,7 +33,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input debts datatrack variables
 const initialTrackerData: DebtsTrackerDataType = {
-  amount: "",
+  amount: '',
   debtor: '',
   currency: defaultCurrency,
   type: 'lend',
@@ -69,9 +69,7 @@ function Debts() {
     title: debtors ? 'Debtors' : 'No info. available',
     options: debtors ?? DEBTOR_OPTIONS_DEFAULT,
   };
-
   //-----------------
-
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [type, setType] = useState<DebtsTypeMovementType>('lend');
@@ -94,7 +92,6 @@ function Debts() {
     setDataTrack((prev) => ({ ...prev, [e.target.name]: valueToSave }));
   }
   //---
-
   const updateDataCurrency = useCallback(
     (currency: CurrencyType) => {
       setCurrency(currency);
@@ -121,19 +118,15 @@ function Debts() {
       { formattedNumber },
       typeof formattedNumber
     );
-
     //-------entered datatrack validation messages --------
-
     const newValidationMessages = validationData(datatrack);
-
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //----------------------------
     //do the post to the endpoint api
-
+    //ENDPOINT HERE FOR POSTING
     //----------------------------
     //reset values
 

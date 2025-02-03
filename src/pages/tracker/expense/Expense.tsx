@@ -19,6 +19,7 @@ import {
   CategoryType,
   CurrencyType,
   ExpenseAccountsType,
+  FormNumberInputType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import {
@@ -54,8 +55,6 @@ const initialExpenseData: ExpenseDataType = {
   note: '',
   currency: defaultCurrency,
 };
-
-type FormNumberInputType = { amount: string };
 
 const initialFormData: FormNumberInputType = {
   amount: '',
@@ -192,9 +191,9 @@ function Expense() {
 
     //reset the state and the selected options on select component
 
-    setIsReset(true);
     setCurrency(defaultCurrency);
     setExpenseData(initialExpenseData);
+    setIsReset(true);
     setValidationMessages({});
     setFormData(initialFormData);
 
@@ -235,8 +234,8 @@ function Expense() {
               style={{
                 color: `${
                   validationMessages['amount']?.includes('Format:') //attention to flag 'Format:' in messages
-                    ? 'green'
-                    : 'red'
+                    ? 'var(success)'
+                       : 'var(--error)'
                 }`,
               }}
             >

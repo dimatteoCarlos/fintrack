@@ -64,8 +64,8 @@ const TopCard = ({
             className='validation__errMsg'
             style={{
               color: validationMessages[title1]?.includes('Format:')
-                ? 'green'
-                : 'red',
+                ? 'var(--success)'
+                : 'var(--error)',
             }}
           >
             {validationMessages[title1]}
@@ -73,7 +73,7 @@ const TopCard = ({
         </div>
 
         <div className='card__screen'>
-          {/*       make input number a component       */}
+          {/*       make the input number a component?       */}
           <input
             className='inputNumber'
             name={title1}

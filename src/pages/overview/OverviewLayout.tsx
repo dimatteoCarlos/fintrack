@@ -8,6 +8,7 @@ import './styles/overview-styles.css';
 function OverviewLayout() {
   //Temporary Dummy data
   //Saving Goals
+  //to be fetched from data bases. Need ENDPOINT to get from backend.
   const bigScreenInfo = [
     { title: 'net worth', amount: 0 },
     { title: 'income', amount: 0 },

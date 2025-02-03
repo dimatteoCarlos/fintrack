@@ -1,16 +1,20 @@
 /*it just affects Layout.tsx so check wether it affetcs also its children to optimize*/
 
 :root {
-  --dark: #141414;
-  --secondary: #7f7f7f;
-  --light: white;
-  --creme: #e8e4da;
-  --textColor: white;
-  --textColor: #141414;
-  --primary: #5b8c93;
   --figmaWidth: 22.5rem;
   --topSpaceHeight: 2.75rem;
-  /* --topH: 22%; */
+
+  --dark: #141414;
+  --light: white;
+  --creme: #e8e4da;
+  --textColor: #141414;
+
+  --primary: #5b8c93; /*status square*/
+  --squareAlert: #c97474; /*status square alert*/
+  --error: #fc0c0c;
+  --success: lightgreen;
+  --hoverColor: cyan;
+  --secondary: #7f7f7f;
 }
 
 body {
@@ -178,14 +182,14 @@ body {
   width: 0.5rem; */
   height: 0.75rem;
   width: 0.75rem;
-  background-color: #5b8c93;
+  background-color: var(--primary, #5b8c93);
 
   border: none;
   border-radius: 0.125rem;
 }
 
 .status__square.alert {
-  background-color: #c97474;
+  background-color: var(--squareAlert, #c97474);
 }
 
 /*input css rules */
@@ -193,7 +197,7 @@ textarea::placeholder,
 textarea.input__note__description::placeholder,
 input::placeholder
 /* input.inputNumber::placeholder */ {
-  color: gray;
+  color: var(--secondary, gray);
   background: transparent;
   outline: none;
   font-weight: lighter;
@@ -215,15 +219,14 @@ input[type='number'] {
 /******************/
 
 .validation__errMsg {
-  color: #fc0c0c;
+  color: var(--error);
   font-size: 0.7rem;
-
-  /* font-family: cursive; */
   font-style: italic;
   font-weight: normal;
+  text-transform: lowercase;
 }
 
 .hover:hover {
-  color: cyan;
+  color: var(--hoverColor, cyan);
   cursor: pointer;
 }

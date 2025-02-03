@@ -1,7 +1,7 @@
 //-------------------------
 export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
-
 export const DEFAULT_CURRENCY = 'usd';
+export const DATE_TIME_FORMAT_DEFAULT = 'es-ES';
 
 //tracker/expense
 export const ACCOUNT_OPTIONS_DEFAULT = [
@@ -48,27 +48,23 @@ export const DEBTOR_OPTIONS_DEFAULT = [
 
 export const DEFAULT_DEBTOR_TYPE = 'lending';
 
-
 export const TYPEDEBTS_OPTIONS_DEFAULT = [
   { value: 'lending', label: 'Lending' },
   { value: 'borrowing', label: 'Borrowing' },
 ];
 
 //overview/new_account
-export const ACCOUNT_TYPE_DEFAULT = 
- [
-    {
-      value: 'accountType_01',
-      label: 'Account Type 01',
-    },
-    {
-      value: 'accountType_02',
-      label: 'Account Type 02',
-    },
-    {
-      value: 'accountType_03',
-      label: 'Account Type 03',
-    },
-  ]
-
-export const DATE_TIME_FORMAT_DEFAULT='es-ES'
+export const ACCOUNT_TYPE_DEFAULT = [
+  {
+    value: 'accountType_01',
+    label: 'Account Type 01',
+  },
+  {
+    value: 'accountType_02',
+    label: 'Account Type 02',
+  },
+  {
+    value: 'accountType_03',
+    label: 'Account Type 03',
+  },
+];

@@ -117,7 +117,7 @@ export type DebtsTypeMovementType = 'lend' | 'borrow';
 export type DebtorNewProfileType = 'lending' | 'borrowing';
 
 export type DebtsTrackerDataType = {
-  amount: number | "";
+  amount: number | '';
   debtor: string;
   currency: CurrencyType;
   type: DebtsTypeMovementType;
@@ -153,7 +153,7 @@ export type CategoryBudgetType = {
   amount: number; //amount
   spent: number;
 };
-
+//----------------------------------
 export type StatusType = boolean;
 
 export type CurrencyType = 'usd' | 'cop' | 'eur';
@@ -165,3 +165,5 @@ export type CURRENCY_OPTIONSTYPE = {
   cop: 'cop-CO';
   eur: 'en-US';
 };
+
+export type FormNumberInputType = { [key: string]: string };

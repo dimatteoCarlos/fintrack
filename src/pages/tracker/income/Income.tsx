@@ -10,6 +10,7 @@ import {
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
   CurrencyType,
+  FormNumberInputType,
   IncomeAccountsType,
   SourcesType,
   SourceType,
@@ -31,9 +32,7 @@ const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 // console.log(formatNumberCountry);
-
 //input income data state variables
-
 type IncomeDataType = {
   amount: number;
   account: string;
@@ -41,7 +40,6 @@ type IncomeDataType = {
   note: string;
   currency: string;
 };
-
 const initialIncomeData: IncomeDataType = {
   amount: 0,
   account: '',
@@ -50,26 +48,21 @@ const initialIncomeData: IncomeDataType = {
   currency: defaultCurrency,
 };
 //------------------------------
-type FormNumberInputType = { amount: string };
 const initialFormData: FormNumberInputType = {
   amount: '',
 };
 //------------------------------
-
 function Income() {
   //---- Income account Options ----------
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
-
   //income accounts
   const {
     data,
     error: errorAccount,
     isLoading,
-  } = useFetch<IncomeAccountsType>(url_accounts); //income and expense acc are the same
-
+  } = useFetch<IncomeAccountsType>(url_accounts); //income and expense accounts are the same?
   // console.log('data:', data, {errorAccount}, data?.accounts)
-
   const optionsIncomeAccounts =
     data?.accounts?.length && !errorAccount && !isLoading
       ? data?.accounts?.map((acc) => ({
@@ -77,15 +70,13 @@ function Income() {
           label: acc.name,
         }))
       : INCOME_OPTIONS_DEFAULT;
-
   // console.log('accounts:', { optionsIncomeAccounts });
-
   const accountOptions = {
     title: 'Available Account',
     options: optionsIncomeAccounts,
   };
   //--------
-  //income sources
+  //income sources - are these sources attached to income accounts?
   const {
     data: sources,
     error: errorSources,
@@ -103,9 +94,7 @@ function Income() {
           }))
         : SOURCE_OPTIONS_DEFAULT,
   };
-
   // console.log('SOURCES:', { sourceOptions });
-
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
@@ -116,17 +105,14 @@ function Income() {
     [key: string]: string;
   }>({});
   const [isReset, setIsReset] = useState<boolean>(false);
-
   //----functions--------
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
     setIncomeData((prev) => ({ ...prev, currency: currency }));
     // console.log('updateDataCurrency:', currency);
   }
-
   //-----------
   //**Check numeric format input Function** convert to useHook */
-
   function inputNumberHandler<T>(
     name: string,
     value: string,
@@ -140,9 +126,7 @@ function Income() {
   ): void {
     const { formatMessage, valueNumber, isError, valueToSave } =
       checkNumberFormatValue(value);
-
-    // Actualizar el estado numerico en el formulario
-
+    // Actualiza el estado numerico en el formulario
     setFormData((formData) => ({
       ...formData,
       [name]: value,
@@ -164,7 +148,6 @@ function Income() {
       valueToSave,
     });
   }
-
   //-----------
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -185,9 +168,6 @@ function Income() {
       setIncomeData((prev) => ({ ...prev, [name]: value }));
     }
   }
-
-  //--------
-
   //------------------------
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
@@ -198,24 +178,21 @@ function Income() {
       { formattedNumber },
       typeof formattedNumber
     );
-
     //validation of entered data
     const newValidationMessages = validationData(incomeData);
-
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //------------------------
     //POST ENDPOINT HERE
     console.log('Income data state to Post:', incomeData);
     //------------------------
-
-    //reset values
-    setIsReset(true);
-    setIncomeData(initialIncomeData);
+    //reset values after posting the info   -- This could be a function -- need to set initial parameters for all 4 tracker/states in just one function./it seems that all are the same
     setCurrency(defaultCurrency);
+    setIncomeData(initialIncomeData);
+
+    setIsReset(true);
     setValidationMessages({});
     setFormData(initialFormData);
 
@@ -230,9 +207,7 @@ function Income() {
     value: formData.amount,
     selectOptions: accountOptions,
   };
-
   //--------------------------
-
   return (
     <>
       <form className='income' style={{ color: 'inherit' }}>
@@ -249,11 +224,8 @@ function Income() {
           isReset={isReset}
           setIsReset={setIsReset}
         />
-
         <CardSeparator />
-
         {/* BOTTOM CARD START */}
-
         <div className='state__card--bottom '>
           <div className='card--title card--title--top'>
             Source
@@ -261,7 +233,6 @@ function Income() {
               {validationMessages['source']}
             </span>
           </div>
-
           <SelectComponent
             dropDownOptions={sourceOptions}
             setSelectState={setIncomeData}
@@ -270,7 +241,6 @@ function Income() {
             optionKeySelected='source'
             selectedValue={incomeData['source']}
           />
-
           <CardNoteSave
             title={'note'}
             validationMessages={validationMessages}
@@ -283,5 +253,4 @@ function Income() {
     </>
   );
 }
-
 export default Income;

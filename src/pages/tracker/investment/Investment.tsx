@@ -5,6 +5,7 @@ import CardSeparator from '../components/CardSeparator.tsx';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import {
   CurrencyType,
+  FormNumberInputType,
   InvestmentAccountsType,
   InvestmentTypeMovementType,
 } from '../../../types/types.ts';
@@ -16,8 +17,8 @@ import {
   INVESTMENT_ACCOUNT_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
-import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
+import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 //------------------------------
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -32,13 +33,12 @@ type InvestmentDataType = {
   date: Date;
   note: string;
 };
-
 const initialInvestmentData: InvestmentDataType = {
   amount: '',
   account: '',
   currency: defaultCurrency,
   type: 'deposit',
-  date: new Date(),
+  date: new Date(), //
   note: '',
 };
 //-----------------------------------------
@@ -52,7 +52,6 @@ function Investment() {
     error: fetchedError,
     isLoading,
   } = useFetch<InvestmentAccountsType>(url_investment_acc);
-
   const investmentAccounts =
     !isLoading && !fetchedError && data?.accounts?.length
       ? data?.accounts?.map((acc) => ({
@@ -60,13 +59,11 @@ function Investment() {
           label: acc.name,
         }))
       : INVESTMENT_ACCOUNT_OPTIONS_DEFAULT;
-
   const optionsInvestmentAccounts = {
     title: 'Available Account',
     options: investmentAccounts,
   };
   //-----------------
-  type FormNumberInputType = { [key: string]: string };
   const initialFormData: FormNumberInputType = {
     amount: '',
   };
@@ -102,7 +99,6 @@ function Investment() {
   ) {
     e.preventDefault();
     const { name, value } = e.target;
-
     if (name === 'amount') {
       inputNumberHandlerFn(name, value);
     } else {
@@ -144,12 +140,13 @@ function Investment() {
     //ENDPOINT
     //----------------------------
     //reset values
+    setTypeInv('deposit');
+    // setInvestmentData((prev) => ({ ...prev, date: new Date() })); // no es necesario
+    updateDataCurrency(defaultCurrency);
     setIsReset(true);
     setValidationMessages({});
     setInvestmentData(initialInvestmentData); //check this
-    setTypeInv('deposit');
-    updateDataCurrency(defaultCurrency);
-    setInvestmentData((prev) => ({ ...prev, date: new Date() }));
+    setFormData(initialFormData);
     // after a delay, change isReset to false
     setTimeout(() => {
       setIsReset(false);
@@ -211,7 +208,6 @@ function Investment() {
             </div>
           </div>
           {/*  */}
-
           <CardNoteSave
             title={'note'}
             validationMessages={validationMessages}
@@ -224,5 +220,4 @@ function Investment() {
     </>
   );
 }
-
 export default Investment;

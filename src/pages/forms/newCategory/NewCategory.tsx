@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
-
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link } from 'react-router-dom';
@@ -8,62 +7,66 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import { validationData } from '../../../helpers/functions.ts';
 // import { useLocation } from 'react-router-dom';
 import '../styles/forms-styles.css';
+import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
+import { FormNumberInputType } from '../../../types/types.ts';
 
-//----Category Nature Tiles-----------
+//----Category Nature Tiles---------------
 export const tileTitle = 'Category Nature';
-
 export const tileLabels = [
   { labelText: 'Must', className: 'label--text' },
-
   { labelText: 'Need', className: 'label--text' },
-
   { labelText: 'Want', className: 'label--text' },
   { labelText: 'Other', className: 'label--text' },
-
   // { labelText: 'New One', className: 'label--text' },
 ];
-//------------------------------------
-
+//-------------------------------------------------
 type CategoryDataType = {
   category: string;
   subcategory: string;
   amount: number | '';
   nature: string;
 };
-
 // const initialNewCategoryData: CategoryDataType = {
-//   category: '',
-//   subcategory: '',
-//   amount: 0,
-//   nature: '',
-// };
-
+//   category: '',//   subcategory: '',//   amount: 0,//   nature: '',// };
 //-------------------------
 function NewCategory() {
-  // const location = useLocation();
-
   const initialNewCategoryData: CategoryDataType = {
     category: '',
     subcategory: '',
     amount: '',
     nature: '',
   };
-  //---states------n
+
+  //---states------
+  const initialFormData: FormNumberInputType = {
+    amount: '',
+  };
+  const [formData, setFormData] =
+    useState<FormNumberInputType>(initialFormData);
+
   const [categoryData, setCategoryData] = useState<CategoryDataType>(
     initialNewCategoryData
   );
   const [activeCategory, setActiveCategory] = useState('');
-
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
 
   //functions
+  const { inputNumberHandlerFn } = useInputNumberHandler(
+    setFormData,
+    setValidationMessages,
+    setCategoryData
+  );
+  //---------
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
-    // e.preventDefault();
+    e.preventDefault();
     const { name, value } = e.target;
-    const valueToSave = name == 'amount' ? parseFloat(value) : value;
-    setCategoryData((prev) => ({ ...prev, [name]: valueToSave }));
+    if (name === 'amount') {
+      inputNumberHandlerFn(name, value);
+    } else {
+      setCategoryData((prev) => ({ ...prev, [name]: value }));
+    }
   }
 
   function addHandler(e: React.MouseEvent<HTMLButtonElement>) {
@@ -83,25 +86,23 @@ function NewCategory() {
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     console.log('onSubmitForm');
-
     //--data form validation
     const newValidationMessages = validationData(categoryData);
-    // const newValidationMessages = { ...validationData(categoryData) };
-    // console.log('mensajes:', { newValidationMessages });
+    // const newValidationMessages = { ...validationData(categoryData) };// console.log('mensajes:', { newValidationMessages });
 
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //--
     //new category data into database //POST ENDPOINT HERE
     console.log('New category data to POST:', { categoryData });
-
+    //----------------------------------------------------
     //resetting form values
     setActiveCategory('');
     setCategoryData(initialNewCategoryData);
     setValidationMessages({});
+    setFormData(initialFormData);
   }
   //-----------------------
   return (
@@ -143,10 +144,10 @@ function NewCategory() {
             <div className='input__box'>
               <label htmlFor='subcategory' className='label form__title'>
                 {'subcategory'}&nbsp;
-                <div className='validation__errMsg'>
-                  {validationMessages['subcategory']}
-                </div>
               </label>
+              <span className='validation__errMsg'>
+                {validationMessages['subcategory']}
+              </span>
 
               <input
                 type='text'
@@ -160,25 +161,32 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
-
               {/* Defining functionalitiy and data structure of this add button for category and subcategories is PENDING */}
             </button>
 
             <div className='input__box'>
               <label htmlFor='amount' className='label form__title'>
                 {'budget'}&nbsp;
-                <div className='validation__errMsg'>
-                  {validationMessages['amount']}
-                </div>
+                <span
+                  className='validation__errMsg'
+                  style={{
+                    color: validationMessages['amount']
+                      ?.toLowerCase()
+                      .includes('format:')
+                      ? 'var(--success)'
+                      : 'var(--error)',
+                  }}
+                >
+                  {validationMessages['amount']?.replace('Format:', '')}
+                </span>
               </label>
 
               <input
                 className={'input__container'}
-                type='number'
-                step='any'
+                type='text'
                 name='amount'
                 placeholder={'amount'}
-                value={categoryData.amount}
+                value={formData.amount}
                 onChange={inputHandler}
               />
             </div>
@@ -217,7 +225,6 @@ function NewCategory() {
               })}
             </div>
           </div>
-
           {/* save */}
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>

@@ -52,8 +52,11 @@ label,
   font-size: 1.25rem;
   text-align: center;
   width: 100%;
-  text-transform: capitalize;
   /* border: 1px solid var(--primary); */
+}
+
+label {
+  text-transform: capitalize;
 }
 
 label,

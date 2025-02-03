@@ -62,7 +62,7 @@ function ListCategory() {
 
   // en el backend: generar la data segun estructura de los datos a renderizar, es decir,
   //agrupar para cada caategoria, expenses y  budgets, y cualquier otra; la sumatoria de los expense se refleja en el spent, y la sumatoria de los budget de cada categoria seria el budget por categoria o por subcategoria? hay que definir,  y el status seria el resultado de la resta entre el budget - expense de cada categoria, o si se prefiere reflejar el status de una vez desde el backend?.
-  //no se esta claro, si los valores o informacion se obtendra de los movimientos de expenses, realizados en cada categoria y budget...definir proc de calculo.
+  //no se esta claro, si los valores o informacion se obtendra de los movimientos de expenses, realizados en cada categoria y budget...definir procedimiento de calculo.
 
   //DATA FETCHING
   const { data, isLoading, error } =
