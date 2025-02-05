@@ -1,28 +1,21 @@
 import React, { useState } from 'react';
-
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import { Link, useLocation } from 'react-router-dom';
-
 import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
-
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import FormDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
-
 import {
   ACCOUNT_TYPE_DEFAULT,
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
-
 import '../styles/forms-styles.css';
 import { CurrencyType } from '../../../types/types.ts';
 import { validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
-
 //-----temporarily 'till decide how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
@@ -36,7 +29,6 @@ type AccountDataType = {
   amount: number | string; //later verifyin and fixed input
   currency: string;
 };
-
 const initialNewAccountData = {
   name: '', //'Account Name',
   type: '', //'Account Type',
@@ -44,11 +36,13 @@ const initialNewAccountData = {
   amount: '', // 'Value'
   currency: 'usd',
 };
-
 const ACCOUNT_TYPE_OPTIONS_DEFAULT = {
   title: 'Type',
   options: ACCOUNT_TYPE_DEFAULT,
   variant: 'form',
+};
+const initialFormData: FormNumberInputType = {
+  amount: '',
 };
 
 //-------------------------------
@@ -67,9 +61,6 @@ function NewAccount() {
 
   const [isReset, setIsReset] = useState<boolean>(false);
 
-  const initialFormData: FormNumberInputType = {
-    amount: '',
-  };
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
 
@@ -78,9 +69,8 @@ function NewAccount() {
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-    const valueToSave = name === 'value' ? parseFloat(value) : value;
-
-    setAccountData((prev) => ({ ...prev, [name]: valueToSave }));
+    // const valueToSave = name === 'value' ? parseFloat(value) : value;
+    setAccountData((prev) => ({ ...prev, [name]: value }));
   }
 
   function accountTypeSelectHandler(selectedOption: any) {
@@ -116,8 +106,6 @@ function NewAccount() {
     //POST TO THE ENDPOINT FOR ACCOUNT DATA HERE
     console.log('data to POST:', { accountData });
 
-    e.preventDefault();
-
     //resetting form values
     setIsReset(true);
     setCurrency(defaultCurrency);
@@ -135,7 +123,6 @@ function NewAccount() {
   return (
     <section className='account__page__container page__container'>
       <TopWhiteSpace variant={'dark'} />
-
       <div className='account__page__content page__content'>
         <div className='main__title--container'>
           <Link
@@ -143,8 +130,6 @@ function NewAccount() {
             relative='path'
             className='iconLeftArrow'
           >
-            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
-
             <LeftArrowLightSvg />
           </Link>
           <div className='form__title'>{'New Account'}</div>

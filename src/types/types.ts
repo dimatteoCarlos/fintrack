@@ -167,3 +167,6 @@ export type CURRENCY_OPTIONSTYPE = {
 };
 
 export type FormNumberInputType = { [key: string]: string };
+
+//Generic type state
+// export type GenericStateType = 

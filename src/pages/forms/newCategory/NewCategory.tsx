@@ -89,7 +89,6 @@ function NewCategory() {
     //--data form validation
     const newValidationMessages = validationData(categoryData);
     // const newValidationMessages = { ...validationData(categoryData) };// console.log('mensajes:', { newValidationMessages });
-
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
@@ -225,7 +224,6 @@ function NewCategory() {
               })}
             </div>
           </div>
-
           {/* save */}
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
@@ -235,7 +233,4 @@ function NewCategory() {
     </section>
   );
 }
-
 export default NewCategory;
-
-

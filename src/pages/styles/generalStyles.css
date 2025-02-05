@@ -12,7 +12,9 @@
   --primary: #5b8c93; /*status square*/
   --squareAlert: #c97474; /*status square alert*/
   --error: #fc0c0c;
-  --success: lightgreen;
+  
+  --lightSuccess: lightgreen;
+  --success: green;
   --hoverColor: cyan;
   --secondary: #7f7f7f;
 }

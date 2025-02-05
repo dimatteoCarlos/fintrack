@@ -139,13 +139,12 @@ function Investment() {
     //do the post to the endpoint api, here
     //ENDPOINT
     //----------------------------
-    //reset values
+    //resetting values
     setTypeInv('deposit');
-    // setInvestmentData((prev) => ({ ...prev, date: new Date() })); // no es necesario
     updateDataCurrency(defaultCurrency);
     setIsReset(true);
     setValidationMessages({});
-    setInvestmentData(initialInvestmentData); //check this
+    setInvestmentData(initialInvestmentData); 
     setFormData(initialFormData);
     // after a delay, change isReset to false
     setTimeout(() => {

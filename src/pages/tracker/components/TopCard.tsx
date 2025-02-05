@@ -58,7 +58,7 @@ const TopCard = ({
   return (
     <>
       <div className='state__card--top  '>
-        <div className='card--title'>
+        <label className='card--title'>
           {capitalize(title1)}
           <span
             className='validation__errMsg'
@@ -70,7 +70,7 @@ const TopCard = ({
           >
             {validationMessages[title1]}
           </span>
-        </div>
+        </label>
 
         <div className='card__screen'>
           {/*       make the input number a component?       */}
