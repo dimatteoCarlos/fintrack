@@ -5,10 +5,10 @@ import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import { validationData } from '../../../helpers/functions.ts';
-// import { useLocation } from 'react-router-dom';
 import '../styles/forms-styles.css';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import { FormNumberInputType } from '../../../types/types.ts';
+// import { useLocation } from 'react-router-dom';
 
 //----Category Nature Tiles---------------
 export const tileTitle = 'Category Nature';
@@ -26,8 +26,6 @@ type CategoryDataType = {
   amount: number | '';
   nature: string;
 };
-// const initialNewCategoryData: CategoryDataType = {
-//   category: '',//   subcategory: '',//   amount: 0,//   nature: '',// };
 //-------------------------
 function NewCategory() {
   const initialNewCategoryData: CategoryDataType = {
@@ -47,7 +45,9 @@ function NewCategory() {
   const [categoryData, setCategoryData] = useState<CategoryDataType>(
     initialNewCategoryData
   );
-  const [activeCategory, setActiveCategory] = useState('');
+  const [activeNature, setActiveNature] = useState(
+    initialNewCategoryData.nature
+  );
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
@@ -79,7 +79,7 @@ function NewCategory() {
     // console.log('natureHandler', e.currentTarget.id);
     e.preventDefault();
     const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
-    setActiveCategory(activeNature);
+    setActiveNature(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
   }
   //--
@@ -99,7 +99,7 @@ function NewCategory() {
     console.log('New category data to POST:', { categoryData });
     //----------------------------------------------------
     //resetting form values
-    setActiveCategory('');
+    setActiveNature(initialNewCategoryData.nature);
     setCategoryData(initialNewCategoryData);
     setValidationMessages({});
     setFormData(initialFormData);
@@ -148,7 +148,6 @@ function NewCategory() {
               <span className='validation__errMsg'>
                 {validationMessages['subcategory']}
               </span>
-
               <input
                 type='text'
                 className={`input__container`}
@@ -161,7 +160,7 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
-              {/* Defining functionalitiy and data structure of this add button for category and subcategories is PENDING */}
+              {/* functionalitiy and data structure of this add button for category and subcategories is PENDING */}
             </button>
 
             <div className='input__box'>
@@ -173,7 +172,7 @@ function NewCategory() {
                     color: validationMessages['amount']
                       ?.toLowerCase()
                       .includes('format:')
-                      ? 'var(--success)'
+                      ? 'var(--lightSuccess)'
                       : 'var(--error)',
                   }}
                 >
@@ -211,7 +210,8 @@ function NewCategory() {
                     key={`${indx}-tile`}
                     id={`${label.labelText.toLowerCase()}`}
                     style={
-                      activeCategory == label.labelText.toLowerCase()
+                      activeNature.toLowerCase() ===
+                      label.labelText.toLowerCase()
                         ? {
                             backgroundColor: 'var(--creme)',
                             color: 'var(--dark)',
@@ -225,6 +225,7 @@ function NewCategory() {
               })}
             </div>
           </div>
+
           {/* save */}
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>
@@ -236,3 +237,5 @@ function NewCategory() {
 }
 
 export default NewCategory;
+
+
