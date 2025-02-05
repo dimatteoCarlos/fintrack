@@ -1,15 +1,12 @@
 //pages/tracker/debts/debts.tsx
 import { useCallback, useEffect, useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import { capitalize, validationData } from '../../../helpers/functions.ts';
-import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_debtors } from '../../../endpoints.ts';
 import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
-
 import {
   CurrencyType,
   DebtorsListType,
@@ -25,6 +22,8 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
+// import SelectComponent from '../components/SelectComponent.tsx';
+// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -50,9 +49,7 @@ function Debts() {
     error: fetchedError,
     isLoading,
   } = useFetch<DebtorsListType>(url_debtors); //apply deboune
-
   // console.log('debtors datatrack:', dataDebtors);
-
   //define what to do when error
   const debtors =
     !fetchedError && !isLoading && dataDebtors?.debtors?.length
@@ -101,7 +98,6 @@ function Debts() {
       setDataTrack((prev) => ({ ...prev, [name]: value }));
     }
   }
-
   //---
   const updateDataCurrency = useCallback(
     (currency: CurrencyType) => {
@@ -156,7 +152,6 @@ function Debts() {
     setType('lend');
     updateDataCurrency(defaultCurrency);
     setFormData(initialFormData);
-
     setTimeout(() => {
       setIsReset(false);
     }, 500);

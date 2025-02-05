@@ -3,15 +3,10 @@ import LeftArrowLightSvg from '../../../assets/LeftArrowSvg.svg';
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import { Link, useLocation } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
-
 import '../styles/forms-styles.css';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
-  // DebtorNewProfileType,
-  // DebtsTypeMovementType,
-  // DebtType,
   ExpenseAccountsType,
 } from '../../../types/types.ts';
 import { url_accounts } from '../../../endpoints.ts';
@@ -104,7 +99,6 @@ function NewProfile() {
       console.log(`No option selected for ${'type'}`);
     }
   }
-
   function accountSelectHandler(selectedOption: any) {
     //check this any
     setProfileData((prev: ProfileDataType) => ({
@@ -135,11 +129,9 @@ function NewProfile() {
     // after a delay, change isReset to false
     setTimeout(() => setIsReset(false), 500);
   }
-
   //input number form params
   const keyName = 'amount',
     title = 'value';
-
   return (
     <section className='profile__page__container page__container '>
       <TopWhiteSpace variant={'dark'} />
