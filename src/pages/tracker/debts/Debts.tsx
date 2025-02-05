@@ -1,10 +1,7 @@
 //pages/tracker/debts/debts.tsx
 import { useCallback, useEffect, useState } from 'react';
-
 import CardSeparator from '../components/CardSeparator.tsx';
-
 import SelectComponent from '../components/SelectComponent.tsx';
-
 import { capitalize, validationData } from '../../../helpers/functions.ts';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
@@ -18,6 +15,7 @@ import {
   DebtorsListType,
   DebtsTrackerDataType,
   DebtsTypeMovementType,
+  FormNumberInputType,
 } from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
 import {
@@ -25,6 +23,8 @@ import {
   DEBTOR_OPTIONS_DEFAULT,
   DEFAULT_CURRENCY,
 } from '../../../helpers/constants.ts';
+import TopCard from '../components/TopCard.tsx';
+import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -33,7 +33,7 @@ console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
 //input debts datatrack variables
 const initialTrackerData: DebtsTrackerDataType = {
-  amount: '',
+  amount: 0,
   debtor: '',
   currency: defaultCurrency,
   type: 'lend',
@@ -55,22 +55,23 @@ function Debts() {
 
   //define what to do when error
   const debtors =
-    !fetchedError &&
-    !isLoading &&
-    dataDebtors?.debtors?.length &&
-    dataDebtors?.debtors?.map((debtor) => ({
-      value: debtor.first_name + debtor.last_name,
-      label: `${capitalize(debtor.first_name)}, ${capitalize(
-        debtor.last_name
-      )}`,
-    }));
-
+    !fetchedError && !isLoading && dataDebtors?.debtors?.length
+      ? dataDebtors?.debtors?.map((debtor) => ({
+          value: debtor.first_name + debtor.last_name,
+          label: `${capitalize(debtor.first_name)}, ${capitalize(
+            debtor.last_name
+          )}`,
+        }))
+      : DEBTOR_OPTIONS_DEFAULT;
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
-    options: debtors ?? DEBTOR_OPTIONS_DEFAULT,
+    options: debtors, //?? DEBTOR_OPTIONS_DEFAULT,
   };
   //-----------------
-  //---states------
+  const initialFormData: FormNumberInputType = {
+    amount: '',
+  };
+  //---states--------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [type, setType] = useState<DebtsTypeMovementType>('lend');
   const [datatrack, setDataTrack] =
@@ -79,18 +80,28 @@ function Debts() {
     [key: string]: string;
   }>({});
   const [isReset, setIsReset] = useState<boolean>(false);
-
+  const [formData, setFormData] =
+    useState<FormNumberInputType>(initialFormData);
   //----Functions ------
+
+  const { inputNumberHandlerFn } = useInputNumberHandler(
+    setFormData,
+    setValidationMessages,
+    setDataTrack
+  );
 
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     e.preventDefault();
-    const valueToSave =
-      e.target.name === 'amount' ? parseFloat(e.target.value) : e.target.value;
-
-    setDataTrack((prev) => ({ ...prev, [e.target.name]: valueToSave }));
+    const { name, value } = e.target;
+    if (name === 'amount') {
+      inputNumberHandlerFn(name, value);
+    } else {
+      setDataTrack((prev) => ({ ...prev, [name]: value }));
+    }
   }
+
   //---
   const updateDataCurrency = useCallback(
     (currency: CurrencyType) => {
@@ -100,18 +111,23 @@ function Debts() {
     [currency]
   );
   //---
-  const toggleType = useCallback(() => {
-    setType((prev: DebtsTypeMovementType) =>
-      prev === 'lend' ? 'borrow' : 'lend'
-    );
-  }, [type]);
+  const toggleType = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      setType((prev: DebtsTypeMovementType) =>
+        prev === 'lend' ? 'borrow' : 'lend'
+      );
+    },
+    [type]
+  );
 
   function changeDateFn(selectedDate: Date): void {
     setDataTrack((prev) => ({ ...prev, date: selectedDate }));
   }
 
-  function onSaveHandler() {
+  function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
+    e.preventDefault();
     const formattedNumber = numberFormat(datatrack.amount || 0);
     console.log(
       'formatted amount as a string:',
@@ -139,6 +155,7 @@ function Debts() {
     setValidationMessages({});
     setType('lend');
     updateDataCurrency(defaultCurrency);
+    setFormData(initialFormData);
 
     setTimeout(() => {
       setIsReset(false);
@@ -148,17 +165,36 @@ function Debts() {
   //-----useEffect--------
   useEffect(() => {
     updateDataCurrency(currency);
-
     setDataTrack((prev) => ({ ...prev, currency: currency }));
     setDataTrack((prev) => ({ ...prev, type: type }));
   }, [currency, type]);
 
   //--------------------------
+  //-------Top Card elements
+  const topCardElements = {
+    titles: { title1: 'amount', title2: 'debtor' },
+    value: formData.amount,
+    selectOptions: debtorOptions,
+  };
 
   return (
     <>
-      <article className='debts' style={{ color: 'inherit' }}>
-        <div className='state__card--top'>
+      <form className='debts' style={{ color: 'inherit' }}>
+        {/* TOP CARD START */}
+        <TopCard
+          topCardElements={topCardElements}
+          validationMessages={validationMessages}
+          updateTrackerData={updateTrackerData}
+          trackerName={trackerState}
+          currency={currency}
+          updateCurrency={updateDataCurrency}
+          selectedValue={datatrack.debtor}
+          setSelectState={setDataTrack}
+          isReset={isReset}
+          setIsReset={setIsReset}
+        />
+
+        {/* <div className='state__card--top'>
           <div className='card--title'>
             Amount
             <span className='validation__errMsg'>
@@ -200,7 +236,7 @@ function Debts() {
             optionKeySelected='debtor'
             selectedValue={datatrack['debtor']}
           />
-        </div>
+        </div> */}
 
         <div className='state__card--bottom'>
           <CardSeparator />
@@ -252,7 +288,7 @@ function Debts() {
             <FormPlusBtn onClickHandler={onSaveHandler} />
           </div>
         </div>
-      </article>
+      </form>
     </>
   );
 }
