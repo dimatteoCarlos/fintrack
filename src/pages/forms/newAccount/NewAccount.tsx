@@ -20,6 +20,8 @@ import {
 import '../styles/forms-styles.css';
 import { CurrencyType } from '../../../types/types.ts';
 import { validationData } from '../../../helpers/functions.ts';
+import { FormNumberInputType } from '../../../types/types.ts';
+import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
 
 //-----temporarily 'till decide how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
@@ -64,6 +66,12 @@ function NewAccount() {
   }>({});
 
   const [isReset, setIsReset] = useState<boolean>(false);
+
+  const initialFormData: FormNumberInputType = {
+    amount: '',
+  };
+  const [formData, setFormData] =
+    useState<FormNumberInputType>(initialFormData);
 
   //---functions-----
 
@@ -115,9 +123,14 @@ function NewAccount() {
     setCurrency(defaultCurrency);
     setValidationMessages({});
     setAccountData(initialNewAccountData);
-
+    setFormData(initialFormData);
+    // after a delay, change isReset to false
     setTimeout(() => setIsReset(false), 500);
   }
+
+  const keyName = 'amount',
+    title = 'value';
+
   //----
   return (
     <section className='account__page__container page__container'>
@@ -197,14 +210,40 @@ function NewAccount() {
             </div>
 
             <div className='input__box'>
-              <label htmlFor='value' className='label form__title'>
+              {/* <label htmlFor='value' className='label form__title'>
                 {'value'} &nbsp;
                 <span className='validation__errMsg'>
                   {validationMessages['amount']}
                 </span>
+              </label> */}
+
+              <label htmlFor={keyName} className='label form__title'>
+                {title}&nbsp;
+                <span
+                  className='validation__errMsg'
+                  style={{
+                    color: validationMessages[keyName]
+                      ?.toLowerCase()
+                      .includes('format:')
+                      ? 'var(--lightSuccess)'
+                      : 'var(--error)',
+                  }}
+                >
+                  {validationMessages[keyName]?.replace('Format:', '')}
+                </span>
               </label>
 
-              <input
+              <InputNumberFormHandler
+                validationMessages={validationMessages}
+                setValidationMessages={setValidationMessages}
+                keyName={'amount'}
+                placeholderText={'amount'}
+                formData={formData}
+                setFormData={setFormData}
+                setStateData={setAccountData}
+              />
+
+              {/* <input
                 className='input__container input__container--amount'
                 type='number'
                 step='any'
@@ -213,7 +252,7 @@ function NewAccount() {
                 onChange={inputHandler}
                 value={accountData.amount}
                 style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
-              />
+              /> */}
             </div>
           </div>
 
