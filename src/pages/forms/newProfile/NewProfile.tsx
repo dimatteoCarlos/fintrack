@@ -20,6 +20,8 @@ import {
   TYPEDEBTS_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
 import { validationData } from '../../../helpers/functions.ts';
+import { FormNumberInputType } from '../../../types/types.ts';
+import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
 
 //------------------------
 //Account Options
@@ -37,7 +39,7 @@ type ProfileDataType = {
   lastname: string;
   account: string | number;
   type: string;
-  amount: number | "";
+  amount: number | '';
 };
 
 const initialNewProfileData: ProfileDataType = {
@@ -45,9 +47,11 @@ const initialNewProfileData: ProfileDataType = {
   lastname: '',
   account: '',
   type: '',
-  amount: "",
+  amount: '',
 };
-
+const initialFormData: FormNumberInputType = {
+  amount: '',
+};
 //-----------------------
 function NewProfile() {
   //-----states------
@@ -60,8 +64,10 @@ function NewProfile() {
   }>({});
 
   const [isReset, setIsReset] = useState<boolean>(false);
-  
-//data fetching for options selections
+  const [formData, setFormData] =
+    useState<FormNumberInputType>(initialFormData);
+
+  //data fetching for options selections
   const {
     data,
     isLoading,
@@ -79,80 +85,64 @@ function NewProfile() {
   const accountSelectionProp = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
-    variant: 'form', //define the custom styles to use in selection dropdown component
+    variant: 'form', //this stablishes the custom styles to use in selection dropdown component
   };
-
   const location = useLocation();
-
   //---functions-----
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
 
-    const valueToSave =
-      name === 'amount'
-        ? value !== ''
-          ? parseFloat(value.replace(',', '.')) // Reemplazar coma por punto
-          : 0
-        : value;
-
-    setProfileData((prev) => ({ ...prev, [name]: valueToSave }));
+    setProfileData((prev) => ({ ...prev, [name]: value }));
   }
 
   function typeSelectHandler(selectedOption: any) {
     if (selectedOption) {
-      console.log('selectedOption desde typeSelectHandler', { selectedOption });
-      setProfileData((prev: any) => ({ ...prev, type: selectedOption.value }));
+      // console.log('selectedOption desde typeSelectHandler', { selectedOption });
+      setProfileData((prev: any) => ({ ...prev, type: selectedOption.value })); //check this any
     } else {
       console.log(`No option selected for ${'type'}`);
     }
   }
 
   function accountSelectHandler(selectedOption: any) {
+    //check this any
     setProfileData((prev: ProfileDataType) => ({
       ...prev,
       account: selectedOption?.value,
     }));
-
-    console.log(
-      'selectedOption desde accountSelectHandler NewProfile',
-      selectedOption
-    );
   }
-
   //------------------
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     console.log('onSubmitForm');
-
-    //--
-    const newValidationMessages = { ...validationData(profileData) };
-    console.log('mensajes:', { newValidationMessages });
-
+    //--data form validation
+    const newValidationMessages = { ...validationData(profileData) }; // console.log('mensajes:', { newValidationMessages });
     if (Object.values(newValidationMessages).length > 0) {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //--
     //POST the new profile data into database
     console.log('data to POST:', { profileData });
 
     //resetting form values
     setIsReset(true);
-
     setValidationMessages({});
-
     setProfileData(initialNewProfileData);
     console.log('submit form button');
-
+    setFormData(initialFormData);
+    // after a delay, change isReset to false
     setTimeout(() => setIsReset(false), 500);
   }
+
+  //input number form params
+  const keyName = 'amount',
+    title = 'value';
 
   return (
     <section className='profile__page__container page__container '>
       <TopWhiteSpace variant={'dark'} />
-
       <div className='profile__page__content page__content'>
         <div className='main__title--container '>
           <Link
@@ -160,8 +150,6 @@ function NewProfile() {
             relative='path'
             className='iconLeftArrow'
           >
-            {/* <Link to='..' relative='path' className='iconLeftArrow'> */}
-
             <LeftArrowLightSvg />
           </Link>
 
@@ -205,7 +193,13 @@ function NewProfile() {
             </div>
 
             <div className='input__box'>
-              <label className='label form__title'>{'Add Money'}</label>
+              {/* <label className='label form__title'>{'Add Money'}</label> */}
+              <label className='label form__title'>
+                Account &nbsp;
+                <span className='validation__errMsg'>
+                  {validationMessages['account']}
+                </span>
+              </label>
 
               {/* accounts*/}
               <DropDownSelection
@@ -216,26 +210,32 @@ function NewProfile() {
                 setIsReset={setIsReset}
               />
 
-              <span className='validation__errMsg'>
-                {validationMessages['account']}
-              </span>
+              <label htmlFor={keyName} className='label form__title'>
+                {title}&nbsp;
+                <span
+                  className='validation__errMsg'
+                  style={{
+                    color: validationMessages[keyName]
+                      ?.toLowerCase()
+                      .includes('format:')
+                      ? 'var(--lightSuccess)'
+                      : 'var(--error)',
+                  }}
+                >
+                  {validationMessages[keyName]?.replace('Format:', '')}
+                </span>
+              </label>
 
-              <input
-                type='number'
-                step={0.0000001}
-                min={0.0}
-                className={`input__container input__container--amount`}
-                placeholder={`0`}
-                name={'amount'}
-                onChange={inputHandler}
-                // value={profileData.amount? String(profileData.amount) : ''}
-                value={profileData.amount}
-                style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
+              <InputNumberFormHandler
+                validationMessages={validationMessages}
+                setValidationMessages={setValidationMessages}
+                keyName={keyName}
+                placeholderText={keyName}
+                formData={formData}
+                setFormData={setFormData}
+                setStateData={setProfileData}
               />
-
-              <span className='validation__errMsg'>
-                {validationMessages['amount']}
-              </span>
+              {/* style={{ fontSize: '1.25rem', padding: '0 0.75rem' }} */}
             </div>
 
             <div className='input__box'>
