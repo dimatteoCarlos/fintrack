@@ -3,10 +3,11 @@
   border: 0px solid white;
 }
 /*---BigBoxResult--*/
+/*this one is shared with big box of budget*/
 .bigBox__container {
   padding: 1.25rem;
-
-  width: 81.11%;
+  width: 81.11%; /*ORIGINAL*/
+  width: 88%; /*changed*/
   margin: 0 auto;
   position: absolute;
   top: 7.5rem;
@@ -50,10 +51,8 @@
 /*----CardTitle -----*/
 
 .overviewLayout .presentation__card__title__container {
-
   /* padding: 1rem 0 0rem 0; */
   border: none;
-
 }
 
 .presentation__card--title {

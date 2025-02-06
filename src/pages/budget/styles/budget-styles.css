@@ -14,7 +14,9 @@
 
   gap: 1rem;
   top: 7.5rem;
-  width: 81.11%;
+  width: 81.11%; /*ORIGINAL*/
+  width: 88%; /*CHANGED*/
+  padding: 0.75rem;
   /* border:1px solid red; */
 }
 
