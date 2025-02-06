@@ -44,6 +44,7 @@ const ACCOUNT_TYPE_OPTIONS_DEFAULT = {
 const initialFormData: FormNumberInputType = {
   amount: '',
 };
+const formDataNumber = { keyName: 'amount', title: 'value' };
 
 //-------------------------------
 function NewAccount() {
@@ -101,7 +102,6 @@ function NewAccount() {
       setValidationMessages(newValidationMessages);
       return;
     }
-
     //--
     //POST TO THE ENDPOINT FOR ACCOUNT DATA HERE
     console.log('data to POST:', { accountData });
@@ -115,9 +115,6 @@ function NewAccount() {
     // after a delay, change isReset to false
     setTimeout(() => setIsReset(false), 500);
   }
-
-  const keyName = 'amount',
-    title = 'value';
 
   //----
   return (
@@ -195,34 +192,33 @@ function NewAccount() {
             </div>
 
             <div className='input__box'>
-              {/* <label htmlFor='value' className='label form__title'>
-                {'value'} &nbsp;
-                <span className='validation__errMsg'>
-                  {validationMessages['amount']}
-                </span>
-              </label> */}
-
-              <label htmlFor={keyName} className='label form__title'>
-                {title}&nbsp;
+              <label
+                htmlFor={formDataNumber.keyName}
+                className='label form__title'
+              >
+                {formDataNumber.title}&nbsp;
                 <span
                   className='validation__errMsg'
                   style={{
-                    color: validationMessages[keyName]
+                    color: validationMessages[formDataNumber.keyName]
                       ?.toLowerCase()
                       .includes('format:')
                       ? 'var(--lightSuccess)'
                       : 'var(--error)',
                   }}
                 >
-                  {validationMessages[keyName]?.replace('Format:', '')}
+                  {validationMessages[formDataNumber.keyName]?.replace(
+                    'Format:',
+                    ''
+                  )}
                 </span>
               </label>
 
               <InputNumberFormHandler
                 validationMessages={validationMessages}
                 setValidationMessages={setValidationMessages}
-                keyName={'amount'}
-                placeholderText={'amount'}
+                keyName={formDataNumber.keyName}
+                placeholderText={formDataNumber.keyName}
                 formData={formData}
                 setFormData={setFormData}
                 setStateData={setAccountData}

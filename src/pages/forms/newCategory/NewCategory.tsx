@@ -26,19 +26,21 @@ type CategoryDataType = {
   amount: number | '';
   nature: string;
 };
-//-------------------------
-function NewCategory() {
-  const initialNewCategoryData: CategoryDataType = {
-    category: '',
-    subcategory: '',
-    amount: '',
-    nature: '',
-  };
 
+const initialNewCategoryData: CategoryDataType = {
+  category: '',
+  subcategory: '',
+  amount: '',
+  nature: '',
+};
+
+const formDataNumber = { keyName: 'amount', title: 'budget' };
+const initialFormData: FormNumberInputType = {
+  [formDataNumber.keyName]: '',
+};
+//------------------------
+function NewCategory() {
   //---states------
-  const initialFormData: FormNumberInputType = {
-    amount: '',
-  };
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
 
@@ -58,11 +60,12 @@ function NewCategory() {
     setValidationMessages,
     setCategoryData
   );
+
   //---------
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-    if (name === 'amount') {
+    if (name === formDataNumber.keyName) {
       inputNumberHandlerFn(name, value);
     } else {
       setCategoryData((prev) => ({ ...prev, [name]: value }));
@@ -159,38 +162,44 @@ function NewCategory() {
 
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
-              {/* functionalitiy and data structure of this add button for category and subcategories is PENDING */}
+              {/* functionalitiy and data structure for this add button of  subcategories is PENDING */}
             </button>
 
             <div className='input__box'>
-              <label htmlFor='amount' className='label form__title'>
-                {'budget'}&nbsp;
+              <label
+                htmlFor={formDataNumber.keyName}
+                className='label form__title'
+              >
+                {formDataNumber.title}&nbsp;
                 <span
                   className='validation__errMsg'
                   style={{
-                    color: validationMessages['amount']
+                    color: validationMessages[formDataNumber.keyName]
                       ?.toLowerCase()
                       .includes('format:')
                       ? 'var(--lightSuccess)'
                       : 'var(--error)',
                   }}
                 >
-                  {validationMessages['amount']?.replace('Format:', '')}
+                  {validationMessages[formDataNumber.keyName]?.replace(
+                    'Format:',
+                    ''
+                  )}
                 </span>
               </label>
 
               <input
                 className={'input__container'}
                 type='text'
-                name='amount'
-                placeholder={'amount'}
-                value={formData.amount}
+                name={formDataNumber.keyName}
+                placeholder={formDataNumber.title}
+                value={formData[formDataNumber.keyName]}
                 onChange={inputHandler}
               />
             </div>
           </div>
 
-          {/* convert to a Component of tiles or badges */}
+          {/*later try to convert to a Component of tiles or badges */}
           <div className='container--nature'>
             <div className='form__title form__title--tiles'>
               {tileTitle}
