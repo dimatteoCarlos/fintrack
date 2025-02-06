@@ -85,48 +85,46 @@ function ListPocket() {
   //no estoy claro, si los valores o informacion se obtendra de los movimientos de expense realizados en cada categoria, seria desde backend.
 
   return (
-    <article className='list__main__container  '>
-      {pocketList.map((pocket) => {
+    <article className='list__main__container '>
+      {pocketList.map((pocket, indx) => {
         const { pocketName, description, saved, goal, currency, pocket_id } =
           pocket;
         return (
-          <>
-            <Link
-              to={`/budget/pockets/:${pocket_id}`}
-              className='card__tile__pocket line__container'
-              key={`pockect-${pocket_id}`}
-            >
-              {/* <PocketLeftTile> */}
-              <div className='tile__left'>
-                <div className='tile__title'>{pocketName}</div>
-                <div className='tile__subtitle '>{description}</div>
-              </div>
+          <Link
+            to={`/budget/pockets/:${pocket_id}`}
+            className='card__tile__pocket line__container'
+            key={`pockect-${indx}-${pocket_id}`}
+          >
+            {/* <PocketLeftTile> */}
+            <div className='tile__left'>
+              <div className='tile__title'>{pocketName}</div>
+              <div className='tile__subtitle '>{description}</div>
+            </div>
 
-              {/* <PocketRightTile> */}
-              <div className='tile__right'>
-                <div className='tile__title'>
-                  saved:{' '}
-                  {currencyFormat(currency ?? DEFAULT_CURRENCY, saved, 'en-US')}
-                </div>
-                <div className='tile__subtitle flx-row-sb'>
-                  <span className='tile__subtitle tile__subtitle--opc'>
-                    goal:{' '}
-                    {/* {currencyFormat(currency ?? DEFAULT_CURRENCY, goal, 'en-US')}{' '} */}
-                    {numberFormatCurrency(
-                      goal,
-                      0,
-                      currency ?? DEFAULT_CURRENCY,
-                      'en-US'
-                    )}
-                    &nbsp;
-                  </span>
-
-                  {/* {'definir regla de negocio, creo que lo ideal es que no haya diferencia entre los montos saved y goal'} */}
-                  <StatusSquare alert={saved - goal <= 0 ? 'alert' : ''} />
-                </div>
+            {/* <PocketRightTile> */}
+            <div className='tile__right'>
+              <div className='tile__title'>
+                saved:{' '}
+                {currencyFormat(currency ?? DEFAULT_CURRENCY, saved, 'en-US')}
               </div>
-            </Link>
-          </>
+              <div className='tile__subtitle flx-row-sb'>
+                <span className='tile__subtitle tile__subtitle--opc'>
+                  goal:{' '}
+                  {/* {currencyFormat(currency ?? DEFAULT_CURRENCY, goal, 'en-US')}{' '} */}
+                  {numberFormatCurrency(
+                    goal,
+                    0,
+                    currency ?? DEFAULT_CURRENCY,
+                    'en-US'
+                  )}
+                  &nbsp;
+                </span>
+
+                {/* {'definir regla de negocio, ejemplo: diferencia entre los montos saved y goal'} */}
+                <StatusSquare alert={saved - goal <= 0 ? 'alert' : ''} />
+              </div>
+            </div>
+          </Link>
         );
       })}
     </article>

@@ -169,7 +169,7 @@ a.icon {
   gap: 0.5rem;
   align-items: start;
   justify-content: space-between;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   /* border: 1px solid rgb(21, 223, 21); */
 }
 

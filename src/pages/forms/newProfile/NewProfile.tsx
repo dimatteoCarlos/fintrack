@@ -183,7 +183,6 @@ function NewProfile() {
                 value={profileData.lastname}
               />
             </div>
-
             <div className='input__box'>
               {/* <label className='label form__title'>{'Add Money'}</label> */}
               <label className='label form__title'>
@@ -192,7 +191,6 @@ function NewProfile() {
                   {validationMessages['account']}
                 </span>
               </label>
-
               {/* accounts*/}
               <DropDownSelection
                 dropDownOptions={accountSelectionProp}
@@ -201,7 +199,6 @@ function NewProfile() {
                 isReset={isReset}
                 setIsReset={setIsReset}
               />
-
               <label htmlFor={keyName} className='label form__title'>
                 {title}&nbsp;
                 <span
@@ -217,7 +214,6 @@ function NewProfile() {
                   {validationMessages[keyName]?.replace('Format:', '')}
                 </span>
               </label>
-
               <InputNumberFormHandler
                 validationMessages={validationMessages}
                 setValidationMessages={setValidationMessages}
@@ -229,7 +225,6 @@ function NewProfile() {
               />
               {/* style={{ fontSize: '1.25rem', padding: '0 0.75rem' }} */}
             </div>
-
             <div className='input__box'>
               <label className='label form__title'>
                 {'type'}
@@ -237,7 +232,6 @@ function NewProfile() {
                   {validationMessages['type']}
                 </span>
               </label>
-
               {/* action debtor type */}
               <DropDownSelection
                 dropDownOptions={typeSelectionProp}
@@ -247,7 +241,6 @@ function NewProfile() {
               />
             </div>
           </div>
-
           {/* save */}
           <div className='submit__btn__container'>
             <FormSubmitBtn onClickHandler={onSubmitForm}>save</FormSubmitBtn>

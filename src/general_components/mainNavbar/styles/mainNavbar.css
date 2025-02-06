@@ -13,7 +13,8 @@
 .mainNavbar__container {
   border: none;
   position:sticky;
-  bottom: 0.5%;
+  bottom: 0.5%; /*figma*/
+  bottom: 3%;
 }
 
 /* .mainNavbarButton:not(:active) {

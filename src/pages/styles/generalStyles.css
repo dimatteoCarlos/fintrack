@@ -1,8 +1,9 @@
 /*it just affects Layout.tsx so check wether it affetcs also its children to optimize*/
-
+/* tentative styles changed for 411x731 cels. *2.75rem para --topSpaceHeight, .home__header top 11rem, .mainNavbar__container bottom 3%, total__container tracker 17%, .cards__presentation--tracker top 32% */
 :root {
   --figmaWidth: 22.5rem;
-  --topSpaceHeight: 2.75rem;
+  --topSpaceHeight: 2.75rem; /*figma*/
+  /* --topSpaceHeight: 0rem; */
 
   --dark: #141414;
   --light: white;
@@ -12,7 +13,7 @@
   --primary: #5b8c93; /*status square*/
   --squareAlert: #c97474; /*status square alert*/
   --error: #fc0c0c;
-  
+
   --lightSuccess: lightgreen;
   --success: green;
   --hoverColor: cyan;
@@ -129,8 +130,12 @@ body {
 
 .home__header {
   width: 100%;
-  min-height: 12.5rem;
-  height: 12.5rem;
+  min-height: 12.5rem; /*figma*/
+  height: 12.5rem; /*figma*/
+  /*test*/
+  min-height: 11rem;
+  height: 11rem;
+  /*---*/
   background-color: var(--light);
   flex-direction: column;
   align-items: center;
@@ -143,7 +148,8 @@ body {
 .content__presentation {
   display: flex;
   flex-direction: column;
-  padding: 5rem 0 1.5rem 0;
+  padding: 5rem 0 1.5rem 0; /*original*/
+  padding: 4rem 0 1.5rem 0; /*tentative*/
   align-items: center;
   justify-content: space-between;
   /* border: 10px solid yellow; */
@@ -153,7 +159,7 @@ body {
   width: 88%;
   margin: 0 auto;
   border-radius: 1rem;
-  /* padding: 0.5rem 0; */ /*check if there is  a conflict*/
+  padding: 1rem 0;
   /* border: 5px solid purple; */
 }
 
@@ -171,7 +177,8 @@ body {
 .headerContent__container {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 80%; /*original*/
+  width: 88%; /*changed*/
   margin: 0 auto;
   justify-content: center;
   align-items: center;

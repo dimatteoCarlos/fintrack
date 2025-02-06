@@ -40,7 +40,7 @@ function TrackerLayout() {
       <TrackerNavbar />
       <>
         {/* <div className='content__presentation  '> */}
-        <div className='cards__presentation  cards__presentation--tracker'>
+        <div className='cards__presentation--tracker'>
           <Outlet />
         </div>
         {/* </div> */}

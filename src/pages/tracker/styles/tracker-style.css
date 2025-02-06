@@ -45,7 +45,8 @@
   align-items: center;
 
   border-radius: 1rem 1rem 0 0;
-  width: 80%;
+  width: 80%; /*original*/
+  width: 88%; /*changed*/
   margin: 0 auto;
   align-self: center;
   background-color: #1b1b1b;
@@ -58,7 +59,7 @@
 .trackerNavbar__container,
 .total__container {
   position: absolute;
-  top: 20%;
+  top: 20%; /*figma*/
   left: 50%;
   transform: translateX(-50%);
 }
@@ -112,13 +113,20 @@ article {
 }
 
 /*---tracker card results---*/
-.cards__presentation--tracker {
-  padding: 1rem 1.625rem;
-  background: url('../../../assets/cardBgTexture.png') repeat;
-  position: relative;
 
+.cards__presentation--tracker {
+  width: 88%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  padding: 1rem 1.625rem;
+  /* border: 5px solid orange; */
+}
+
+.cards__presentation--tracker {
+  background: url('../../../assets/cardBgTexture.png') repeat;
   position: absolute;
-  top: 34%;
+  top: 34%; /*figma*/
+  top: 32%;
   left: 50%;
   transform: translateX(-50%);
   /* border: 10px solid orange; */
