@@ -181,14 +181,6 @@ article {
 }
 
 /*------------------------*/
-
-.screen--concept {
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  /* text-transform: capitalize; */
-}
-
 .icon--arrow {
   width: fit-content;
 }
@@ -254,7 +246,7 @@ textarea:invalid {
 
 .card__typeDate--type .screen--concept {
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-transform: capitalize;
   width: fit-content;
 

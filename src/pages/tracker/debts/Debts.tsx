@@ -4,7 +4,6 @@ import CardSeparator from '../components/CardSeparator.tsx';
 import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import { url_debtors } from '../../../endpoints.ts';
-import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
 import { useLocation } from 'react-router-dom';
 import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import {
@@ -22,6 +21,7 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
+import CardNoteSave from '../components/CardNoteSave.tsx';
 // import SelectComponent from '../components/SelectComponent.tsx';
 // import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
@@ -175,7 +175,7 @@ function Debts() {
   return (
     <>
       <form className='debts' style={{ color: 'inherit' }}>
-        {/* TOP CARD START */}
+        {/* TOP CARD */}
         <TopCard
           topCardElements={topCardElements}
           validationMessages={validationMessages}
@@ -189,53 +189,10 @@ function Debts() {
           setIsReset={setIsReset}
         />
 
-        {/* <div className='state__card--top'>
-          <div className='card--title'>
-            Amount
-            <span className='validation__errMsg'>
-              {validationMessages['amount']}
-            </span>
-          </div>
+        <CardSeparator />
 
-          <div className='card__screen'>
-            <input
-              name='amount'
-              className='inputNumber'
-              type='number'
-              step='any'
-              placeholder={trackerState}
-              onChange={updateTrackerData}
-              value={datatrack.amount}
-            />
-
-            <div className='account__currency'>
-              <CurrencyBadge
-                updateOutsideCurrencyData={updateDataCurrency}
-                variant='tracker'
-                currency={currency}
-              ></CurrencyBadge>
-            </div>
-          </div>
-
-          <div className='card--title'>
-            Debtor
-            <span className='validation__errMsg'>
-              {validationMessages['debtor']}
-            </span>
-          </div>
-          <SelectComponent
-            dropDownOptions={debtorOptions}
-            setSelectState={setDataTrack}
-            isReset={isReset}
-            setIsReset={setIsReset}
-            optionKeySelected='debtor'
-            selectedValue={datatrack['debtor']}
-          />
-        </div> */}
-
+        {/* BOTTOM CARD */}
         <div className='state__card--bottom'>
-          <CardSeparator />
-
           <div className='card__typeDate__container'>
             <div className='card__typeDate--type'>
               <div className='card--title'>Type</div>
@@ -256,32 +213,13 @@ function Debts() {
               </div>
             </div>
           </div>
-
-          <div className='card--title'>
-            Note
-            <span className='validation__errMsg'>
-              {validationMessages['note']}
-            </span>
-          </div>
-
-          <div
-            className='note--expense'
-            style={{ display: 'flex', justifyContent: 'space-between' }}
-          >
-            <div className='card__screen ' style={{ flex: 0.9 }}>
-              <textarea
-                className='input__note__description'
-                placeholder='Description'
-                onChange={updateTrackerData}
-                name='note'
-                rows={3}
-                maxLength={150}
-                value={datatrack.note}
-              />
-            </div>
-
-            <FormPlusBtn onClickHandler={onSaveHandler} />
-          </div>
+          <CardNoteSave
+            title={'note'}
+            validationMessages={validationMessages}
+            dataHandler={updateTrackerData}
+            inputNote={datatrack.note}
+            onSaveHandler={onSaveHandler}
+          />
         </div>
       </form>
     </>

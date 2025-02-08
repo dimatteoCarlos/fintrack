@@ -20,7 +20,6 @@ function CurrencyBadge({
     updateOutsideCurrencyData!(newCurrency);
     // console.log('🚀 ~ toggleCurrency ~ newCurrency:', newCurrency);
   }
-
   return (
     <div className={`icon-currency ${variant}`} onClick={toggleCurrency}>
       {currency.toUpperCase()}

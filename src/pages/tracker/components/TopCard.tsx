@@ -96,7 +96,7 @@ const TopCard = ({
           isReset={isReset}
           setIsReset={setIsReset}
           optionKeySelected={title2}
-          setSelectState={setSelectState} //setSelectedAccount
+          setSelectState={setSelectState} //example: setSelectedAccount
           selectedValue={selectedValue} //selectedAccount
         />
       </div>
