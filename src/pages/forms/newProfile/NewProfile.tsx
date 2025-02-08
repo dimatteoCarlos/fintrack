@@ -15,7 +15,6 @@ import {
 import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
-import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
 
 //------------------------
 //Account Options
@@ -212,12 +211,6 @@ function NewProfile() {
                   {validationMessages[keyName]?.replace('Format:', '')}
                 </span>
               </label>
-
-              <LabelNumberValidation
-                formDataNumber={formData}
-                validationMessages={validationMessages}
-                variant='form'
-              />
 
               <InputNumberFormHandler
                 validationMessages={validationMessages}

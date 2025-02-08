@@ -1,17 +1,14 @@
 //NewPocket.tsx
 import { useState } from 'react';
 import LeftArrowSvg from '../../../assets/LeftArrowSvg.svg';
-
 import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpace.tsx';
 import { Link, useLocation } from 'react-router-dom';
-
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
 import { validationData } from '../../../helpers/functions.ts';
 import { CurrencyType, FormNumberInputType } from '../../../types/types.ts';
 import FormDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import '../styles/forms-styles.css';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
-
 //----Temporary initial values----------
 type PocketDataType = {
   name: string;
@@ -27,44 +24,33 @@ const initialNewPocketData: PocketDataType = {
   target: '',
   date: new Date(),
 };
-
 const formDataNumber = { keyName: 'target', title: 'target' };
 const initialFormData: FormNumberInputType = {
   target: '',
 };
-
 //-------------------------
-
 function NewPocket() {
   const location = useLocation();
-
   //where to get saved
   const saved = 'alguito'; //Need to define what this is.
-
   //---states------
   const [pocketData, setPocketData] =
     useState<PocketDataType>(initialNewPocketData);
-
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
-
   const [isReset, setIsReset] = useState<boolean>(false);
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
-
   //functions---
-
   const { inputNumberHandlerFn } = useInputNumberHandler(
     setFormData,
     setValidationMessages,
     setPocketData
   );
-
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-
     if (name === formDataNumber.keyName) {
       inputNumberHandlerFn(name, value);
     } else {
@@ -101,11 +87,9 @@ function NewPocket() {
     setPocketData((prev) => ({ ...prev, date: new Date() }));
     setTimeout(() => setIsReset(false), 500);
   }
-
   return (
     <section className='newPocket__page page__container'>
       <TopWhiteSpace variant={'dark'} />
-
       <div className='page__content'>
         <div className='main__title--container'>
           <Link
@@ -115,12 +99,9 @@ function NewPocket() {
           >
             <LeftArrowSvg />
           </Link>
-
           <div className='form__title'>{'New Pocket'}</div>
         </div>
-
         {/*  */}
-
         <form className='form__box'>
           <div className='container--pocketName form__container'>
             <div className='input__box'>
@@ -130,7 +111,6 @@ function NewPocket() {
                   {validationMessages['name']}
                 </span>
               </label>
-
               <input
                 type='text'
                 className={`input__container`}
@@ -147,7 +127,6 @@ function NewPocket() {
                   {validationMessages['note']}
                 </span>
               </label>
-
               <input
                 type='text'
                 className={`input__container`}
@@ -181,7 +160,6 @@ function NewPocket() {
                 >
                   {formDataNumber.title}&nbsp;
                 </label>
-
                 <input
                   className={'input__targetAmount'}
                   type='text'
@@ -191,7 +169,6 @@ function NewPocket() {
                   value={formData[formDataNumber.keyName]}
                 />
               </div>
-
               <div className='target__label__saved'>
                 saved: {pocketData['saved'] ?? saved}
               </div>

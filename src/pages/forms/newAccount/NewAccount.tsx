@@ -13,7 +13,7 @@ import {
 } from '../../../helpers/constants.ts';
 import '../styles/forms-styles.css';
 import { CurrencyType } from '../../../types/types.ts';
-import { capitalize, validationData } from '../../../helpers/functions.ts';
+import { validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
 import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
@@ -107,7 +107,6 @@ function NewAccount() {
     //--
     //POST TO THE ENDPOINT FOR ACCOUNT DATA HERE
     console.log('data to POST:', { accountData });
-
     //resetting form values
     setIsReset(true);
     setCurrency(defaultCurrency);
@@ -160,6 +159,7 @@ function NewAccount() {
                   {validationMessages['type']}
                 </span>
               </label>
+
               <DropDownSelection
                 dropDownOptions={ACCOUNT_TYPE_OPTIONS_DEFAULT}
                 updateOptionHandler={accountTypeSelectHandler}

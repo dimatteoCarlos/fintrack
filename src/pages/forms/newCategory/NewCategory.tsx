@@ -4,7 +4,7 @@ import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpa
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-import { capitalize, validationData } from '../../../helpers/functions.ts';
+import { validationData } from '../../../helpers/functions.ts';
 import '../styles/forms-styles.css';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import { FormNumberInputType } from '../../../types/types.ts';
@@ -27,14 +27,12 @@ type CategoryDataType = {
   amount: number | '';
   nature: string;
 };
-
 const initialNewCategoryData: CategoryDataType = {
   category: '',
   subcategory: '',
   amount: '',
   nature: '',
 };
-
 const formDataNumber = { keyName: 'amount', title: 'budget' };
 const initialFormData: FormNumberInputType = {
   [formDataNumber.keyName]: '',
@@ -61,7 +59,6 @@ function NewCategory() {
     setValidationMessages,
     setCategoryData
   );
-
   //---------
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -111,19 +108,16 @@ function NewCategory() {
   return (
     <section className='page__container'>
       <TopWhiteSpace variant={'dark'} />
-
       <div className='page__content'>
         <div className='main__title--container'>
           {/* <Link to={location.state.previousRoute} relative='path' className='iconLeftArrow'
           > */
           /*this works but another way was used */}
-
           <Link to='..' relative='path' className='iconLeftArrow'>
             <LeftArrowSvg />
           </Link>
           <div className='form__title'>{'New Category'}</div>
         </div>
-
         <form className='form__box'>
           <div className='container--categoryName form__container'>
             <div className='input__box'>
@@ -162,14 +156,12 @@ function NewCategory() {
               <PlusSignSvg />
               {/* functionalitiy and data structure for this add button of  subcategories is PENDING */}
             </button>
-
             <div className='input__box'>
               <LabelNumberValidation
                 formDataNumber={formDataNumber}
                 validationMessages={validationMessages}
                 variant='form'
               />
-
               <input
                 className={'input__container'}
                 type='text'

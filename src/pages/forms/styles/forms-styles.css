@@ -55,10 +55,6 @@ label,
   /* border: 1px solid var(--primary); */
 }
 
-label {
-  /* text-transform: capitalize; */
-}
-
 label,
 .labelText {
   text-align: left;
