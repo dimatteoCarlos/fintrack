@@ -1,4 +1,5 @@
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge';
+import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation';
 import { capitalize } from '../../../helpers/functions';
 import { CurrencyType } from '../../../types/types';
 import SelectComponent from './SelectComponent';
@@ -58,20 +59,14 @@ const TopCard = ({
   return (
     <>
       <div className='state__card--top  '>
-        <label className='card--title'>{capitalize(title1)}</label>
-        <span
-          className='validation__errMsg'
-          style={{
-            color: validationMessages[title1]?.includes('Format:')
-              ? 'var(--success)'
-              : 'var(--error)',
-          }}
-        >
-          {validationMessages[title1]}
-        </span>
+        <LabelNumberValidation
+          formDataNumber={{ keyName: title1, title: title1 }}
+          validationMessages={validationMessages}
+          variant='tracker'
+        />
 
         <div className='card__screen'>
-          {/*       make the input number a component?       */}
+          {/* make the input number a component? */}
           <input
             className='inputNumber'
             name={title1}

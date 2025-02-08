@@ -12,9 +12,12 @@ function LabelNumberValidation({
   variant,
 }: LabelNumberValidationPropType) {
   const successColor = variant === 'form' ? '--lightSuccess' : '--success';
-  
+
+  const labelClassName =
+    variant === 'form' ? 'label form__title' : 'card--title';
+
   return (
-    <label htmlFor={formDataNumber.keyName} className='label form__title'>
+    <label htmlFor={formDataNumber.keyName} className={labelClassName}>
       {capitalize(formDataNumber.title)}&nbsp;
       <span
         className='validation__errMsg'
