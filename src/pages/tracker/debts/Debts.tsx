@@ -22,8 +22,6 @@ import {
 import TopCard from '../components/TopCard.tsx';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
-// import SelectComponent from '../components/SelectComponent.tsx';
-// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
