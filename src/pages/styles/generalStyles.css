@@ -1,8 +1,10 @@
 /*it just affects Layout.tsx so check wether it affetcs also its children to optimize*/
 /* tentative styles changed for 411x731 cels. *2.75rem para --topSpaceHeight, .home__header top 11rem, .mainNavbar__container bottom 3%, total__container tracker 17%, .cards__presentation--tracker top 32% */
+
 :root {
   --figmaWidth: 22.5rem;
-  --topSpaceHeight: 2.75rem; /*figma*/
+  /*figma*/
+  --topSpaceHeight: 2.75rem;
   /* --topSpaceHeight: 0rem; */
 
   --dark: #141414;
@@ -86,7 +88,6 @@ body {
   left: 0rem;
   cursor: pointer;
   z-index: 1;
-
   /* border: 1px solid var(--dark); */
 }
 
@@ -123,7 +124,7 @@ body {
 
 .home__layout {
   position: relative;
-  height: 100vh;
+  /* height: 100vh; */
   min-height: 48rem;
   max-height: 50rem;
 }
@@ -132,7 +133,7 @@ body {
   width: 100%;
   min-height: 12.5rem; /*figma*/
   height: 12.5rem; /*figma*/
-  /*test*/
+  /*test*/ /*try calc or clap and put height, Top and Bottom as a function of topSpaceHeight and head layout height*/
   min-height: 11rem;
   height: 11rem;
   /*---*/
@@ -232,7 +233,6 @@ input[type='number'] {
   font-size: 0.7rem;
   font-style: italic;
   font-weight: normal;
-  text-transform: lowercase;
 }
 
 .hover:hover {

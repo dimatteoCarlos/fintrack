@@ -45,8 +45,8 @@
   /* border: 1px solid var(--primary); */
 }
 
-.form__title,
 label,
+.form__title,
 .labelText {
   color: var(--light);
   font-size: 1.25rem;
@@ -56,7 +56,7 @@ label,
 }
 
 label {
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 label,

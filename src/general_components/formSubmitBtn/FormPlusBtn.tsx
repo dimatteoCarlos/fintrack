@@ -1,6 +1,4 @@
 //FormPlusBtn.tsx
-
-
 import Plusvg from '../../assets/trackerNavbarSvg/PlusSvg.svg';
 type FormPlusBtnPropType = {
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -18,7 +16,6 @@ function FormPlusBtn({ onClickHandler }: FormPlusBtnPropType) {
         onClick={handleClick}
         style={{
           border: 'none',
-
           transition: 'all 0.2s ease',
         }}
         onMouseDown={(e) =>

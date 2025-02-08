@@ -66,6 +66,7 @@ function CategoryDetail() {
     { labelText: 'Need', className: 'label--text' },
 
     { labelText: 'Want', className: 'label--text' },
+    
     { labelText: 'Other', className: 'label--text' },
 
     // { labelText: 'New One', className: 'label--text' },

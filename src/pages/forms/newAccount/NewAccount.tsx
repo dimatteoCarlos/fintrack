@@ -13,9 +13,10 @@ import {
 } from '../../../helpers/constants.ts';
 import '../styles/forms-styles.css';
 import { CurrencyType } from '../../../types/types.ts';
-import { validationData } from '../../../helpers/functions.ts';
+import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
+import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
 //-----temporarily 'till decide how to handle currencies
 const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
@@ -41,10 +42,11 @@ const ACCOUNT_TYPE_OPTIONS_DEFAULT = {
   options: ACCOUNT_TYPE_DEFAULT,
   variant: 'form',
 };
-const initialFormData: FormNumberInputType = {
-  amount: '',
-};
 const formDataNumber = { keyName: 'amount', title: 'value' };
+
+const initialFormData: FormNumberInputType = {
+  [formDataNumber.keyName]: '',
+};
 
 //-------------------------------
 function NewAccount() {
@@ -141,6 +143,7 @@ function NewAccount() {
                   {validationMessages['name']}
                 </span>
               </label>
+
               <input
                 type='text'
                 className='input__container'
@@ -157,7 +160,6 @@ function NewAccount() {
                   {validationMessages['type']}
                 </span>
               </label>
-
               <DropDownSelection
                 dropDownOptions={ACCOUNT_TYPE_OPTIONS_DEFAULT}
                 updateOptionHandler={accountTypeSelectHandler}
@@ -170,7 +172,6 @@ function NewAccount() {
             <div className='account__dateAndCurrency'>
               <div className='account__date'>
                 <label className='label form__title'>{'Starting Point'}</label>
-
                 <div className='form__datepicker__container'>
                   <FormDatepicker
                     changeDate={changeStartingPoint}
@@ -192,27 +193,11 @@ function NewAccount() {
             </div>
 
             <div className='input__box'>
-              <label
-                htmlFor={formDataNumber.keyName}
-                className='label form__title'
-              >
-                {formDataNumber.title}&nbsp;
-                <span
-                  className='validation__errMsg'
-                  style={{
-                    color: validationMessages[formDataNumber.keyName]
-                      ?.toLowerCase()
-                      .includes('format:')
-                      ? 'var(--lightSuccess)'
-                      : 'var(--error)',
-                  }}
-                >
-                  {validationMessages[formDataNumber.keyName]?.replace(
-                    'Format:',
-                    ''
-                  )}
-                </span>
-              </label>
+              <LabelNumberValidation
+                formDataNumber={formDataNumber}
+                validationMessages={validationMessages}
+                variant='form'
+              />
 
               <InputNumberFormHandler
                 validationMessages={validationMessages}
@@ -225,13 +210,6 @@ function NewAccount() {
               />
 
               {/* <input
-                className='input__container input__container--amount'
-                type='number'
-                step='any'
-                placeholder=''
-                name='amount'
-                onChange={inputHandler}
-                value={accountData.amount}
                 style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
               /> */}
             </div>

@@ -6,17 +6,16 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 import '../styles/forms-styles.css';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-import {
-  ExpenseAccountsType,
-} from '../../../types/types.ts';
+import { ExpenseAccountsType } from '../../../types/types.ts';
 import { url_accounts } from '../../../endpoints.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
   TYPEDEBTS_OPTIONS_DEFAULT,
 } from '../../../helpers/constants.ts';
-import { validationData } from '../../../helpers/functions.ts';
+import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
+import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
 
 //------------------------
 //Account Options
@@ -144,10 +143,8 @@ function NewProfile() {
           >
             <LeftArrowLightSvg />
           </Link>
-
           <div className='form__title'>{'New Profile'}</div>
         </div>
-
         <form className='form__box'>
           <div className='container--profileName form__container '>
             <div className='input__box'>
@@ -169,7 +166,7 @@ function NewProfile() {
 
             <div className='input__box'>
               <label htmlFor='lastname' className='label form__title'>
-                {'last name'}
+                {'Last Name'}
                 <span className='validation__errMsg'>
                   {validationMessages['lastname']}
                 </span>
@@ -199,8 +196,9 @@ function NewProfile() {
                 isReset={isReset}
                 setIsReset={setIsReset}
               />
+
               <label htmlFor={keyName} className='label form__title'>
-                {title}&nbsp;
+                {capitalize(title)}&nbsp;
                 <span
                   className='validation__errMsg'
                   style={{
@@ -214,6 +212,13 @@ function NewProfile() {
                   {validationMessages[keyName]?.replace('Format:', '')}
                 </span>
               </label>
+
+              <LabelNumberValidation
+                formDataNumber={formData}
+                validationMessages={validationMessages}
+                variant='form'
+              />
+
               <InputNumberFormHandler
                 validationMessages={validationMessages}
                 setValidationMessages={setValidationMessages}
@@ -227,7 +232,7 @@ function NewProfile() {
             </div>
             <div className='input__box'>
               <label className='label form__title'>
-                {'type'}
+                {'Type'}
                 <span className='validation__errMsg'>
                   {validationMessages['type']}
                 </span>

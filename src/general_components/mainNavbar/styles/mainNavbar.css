@@ -12,9 +12,11 @@
 
 .mainNavbar__container {
   border: none;
-  position:sticky;
+  position: sticky;
   bottom: 0.5%; /*figma*/
-  bottom: 3%;
+  /* bottom: 0%; */
+  /* left: 50%;
+  transform: translateX(-50%); */
 }
 
 /* .mainNavbarButton:not(:active) {

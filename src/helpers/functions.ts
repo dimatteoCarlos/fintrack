@@ -203,10 +203,6 @@ export function validationData(stateToValidate: {
       continue;
     }
 
-    if (typeof value === 'number' && value < 0) {
-      errorValidationMessages[key] = `* ${capitalize(key)} must be positive`;
-    }
-
     if (typeof value === 'string' && !value) {
       errorValidationMessages[key] = `* Please provide the ${capitalize(key)}`;
     }
@@ -288,7 +284,7 @@ export function checkNumberFormatValue(value: string): {
     )
       ? parseFloat(
           parseFloat(value.replace(/\./g, '').replace(',', '.')).toFixed(2)
-        ) //seems that toFixed does not work here - revisar
+        ) //seems that toFixed method does not work here - check
       : 0;
 
     return {

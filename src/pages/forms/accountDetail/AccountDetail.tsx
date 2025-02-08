@@ -127,7 +127,7 @@ function AccountDetail() {
             </div>
 
             <div className='input__box'>
-              <label className='label form__title'>{'account type'}</label>
+              <label className='label form__title'>{'Account Type'}</label>
 
               <p className='input__container' style={{ padding: '0.5rem' }}>
                 {capitalize(accountDetail.accountInfo.type)}
@@ -136,7 +136,7 @@ function AccountDetail() {
 
             <div className='account__dateAndCurrency'>
               <div className='account__date'>
-                <label className='label form__title'>{'starting point'}</label>
+                <label className='label form__title'>{'Starting Point'}</label>
 
                 <div
                   className='form__datepicker__container'
@@ -151,7 +151,7 @@ function AccountDetail() {
               </div>
 
               <div className='account__currency'>
-                <div className='label form__title'>{'currency'}</div>
+                <div className='label form__title'>{'Currency'}</div>
 
                 <CurrencyBadge
                   variant='form'

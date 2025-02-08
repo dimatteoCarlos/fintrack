@@ -58,19 +58,17 @@ const TopCard = ({
   return (
     <>
       <div className='state__card--top  '>
-        <label className='card--title'>
-          {capitalize(title1)}
-          <span
-            className='validation__errMsg'
-            style={{
-              color: validationMessages[title1]?.includes('Format:')
-                ? 'var(--success)'
-                : 'var(--error)',
-            }}
-          >
-            {validationMessages[title1]}
-          </span>
-        </label>
+        <label className='card--title'>{capitalize(title1)}</label>
+        <span
+          className='validation__errMsg'
+          style={{
+            color: validationMessages[title1]?.includes('Format:')
+              ? 'var(--success)'
+              : 'var(--error)',
+          }}
+        >
+          {validationMessages[title1]}
+        </span>
 
         <div className='card__screen'>
           {/*       make the input number a component?       */}

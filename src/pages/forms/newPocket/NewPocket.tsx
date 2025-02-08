@@ -39,7 +39,7 @@ function NewPocket() {
   const location = useLocation();
 
   //where to get saved
-  const saved = 'alguito';
+  const saved = 'alguito'; //Need to define what this is.
 
   //---states------
   const [pocketData, setPocketData] =
@@ -78,7 +78,6 @@ function NewPocket() {
       // desiredDate: selectedDate.toDateString(),
       date: selectedDate,
     }));
-    //it is a string
   }
   //---
   function onSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
@@ -160,7 +159,7 @@ function NewPocket() {
             </div>{' '}
             {/* Target Amount */}
             <label htmlFor={formDataNumber.keyName} className='form__title1'>
-              {'target amount'}
+              {'Target Amount'}
               <div
                 className='validation__errMsg'
                 style={{

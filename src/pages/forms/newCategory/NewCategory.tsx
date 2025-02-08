@@ -4,10 +4,11 @@ import TopWhiteSpace from '../../../general_components/topWhiteSpace/TopWhiteSpa
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import { Link } from 'react-router-dom';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-import { validationData } from '../../../helpers/functions.ts';
+import { capitalize, validationData } from '../../../helpers/functions.ts';
 import '../styles/forms-styles.css';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import { FormNumberInputType } from '../../../types/types.ts';
+import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
 // import { useLocation } from 'react-router-dom';
 
 //----Category Nature Tiles---------------
@@ -132,7 +133,6 @@ function NewCategory() {
                   {validationMessages['category']}
                 </div>
               </label>
-
               <input
                 type='text'
                 className={`input__container`}
@@ -142,10 +142,9 @@ function NewCategory() {
                 value={categoryData.category}
               />
             </div>
-
             <div className='input__box'>
               <label htmlFor='subcategory' className='label form__title'>
-                {'subcategory'}&nbsp;
+                {'Subcategory'}&nbsp;
               </label>
               <span className='validation__errMsg'>
                 {validationMessages['subcategory']}
@@ -159,34 +158,17 @@ function NewCategory() {
                 value={categoryData.subcategory}
               />
             </div>
-
             <button className={'input__container'} onClick={addHandler}>
               <PlusSignSvg />
               {/* functionalitiy and data structure for this add button of  subcategories is PENDING */}
             </button>
 
             <div className='input__box'>
-              <label
-                htmlFor={formDataNumber.keyName}
-                className='label form__title'
-              >
-                {formDataNumber.title}&nbsp;
-                <span
-                  className='validation__errMsg'
-                  style={{
-                    color: validationMessages[formDataNumber.keyName]
-                      ?.toLowerCase()
-                      .includes('format:')
-                      ? 'var(--lightSuccess)'
-                      : 'var(--error)',
-                  }}
-                >
-                  {validationMessages[formDataNumber.keyName]?.replace(
-                    'Format:',
-                    ''
-                  )}
-                </span>
-              </label>
+              <LabelNumberValidation
+                formDataNumber={formDataNumber}
+                validationMessages={validationMessages}
+                variant='form'
+              />
 
               <input
                 className={'input__container'}
@@ -198,7 +180,6 @@ function NewCategory() {
               />
             </div>
           </div>
-
           {/*later try to convert to a Component of tiles or badges */}
           <div className='container--nature'>
             <div className='form__title form__title--tiles'>
@@ -207,10 +188,8 @@ function NewCategory() {
                 {validationMessages['nature']}
               </div>
             </div>
-
             <div className='nature__tiles'>
               {tileLabels.map((label, indx) => {
-                // console.log(label.labelText);
                 return (
                   <button
                     className='nature__btn tile__button'
