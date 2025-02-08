@@ -9,8 +9,8 @@ import Income from './pages/tracker/income/Income.tsx';
 import Investment from './pages/tracker/investment/Investment.tsx';
 import Debts from './pages/tracker/debts/Debts.tsx';
 
-import BudgetPresentation from './pages/budget/components/BudgetPresentation.tsx';
-import Debtors from './pages/debts/debtors/Debtors.tsx';
+import Budget from './pages/budget/components/Budget.tsx';
+import Debtors from './pages/debts/components/Debtors.tsx';
 
 import TrackerLayout from './pages/tracker/TrackerLayout.tsx';
 import Layout from './pages/layout/Layout.tsx';
@@ -45,7 +45,6 @@ function App() {
 
       children: [
         //pages/tracker
-        // { index: true, element: <Navigate to='/tracker/expense' /> },
         { index: true, element: <Navigate to='/tracker/expense' /> },
         {
           path: '/tracker',
@@ -62,9 +61,7 @@ function App() {
         {
           path: '/budget',
           element: <BudgetLayout />,
-          children: [
-            { path: '/budget/presentation', element: <BudgetPresentation /> },
-          ],
+          children: [{ path: '/budget/presentation', element: <Budget /> }],
         },
 
         {
@@ -86,13 +83,13 @@ function App() {
 
     { path: '/accounting', element: <Accounting /> },
 
-    //forms new item
+    //page form new item
     { path: '/budget/new_category', element: <NewCategory /> },
     { path: '/budget/new_pocket', element: <NewPocket /> },
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/new_account', element: <NewAccount /> },
 
-    //show movements
+    //show movements not yet defined
     {
       path: '/overview/movements/expense',
       element: <Movements />,
@@ -102,7 +99,7 @@ function App() {
       element: <Movements />,
     },
 
-    //show detailed item
+    //show detailed item page
     {
       path: '/overview/accounts/:accountId',
       element: <AccountDetail />,

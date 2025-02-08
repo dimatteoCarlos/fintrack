@@ -2,59 +2,17 @@
 
 import { Link } from 'react-router-dom';
 import { StatusSquare } from '../../../general_components/boxComponents';
-import { DEFAULT_CURRENCY } from '../../../helpers/constants';
+import {
+  DEFAULT_CURRENCY,
+  DEFAULT_POCKET_LIST,
+} from '../../../helpers/constants';
 import {
   currencyFormat,
   numberFormatCurrency,
 } from '../../../helpers/functions';
-import { CurrencyType } from '../../../types/types';
+import { PocketsToRenderType } from '../../../types/types';
 
 // import { useFetch } from '../../../hooks/useFetch.tsx';
-
-export type PocketsToRenderType = {
-  pocketName: string;
-  description: string;
-  saved: number;
-  goal: number;
-  currency?: CurrencyType;
-  status?: number;
-  pocket_id?: number;
-};
-
-const defaultPocketList: PocketsToRenderType[] = [
-  {
-    pocketName: 'Name Pocket 01',
-    description: 'Description 01',
-    saved: Math.random() * 100,
-    goal: Math.random() * 100,
-    status: Math.floor((Math.random() - 0.5) * 100),
-    pocket_id: 4,
-  },
-  {
-    pocketName: 'Name Pocket 02',
-    description: 'Description 02',
-    saved: 99,
-    goal: 100,
-    currency: 'cop',
-    pocket_id: 4,
-  },
-  {
-    pocketName: 'Name Pocket 03',
-    description: 'Description 03',
-    saved: 500,
-    goal: 98,
-    currency: 'eur',
-    pocket_id: 4,
-  },
-  {
-    pocketName: 'Name Pocket 04',
-    description: 'Description 04',
-    saved: Math.random() * 100,
-    goal: Math.random() * 100,
-    currency: 'eur',
-    pocket_id: 4,
-  },
-];
 
 function ListPocket() {
   //List Pocket
@@ -68,7 +26,7 @@ function ListPocket() {
 
   const pocketList: PocketsToRenderType[] =
     !isLoading && !error && data?.length
-      ? data.map(
+      ? data?.map(
           ({ pocketName, description, saved, goal, currency, pocket_id }) => ({
             pocketName,
             description,
@@ -78,7 +36,7 @@ function ListPocket() {
             pocket_id,
           })
         )
-      : defaultPocketList;
+      : DEFAULT_POCKET_LIST;
 
   // en el backend: generar la data segun estructura de los datos a renderizar, es decir,
   //agrupar para cada pocket el saved y el goal, de cada uno de los movimientos almacenados, la sumatoria de saved se refleja en el saved, ,  y el status seria el resultado de la resta entre el budget - expense de cada categoria, o si se prefiere reflejar el status de una vez, haciendo calculo en backend.

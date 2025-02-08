@@ -47,7 +47,6 @@ const formDataNumber = { keyName: 'amount', title: 'value' };
 const initialFormData: FormNumberInputType = {
   [formDataNumber.keyName]: '',
 };
-
 //-------------------------------
 function NewAccount() {
   const location = useLocation();
@@ -68,7 +67,6 @@ function NewAccount() {
     useState<FormNumberInputType>(initialFormData);
 
   //---functions-----
-
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
@@ -76,7 +74,8 @@ function NewAccount() {
     setAccountData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function accountTypeSelectHandler(selectedOption: any) { //check any
+  function accountTypeSelectHandler(selectedOption: any) {
+    //check any
     setAccountData((acc: AccountDataType) => ({
       ...acc,
       type: selectedOption?.value,

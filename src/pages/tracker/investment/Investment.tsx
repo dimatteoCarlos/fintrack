@@ -144,7 +144,7 @@ function Investment() {
     updateDataCurrency(defaultCurrency);
     setIsReset(true);
     setValidationMessages({});
-    setInvestmentData(initialInvestmentData); 
+    setInvestmentData(initialInvestmentData);
     setFormData(initialFormData);
     // after a delay, change isReset to false
     setTimeout(() => {

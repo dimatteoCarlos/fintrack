@@ -1,3 +1,5 @@
+import { PocketsToRenderType } from '../types/types';
+
 //-------------------------
 export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 export const DEFAULT_CURRENCY = 'usd';
@@ -68,3 +70,111 @@ export const ACCOUNT_TYPE_DEFAULT = [
     label: 'Account Type 03',
   },
 ];
+
+//pages/debts/ListPocket.tsx
+export const DEFAULT_POCKET_LIST: PocketsToRenderType[] = [
+  {
+    pocketName: 'Name Pocket 01',
+    description: 'Description 01',
+    saved: Math.random() * 100,
+    goal: Math.random() * 100,
+    status: Math.floor((Math.random() - 0.5) * 100),
+    pocket_id: 4,
+  },
+  {
+    pocketName: 'Name Pocket 02',
+    description: 'Description 02',
+    saved: 99,
+    goal: 100,
+    currency: 'cop',
+    pocket_id: 4,
+  },
+  {
+    pocketName: 'Name Pocket 03',
+    description: 'Description 03',
+    saved: 500,
+    goal: 98,
+    currency: 'eur',
+    pocket_id: 4,
+  },
+  {
+    pocketName: 'Name Pocket 04',
+    description: 'Description 04',
+    saved: Math.random() * 100,
+    goal: Math.random() * 100,
+    currency: 'eur',
+    pocket_id: 4,
+  },
+];
+
+//account detail
+export const DEFAULT_LAST_MOVEMENTS = [
+  {
+    categoryName: 'Category Name_01',
+    record: 'Record',
+    description: 'Description',
+    date: new Date(),
+  },
+
+  {
+    categoryName: 'Category Name_02',
+    record: 'Record',
+    description: 'Description',
+    date: new Date().setDate(
+      new Date().getDate() - Math.floor(Math.random() * 31)
+    ),
+  },
+  {
+    categoryName: 'Category Name_05',
+    record: 'Record',
+    description: 'Description',
+    date: new Date().setDate(
+      new Date().getDate() - Math.floor(Math.random() * 31)
+    ),
+  },
+  {
+    categoryName: 'Category Name_06',
+    record: 'Record',
+    description: 'Description',
+    date: new Date().setDate(
+      new Date().getDate() - Math.floor(Math.random() * 31)
+    ),
+  },
+];
+
+//Category Detail
+//Last Movements
+export const DEFAULT_CATEGORY_LIST = [
+  {
+    categoryName: 'subcategory name',
+    record: 'spent',
+    description: '% percentage',
+    date: new Date(),
+  },
+  {
+    categoryName: 'subcategory name',
+    record: 'spent',
+    description: '% percentage',
+    date: new Date(),
+  },
+  {
+    categoryName: 'subcategory name',
+    record: 'spent',
+    description: '% percentage',
+    date: new Date(),
+  },
+  {
+    categoryName: 'subcategory name',
+    record: 'spent',
+    description: '% percentage',
+    date: new Date(),
+  },
+];
+
+//AccountBalance
+
+
+//InvestmentAccBalance
+
+//SavingGoals
+

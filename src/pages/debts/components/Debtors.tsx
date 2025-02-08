@@ -1,7 +1,7 @@
 import { NavigateFunction, useLocation, useNavigate } from 'react-router-dom';
 import { CardTitle } from '../../../general_components/CardTitle';
 import OpenAddEditBtn from '../../../general_components/OpenAddEditBtn';
-import ListOfDebtors from '../components/ListOfDebtors';
+import ListOfDebtors from './ListOfDebtors';
 
 //shares css styles from general styles and budget styles
 

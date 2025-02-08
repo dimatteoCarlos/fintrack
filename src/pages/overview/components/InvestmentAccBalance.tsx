@@ -12,7 +12,6 @@ export type InvestmentAccountToRenderType = {
   subtitle1: string;
   title2: string;
   capital: number;
-  status: JSX.Element;
   balanceType: string;
   type: string;
   currency: string;
@@ -34,11 +33,6 @@ function InvestmentAccountBalance({
       subtitle1: 'capital invested',
       title2: 'factual balance',
       capital: 500123,
-      status: (
-        <span>
-          <StatusSquare />
-        </span>
-      ),
       balanceType: '% Loss',
       currency: 'eur',
       type: 'type',
@@ -48,11 +42,6 @@ function InvestmentAccountBalance({
       subtitle1: 'capital invested',
       capital: 100000,
       title2: 'factual balance',
-      status: (
-        <span>
-          <StatusSquare />
-        </span>
-      ),
       balanceType: '% Loss',
       currency: 'yen',
       type: 'type',
@@ -62,11 +51,6 @@ function InvestmentAccountBalance({
       subtitle1: 'capital invested',
       capital: 2750000,
       title2: 'factual balance',
-      status: (
-        <span>
-          <StatusSquare />
-        </span>
-      ),
       balanceType: '% Profit',
       currency: 'usd',
       type: 'type',
@@ -76,11 +60,6 @@ function InvestmentAccountBalance({
       subtitle1: 'capital invested',
       capital: 987654.55,
       title2: 'factual balance',
-      status: (
-        <span>
-          <StatusSquare />
-        </span>
-      ),
       balanceType: '% Profit',
       currency: 'cop',
       type: 'type',
@@ -93,8 +72,8 @@ function InvestmentAccountBalance({
 
   const accountsToRender: InvestmentAccountToRenderType[] =
     data && !error && !isLoading && data?.accounts?.length
-       ? defaultInvestmentAcc
-        //temporaryly commented
+      ? defaultInvestmentAcc
+      : //temporaryly commented
         // ?   data?.accounts?.map((acc) => ({
         //   title1: acc.name,
         //   subtitle1: 'capital invested',
@@ -109,7 +88,7 @@ function InvestmentAccountBalance({
         //     </span>
         //   ),
         // }))
-      : defaultInvestmentAcc;
+        defaultInvestmentAcc;
 
   return (
     <>
@@ -162,7 +141,9 @@ function InvestmentAccountBalance({
                     {title2}
                   </div>
                   <div className='tile__status--investment--right '>
-                    <StatusSquare></StatusSquare>
+                    <StatusSquare
+                      alert={0.5 - Math.random() < 0 ? 'alert' : ''} //temporary values
+                    ></StatusSquare>
                     <div className='tile__subtitle subtitle__status__investment--right '>
                       {balanceType}
                     </div>

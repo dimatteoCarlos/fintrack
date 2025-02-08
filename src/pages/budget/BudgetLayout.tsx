@@ -1,10 +1,8 @@
 //DebtsLayout.tsx
 import { TitleHeader } from '../../general_components/titleHeader/TitleHeader';
-
-import BudgetPresentation from './components/BudgetPresentation';
+import Budget from './components/Budget';
 import BudgetBigBoxResult from './components/BudgetBigBoxResult';
 import './styles/budget-styles.css';
-
 
 function BudgetLayout() {
   //temporary values------------
@@ -33,7 +31,7 @@ function BudgetLayout() {
           </div>
         </div>
         <BudgetBigBoxResult />
-        <BudgetPresentation />
+        <Budget />
       </div>
     </>
   );

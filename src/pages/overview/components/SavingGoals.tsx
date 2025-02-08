@@ -69,7 +69,9 @@ function SavingGoals() {
             {currencyFormat(defaultCurrency, goal.amount, formatNumberCountry)}
           </div>
           <div className='tile__status__container flx-row-sb'>
-            <StatusSquare>{}</StatusSquare>
+            <StatusSquare
+              alert={0.5 - Math.random() < 0 ? 'alert' : ''} //temporary values
+            ></StatusSquare>
 
             <div className='tile__subtitle tile__status--goal'>
               {goal.status}
@@ -112,7 +114,9 @@ function SavingGoals() {
             )}
           </div>
           <div className='tile__status__container flx-row-sb'>
-            <StatusSquare></StatusSquare>
+            <StatusSquare
+              alert={0.5 - Math.random() < 0 ? 'alert' : ''} //temporary values
+            ></StatusSquare>
 
             <div className='tile__subtitle tile__status--goal'>
               {income.status}
@@ -134,7 +138,9 @@ function SavingGoals() {
             )}
           </div>
           <div className='tile__status__container flx-row-sb'>
-            <StatusSquare></StatusSquare>
+            <StatusSquare
+              alert={0.5 - Math.random() < 0 ? 'alert' : ''} //temporary values
+            ></StatusSquare>
 
             <div className='tile__subtitle tile__status--goal'>
               {expenses.status}

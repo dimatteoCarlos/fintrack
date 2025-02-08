@@ -8,7 +8,10 @@ import { CardTitle } from '../../../general_components/CardTitle';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn';
 import FormDatepicker from '../../../general_components/datepicker/Datepicker';
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge';
-import { DEFAULT_CURRENCY } from '../../../helpers/constants';
+import {
+  DEFAULT_CURRENCY,
+  DEFAULT_LAST_MOVEMENTS,
+} from '../../../helpers/constants';
 
 // import { StatusSquare } from '../../../components/boxComponents.tsx';
 // import SummaryDetailBox from '../../../components/summaryDetailBox/SummaryDetailBox.tsx';
@@ -17,53 +20,22 @@ import { DEFAULT_CURRENCY } from '../../../helpers/constants';
 import { capitalize } from '../../../helpers/functions';
 import '../styles/forms-styles.css';
 
+//temporary data
+const accountInfo = {
+  name: 'Account Name Detail',
+  balance: 123654.017,
+  type: 'tipo detail',
+  date: new Date(),
+  currency: 'eur',
+};
+
+//Last Movements
+const lastMovements = DEFAULT_LAST_MOVEMENTS;
+
 function AccountDetail() {
-  //temporary data
-
-  const accountInfo = {
-    name: 'Account Name Detail',
-    balance: 123654.017,
-    type: 'tipo detail',
-    date: new Date(),
-    currency: 'eur',
-  };
-
-  //Last Movements
-  const lastMovements = [
-    {
-      categoryName: 'Category Name_01',
-      record: 'Record',
-      description: 'Description',
-      date: new Date(),
-    },
-
-    {
-      categoryName: 'Category Name_02',
-      record: 'Record',
-      description: 'Description',
-      date: new Date().setDate(
-        new Date().getDate() - Math.floor(Math.random() * 31)
-      ),
-    },
-    {
-      categoryName: 'Category Name_05',
-      record: 'Record',
-      description: 'Description',
-      date: new Date().setDate(
-        new Date().getDate() - Math.floor(Math.random() * 31)
-      ),
-    },
-    {
-      categoryName: 'Category Name_06',
-      record: 'Record',
-      description: 'Description',
-      date: new Date().setDate(
-        new Date().getDate() - Math.floor(Math.random() * 31)
-      ),
-    },
-  ];
-
   //data from endpoint request for info account, and for last movements
+  //Define the endpoint to get the Last movements and calculate the accountInfo required. set the logic, so as lastMovement be null set it to default
+  
   const initialAccountDetail = {
     accountInfo,
     lastMovements,

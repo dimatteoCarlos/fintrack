@@ -6,11 +6,10 @@ import Dots3LightSvg from '../../../assets/Dots3LightSvg.svg';
 import ListContent from '../../../general_components/listContent/ListContent.tsx';
 import { CardTitle } from '../../../general_components/CardTitle.tsx';
 import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitBtn.tsx';
-
-import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
 
 import '../styles/forms-styles.css';
+import { DEFAULT_CATEGORY_LIST } from '../../../helpers/constants.ts';
 
 function CategoryDetail() {
   const [activeCategory, setActiveCategory] = useState('');
@@ -29,46 +28,16 @@ function CategoryDetail() {
     amount: 2222.11,
     subtitle1: 'Spent',
     subtitle2: 'status',
-    status: <StatusSquare />,
   };
 
   //Last Movements
-  const listData = [
-    {
-      categoryName: 'subcategory name',
-      record: 'spent',
-      description: '% percentage',
-      date: new Date(),
-    },
-    {
-      categoryName: 'subcategory name',
-      record: 'spent',
-      description: '% percentage',
-      date: new Date(),
-    },
-    {
-      categoryName: 'subcategory name',
-      record: 'spent',
-      description: '% percentage',
-      date: new Date(),
-    },
-    {
-      categoryName: 'subcategory name',
-      record: 'spent',
-      description: '% percentage',
-      date: new Date(),
-    },
-  ];
+  const listData = DEFAULT_CATEGORY_LIST;
 
   const tileLabels = [
     { labelText: 'Must', className: 'label--text' },
-
     { labelText: 'Need', className: 'label--text' },
-
     { labelText: 'Want', className: 'label--text' },
-    
     { labelText: 'Other', className: 'label--text' },
-
     // { labelText: 'New One', className: 'label--text' },
   ];
 

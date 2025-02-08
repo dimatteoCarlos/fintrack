@@ -13,11 +13,12 @@ import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import '../styles/forms-styles.css';
+import { DEFAULT_LAST_MOVEMENTS } from '../../../helpers/constants.ts';
 //
 
 function DebtorDetail() {
   //temporary dummy data
-  // Data must come from DATA FETCHING ENDPOINT API BACKEND
+  // Data must come from DATA FETCHING ENDPOINT API BACKEND. Define the backend api integration
 
   const debtorInfo = {
     debtor_name: 'Name, Lastname Selected',
@@ -53,33 +54,7 @@ function DebtorDetail() {
   //     : 'debtor';
 
   //Last Movements
-  const lastMovements = [
-    {
-      categoryName: 'Category Name',
-      record: 'Record',
-      description: 'Description',
-      date: new Date(),
-    },
-
-    {
-      categoryName: 'Category Name',
-      record: 'Record',
-      description: 'Description',
-      date: new Date(),
-    },
-    {
-      categoryName: 'Category Name',
-      record: 'Record',
-      description: 'Description',
-      date: new Date(),
-    },
-    {
-      categoryName: 'Category Name',
-      record: 'Record',
-      description: 'Description',
-      date: new Date(),
-    },
-  ];
+  const lastMovements = DEFAULT_LAST_MOVEMENTS;
 
   const initialDebtorDetail = {
     debtorInfo,

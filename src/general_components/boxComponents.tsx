@@ -12,11 +12,13 @@ export function BoxRow({ children }: ChildrenPropType) {
 }
 
 export function StatusSquare({
-  children,
+  // children,
   alert,
 }: {
-  children: React.ReactNode;
+  // children?: ChildrenPropType
   alert: string;
 }) {
-  return <span className={`status__square ${alert}`}>{children}</span>;
+  return <span className={`status__square ${alert}`}>
+    {/* {children} */}
+  </span>;
 }

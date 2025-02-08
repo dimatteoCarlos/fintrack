@@ -1,11 +1,10 @@
 import DebtsBigBoxResult from './components/DebtsBigBoxResult.tsx';
 import { TitleHeader } from '../../general_components/titleHeader/TitleHeader.tsx';
 
-import Debtors from './debtors/Debtors.tsx';
+import Debtors from './components/Debtors.tsx';
 import './styles/debts-styles.css';
 
 function DebtsLayout() {
-
   //temporary values------------
   //get the debtors info from, endpoint:
   //data: from debts movements, group the movements by debtor, consolidate the amounts (lend-borrow), also total lent and borrowed by debtor, and general total.
@@ -26,5 +25,3 @@ function DebtsLayout() {
 }
 
 export default DebtsLayout;
-
-

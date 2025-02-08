@@ -1,11 +1,11 @@
-import { CURRENCY_OPTIONS } from '../../helpers/constants';
+import { CURRENCY_OPTIONS, DEFAULT_CURRENCY } from '../../helpers/constants';
 import { numberFormat } from '../../helpers/functions';
 import { StatusSquare } from '../boxComponents';
 import './styles/summaryDetailBox-style.css';
 // import { currencyFormat } from '../../../helpers/functions';
 
 //temporary values------------
-const defaultCurrency = 'usd';
+const defaultCurrency = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 
 //----------------------------
@@ -42,7 +42,7 @@ function SummaryDetailBox({ summaryData }: SummaryDetailPropType) {
 
           <div className='summary__data--status '>
             {/* status: */}
-            <StatusSquare alert={type == 'lender' ? 'alert' : ''} />
+            <StatusSquare alert={type == 'lender' ? 'alert' : ''}></StatusSquare> 
             <div className='summary__data--subtitle2'>{type}</div>
           </div>
         </div>

@@ -44,7 +44,6 @@ export type ExpenseType = {
 };
 
 //income
-
 export type IncomeAccountsType = {
   accounts?: IncomeAccountType[] | null;
 };
@@ -153,6 +152,17 @@ export type CategoryBudgetType = {
   amount: number; //amount
   spent: number;
 };
+
+//budget/ListPocket
+export type PocketsToRenderType = {
+  pocketName: string;
+  description: string;
+  saved: number;
+  goal: number;
+  currency?: CurrencyType;
+  status?: number;
+  pocket_id?: number;
+};
 //----------------------------------
 export type StatusType = boolean;
 
@@ -165,7 +175,7 @@ export type CURRENCY_OPTIONSTYPE = {
   cop: 'cop-CO';
   eur: 'en-US';
 };
-
+//LabelInputNumberHandler
 export type FormNumberInputType = { [key: string]: string };
 
 //Generic type state

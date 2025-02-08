@@ -11,11 +11,11 @@ import FormDatepicker from '../../../general_components/datepicker/Datepicker.ts
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
+import { ACCOUNT_TYPE_DEFAULT } from '../../../helpers/constants.ts';
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 
 function PocketDetail() {
   //temporary data
-
   const pocketInfo = {
     name: 'pocket name',
     note: 'Description',
@@ -23,7 +23,6 @@ function PocketDetail() {
     account: '',
     amount: '0',
   };
-
   //summary data
   const summaryData = {
     title: 'target amount',
@@ -32,15 +31,12 @@ function PocketDetail() {
     subtitle2: 'status',
   };
 
+  const accountOptions = ACCOUNT_TYPE_DEFAULT; //define the logic to get the options from backend
   //Account Options
   const accountSelectionProp = {
     title: 'account',
-    options: [
-      { value: 'account_01', label: 'Account_01' },
-      { value: 'account_02', label: 'Account_02' },
-      { value: 'account_03', label: 'Account_03' },
-    ],
-    variant: 'form', //define the custom styles to use in selection dropdown component
+    options: accountOptions,
+    variant: 'form', //stablishes the custom styles to use in selection dropdown component
   };
 
   const initialPocketDetail = {
