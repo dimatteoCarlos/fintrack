@@ -40,6 +40,7 @@ const customStyles = {
   }),
 
   option: (provided: any, state: any) => ({
+    //check any
     ...provided,
     backgroundColor: state.isSelected ? '#e8e4da' : 'white',
     color: '#141414',
@@ -49,6 +50,7 @@ const customStyles = {
 };
 
 const DropdownIndicator = (props: any) => {
+  //check any
   return (
     <components.DropdownIndicator
       {...props}
@@ -75,6 +77,7 @@ function SelectComponent({
   setIsReset,
   optionKeySelected,
 }: any) {
+  //check any
   const { title, options } = dropDownOptions;
 
   const selectRef = useRef<any>(null);
@@ -89,11 +92,12 @@ function SelectComponent({
 
   // Función para manejar el cambio en el select
   const handleChange = (
-    selectedOption: { value: any; label: string } | null
+    selectedOption: { value: any; label: string } | null //check any
   ) => {
     // console.log('tests:', optionKeySelected);
 
     setSelectState((prev: any) => ({
+      //check any
       ...prev,
       [optionKeySelected]: selectedOption?.value,
     }));

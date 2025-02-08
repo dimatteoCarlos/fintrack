@@ -30,7 +30,6 @@ function PocketDetail() {
     amount: 1112.11,
     subtitle1: '$built',
     subtitle2: 'status',
-    status: <StatusSquare />,
   };
 
   //Account Options
@@ -67,7 +66,7 @@ function PocketDetail() {
 
   function accountSelectHandler(
     selectedOption: {
-      value: any;
+      value: any; //check any
       label: string;
     } | null
   ) {

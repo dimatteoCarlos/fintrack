@@ -89,15 +89,15 @@ function NewProfile() {
     setProfileData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function typeSelectHandler(selectedOption: any) {
+  function typeSelectHandler(selectedOption: any) { //check any
     if (selectedOption) {
       // console.log('selectedOption desde typeSelectHandler', { selectedOption });
-      setProfileData((prev: any) => ({ ...prev, type: selectedOption.value })); //check this any
+      setProfileData((prev: any) => ({ ...prev, type: selectedOption.value })); //check any
     } else {
       console.log(`No option selected for ${'type'}`);
     }
   }
-  function accountSelectHandler(selectedOption: any) {
+  function accountSelectHandler(selectedOption: any) { //check any
     //check this any
     setProfileData((prev: ProfileDataType) => ({
       ...prev,

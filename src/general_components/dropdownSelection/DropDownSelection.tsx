@@ -144,15 +144,15 @@ export type DropdownSelectPropType = {
 
   updateOptionHandler: (
     selectedOption: {
-      value: any;
+      value: any; //check any
       label: string;
     } | null
     // optionKeySelected: any
   ) => void;
 
   isReset?: boolean;
-  setIsReset?: any; //fix later
-  optionKeySelected?: any; //is it needed?
+  setIsReset?: any; //check any
+  optionKeySelected?: any; //is it needed? check any
 };
 
 const variantCustomStyles = {
@@ -189,7 +189,7 @@ DropdownSelectPropType) {
   // Function to handle the change on selected option state
   const handleChange = (
     // selectedOption: { value: any; label: string } | null
-    selectedOption: any
+    selectedOption: any //check any
   ) => {
     updateOptionHandler(
       selectedOption

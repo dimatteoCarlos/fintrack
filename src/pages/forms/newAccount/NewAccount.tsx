@@ -76,7 +76,7 @@ function NewAccount() {
     setAccountData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function accountTypeSelectHandler(selectedOption: any) {
+  function accountTypeSelectHandler(selectedOption: any) { //check any
     setAccountData((acc: AccountDataType) => ({
       ...acc,
       type: selectedOption?.value,

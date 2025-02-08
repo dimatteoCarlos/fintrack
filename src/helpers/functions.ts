@@ -32,7 +32,7 @@ export function changeCurrency(currency: CurrencyType) {
 //-------------------------
 
 type OpcType = {
-  currentOpc: any;
+  currentOpc: any; //check any
   opc1: any;
   opc2: any;
   opc3: any;

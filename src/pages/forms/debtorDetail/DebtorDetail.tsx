@@ -111,7 +111,7 @@ function DebtorDetail() {
 
   function accountSelectHandler(
     selectedOption: {
-      value: any;
+      value: any; //check any
       label: string;
     } | null
   ) {

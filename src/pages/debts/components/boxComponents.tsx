@@ -10,6 +10,6 @@ export function BoxRow({ children }: ChildrenPropType) {
   return <div className='box__row flx-row-sb'>{children}</div>;
 }
 
-export function StatusSquare({ children }: any) {
+export function StatusSquare({ children }: { children: React.ReactNode }) {
   return <span className='status__square'>{children}</span>;
 }
