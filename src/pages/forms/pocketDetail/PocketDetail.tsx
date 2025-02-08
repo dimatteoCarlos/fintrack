@@ -8,10 +8,10 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 import FormDatepicker from '../../../general_components/datepicker/Datepicker.tsx';
 
-import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
+// import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 
 function PocketDetail() {
   //temporary data
