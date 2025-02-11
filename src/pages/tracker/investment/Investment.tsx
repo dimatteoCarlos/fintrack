@@ -62,6 +62,7 @@ function Investment() {
   const optionsInvestmentAccounts = {
     title: 'Available Account',
     options: investmentAccounts,
+    variant:'tracker',
   };
   //-----------------
   const initialFormData: FormNumberInputType = {
@@ -162,6 +163,7 @@ function Investment() {
     titles: { title1: 'amount', title2: 'account' },
     value: formData.amount,
     selectOptions: optionsInvestmentAccounts,
+  
   };
   //--------------------------
   return (
