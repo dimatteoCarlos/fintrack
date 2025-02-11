@@ -58,9 +58,10 @@ function Debts() {
           )}`,
         }))
       : DEBTOR_OPTIONS_DEFAULT;
+
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
-    options: debtors, //?? DEBTOR_OPTIONS_DEFAULT,
+    options: debtors,
     variant: 'tracker',
   };
   //-----------------

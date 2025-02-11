@@ -1,7 +1,6 @@
 //src/pages/tracker/expense/Income.tsx
 import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import {
   validationData,
   numberFormat,

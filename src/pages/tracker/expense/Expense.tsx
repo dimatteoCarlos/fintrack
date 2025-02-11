@@ -122,7 +122,7 @@ function Expense() {
   function categorySelectHandler(
     selectedOption: { value: any; label: string } | null
   ) {
-    setExpenseData((prev: any) => ({
+    setExpenseData((prev: ExpenseDataType) => ({
       ...prev,
       ['category']: selectedOption?.value,
     }));
