@@ -26,6 +26,7 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
+import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
@@ -74,6 +75,7 @@ function Income() {
   const accountOptions = {
     title: 'Available Account',
     options: optionsIncomeAccounts,
+    variant: 'tracker',
   };
   //--------
   //income sources - are these sources attached to income accounts?
@@ -93,6 +95,7 @@ function Income() {
             label: src.name,
           }))
         : SOURCE_OPTIONS_DEFAULT,
+    variant: 'tracker',
   };
   // console.log('SOURCES:', { sourceOptions });
   //---states------
@@ -110,6 +113,15 @@ function Income() {
     setCurrency(currency);
     setIncomeData((prev) => ({ ...prev, currency: currency }));
     // console.log('updateDataCurrency:', currency);
+  }
+
+  function sourceSelectHandler(
+    selectedOption: { value: any; label: string } | null
+  ) {
+    setIncomeData((prev: IncomeDataType) => ({
+      ...prev,
+      ['source']: selectedOption?.value,
+    }));
   }
   //-----------
   //**Check numeric format input Function** convert to useHook */
@@ -233,14 +245,14 @@ function Income() {
               {validationMessages['source']}
             </span>
           </div>
-          <SelectComponent
+
+          <DropDownSelection
             dropDownOptions={sourceOptions}
-            setSelectState={setIncomeData}
+            updateOptionHandler={sourceSelectHandler}
             isReset={isReset}
             setIsReset={setIsReset}
-            optionKeySelected='source'
-            selectedValue={incomeData['source']}
           />
+
           <CardNoteSave
             title={'note'}
             validationMessages={validationMessages}
