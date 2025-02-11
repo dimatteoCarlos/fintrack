@@ -5,12 +5,12 @@ import { useEffect, useRef } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
 import ArrowDownLightSvg from '../../assets/ArrowDownLightSvg.svg';
 
-// styles and components of DropDownSelection
-
+// set the style options for tracker and form variant, and DropDownSelection component
 //TRACKER DropDownSelection custom styles
 const customStyles = {
   container: (baseStyles: any) => ({
     ...baseStyles,
+    boxShadow: 'none',
     width: '100%',
     border: 'none',
     borderRadius: '0.75rem',
@@ -20,13 +20,15 @@ const customStyles = {
     ...baseStyles,
     border: 'none',
     boxShadow: 'none',
-    backgroundColor: '#e8e4da',
+    backgroundColor: '#e8e4da', //variant:tracker
+    color: 'var(--dark)', //variant:tracker
+    margin: '0',
+    padding: '0',
     borderRadius: '0.75rem',
-    color: 'var(--creme)',
     fontWeight: '500',
     fontSize: '0.875rem',
+    cursor: 'pointer',
     // border:'1px solid red',
-
     // '&:hover': {
     //   border: 'none',
     // },
@@ -34,8 +36,7 @@ const customStyles = {
 
   placeholder: (baseStyles: any) => ({
     ...baseStyles,
-    color: '#141414',
-    // border:'1px solid red',
+    color: 'var(--dark)', //variant:tracker
   }),
 
   menu: (baseStyles: any) => ({
@@ -45,8 +46,8 @@ const customStyles = {
 
   option: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: state.isSelected ? '#e8e4da' : 'white',
-    color: '#141414',
+    backgroundColor: state.isSelected ? '#e8e4da' : 'white',//variant:tracker
+    color: 'var(--dark)',//variant:tracker
     ':active': { backgroundColor: '#e8e4da' },
     ':hover': { backgroundColor: 'rgba(232, 228, 218 , 0.4)' },
   }),
@@ -56,14 +57,14 @@ const customStyles = {
 const formCustomStyles = {
   container: (baseStyles: any) => ({
     ...baseStyles,
-    border: '1px solid var(--creme)',
     boxShadow: 'none',
+    //variant:form
+    border: '1px solid var(--creme)',
     backgroundColor: 'var(--dark)',
     borderRadius: '1rem',
     height: '2.625rem',
     padding: '0 0.25rem',
     margin: '0',
-
     // width: '100%',
     // border: 'none',
   }),
@@ -72,10 +73,11 @@ const formCustomStyles = {
     ...baseStyles,
     border: 'none',
     boxShadow: 'none',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent', //variant:form
+    color: 'var(--light, yellow)', //variant:form
     margin: '0',
     padding: '0',
-    color: 'var(--light, yellow)',
+    borderRadius: '0.75rem',
     textTransform: 'capitalize',
     fontSize: '0.875rem',
     cursor: 'pointer',
@@ -86,11 +88,12 @@ const formCustomStyles = {
 
   placeholder: (baseStyles: any) => ({
     ...baseStyles,
-    color: 'var(--creme)',
+    color: 'var(--creme)', //variant: form
   }),
 
   menu: (baseStyles: any) => ({
     ...baseStyles,
+    //variant: form
     backgroundColor: 'var(--dark)',
     color: 'var(--light)',
     width: '105%',
@@ -98,29 +101,31 @@ const formCustomStyles = {
     zIndex: 9999,
   }),
 
-  option: (provided: any, state: any) => ({
-    ...provided,
+  option: (
+    provided: any,
+    state: any //check any
+  ) =>
+    //variant: form
+    ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? 'var(--dark1,rgba(51, 48, 48, 1) )'
+        : 'transparent',
+      color: 'var(--creme)',
+      borderRadius: '1rem',
+      padding: '0.5rem',
+      ':active': { backgroundColor: '#e8e4da' },
+      ':hover': { backgroundColor: 'hsla(0, 3.00%, 19.40%, 0.50)' },
+    }),
 
-    backgroundColor: state.isSelected
-      ? 'var(--dark1,rgba(51, 48, 48, 1) )'
-      : 'transparent',
-
-    borderRadius: '1rem',
-    padding: '0.5rem',
-    color: 'var(--creme)',
-
-    ':active': { backgroundColor: '#e8e4da' },
-    ':hover': { backgroundColor: 'rgba(51, 48, 48, 0.5)' },
-  }),
-
+  //variant: form
   singleValue: (style: any) => ({ ...style, color: 'var(--creme)' }),
 };
 
 //-------internal selection components------
 const DropdownIndicator = (props: any) => {
-  // console.log(variant);
+  //check any
   const { variant } = props.selectProps;
-
   return (
     <components.DropdownIndicator
       {...props}
@@ -139,7 +144,7 @@ export type DropdownSelectPropType = {
       value: string;
       label: string;
     }[];
-    variant?: string;
+    variant: string;
   };
 
   updateOptionHandler: (
@@ -147,11 +152,10 @@ export type DropdownSelectPropType = {
       value: any; //check any
       label: string;
     } | null
-    // optionKeySelected: any
   ) => void;
 
-  isReset?: boolean;
-  setIsReset?: any; //check any
+  isReset: boolean;
+  setIsReset: any; //check any
   optionKeySelected?: any; //is it needed? check any
 };
 
@@ -169,13 +173,14 @@ function DropDownSelection({
 }: // optionKeySelected,
 DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;
-
+  // console.log(menuPlacementPosition[variant])
   const selectRef = useRef<any>(null);
+
   useEffect(() => {
     if (isReset && selectRef) {
       selectRef.current.clearValue();
+      //check wether this reset affects others like datepicker or any other select component present
       // setIsReset(false);
-      //check wether this reset affects others like datepicker
     }
   }, [isReset]);
 
@@ -184,17 +189,14 @@ DropdownSelectPropType) {
       ? variantCustomStyles.tracker
       : variantCustomStyles.form;
 
+  const menuPlacementPosition = variant === 'tracker' ? 'top' : 'bottom';
   // console.log(title, options)
-
   // Function to handle the change on selected option state
   const handleChange = (
     // selectedOption: { value: any; label: string } | null
     selectedOption: any //check any
   ) => {
-    updateOptionHandler(
-      selectedOption
-      // , optionKeySelected
-    );
+    updateOptionHandler(selectedOption);
     console.log('Opción seleccionada: desde DropDownSelection', selectedOption);
   };
 
@@ -211,8 +213,10 @@ DropdownSelectPropType) {
         isClearable
         defaultValue={title ? title : options[0]}
         ref={selectRef}
+        menuPlacement={menuPlacementPosition}
         {
-          ...{ variant } //is the way to pass custom props to internal selecProps
+          //is the way to pass custom props to internal selecProps
+          ...{ variant }
         }
       />
     </>

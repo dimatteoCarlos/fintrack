@@ -3,47 +3,52 @@
 import Select, { components } from 'react-select';
 import { useRef, useEffect } from 'react';
 import ArrowDownDarkSvg from '../../../assets/ArrowDownDarkSvg.svg';
-
-// Define las opciones para el select
+// set the style options for select element. Define las opciones para el select
 
 const customStyles = {
   container: (baseStyles: any) => ({
     ...baseStyles,
+    boxShadow: 'none',
     width: '100%',
     border: 'none',
     borderRadius: '0.75rem',
+    // border: '1px solid var(--creme)',
+    // backgroundColor: 'var(--creme)',
+    // borderRadius: '1rem',
+    // height: '2.625rem',
+    // padding: '0 0.25rem',
+    // margin: '0',
   }),
 
   control: (baseStyles: any) => ({
     ...baseStyles,
     border: 'none',
     boxShadow: 'none',
-    backgroundColor: '#e8e4da',
+    backgroundColor: '#e8e4da', //variant:tracker
+    color: 'var(--dark)', //variant:tracker
+    margin: '0',
+    padding: '0',
     borderRadius: '0.75rem',
-    color: '#141414',
     fontWeight: '500',
     fontSize: '0.875rem',
-
+    cursor: 'pointer',
     // '&:hover': {
     //   border: 'none',
     // },
   }),
-
   placeholder: (baseStyles: any) => ({
     ...baseStyles,
-    color: '#141414',
+    color: 'var(--dark)', //variant:tracker
   }),
-
   menu: (baseStyles: any) => ({
     ...baseStyles,
     zIndex: 9999,
   }),
-
   option: (provided: any, state: any) => ({
     //check any
     ...provided,
     backgroundColor: state.isSelected ? '#e8e4da' : 'white',
-    color: '#141414',
+    color: 'var(--dark)',
     ':active': { backgroundColor: '#e8e4da' },
     ':hover': { backgroundColor: 'rgba(232, 228, 218 , 0.4)' },
   }),
@@ -60,14 +65,12 @@ const DropdownIndicator = (props: any) => {
     </components.DropdownIndicator>
   );
 };
-
 // export type SelectComponentPropType = {
 //   options: {
 //     value: any;
 //     label: string;
 //   }[];
 // };
-
 // Define el componente
 function SelectComponent({
   dropDownOptions,
@@ -85,7 +88,8 @@ function SelectComponent({
   useEffect(() => {
     if (isReset && selectRef) {
       selectRef.current.clearValue();
-      setIsReset(false); //check wether this reset affects others like datepicker
+      //check wether this reset affects others like datepicker
+      setIsReset(false); //verify this behavior
     }
   }, [isReset]);
   // console.log(title, options)
@@ -118,6 +122,7 @@ function SelectComponent({
         isClearable
         defaultValue={title ? title : options[0]}
         ref={selectRef}
+        menuPlacement='top'
 
         // Asigna el valor actual del select
         // value={dropDownOptions.options.find(

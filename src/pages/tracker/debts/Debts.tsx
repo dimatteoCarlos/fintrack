@@ -61,6 +61,7 @@ function Debts() {
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
     options: debtors, //?? DEBTOR_OPTIONS_DEFAULT,
+    variant: 'tracker',
   };
   //-----------------
   const initialFormData: FormNumberInputType = {
@@ -78,7 +79,6 @@ function Debts() {
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
   //----Functions ------
-
   const { inputNumberHandlerFn } = useInputNumberHandler(
     setFormData,
     setValidationMessages,

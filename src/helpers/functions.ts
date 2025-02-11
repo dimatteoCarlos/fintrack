@@ -67,7 +67,7 @@ export function numberFormat(
 
   // Verificar si el valor es un número válido
   if (isNaN(enteredNumber)) {
-    return ''; //  devolver '' o adecuar para lanzar un error
+    return 'not a number'; //  devolver '' o adecuar para lanzar un error
   }
 
   // Crear el formateador de números con la configuración regional.
@@ -99,7 +99,6 @@ const validCurrencyCodes = new Set([
 export function isValidCurrencyCode(currency: string): boolean {
   // Convertir el código a mayúsculas para comparación uniforme
   const upperCurrency = currency.toUpperCase();
-
   // Verificar si el código está en la lista de códigos válidos
   //Method 1
   return validCurrencyCodes.has(upperCurrency);
@@ -158,7 +157,6 @@ export function numberFormatCurrency(
   return formatter.format(enteredNumber);
 }
 //-----------
-
 export function showDate(date: Date, countryFormat = DATE_TIME_FORMAT_DEFAULT) {
   const formattedDate = date.toLocaleDateString(countryFormat, {
     weekday: 'short',
@@ -212,7 +210,9 @@ export function validationData(stateToValidate: {
 
 //-------------------------
 
-//-------------------------
+//-----check number format----------------
+//used in input number format validation
+
 export function checkNumberFormatValue(value: string): {
   formatMessage: string;
   valueNumber: string;
@@ -225,6 +225,7 @@ export function checkNumberFormatValue(value: string): {
   const commaSepFormat = /^(\d{1,3})(,\d{3})*(\.\d*)?$/g; //Comma as thousand separator, point as decimal separator. US format
   const dotSepFormat = /^(\d{1,3})(\.\d{3})*(,\d*)?$/g; //Dots as thousands separator, comma as decimal separator. UK format
 
+  //valueToSave is the number used to update the number type state value
   //no matching character
   if (notMatching.test(value)) {
     const invalidCharacters = value.match(notMatching)?.slice(0, 4);
@@ -237,12 +238,12 @@ export function checkNumberFormatValue(value: string): {
     };
   }
 
-  //normal number
+  //normal number: point as decimal
   if (onlyDotDecimalSep.test(value)) {
     const valueNumber = !isNaN(parseFloat(value)) ? parseFloat(value) : 0;
 
     return {
-      formatMessage: 'decimal point as std', //'dot as decimal''no separators with optional dot as decimal sep ',
+      formatMessage: 'decimal point as std', //'point as decimal, no th separators with optional point as decimal sep ',
       valueNumber: valueNumber.toString(),
       valueToSave: valueNumber,
       isError: false,
@@ -294,9 +295,7 @@ export function checkNumberFormatValue(value: string): {
       isError: false,
     };
   }
-
   //----
-
   return {
     formatMessage: `format number not valid`,
     isError: true,
@@ -307,7 +306,7 @@ export function checkNumberFormatValue(value: string): {
 //------------------------------------
 
 //------------------------------------
-//adapt to the business rule to use
+//adapt alert to the business rule to use
 export const statusFn = (
   budget: number = 100,
   spent: number = 100

@@ -3,9 +3,6 @@ import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
 import SelectComponent from '../components/SelectComponent.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-// import FormPlusBtn from '../../../general_components/formSubmitBtn/FormPlusBtn.tsx';
-// import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge.tsx';
-
 //---
 import { useLocation } from 'react-router-dom';
 import {
@@ -55,17 +52,14 @@ const initialExpenseData: ExpenseDataType = {
   note: '',
   currency: defaultCurrency,
 };
-
 const initialFormData: FormNumberInputType = {
   amount: '',
 };
 //------------------------------
-
 function Expense() {
   //----Expense account Options -------
   const router = useLocation();
   const trackerState = router.pathname.split('/')[2];
-
   //account options
   const {
     data,
@@ -84,6 +78,7 @@ function Expense() {
   const accountOptions = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
+    variant: 'tracker',
   };
 
   //category options
@@ -226,57 +221,6 @@ function Expense() {
           isReset={isReset}
           setIsReset={setIsReset}
         />
-        {/* <div className='state__card--top'> */}
-        {/* <div className='card--title'>
-            Amount
-            <span
-              className='validation__errMsg'
-              style={{
-                color: `${
-                  validationMessages['amount']?.includes('Format:') //attention to flag 'Format:' in messages
-                    ? 'var(success)'
-                       : 'var(--error)'
-                }`,
-              }}
-            >
-              {validationMessages['amount']}
-            </span>
-          </div> */}
-
-        {/* <div className='card__screen'>
-            <input
-              className='inputNumber'
-              name='amount'
-              type='text'
-              placeholder={`${trackerState}`}
-              value={formData.amount} //only for numeric values
-              onChange={updateTrackerData}
-            />
-
-            <CurrencyBadge
-              variant={'tracker'}
-              updateOutsideCurrencyData={updateDataCurrency}
-              currency={currency}
-            />
-          </div> */}
-
-        {/* <div className='card--title'>
-            Account{' '}
-            <span className='validation__errMsg'>
-              {' '}
-              {validationMessages['account']}
-            </span>
-          </div> */}
-        {/* 
-          <SelectComponent
-            dropDownOptions={accountOptions}
-            setSelectState={setExpenseData}
-            selectedValue={expenseData['account']}
-            isReset={isReset}
-            setIsReset={setIsReset}
-            optionKeySelected='account'
-          /> */}
-        {/* </div> */}
 
         {/* end of TOP CARD */}
 
@@ -308,37 +252,6 @@ function Expense() {
             inputNote={expenseData.note}
             onSaveHandler={onSaveHandler}
           />
-          {/* <div className='card--title'>
-            Note{' '}
-            <span className='validation__errMsg'>
-              {validationMessages['note']}
-            </span>
-          </div> */}
-
-          {/* <div
-            className='note--expense bordered'
-            style={{ display: 'flex', justifyContent: 'space-between' }}
-          > */}
-          {/* <div className='note__description bordered' style={{ flex: 0.95 }}> */}
-          {/* <CardNote
-                dataHandler={updateTrackerData}
-                inputNote={expenseData.note}
-              /> */}
-          {/* <div className='card__screen  ' style={{ flex: 0.95 }}>
-              <textarea
-                className='input__note__description'
-                placeholder='Description'
-                onChange={updateTrackerData}
-                name='note'
-                rows={3}
-                maxLength={150}
-                value={expenseData.note}
-              />
-            </div> */}
-          {/* </div> */}
-
-          {/* <FormPlusBtn onClickHandler={onSaveHandler} /> */}
-          {/* </div> */}
 
           {/* end of BOTTOM CARD */}
         </div>

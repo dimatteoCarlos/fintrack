@@ -1,32 +1,30 @@
 import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBadge';
+import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection';
 import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation';
 import { capitalize } from '../../../helpers/functions';
 import { CurrencyType } from '../../../types/types';
-import SelectComponent from './SelectComponent';
+// import SelectComponent from './SelectComponent';
 
 type TopCardPropType = {
   topCardElements: {
     titles: { title1: string; title2: string };
     value: string;
-
     selectOptions: {
       title: string;
-
       options: {
         value: string;
         label: string;
       }[];
+      variant: string;
     };
   };
 
   validationMessages: { [key: string]: string };
-
   updateTrackerData: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 
   trackerName: string;
-
   updateCurrency: (x: CurrencyType) => void;
   currency: CurrencyType;
   selectedValue: string;
@@ -34,7 +32,7 @@ type TopCardPropType = {
   isReset: boolean;
   setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
+//----component
 const TopCard = ({
   topCardElements,
   validationMessages,
@@ -50,11 +48,31 @@ const TopCard = ({
   setIsReset,
 }: TopCardPropType): JSX.Element => {
   const {
-    titles: { title1 },
-    titles: { title2 },
-    value,
     selectOptions: topCardOptions,
+    selectOptions: { variant },
+    titles: { title1 }, //amount label or title
+    titles: { title2 }, //account label or title
+    value, //amount input value
   } = topCardElements;
+
+  console.log(
+    { trackerName },
+    { title1 },
+    { title2 },
+    { selectedValue },
+    'value:',
+    value,
+    { variant }
+  );
+
+  function stateSelectHandler(
+    selectedOption: { value: any; label: string } | null
+  ) {
+    setSelectState((prev: any) => ({
+      ...prev,
+      [title2]: selectedOption?.value,
+    }));
+  }
 
   return (
     <>
@@ -91,14 +109,21 @@ const TopCard = ({
           </span>
         </div>
 
-        <SelectComponent
+        <DropDownSelection
+          dropDownOptions={topCardOptions}
+          updateOptionHandler={stateSelectHandler}
+          isReset={isReset}
+          setIsReset={setIsReset}
+        />
+
+        {/* <SelectComponent
           dropDownOptions={topCardOptions}
           isReset={isReset}
           setIsReset={setIsReset}
           optionKeySelected={title2}
           setSelectState={setSelectState} //example: setSelectedAccount
           selectedValue={selectedValue} //selectedAccount
-        />
+        /> */}
       </div>
     </>
   );

@@ -47,6 +47,7 @@ const initialFormData: FormNumberInputType = {
 };
 //-----------------------
 function NewProfile() {
+  const location = useLocation();
   //-----states------
   const [profileData, setProfileData] = useState<ProfileDataType>(
     initialNewProfileData
@@ -75,21 +76,21 @@ function NewProfile() {
         }))
       : ACCOUNT_OPTIONS_DEFAULT;
 
+  //--for drop down selection
   const accountSelectionProp = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
     variant: 'form', //this stablishes the custom styles to use in selection dropdown component
   };
-  const location = useLocation();
   //---functions-----
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
     const { name, value } = e.target;
-
     setProfileData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function typeSelectHandler(selectedOption: any) { //check any
+  function typeSelectHandler(selectedOption: any) {
+    //check any
     if (selectedOption) {
       // console.log('selectedOption desde typeSelectHandler', { selectedOption });
       setProfileData((prev: any) => ({ ...prev, type: selectedOption.value })); //check any
@@ -97,8 +98,11 @@ function NewProfile() {
       console.log(`No option selected for ${'type'}`);
     }
   }
-  function accountSelectHandler(selectedOption: any) { //check any
-    //check this any
+
+  //Esta funcion "accountSelectHandler" se puede definir dentro del componente DropDownSelection y solo pasar como prop, la funcion para modificar el estado correspondiente, en este caso setProfileData. selectedOption es manejado internamente por la libreria Select.
+
+  function accountSelectHandler(selectedOption: any) {
+    //check any
     setProfileData((prev: ProfileDataType) => ({
       ...prev,
       account: selectedOption?.value,
@@ -117,7 +121,6 @@ function NewProfile() {
     //--
     //POST the new profile data into database
     console.log('data to POST:', { profileData });
-
     //resetting form values
     setIsReset(true);
     setValidationMessages({});
