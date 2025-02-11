@@ -48,7 +48,7 @@ const initialIncomeData: IncomeDataType = {
   currency: defaultCurrency,
 };
 
-const VARIANT_DEFAULT:VariantType='tracker'
+const VARIANT_DEFAULT: VariantType = 'tracker';
 //------------------------------
 const initialFormData: FormNumberInputType = { amount: '' };
 //------------------------------
@@ -133,7 +133,7 @@ function Income() {
     >,
     setStateData: React.Dispatch<React.SetStateAction<T>>
   ): void {
-    const { formatMessage,  isError, valueToSave } =
+    const { formatMessage, isError, valueToSave } =
       checkNumberFormatValue(value);
     // Update numeric state in the form with a string. Actualiza el estado numerico en el formulario
     setFormData((formData) => ({

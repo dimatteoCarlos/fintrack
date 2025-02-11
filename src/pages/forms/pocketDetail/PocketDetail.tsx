@@ -11,7 +11,10 @@ import FormDatepicker from '../../../general_components/datepicker/Datepicker.ts
 import SummaryDetailBox from '../../../general_components/summaryDetailBox/SummaryDetailBox.tsx';
 import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 import '../styles/forms-styles.css';
-import { ACCOUNT_TYPE_DEFAULT } from '../../../helpers/constants.ts';
+import {
+  ACCOUNT_TYPE_DEFAULT,
+  VARIANT_FORM,
+} from '../../../helpers/constants.ts';
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 
 function PocketDetail() {
