@@ -1,7 +1,8 @@
+import { VariantType } from '../../types/types';
 import './topWhiteSpace.css';
 
 type TopWhiteSpacePropType = {
-  variant: 'light' | 'dark';
+  variant: VariantType;
 };
 
 function TopWhiteSpace({ variant }: TopWhiteSpacePropType) {

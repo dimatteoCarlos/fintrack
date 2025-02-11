@@ -2,8 +2,7 @@ import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBad
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection';
 import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation';
 import { capitalize } from '../../../helpers/functions';
-import { CurrencyType } from '../../../types/types';
-// import SelectComponent from './SelectComponent';
+import { CurrencyType, VariantType } from '../../../types/types';
 
 type TopCardPropType = {
   topCardElements: {
@@ -15,7 +14,7 @@ type TopCardPropType = {
         value: string;
         label: string;
       }[];
-      variant: string;
+      variant: VariantType;
     };
   };
 
@@ -40,9 +39,8 @@ const TopCard = ({
   trackerName,
   updateCurrency,
   currency,
-
   setSelectState,
-  selectedValue,
+  // selectedValue,
 
   isReset,
   setIsReset,
@@ -54,16 +52,6 @@ const TopCard = ({
     titles: { title2 }, //account label or title
     value, //amount input value
   } = topCardElements;
-
-  console.log(
-    { trackerName },
-    { title1 },
-    { title2 },
-    { selectedValue },
-    'value:',
-    value,
-    { variant }
-  );
 
   function stateSelectHandler(
     selectedOption: { value: any; label: string } | null
@@ -80,7 +68,7 @@ const TopCard = ({
         <LabelNumberValidation
           formDataNumber={{ keyName: title1, title: title1 }}
           validationMessages={validationMessages}
-          variant='tracker'
+          variant={variant}
         />
 
         <div className='card__screen'>
@@ -95,7 +83,7 @@ const TopCard = ({
           />
 
           <CurrencyBadge
-            variant={'tracker'}
+            variant={variant}
             updateOutsideCurrencyData={updateCurrency}
             currency={currency}
           />
@@ -115,15 +103,6 @@ const TopCard = ({
           isReset={isReset}
           setIsReset={setIsReset}
         />
-
-        {/* <SelectComponent
-          dropDownOptions={topCardOptions}
-          isReset={isReset}
-          setIsReset={setIsReset}
-          optionKeySelected={title2}
-          setSelectState={setSelectState} //example: setSelectedAccount
-          selectedValue={selectedValue} //selectedAccount
-        /> */}
       </div>
     </>
   );

@@ -1,9 +1,11 @@
-import { PocketsToRenderType } from '../types/types';
+import { PocketsToRenderType, VariantType } from '../types/types';
 
 //-------------------------
 export const CURRENCY_OPTIONS = { usd: 'en-US', cop: 'cop-CO', eur: 'en-US' };
 export const DEFAULT_CURRENCY = 'usd';
 export const DATE_TIME_FORMAT_DEFAULT = 'es-ES';
+export const VARIANT_DEFAULT:VariantType = 'tracker';
+export const VARIANT_FORM:VariantType = 'form';
 
 //tracker/expense
 export const ACCOUNT_OPTIONS_DEFAULT = [

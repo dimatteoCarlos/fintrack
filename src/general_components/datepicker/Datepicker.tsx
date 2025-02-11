@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './styles/datepicker-styles.css';
 //-------
 import { showDate } from '../../helpers/functions';
+import { VariantType } from '../../types/types';
 
 //to express date in spanish
 // import es  from 'date-fns/locale/es';
@@ -16,7 +17,7 @@ import { showDate } from '../../helpers/functions';
 type DatePickerProps = {
   date: Date;
   changeDate: (selectedDate: Date) => void;
-  variant?: 'tracker' | 'form' | 'light' | 'dark';
+  variant?: VariantType;
   isReset?: boolean;
 };
 

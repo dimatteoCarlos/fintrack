@@ -1,9 +1,10 @@
 import { capitalize } from '../../helpers/functions';
+import { VariantType } from '../../types/types';
 
 type LabelNumberValidationPropType = {
   formDataNumber: { [key: string]: string };
   validationMessages: { [key: string]: string };
-  variant: 'form' | 'tracker';
+  variant: VariantType;
 };
 
 function LabelNumberValidation({

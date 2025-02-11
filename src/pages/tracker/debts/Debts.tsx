@@ -12,6 +12,7 @@ import {
   DebtsTrackerDataType,
   DebtsTypeMovementType,
   FormNumberInputType,
+  VariantType,
 } from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
 import {
@@ -62,7 +63,7 @@ function Debts() {
   const debtorOptions = {
     title: debtors ? 'Debtors' : 'No info. available',
     options: debtors,
-    variant: 'tracker',
+    variant: 'tracker' as VariantType,
   };
   //-----------------
   const initialFormData: FormNumberInputType = {

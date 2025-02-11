@@ -89,7 +89,7 @@ function App() {
     { path: '/debts/debtors/new_profile', element: <NewProfile /> },
     { path: '/overview/new_account', element: <NewAccount /> },
 
-    //show movements not yet defined
+    //rendering movements view or layout not yet defined
     {
       path: '/overview/movements/expense',
       element: <Movements />,

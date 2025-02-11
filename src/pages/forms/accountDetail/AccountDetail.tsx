@@ -11,6 +11,7 @@ import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBad
 import {
   DEFAULT_CURRENCY,
   DEFAULT_LAST_MOVEMENTS,
+  VARIANT_FORM,
 } from '../../../helpers/constants';
 
 // import { StatusSquare } from '../../../components/boxComponents.tsx';
@@ -35,7 +36,7 @@ const lastMovements = DEFAULT_LAST_MOVEMENTS;
 function AccountDetail() {
   //data from endpoint request for info account, and for last movements
   //Define the endpoint to get the Last movements and calculate the accountInfo required. set the logic, so as lastMovement be null set it to default
-  
+
   const initialAccountDetail = {
     accountInfo,
     lastMovements,
@@ -115,7 +116,7 @@ function AccountDetail() {
                   style={{ textAlign: 'center' }}
                 >
                   <FormDatepicker
-                    variant='form'
+                    variant={VARIANT_FORM}
                     changeDate={changeStartingPoint}
                     date={accountDetail.accountInfo.date}
                   />
@@ -126,10 +127,10 @@ function AccountDetail() {
                 <div className='label form__title'>{'Currency'}</div>
 
                 <CurrencyBadge
-                  variant='form'
+                  variant={VARIANT_FORM}
                   updateOutsideCurrencyData={updateCurrency}
-                  // apparently there's a currency datum associated to each account
                   currency={DEFAULT_CURRENCY}
+                  // apparently there's a currency datum associated to each account
                 />
               </div>
             </div>

@@ -22,7 +22,6 @@ export function AccountingBox({ title, amount }: AccountingBoxPropType) {
     </div>
   );
 }
-
 //------------------
 
 export default AccountingBox;

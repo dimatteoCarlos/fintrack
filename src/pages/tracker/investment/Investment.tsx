@@ -15,6 +15,7 @@ import {
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
   INVESTMENT_ACCOUNT_OPTIONS_DEFAULT,
+  VARIANT_DEFAULT,
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
@@ -62,7 +63,7 @@ function Investment() {
   const optionsInvestmentAccounts = {
     title: 'Available Account',
     options: investmentAccounts,
-    variant:'tracker',
+    variant: VARIANT_DEFAULT,
   };
   //-----------------
   const initialFormData: FormNumberInputType = {
@@ -163,7 +164,6 @@ function Investment() {
     titles: { title1: 'amount', title2: 'account' },
     value: formData.amount,
     selectOptions: optionsInvestmentAccounts,
-  
   };
   //--------------------------
   return (

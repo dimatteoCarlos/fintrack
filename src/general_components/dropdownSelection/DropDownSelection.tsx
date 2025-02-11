@@ -4,6 +4,7 @@ import Select, { components } from 'react-select';
 import { useEffect, useRef } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
 import ArrowDownLightSvg from '../../assets/ArrowDownLightSvg.svg';
+import { VariantType } from '../../types/types';
 
 // set the style options for tracker and form variant, and DropDownSelection component
 //TRACKER DropDownSelection custom styles
@@ -144,7 +145,7 @@ export type DropdownSelectPropType = {
       value: string;
       label: string;
     }[];
-    variant: string;
+    variant: VariantType;
   };
 
   updateOptionHandler: (

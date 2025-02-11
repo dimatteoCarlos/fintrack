@@ -10,6 +10,7 @@ import {
   ACCOUNT_TYPE_DEFAULT,
   CURRENCY_OPTIONS,
   DEFAULT_CURRENCY,
+  VARIANT_FORM,
 } from '../../../helpers/constants.ts';
 import '../styles/forms-styles.css';
 import { CurrencyType } from '../../../types/types.ts';
@@ -40,7 +41,7 @@ const initialNewAccountData = {
 const ACCOUNT_TYPE_OPTIONS_DEFAULT = {
   title: 'Type',
   options: ACCOUNT_TYPE_DEFAULT,
-  variant: 'form',
+  variant: VARIANT_FORM,
 };
 const formDataNumber = { keyName: 'amount', title: 'value' };
 
@@ -195,7 +196,7 @@ function NewAccount() {
               <LabelNumberValidation
                 formDataNumber={formDataNumber}
                 validationMessages={validationMessages}
-                variant='form'
+                variant={VARIANT_FORM}
               />
 
               <InputNumberFormHandler
@@ -207,10 +208,9 @@ function NewAccount() {
                 setFormData={setFormData}
                 setStateData={setAccountData}
               />
-
               {/* <input
                 style={{ fontSize: '1.25rem', padding: '0 0.75rem' }}
-              /> */}
+              /> FIGMA STYLE*/}
             </div>
           </div>
 

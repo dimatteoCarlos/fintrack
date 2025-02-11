@@ -9,6 +9,7 @@ import '../styles/forms-styles.css';
 import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 import { FormNumberInputType } from '../../../types/types.ts';
 import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation.tsx';
+import { VARIANT_FORM } from '../../../helpers/constants.ts';
 // import { useLocation } from 'react-router-dom';
 
 //----Category Nature Tiles---------------
@@ -160,7 +161,7 @@ function NewCategory() {
               <LabelNumberValidation
                 formDataNumber={formDataNumber}
                 validationMessages={validationMessages}
-                variant='form'
+                 variant={VARIANT_FORM}
               />
               <input
                 className={'input__container'}

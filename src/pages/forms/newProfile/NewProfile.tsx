@@ -11,6 +11,7 @@ import { url_accounts } from '../../../endpoints.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
   TYPEDEBTS_OPTIONS_DEFAULT,
+  VARIANT_FORM,
 } from '../../../helpers/constants.ts';
 import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
@@ -23,7 +24,7 @@ import InputNumberFormHandler from '../../../general_components/inputNumberHandl
 const typeSelectionProp = {
   title: 'select type', //select type
   options: TYPEDEBTS_OPTIONS_DEFAULT,
-  variant: 'form', //define the customStyle to use in selection dropdown component
+  variant: VARIANT_FORM, //define the customStyle to use in selection dropdown component
 };
 
 //----Temporary initial values----------
@@ -80,7 +81,7 @@ function NewProfile() {
   const accountSelectionProp = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
-    variant: 'form', //this stablishes the custom styles to use in selection dropdown component
+    variant: VARIANT_FORM, //this stablishes the custom styles to use in selection dropdown component
   };
   //---functions-----
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {

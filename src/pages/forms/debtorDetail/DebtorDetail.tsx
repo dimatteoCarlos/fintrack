@@ -13,7 +13,10 @@ import PlusSignSvg from '../../../assets/PlusSignSvg.svg';
 
 // import { StatusSquare } from '../../../general_components/boxComponents.tsx';
 import '../styles/forms-styles.css';
-import { DEFAULT_LAST_MOVEMENTS } from '../../../helpers/constants.ts';
+import {
+  DEFAULT_LAST_MOVEMENTS,
+  VARIANT_FORM,
+} from '../../../helpers/constants.ts';
 //
 
 function DebtorDetail() {
@@ -45,7 +48,7 @@ function DebtorDetail() {
       { value: 'account_02', label: 'Account_02' },
       { value: 'account_03', label: 'Account_03' },
     ],
-    variant: 'form', //define the custom styles to use in selection dropdown component
+    variant: VARIANT_FORM, //define the custom styles to use in selection dropdown component
   };
 
   // const transactionType =

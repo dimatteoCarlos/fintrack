@@ -178,5 +178,4 @@ export type CURRENCY_OPTIONSTYPE = {
 //LabelInputNumberHandler
 export type FormNumberInputType = { [key: string]: string };
 
-//Generic type state
-// export type GenericStateType = 
+export type VariantType='tracker' | 'form' | 'light' | 'dark'

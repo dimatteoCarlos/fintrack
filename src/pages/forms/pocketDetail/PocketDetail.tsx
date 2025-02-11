@@ -36,7 +36,7 @@ function PocketDetail() {
   const accountSelectionProp = {
     title: 'account',
     options: accountOptions,
-    variant: 'form', //stablishes the custom styles to use in selection dropdown component
+    variant: VARIANT_FORM, //stablishes the custom styles to use in selection dropdown component
   };
 
   const initialPocketDetail = {

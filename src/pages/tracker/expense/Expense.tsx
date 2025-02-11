@@ -17,6 +17,7 @@ import {
   CurrencyType,
   ExpenseAccountsType,
   FormNumberInputType,
+  VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
 import {
@@ -79,7 +80,7 @@ function Expense() {
   const accountOptions = {
     title: 'Available Account',
     options: optionsExpenseAccounts,
-    variant: 'tracker',
+    variant: 'tracker' as VariantType,
   };
 
   //category options
@@ -99,7 +100,7 @@ function Expense() {
         ? 'Category / Subategory'
         : 'No Categories available',
     options: optionsExpenseCategories ?? CATEGORY_OPTIONS_DEFAULT,
-    variant: 'tracker',
+    variant:'tracker' as VariantType,
   };
 
   //---states-------------
@@ -130,27 +131,20 @@ function Expense() {
   //=========
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    // e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement> // with currentTarget
   ) {
     e.preventDefault();
     const { name, value } = e.target;
-
     //-----------
-    //the flag for number quantity type is amount in the name. . neeD to identify the name associated to the numeric input fieldS to evaluate, it may be SEVERAL fields from formData. // Pendiente:  Evaluar usar  un solo componente DropDownSelection
-
-    //********************* */
     if (name === 'amount') {
       const { formatMessage, valueNumber, isError, valueToSave } =
         checkNumberFormatValue(value);
 
-      // Actualizar el estado numerico en el formulario
+      // Update numeric state value. Actualizar el estado numerico en el formulario
       setFormData({
         ...formData,
         [name]: value,
       });
-
       console.log({ formatMessage, valueNumber, isError, valueToSave });
-
       setValidationMessages((prev) => ({
         ...prev,
         [name]: ` * Format: ${formatMessage}`,
@@ -169,7 +163,6 @@ function Expense() {
       setExpenseData((prev) => ({ ...prev, [name]: value }));
     }
   }
-
   //----------------
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
@@ -232,13 +225,11 @@ function Expense() {
           isReset={isReset}
           setIsReset={setIsReset}
         />
-
         {/* end of TOP CARD */}
 
         <CardSeparator />
 
         {/*start of BOTTOM CARD */}
-
         <div className='state__card--bottom'>
           <div className='card--title card--title--top'>
             Category{' '}
@@ -246,14 +237,6 @@ function Expense() {
               {validationMessages['category']}
             </span>
           </div>
-          {/* <SelectComponent
-            dropDownOptions={categoryOptions}
-            setSelectState={setExpenseData}
-            seletedValue={expenseData['category']}
-            optionKeySelected='category'
-            isReset={isReset}
-            setIsReset={setIsReset}
-          /> */}
 
           <DropDownSelection
             dropDownOptions={categoryOptions}

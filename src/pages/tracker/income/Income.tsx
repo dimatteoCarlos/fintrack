@@ -13,6 +13,7 @@ import {
   IncomeAccountsType,
   SourcesType,
   SourceType,
+  VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
 
@@ -31,7 +32,6 @@ import DropDownSelection from '../../../general_components/dropdownSelection/Dro
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
-// console.log(formatNumberCountry);
 //input income data state variables
 type IncomeDataType = {
   amount: number;
@@ -47,10 +47,10 @@ const initialIncomeData: IncomeDataType = {
   note: '',
   currency: defaultCurrency,
 };
+
+const VARIANT_DEFAULT:VariantType='tracker'
 //------------------------------
-const initialFormData: FormNumberInputType = {
-  amount: '',
-};
+const initialFormData: FormNumberInputType = { amount: '' };
 //------------------------------
 function Income() {
   //---- Income account Options ----------
@@ -70,11 +70,10 @@ function Income() {
           label: acc.name,
         }))
       : INCOME_OPTIONS_DEFAULT;
-  // console.log('accounts:', { optionsIncomeAccounts });
   const accountOptions = {
     title: 'Available Account',
     options: optionsIncomeAccounts,
-    variant: 'tracker',
+    variant: VARIANT_DEFAULT,
   };
   //--------
   //income sources - are these sources attached to income accounts?
@@ -94,9 +93,8 @@ function Income() {
             label: src.name,
           }))
         : SOURCE_OPTIONS_DEFAULT,
-    variant: 'tracker',
+    variant: VARIANT_DEFAULT as VariantType,
   };
-  // console.log('SOURCES:', { sourceOptions });
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
@@ -135,9 +133,9 @@ function Income() {
     >,
     setStateData: React.Dispatch<React.SetStateAction<T>>
   ): void {
-    const { formatMessage, valueNumber, isError, valueToSave } =
+    const { formatMessage,  isError, valueToSave } =
       checkNumberFormatValue(value);
-    // Actualiza el estado numerico en el formulario
+    // Update numeric state in the form with a string. Actualiza el estado numerico en el formulario
     setFormData((formData) => ({
       ...formData,
       [name]: value,
@@ -151,13 +149,7 @@ function Income() {
     }));
 
     setStateData((prev) => ({ ...prev, [name]: valueToSave }));
-
-    console.log('from:', trackerState, {
-      formatMessage,
-      valueNumber,
-      isError,
-      valueToSave,
-    });
+    // console.log('from:', trackerState, {formatMessage, valueNumber, isError, valueToSave,);
   }
   //-----------
   function updateTrackerData(
