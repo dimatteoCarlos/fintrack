@@ -1,8 +1,8 @@
 //src/pages/tracker/expense/Expense.tsx
 import { useState } from 'react';
 import CardSeparator from '../components/CardSeparator.tsx';
-import SelectComponent from '../components/SelectComponent.tsx';
 import { useFetch } from '../../../hooks/useFetch.tsx';
+// import SelectComponent from '../components/SelectComponent.tsx';
 //---
 import { useLocation } from 'react-router-dom';
 import {
@@ -27,6 +27,7 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
+import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 // import CardNote from '../components/CardNote.tsx';
 
 //-----temporarily data 'till deciding how to handle currencies
@@ -98,6 +99,7 @@ function Expense() {
         ? 'Category / Subategory'
         : 'No Categories available',
     options: optionsExpenseCategories ?? CATEGORY_OPTIONS_DEFAULT,
+    variant: 'tracker',
   };
 
   //---states-------------
@@ -115,6 +117,15 @@ function Expense() {
   function updateDataCurrency(currency: CurrencyType) {
     setCurrency(currency);
     setExpenseData((prev) => ({ ...prev, currency: currency }));
+  }
+
+  function categorySelectHandler(
+    selectedOption: { value: any; label: string } | null
+  ) {
+    setExpenseData((prev: any) => ({
+      ...prev,
+      ['category']: selectedOption?.value,
+    }));
   }
   //=========
   function updateTrackerData(
@@ -235,11 +246,18 @@ function Expense() {
               {validationMessages['category']}
             </span>
           </div>
-          <SelectComponent
+          {/* <SelectComponent
             dropDownOptions={categoryOptions}
             setSelectState={setExpenseData}
             seletedValue={expenseData['category']}
             optionKeySelected='category'
+            isReset={isReset}
+            setIsReset={setIsReset}
+          /> */}
+
+          <DropDownSelection
+            dropDownOptions={categoryOptions}
+            updateOptionHandler={categorySelectHandler}
             isReset={isReset}
             setIsReset={setIsReset}
           />
