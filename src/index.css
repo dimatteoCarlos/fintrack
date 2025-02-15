@@ -27,9 +27,7 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-color: var(--dark, #1b1b1b);
-}
+
 
 a {
   text-decoration: none;

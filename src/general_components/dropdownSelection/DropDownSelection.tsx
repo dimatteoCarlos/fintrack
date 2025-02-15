@@ -47,8 +47,8 @@ const customStyles = {
 
   option: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: state.isSelected ? '#e8e4da' : 'white',//variant:tracker
-    color: 'var(--dark)',//variant:tracker
+    backgroundColor: state.isSelected ? '#e8e4da' : 'white', //variant:tracker
+    color: 'var(--dark)', //variant:tracker
     ':active': { backgroundColor: '#e8e4da' },
     ':hover': { backgroundColor: 'rgba(232, 228, 218 , 0.4)' },
   }),
@@ -136,7 +136,6 @@ const DropdownIndicator = (props: any) => {
     </components.DropdownIndicator>
   );
 };
-
 //----------------------------------
 export type DropdownSelectPropType = {
   dropDownOptions: {
@@ -147,7 +146,6 @@ export type DropdownSelectPropType = {
     }[];
     variant: VariantType;
   };
-
   updateOptionHandler: (
     selectedOption: {
       value: any; //check any

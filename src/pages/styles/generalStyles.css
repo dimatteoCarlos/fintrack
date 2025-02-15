@@ -1,12 +1,12 @@
-/*it just affects Layout.tsx so check wether it affetcs also its children to optimize*/
-/* tentative styles changed for 411x731 cels. *2.75rem para --topSpaceHeight, .home__header top 11rem, .mainNavbar__container bottom 3%, total__container tracker 17%, .cards__presentation--tracker top 32% */
+/*global styles*/
+
+/*min screen height 731px 
+layout style is stablished by the followind elements: --topSpaceHeight height:2.75rem, .home__header top height: 11rem, .mainNavbar__container bottom 0%, .total__container tracker top:20%, .cards__presentation--tracker top 34% --*/
 
 :root {
   --figmaWidth: 22.5rem;
   /*figma*/
   --topSpaceHeight: 2.75rem;
-  /* --topSpaceHeight: 0rem; */
-
   --dark: #141414;
   --light: white;
   --creme: #e8e4da;
@@ -20,10 +20,12 @@
   --success: green;
   --hoverColor: cyan;
   --secondary: #7f7f7f;
+  --bgBodyColor: #1b1b1b;
 }
 
 body {
   color: var(--dark);
+  background-color: var(--bgBodyColor);
 }
 
 [class*='icon'] {
@@ -124,9 +126,9 @@ body {
 
 .home__layout {
   position: relative;
-  /* height: 100vh; */
-  min-height: 48rem;
-  max-height: 50rem;
+  height: 100dvh;
+  min-height: 47.5rem;
+  /* max-height: 50rem; */ /*DEFINE A BREAKDOWN FOR SCREEN BEYOND 50 REM HEIGHT */
 }
 
 .home__header {
@@ -134,8 +136,8 @@ body {
   min-height: 12.5rem; /*figma*/
   height: 12.5rem; /*figma*/
   /*test*/ /*try calc or clap and put height, Top and Bottom as a function of topSpaceHeight and head layout height*/
-  min-height: 11rem;
-  height: 11rem;
+  /* min-height: 11rem; */
+  /* height: 11rem; */
   /*---*/
   background-color: var(--light);
   flex-direction: column;
@@ -238,4 +240,19 @@ input[type='number'] {
 .hover:hover {
   color: var(--hoverColor, cyan);
   cursor: pointer;
+}
+
+@media screen and (min-height: 50rem) {
+  .home__layout {
+    max-height: 55rem;
+  }
+}
+
+@media screen and (max-height: 47rem) {
+  :root {
+    --topSpaceHeight: 0rem;
+  }
+  .mainNavbar__container {
+    bottom: calc(4.5% - var(--topSpaceHeight));
+  }
 }

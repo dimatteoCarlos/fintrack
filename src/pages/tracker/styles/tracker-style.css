@@ -45,7 +45,7 @@
   align-items: center;
 
   border-radius: 1rem 1rem 0 0;
-  width: 80%; /*original*/
+  width: 80%; /*original figma*/
   width: 88%; /*changed*/
   margin: 0 auto;
   align-self: center;
@@ -60,8 +60,10 @@
 .total__container {
   position: absolute;
   top: 20%; /*figma*/
+  top:calc(var(--topSpaceHeight) * 1 + 15%);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 }
 
 /*----card separator component-----*/
@@ -86,11 +88,10 @@
   --radio: 1.15rem;
   height: var(--radio);
   width: calc(var(--radio) * 0.65);
-  background-color: var(--dark);
 
   border-top-right-radius: var(--radio);
   border-bottom-right-radius: var(--radio);
-  background-color: var(--dark);
+  background-color: var(--bgBodyColor);
 }
 .circleR {
   border-radius: var(--radio) 0 0 var(--radio);
@@ -125,8 +126,7 @@ article {
 .cards__presentation--tracker {
   background: url('../../../assets/cardBgTexture.png') repeat;
   position: absolute;
-  top: 34%; /*figma*/
-  top: 32%;
+  top: calc(var(--topSpaceHeight) + 28%); /*figma*/
   left: 50%;
   transform: translateX(-50%);
   /* border: 10px solid orange; */
