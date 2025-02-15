@@ -1,5 +1,5 @@
 //FormPlusBtn.tsx
-import Plusvg from '../../assets/trackerNavbarSvg/PlusSvg.svg';
+import Plusvg from '../../assets/trackerNavbarSvg/Plusvg.svg';
 type FormPlusBtnPropType = {
   onClickHandler: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
