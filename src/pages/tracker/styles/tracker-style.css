@@ -246,7 +246,8 @@ textarea:invalid {
 
 .card__typeDate--type .screen--concept {
   font-weight: 600;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 0.875rem; /*this size adjusted in vercel deployed app*/
   text-transform: capitalize;
   width: fit-content;
 
