@@ -104,7 +104,8 @@ function Debts() {
       setCurrency(currency);
       setDataTrack((prev) => ({ ...prev, currency: currency }));
     },
-    [currency]
+    []
+    // [currency]
   );
   //---
   const toggleType = useCallback(
@@ -114,7 +115,8 @@ function Debts() {
         prev === 'lend' ? 'borrow' : 'lend'
       );
     },
-    [type]
+    []
+    // [type]
   );
 
   function changeDateFn(selectedDate: Date): void {
@@ -162,7 +164,7 @@ function Debts() {
     updateDataCurrency(currency);
     setDataTrack((prev) => ({ ...prev, currency: currency }));
     setDataTrack((prev) => ({ ...prev, type: type }));
-  }, [currency, type]);
+  }, [currency, type, updateDataCurrency]);
 
   //--------------------------
   //-------Top Card elements
