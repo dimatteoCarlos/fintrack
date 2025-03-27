@@ -178,4 +178,4 @@ export type CURRENCY_OPTIONSTYPE = {
 //LabelInputNumberHandler
 export type FormNumberInputType = { [key: string]: string };
 
-export type VariantType='tracker' | 'form' | 'light' | 'dark'
+export type VariantType=|'tracker' | 'form' | 'light' | 'dark'

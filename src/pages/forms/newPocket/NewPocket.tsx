@@ -75,9 +75,26 @@ function NewPocket() {
       setValidationMessages(newValidationMessages);
       return;
     }
-    //--
-    //POST the new profile data into database
-    console.log('data to POST:', { pocketData });
+    //-------------------------------------------------------
+    //POST the new pocket data into database
+
+    console.log('New pocket data to POST:', { pocketData });
+    console.log('check this:', formData, formDataNumber);
+
+    const pocketAccountData = {
+      type: 'pocket_saving',
+      name: pocketData.name,
+      currency: 'usd',
+      amount: formDataNumber.keyName || pocketData.target,
+      date: new Date(),
+      //---
+      target: formDataNumber.keyName || pocketData.target,
+      desired_date: pocketData.date, //desired date
+      note: pocketData.note,
+    };
+    console.log(pocketAccountData);
+
+    //-------------------------------------------------------
     //resetting form values
     setIsReset(true);
     setValidationMessages({});

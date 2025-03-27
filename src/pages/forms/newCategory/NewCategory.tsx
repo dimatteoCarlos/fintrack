@@ -80,7 +80,7 @@ function NewCategory() {
   function natureHandler(e: React.MouseEvent<HTMLButtonElement>) {
     // console.log('natureHandler', e.currentTarget.id);
     e.preventDefault();
-    const activeNature = !!e.currentTarget.id ? e.currentTarget.id : '';
+    const activeNature = e.currentTarget.id ? e.currentTarget.id : '';
     setActiveNature(activeNature);
     setCategoryData((prev) => ({ ...prev, nature: activeNature }));
   }
@@ -98,6 +98,21 @@ function NewCategory() {
     //--
     //new category data into database //POST ENDPOINT HERE
     console.log('New category data to POST:', { categoryData });
+    console.log('check this:', formData, formDataNumber);
+
+    const categoryBudgetAccountData = {
+      type: 'category_budget',
+      name: categoryData.category,
+      currency: 'usd',
+      amount: formDataNumber.keyName || categoryData.amount,
+      date:new Date(),
+      //---
+      nature_type_name: categoryData.nature,
+      // category_name:categoryData.category,
+      subcatecory:'not yet implemented',
+    };
+    console.log(categoryBudgetAccountData);
+
     //----------------------------------------------------
     //resetting form values
     setActiveNature(initialNewCategoryData.nature);
@@ -161,7 +176,7 @@ function NewCategory() {
               <LabelNumberValidation
                 formDataNumber={formDataNumber}
                 validationMessages={validationMessages}
-                 variant={VARIANT_FORM}
+                variant={VARIANT_FORM}
               />
               <input
                 className={'input__container'}

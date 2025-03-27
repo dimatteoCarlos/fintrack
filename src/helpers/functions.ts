@@ -32,10 +32,10 @@ export function changeCurrency(currency: CurrencyType) {
 //-------------------------
 
 type OpcType = {
-  currentOpc: any; //check any
-  opc1: any;
-  opc2: any;
-  opc3: any;
+  currentOpc: string; //check any
+  opc1: string;
+  opc2: string;
+  opc3: string;
 };
 
 export function genericToggle({ currentOpc, opc1, opc2, opc3 }: OpcType) {
@@ -170,7 +170,7 @@ export function showDate(date: Date, countryFormat = DATE_TIME_FORMAT_DEFAULT) {
 }
 
 //-------------------------
-export function isDateValid(dateStr: any) {
+export function isDateValid(dateStr: string) {
   return !isNaN(Number(new Date(dateStr))); //check if a valid timestamp is resturned
 }
 
@@ -221,7 +221,7 @@ export function checkNumberFormatValue(value: string): {
 } {
   const notMatching = /([^0-9.,])/g; // Pattern for invalid characters
   const onlyDotDecimalSep = /^\d*(\.\d*)?$/g; //Normal US numeric Format
-  const onlyCommaDecimalSep = /^\d*(\,\d*)$/g; // Only comma as decimal separator. ES numeric format
+  const onlyCommaDecimalSep = /^\d*(,\d*)$/g; // Only comma as decimal separator. ES numeric format
   const commaSepFormat = /^(\d{1,3})(,\d{3})*(\.\d*)?$/g; //Comma as thousand separator, point as decimal separator. US format
   const dotSepFormat = /^(\d{1,3})(\.\d{3})*(,\d*)?$/g; //Dots as thousands separator, comma as decimal separator. UK format
 
@@ -306,17 +306,15 @@ export function checkNumberFormatValue(value: string): {
 //------------------------------------
 
 //------------------------------------
-//adapt alert to the business rule to use
+//is necessary to adapt the alert to the business rule to use
 export const statusFn = (
   budget: number = 100,
   spent: number = 100
 ): StatusType => {
-  //Definir reglas de negocio
+  //Definir reglas de negocios para los semaforos
   const diff = budget - spent;
   // const type = diff >= 0 ? 'debtor' : diff < 0 ? 'lender' : 'none';
   // const type = diff <= 0 ? 'alert' : '';
   const type = diff >= 0;
   return type;
 };
-
-//*input number handler tracker form

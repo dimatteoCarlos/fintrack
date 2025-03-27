@@ -10,6 +10,8 @@ import { ExpenseAccountsType } from '../../../types/types.ts';
 import { url_accounts } from '../../../endpoints.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
+  CURRENCY_OPTIONS,
+  DEFAULT_CURRENCY,
   TYPEDEBTS_OPTIONS_DEFAULT,
   VARIANT_FORM,
 } from '../../../helpers/constants.ts';
@@ -17,15 +19,10 @@ import { capitalize, validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
 
-//------------------------
-//Account Options
-
-//Type Options
-const typeSelectionProp = {
-  title: 'select type', //select type
-  options: TYPEDEBTS_OPTIONS_DEFAULT,
-  variant: VARIANT_FORM, //define the customStyle to use in selection dropdown component
-};
+//-----temporarily 'till decide how to handle currencies
+const defaultCurrency = DEFAULT_CURRENCY;
+const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
+console.log('', { formatNumberCountry });
 
 //----Temporary initial values----------
 type ProfileDataType = {
@@ -35,7 +32,6 @@ type ProfileDataType = {
   type: string;
   amount: number | '';
 };
-
 const initialNewProfileData: ProfileDataType = {
   name: '',
   lastname: '',
@@ -43,9 +39,22 @@ const initialNewProfileData: ProfileDataType = {
   type: '',
   amount: '',
 };
-const initialFormData: FormNumberInputType = {
-  amount: '',
+//Type Options
+const typeSelectionProp = {
+  title: 'select type', //select type
+  options: TYPEDEBTS_OPTIONS_DEFAULT,
+  variant: VARIANT_FORM, //this set the customStyle to use in selection dropdown component
 };
+// const initialFormData: FormNumberInputType = {
+//   amount: '',
+// };
+const formDataNumber = { keyName: 'amount', title: 'value' };
+const initialFormData: FormNumberInputType = {
+  [formDataNumber.keyName]: '',
+};
+// const initialFormData: FormNumberInputType = {
+//   value: '',
+// };
 //-----------------------
 function NewProfile() {
   const location = useLocation();
@@ -53,6 +62,7 @@ function NewProfile() {
   const [profileData, setProfileData] = useState<ProfileDataType>(
     initialNewProfileData
   );
+  // const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
 
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
@@ -94,7 +104,7 @@ function NewProfile() {
     //check any
     if (selectedOption) {
       // console.log('selectedOption desde typeSelectHandler', { selectedOption });
-      setProfileData((prev: any) => ({ ...prev, type: selectedOption.value })); //check any
+      setProfileData((prev: ProfileDataType) => ({ ...prev, type: selectedOption.value })); //check any
     } else {
       console.log(`No option selected for ${'type'}`);
     }
@@ -119,7 +129,37 @@ function NewProfile() {
       setValidationMessages(newValidationMessages);
       return;
     }
-    //--
+    //-------------------------------------------------------
+    //POST the new profile debtor data into database
+    // type ProfileDataType = {
+    //   name: string;
+    //   lastname: string;
+    //   account: string | number;
+    //   type: string;
+    //   amount: number | '';
+    // };
+
+    console.log('New debtor data to POST:', { profileData });
+    console.log('check this:', formData, formDataNumber);
+
+    const debtorAccountData = {
+      type: 'debtor',
+      name: `${profileData.name}, ${profileData.lastname}`, //name, lastname
+      currency: 'usd',
+      amount: formDataNumber.keyName || profileData.amount,
+      date: new Date(),
+      //---
+      debtor_lastname:profileData.lastname,
+      debtor_name:profileData.name,
+      value: formDataNumber.keyName || profileData.amount,
+      selected_account_name: profileData.account, //
+      // selected_account_id: profileData.account_id, //
+      selected_account_id: 1, //
+      debtor_transaction_type_name: profileData.type,
+    };
+    console.log(debtorAccountData);
+
+    //-------------------------------------------------------
     //POST the new profile data into database
     console.log('data to POST:', { profileData });
     //resetting form values

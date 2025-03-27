@@ -38,6 +38,7 @@ const initialNewAccountData = {
   amount: '', // 'Value'
   currency: 'usd',
 };
+//Type Options
 const ACCOUNT_TYPE_OPTIONS_DEFAULT = {
   title: 'Type',
   options: ACCOUNT_TYPE_DEFAULT,
@@ -66,7 +67,27 @@ function NewAccount() {
 
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
+  //data fetching for options selections
+  // const {
+  //   data,
+  //   isLoading,
+  //   error: accountError,
+  // } = useFetch<ExpenseAccountsType>(url_accounts);
 
+  // const optionsExpenseAccounts =
+  //   !accountError && !isLoading && data?.accounts?.length
+  //     ? data.accounts.map((acc, _) => ({
+  //         value: acc.name,
+  //         label: acc.name,
+  //       }))
+  //     : ACCOUNT_TYPE_DEFAULT;
+
+  // //--for drop down selection
+  // const accountSelectionProp = {
+  //   title: 'Available Account',
+  //   options: optionsExpenseAccounts,
+  //   variant: VARIANT_FORM, //this stablishes the custom styles to use in selection dropdown component
+  // };
   //---functions-----
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     e.preventDefault();
@@ -77,10 +98,14 @@ function NewAccount() {
 
   function accountTypeSelectHandler(selectedOption: any) {
     //check any
-    setAccountData((acc: AccountDataType) => ({
-      ...acc,
-      type: selectedOption?.value,
-    }));
+    if (selectedOption) {
+      setAccountData((acc: AccountDataType) => ({
+        ...acc,
+        type: selectedOption?.value,
+      })); //check any
+    } else {
+      console.log(`No option selected for ${'account type'}`);
+    }
   }
 
   function changeStartingPoint(selectedDate: Date) {
@@ -104,7 +129,7 @@ function NewAccount() {
       setValidationMessages(newValidationMessages);
       return;
     }
-    //--
+    //-------------------------------------------------------
     //POST TO THE ENDPOINT FOR ACCOUNT DATA HERE
     console.log('data to POST:', { accountData });
     //resetting form values
