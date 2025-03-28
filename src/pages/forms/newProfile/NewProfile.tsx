@@ -72,7 +72,7 @@ function NewProfile() {
   const [formData, setFormData] =
     useState<FormNumberInputType>(initialFormData);
 
-  //data fetching for options selections
+ //DATA FETCHING for option selection
   const {
     data,
     isLoading,

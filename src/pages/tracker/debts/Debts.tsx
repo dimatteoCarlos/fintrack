@@ -44,6 +44,7 @@ function Debts() {
   const trackerState = useLocation().pathname.split('/')[2];
   //----Debtors Options----------
   //debtors
+   //DATA FETCHING
   const {
     data: dataDebtors,
     error: fetchedError,

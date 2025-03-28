@@ -17,10 +17,10 @@ import { PocketsToRenderType } from '../../../types/types';
 function ListPocket() {
   //List Pocket
   //DATA FETCHING
-  //const{ data, isLoading, error } = useFetch<PocketsType>(url_budget_pocket);//Data Fetching //Este endpoint no existe
+  // const{ data, isLoading, error } = useFetch<PocketsType>(url_budget_pocket);//Data Fetching //Este endpoint no existe
 
   //temporary values
-  let data: PocketsToRenderType[] = [],
+  const data: PocketsToRenderType[] = [],
     isLoading = false,
     error = null;
 

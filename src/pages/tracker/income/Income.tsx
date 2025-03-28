@@ -60,6 +60,7 @@ function Income() {
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
   //income accounts
+   //DATA FETCHING
   const {
     data,
     error: errorAccount,
@@ -81,6 +82,7 @@ function Income() {
   };
   //--------
   //income sources - are these sources attached to income accounts?
+   //DATA FETCHING
   const {
     data: sources,
     error: errorSources,

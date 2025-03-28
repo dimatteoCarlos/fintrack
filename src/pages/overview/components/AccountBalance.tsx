@@ -62,6 +62,7 @@ function AccountBalance({
     },
   ];
 
+ //DATA FETCHING
   const { data, isLoading, error } =
     useFetch<ExpenseAccountsType>(url_accounts);
   console.log('accounts:', data, error, isLoading);

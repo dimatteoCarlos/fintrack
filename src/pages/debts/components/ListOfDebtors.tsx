@@ -75,6 +75,7 @@ const defaultDebts: DebtsToRender[] = [
 ];
 
 function ListOfDebtors() {
+   //DATA FETCHING
   const { data, isLoading, error } = useFetch<DebtsType>(url_debtors_debt);
   console.log('data:', data);
 

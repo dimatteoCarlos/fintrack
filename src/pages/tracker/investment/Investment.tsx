@@ -55,6 +55,8 @@ function Investment() {
   const { pathname } = useLocation();
   const trackerState = pathname.split('/')[2];
   //investment accounts - from backend database
+  
+   //DATA FETCHING
   const {
     data,
     error: fetchedError,

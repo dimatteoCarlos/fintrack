@@ -66,6 +66,7 @@ function InvestmentAccountBalance({
     },
   ];
 
+  //DATA FETCHING
   const { data, isLoading, error } =
     useFetch<InvestmentAccountsType>(url_investment_acc);
   // console.log('Investment_accounts:', data, error, isLoading);

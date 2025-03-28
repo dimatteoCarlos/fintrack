@@ -69,6 +69,8 @@ function Expense() {
   const router = useLocation();
   const trackerState = router.pathname.split('/')[2];
   //account options
+
+  //DATA FETCHING
   const {
     data,
     error: fetchedError,
@@ -90,6 +92,7 @@ function Expense() {
   };
   //--------
   //category options
+  //DATA FETCHING
   const { data: categoryData, error: categoryError } =
     useFetch<CategoriesType>(url_categories);
 
