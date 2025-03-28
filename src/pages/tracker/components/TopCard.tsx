@@ -5,8 +5,8 @@ import { capitalize } from '../../../helpers/functions';
 import {
   CurrencyType,
   DropdownOptionType,
-  TopCardSelectStateType,
   VariantType,
+  TopCardSelectStateType,
 } from '../../../types/types';
 
 type TopCardPropType = {

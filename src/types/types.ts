@@ -222,3 +222,10 @@ export type DebtsTrackerInputDataType = {
 export type TypeMovementType =
   | InvestmentTypeMovementType
   | DebtsTypeMovementType;
+
+export type BaseTrackerType = {
+  amount: number | '';
+  currency: CurrencyType;
+  date?: Date;
+  note: string;
+};
