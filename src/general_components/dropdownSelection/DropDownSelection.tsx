@@ -45,16 +45,31 @@ const createDropdownIndicator =
 const createStyles = (
   variant: VariantType
 ): StylesConfig<DropdownOption, false, GroupBase<DropdownOption>> => ({
+  container: (baseStyles) => ({
+    ...baseStyles,
+    boxShadow: 'none',
+    width: '100%',
+    border: 'none',
+    borderRadius: '0.75rem',
+  }),
+
   control: (base) => ({
     ...base,
-    backgroundColor: variant === 'tracker' ? '#e8e4da' : 'var(--dark)',
+    backgroundColor: variant === 'tracker' ? '#e8e4da' : 'transparent',
     color: variant === 'tracker' ? 'var(--dark)' : 'var(--light)',
     border: 'none',
     borderRadius: '0.75rem',
+    fontWeight: '500',
     fontSize: '0.875rem',
     cursor: 'pointer',
     textTransform: 'capitalize' as const,
   }),
+
+  placeholder: (baseStyles) => ({
+    ...baseStyles,
+    color: variant === 'tracker' ? 'var(--dark)' : 'var(--creme)',
+  }),
+
   menu: (base) => ({
     ...base,
     backgroundColor: variant === 'tracker' ? 'white' : 'var(--dark)',
@@ -64,6 +79,28 @@ const createStyles = (
     ...base,
     color: variant === 'tracker' ? 'var(--dark)' : 'var(--creme)',
   }),
+
+  option: (provided, state) =>
+    variant === 'tracker'
+      ? {
+          ...provided,
+          backgroundColor: state.isSelected ? '#e8e4da' : 'white', //variant:tracker
+          color: 'var(--dark)', //variant:tracker
+          ':active': { backgroundColor: '#e8e4da' },
+          ':hover': { backgroundColor: 'rgba(232, 228, 218 , 0.4)' },
+        }
+      : //variant: form
+        {
+          ...provided,
+          backgroundColor: state.isSelected
+            ? 'var(--dark1,rgba(51, 48, 48, 1) )'
+            : 'transparent',
+          color: 'var(--creme)',
+          borderRadius: '1rem',
+          padding: '0.5rem',
+          ':active': { backgroundColor: '#e8e4da' },
+          ':hover': { backgroundColor: 'hsla(0, 3.00%, 19.40%, 0.50)' },
+        },
 });
 
 // ✅ 3. Main component
