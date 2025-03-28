@@ -10,17 +10,17 @@ import Select, {
 import { useEffect, useRef } from 'react';
 import ArrowDownDarkSvg from '../../assets/ArrowDownDarkSvg.svg';
 import ArrowDownLightSvg from '../../assets/ArrowDownLightSvg.svg';
-import { VariantType } from '../../types/types';
+import { VariantType, DropdownOptionType } from '../../types/types';
 
-export type DropdownOption = { value: string; label: string };
+// export type DropdownOptionType = { value: string; label: string };
 
 export interface DropdownSelectPropType {
   dropDownOptions: {
     title: string;
-    options: DropdownOption[];
+    options: DropdownOptionType[];
     variant: VariantType;
   };
-  updateOptionHandler: (selectedOption: DropdownOption | null) => void;
+  updateOptionHandler: (selectedOption: DropdownOptionType | null) => void;
   setIsReset: (value: boolean) => void;
   isReset: boolean;
 }
@@ -30,9 +30,9 @@ const createDropdownIndicator =
   (variant: VariantType) =>
   (
     props: DropdownIndicatorProps<
-      DropdownOption,
+      DropdownOptionType,
       false,
-      GroupBase<DropdownOption>
+      GroupBase<DropdownOptionType>
     >
   ) =>
     (
@@ -44,12 +44,12 @@ const createDropdownIndicator =
 // ✅ 2. Styles function based on `variant`
 const createStyles = (
   variant: VariantType
-): StylesConfig<DropdownOption, false, GroupBase<DropdownOption>> => ({
+): StylesConfig<DropdownOptionType, false, GroupBase<DropdownOptionType>> => ({
   container: (baseStyles) => ({
     ...baseStyles,
     boxShadow: 'none',
     width: '100%',
-    border: 'none',
+    border: 'red',
     borderRadius: '0.75rem',
   }),
 
@@ -57,8 +57,9 @@ const createStyles = (
     ...base,
     backgroundColor: variant === 'tracker' ? '#e8e4da' : 'transparent',
     color: variant === 'tracker' ? 'var(--dark)' : 'var(--light)',
-    border: 'none',
-    borderRadius: '0.75rem',
+    boxShadow: 'none', //this is the contorn line
+    border: variant === 'tracker' ? 'none' : '1px solid var(--light)',
+    borderRadius: '1rem',
     fontWeight: '500',
     fontSize: '0.875rem',
     cursor: 'pointer',
@@ -103,7 +104,7 @@ const createStyles = (
         },
 });
 
-// ✅ 3. Main component
+// Main component
 function DropDownSelection({
   dropDownOptions,
   updateOptionHandler,
@@ -112,7 +113,7 @@ function DropDownSelection({
 }: DropdownSelectPropType) {
   const { title, options, variant } = dropDownOptions;
   const selectRef =
-    useRef<SelectInstance<DropdownOption, false, GroupBase<DropdownOption>>>(
+    useRef<SelectInstance<DropdownOptionType, false, GroupBase<DropdownOptionType>>>(
       null
     );
 
@@ -124,9 +125,9 @@ function DropDownSelection({
   }, [isReset, setIsReset]);
 
   const handleChange = (
-    newValue: SingleValue<DropdownOption> | MultiValue<DropdownOption>
+    newValue: SingleValue<DropdownOptionType> | MultiValue<DropdownOptionType>
   ) => {
-    updateOptionHandler(newValue as SingleValue<DropdownOption>);
+    updateOptionHandler(newValue as SingleValue<DropdownOptionType>);
   };
 
   return (

@@ -89,7 +89,7 @@ function DebtorDetail() {
 
   function accountSelectHandler(
     selectedOption: {
-      value: any; //check any
+      value:  string; //check any
       label: string;
     } | null
   ) {

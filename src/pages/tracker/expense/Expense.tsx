@@ -12,11 +12,14 @@ import {
 } from '../../../helpers/functions.ts';
 import {} from '../../../helpers/functions.ts';
 import {
-  CategoriesType,
-  CategoryType,
   CurrencyType,
-  ExpenseAccountsType,
+  DropdownOptionType,
   FormNumberInputType,
+  CategoriesType,
+  ExpenseAccountsType,
+  ExpenseInputDataType,
+  CategoryType,
+  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
@@ -39,25 +42,28 @@ console.log('', { formatNumberCountry });
 // ********************PENDIENTE: convertir componentes reusables, definir alguans reglas de negocio para status. Establecer como es el manejo de los currency, data fetching from backend, edition  pages design, buttons and functionality and integration to backend as post (Updating, deleting, patching), definir en overview lo que se refleja en los goals, definir funcionalidad de los pockets y manejo de la informacion. Todo el proceso de calculo en el backend.
 //------------------------------------------------------
 //input expense data state variables
-type ExpenseDataType = {
-  amount: number;
-  account: string;
-  category: string;
-  note: string;
-  currency: string;
-};
+// type ExpenseInputDataType = {
+//   amount: number;
+//   account: string;
+//   category: string;
+//   note: string;
+//   currency: string;
+// };
 
-const initialExpenseData: ExpenseDataType = {
+const initialExpenseData: ExpenseInputDataType = {
   amount: 0,
   account: '',
   category: '',
   note: '',
   currency: defaultCurrency,
 };
+
+const VARIANT_DEFAULT: VariantType = 'tracker';
+//------------------------------
 const initialFormData: FormNumberInputType = {
   amount: '',
 };
-//------------------------------
+//-------------------------------------
 function Expense() {
   //----Expense account Options -------
   const router = useLocation();
@@ -71,7 +77,7 @@ function Expense() {
 
   const optionsExpenseAccounts =
     !fetchedError && !isLoading && data?.accounts?.length
-      ? data.accounts.map((acc, _) => ({
+      ? data.accounts.map((acc) => ({
           value: acc.name,
           label: acc.name,
         }))
@@ -82,7 +88,7 @@ function Expense() {
     options: optionsExpenseAccounts,
     variant: 'tracker' as VariantType,
   };
-
+  //--------
   //category options
   const { data: categoryData, error: categoryError } =
     useFetch<CategoriesType>(url_categories);
@@ -100,7 +106,7 @@ function Expense() {
         ? 'Category / Subategory'
         : 'No Categories available',
     options: optionsExpenseCategories ?? CATEGORY_OPTIONS_DEFAULT,
-    variant:'tracker' as VariantType,
+    variant: VARIANT_DEFAULT as VariantType,
   };
 
   //---states-------------
@@ -110,7 +116,8 @@ function Expense() {
     [key: string]: string;
   }>({});
 
-  const [expenseData, setExpenseData] = useState(initialExpenseData);
+  const [expenseData, setExpenseData] =
+    useState<TopCardSelectStateType>(initialExpenseData);
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -120,12 +127,10 @@ function Expense() {
     setExpenseData((prev) => ({ ...prev, currency: currency }));
   }
 
-  function categorySelectHandler(
-    selectedOption: { value: any; label: string } | null
-  ) {
-    setExpenseData((prev: ExpenseDataType) => ({
+  function categorySelectHandler(selectedOption: DropdownOptionType | null) {
+    setExpenseData((prev: TopCardSelectStateType) => ({
       ...prev,
-      ['category']: selectedOption?.value,
+      ['category']: selectedOption!.value,
     }));
   }
   //=========
@@ -184,8 +189,9 @@ function Expense() {
       setValidationMessages(newValidationMessages);
       return;
     }
-
+    //----------------------------
     //POST ENDPOINT HERE
+    //----------------------------
     console.log('Expense data state to Post:', expenseData);
 
     //reset the state and the selected options on select component
@@ -220,7 +226,7 @@ function Expense() {
           trackerName={trackerState}
           currency={currency}
           updateCurrency={updateDataCurrency}
-          selectedValue={expenseData.account}
+          // selectedValue={expenseData.account}
           setSelectState={setExpenseData}
           isReset={isReset}
           setIsReset={setIsReset}
@@ -245,7 +251,6 @@ function Expense() {
             setIsReset={setIsReset}
           />
 
-          {/* APLICAR DEBOUNCE A INPUT Y TEXTAREA*/}
           <CardNoteSave
             title={'note'}
             validationMessages={validationMessages}

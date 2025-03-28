@@ -115,15 +115,6 @@ export type DebtsTypeMovementType = 'lend' | 'borrow';
 
 export type DebtorNewProfileType = 'lending' | 'borrowing';
 
-export type DebtsTrackerDataType = {
-  amount: number | '';
-  debtor: string;
-  currency: CurrencyType;
-  type: DebtsTypeMovementType;
-  date: Date;
-  note: string;
-};
-
 //--------------------------------
 //--------------------------------
 //debts
@@ -153,7 +144,7 @@ export type CategoryBudgetType = {
   spent: number;
 };
 
-//budget/ListPocket
+//saving/ListPocket
 export type PocketsToRenderType = {
   pocketName: string;
   description: string;
@@ -178,4 +169,56 @@ export type CURRENCY_OPTIONSTYPE = {
 //LabelInputNumberHandler
 export type FormNumberInputType = { [key: string]: string };
 
-export type VariantType=|'tracker' | 'form' | 'light' | 'dark'
+export type VariantType = 'tracker' | 'form' | 'light' | 'dark';
+
+export type DropdownOptionType = { value: string; label: string };
+
+//tracker input mask data type
+
+export type TopCardSelectStateType =
+  | ExpenseInputDataType
+  | IncomeInputDataType
+  | InvestmentInputDataType
+  | DebtsTrackerInputDataType;
+
+export type ExpenseInputDataType = {
+  amount: number;
+  account: string;
+  category: string;
+  note: string;
+  currency: string;
+  date?: Date;
+  type?: TypeMovementType;
+};
+
+export type IncomeInputDataType = {
+  amount: number;
+  account: string;
+  source: string;
+  note: string;
+  currency: string;
+  date?: Date;
+  type?: TypeMovementType;
+};
+
+export type InvestmentInputDataType = {
+  amount: number | '';
+  account: string;
+  currency: CurrencyType;
+  type: TypeMovementType;
+  date: Date;
+  note: string;
+};
+
+export type DebtsTrackerInputDataType = {
+  amount: number | '';
+  debtor: string;
+  currency: CurrencyType;
+  type: TypeMovementType;
+  date: Date;
+  note: string;
+};
+
+export type TypeMovementType =
+  | InvestmentTypeMovementType
+  | DebtsTypeMovementType;

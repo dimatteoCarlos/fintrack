@@ -9,9 +9,10 @@ import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import {
   CurrencyType,
   DebtorsListType,
-  DebtsTrackerDataType,
+  DebtsTrackerInputDataType,
   DebtsTypeMovementType,
   FormNumberInputType,
+  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
@@ -29,8 +30,8 @@ const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 
-//input debts datatrack variables
-const initialTrackerData: DebtsTrackerDataType = {
+//input debts datatracked variables
+const initialTrackerData: DebtsTrackerInputDataType = {
   amount: 0,
   debtor: '',
   currency: defaultCurrency,
@@ -72,8 +73,11 @@ function Debts() {
   //---states--------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [type, setType] = useState<DebtsTypeMovementType>('lend');
-  const [datatrack, setDataTrack] =
-    useState<DebtsTrackerDataType>(initialTrackerData);
+
+  const [datatrack, setDataTrack] = useState<
+    DebtsTrackerInputDataType | TopCardSelectStateType
+  >(initialTrackerData);
+
   const [validationMessages, setValidationMessages] = useState<{
     [key: string]: string;
   }>({});
@@ -185,7 +189,7 @@ function Debts() {
           trackerName={trackerState}
           currency={currency}
           updateCurrency={updateDataCurrency}
-          selectedValue={datatrack.debtor}
+          // selectedValue={datatrack.debtor}
           setSelectState={setDataTrack}
           isReset={isReset}
           setIsReset={setIsReset}
@@ -208,7 +212,7 @@ function Debts() {
               <div className='card__screen--date'>
                 <Datepicker
                   changeDate={changeDateFn}
-                  date={datatrack.date}
+                  date={datatrack.date ?? new Date()}
                   variant='tracker'
                   isReset={isReset}
                 ></Datepicker>

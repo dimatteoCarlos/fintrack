@@ -6,7 +6,7 @@ import FormSubmitBtn from '../../../general_components/formSubmitBtn/FormSubmitB
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection.tsx';
 import '../styles/forms-styles.css';
 import { useFetch } from '../../../hooks/useFetch.tsx';
-import { ExpenseAccountsType } from '../../../types/types.ts';
+import {  DropdownOptionType, ExpenseAccountsType } from '../../../types/types.ts';
 import { url_accounts } from '../../../endpoints.ts';
 import {
   ACCOUNT_OPTIONS_DEFAULT,
@@ -28,7 +28,7 @@ console.log('', { formatNumberCountry });
 type ProfileDataType = {
   name: string;
   lastname: string;
-  account: string | number;
+  account: string ;
   type: string;
   amount: number | '';
 };
@@ -81,7 +81,7 @@ function NewProfile() {
 
   const optionsExpenseAccounts =
     !accountError && !isLoading && data?.accounts?.length
-      ? data.accounts.map((acc, _) => ({
+      ? data.accounts.map((acc) => ({
           value: acc.name,
           label: acc.name,
         }))
@@ -100,7 +100,7 @@ function NewProfile() {
     setProfileData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function typeSelectHandler(selectedOption: any) {
+  function typeSelectHandler(selectedOption: DropdownOptionType | null) {
     //check any
     if (selectedOption) {
       // console.log('selectedOption desde typeSelectHandler', { selectedOption });
@@ -112,11 +112,11 @@ function NewProfile() {
 
   //Esta funcion "accountSelectHandler" se puede definir dentro del componente DropDownSelection y solo pasar como prop, la funcion para modificar el estado correspondiente, en este caso setProfileData. selectedOption es manejado internamente por la libreria Select.
 
-  function accountSelectHandler(selectedOption: any) {
+  function accountSelectHandler(selectedOption: DropdownOptionType | null) {
     //check any
     setProfileData((prev: ProfileDataType) => ({
       ...prev,
-      account: selectedOption?.value,
+      account: selectedOption!.value,
     }));
   }
   //------------------
@@ -235,7 +235,7 @@ function NewProfile() {
               <DropDownSelection
                 dropDownOptions={accountSelectionProp}
                 updateOptionHandler={accountSelectHandler}
-                optionKeySelected='account'
+                // optionKeySelected='account'
                 isReset={isReset}
                 setIsReset={setIsReset}
               />

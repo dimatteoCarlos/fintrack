@@ -9,10 +9,13 @@ import {
 import { useFetch } from '../../../hooks/useFetch.tsx';
 import {
   CurrencyType,
+  DropdownOptionType,
   FormNumberInputType,
   IncomeAccountsType,
+  IncomeInputDataType,
   SourcesType,
   SourceType,
+  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
@@ -33,14 +36,14 @@ const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 //input income data state variables
-type IncomeDataType = {
-  amount: number;
-  account: string;
-  source: string;
-  note: string;
-  currency: string;
-};
-const initialIncomeData: IncomeDataType = {
+// type IncomeInputDataType = {
+//   amount: number;
+//   account: string;
+//   source: string;
+//   note: string;
+//   currency: string;
+// };
+const initialIncomeData: IncomeInputDataType = {
   amount: 0,
   account: '',
   source: '',
@@ -63,6 +66,7 @@ function Income() {
     isLoading,
   } = useFetch<IncomeAccountsType>(url_accounts); //income and expense accounts are the same?
   // console.log('data:', data, {errorAccount}, data?.accounts)
+
   const optionsIncomeAccounts =
     data?.accounts?.length && !errorAccount && !isLoading
       ? data?.accounts?.map((acc) => ({
@@ -98,7 +102,7 @@ function Income() {
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
-    useState<IncomeDataType>(initialIncomeData);
+    useState<TopCardSelectStateType>(initialIncomeData);
 
   const [formData, setFormData] = useState(initialFormData);
   const [validationMessages, setValidationMessages] = useState<{
@@ -112,44 +116,11 @@ function Income() {
     // console.log('updateDataCurrency:', currency);
   }
 
-  function sourceSelectHandler(
-    selectedOption: { value: any; label: string } | null
-  ) {
-    setIncomeData((prev: IncomeDataType) => ({
+  function sourceSelectHandler(selectedOption: DropdownOptionType | null) {
+    setIncomeData((prev: TopCardSelectStateType) => ({
       ...prev,
-      ['source']: selectedOption?.value,
+      ['source']: selectedOption!.value,
     }));
-  }
-  //-----------
-  //**Check numeric format input Function** convert to useHook */
-  function inputNumberHandler<T>(
-    name: string,
-    value: string,
-    setFormData: React.Dispatch<React.SetStateAction<FormNumberInputType>>,
-    setValidationMessages: React.Dispatch<
-      React.SetStateAction<{
-        [key: string]: string;
-      }>
-    >,
-    setStateData: React.Dispatch<React.SetStateAction<T>>
-  ): void {
-    const { formatMessage, isError, valueToSave } =
-      checkNumberFormatValue(value);
-    // Update numeric state in the form with a string. Actualiza el estado numerico en el formulario
-    setFormData((formData) => ({
-      ...formData,
-      [name]: value,
-    }));
-
-    setValidationMessages((prev) => ({
-      ...prev,
-      [name]: !isError
-        ? ` Format: ${formatMessage}`
-        : ` * Error: ${formatMessage}`,
-    }));
-
-    setStateData((prev) => ({ ...prev, [name]: valueToSave }));
-    // console.log('from:', trackerState, {formatMessage, valueNumber, isError, valueToSave,);
   }
   //-----------
   function updateTrackerData(
@@ -159,14 +130,29 @@ function Income() {
     const { name, value } = e.target;
 
     if (name === 'amount') {
-      inputNumberHandler<IncomeDataType>(
-        name,
-        value,
-        setFormData,
-        setValidationMessages,
-        setIncomeData //depends on the tracker status
-      );
-      // return;
+      const { formatMessage, valueNumber, isError, valueToSave } =
+        checkNumberFormatValue(value);
+
+      // Update numeric state value. Actualizar el estado numerico en el formulario
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+      console.log({ formatMessage, valueNumber, isError, valueToSave });
+      setValidationMessages((prev) => ({
+        ...prev,
+        [name]: ` * Format: ${formatMessage}`,
+      }));
+
+      if (isError) {
+        console.log('Number Format Error occurred');
+        setValidationMessages((prev) => ({
+          ...prev,
+          [name]: ` * Error: ${formatMessage}`,
+        }));
+      }
+      setIncomeData((prev) => ({ ...prev, [name]: valueToSave }));
+      return;
     } else {
       setIncomeData((prev) => ({ ...prev, [name]: value }));
     }
@@ -222,7 +208,7 @@ function Income() {
           trackerName={trackerState}
           currency={currency}
           updateCurrency={updateDataCurrency}
-          selectedValue={incomeData.account}
+          // selectedValue={incomeData.account}
           setSelectState={setIncomeData}
           isReset={isReset}
           setIsReset={setIsReset}

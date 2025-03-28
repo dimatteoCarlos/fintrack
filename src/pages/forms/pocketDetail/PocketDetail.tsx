@@ -65,13 +65,14 @@ function PocketDetail() {
 
   function accountSelectHandler(
     selectedOption: {
-      value: any; //check any
+      value: string; //check any
       label: string;
     } | null
   ) {
     setPocketDetail((prev) => ({
       ...prev,
-      pocketInfo: { ...pocketInfo, account: selectedOption?.value },
+      pocketInfo: { ...pocketInfo,
+         account: selectedOption!.value },
     }));
     console.log('selectedOption', selectedOption);
   }

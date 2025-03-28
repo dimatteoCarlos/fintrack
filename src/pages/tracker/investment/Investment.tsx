@@ -6,10 +6,17 @@ import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import {
   CurrencyType,
   FormNumberInputType,
+  IncomeInputDataType,
   InvestmentAccountsType,
+  InvestmentInputDataType,
   InvestmentTypeMovementType,
+  TopCardSelectStateType,
 } from '../../../types/types.ts';
-import { numberFormat, validationData } from '../../../helpers/functions.ts';
+import {
+  checkNumberFormatValue,
+  numberFormat,
+  validationData,
+} from '../../../helpers/functions.ts';
 import { useLocation } from 'react-router-dom';
 import {
   CURRENCY_OPTIONS,
@@ -19,22 +26,22 @@ import {
 } from '../../../helpers/constants.ts';
 import TopCard from '../components/TopCard.tsx';
 import CardNoteSave from '../components/CardNoteSave.tsx';
-import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
+// import useInputNumberHandler from '../../../hooks/useInputNumberHandler.tsx';
 //------------------------------
 //temporary values
 const defaultCurrency: CurrencyType = DEFAULT_CURRENCY;
 const formatNumberCountry = CURRENCY_OPTIONS[defaultCurrency];
 console.log('🚀 ~ Debts ~ formatNumberCountry:', formatNumberCountry);
 //input investment data state variables
-type InvestmentDataType = {
-  amount: number | '';
-  account: string;
-  currency: CurrencyType;
-  type: InvestmentTypeMovementType;
-  date: Date;
-  note: string;
-};
-const initialInvestmentData: InvestmentDataType = {
+// type InvestmentInputDataType = {
+//   amount: number | '';
+//   account: string;
+//   currency: CurrencyType;
+//   type: InvestmentTypeMovementType;
+//   date: Date;
+//   note: string;
+// };
+const initialInvestmentData: InvestmentInputDataType = {
   amount: '',
   account: '',
   currency: defaultCurrency,
@@ -71,7 +78,9 @@ function Investment() {
   };
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
-  const [investmentData, setInvestmentData] = useState(initialInvestmentData);
+  const [investmentData, setInvestmentData] = useState<
+    IncomeInputDataType | TopCardSelectStateType
+  >(initialInvestmentData);
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
   const [isReset, setIsReset] = useState<boolean>(false);
   const [formData, setFormData] =
@@ -80,29 +89,54 @@ function Investment() {
     [key: string]: string;
   }>({});
   //----functions--------
-  const updateDataCurrency = useCallback(
-    (currency: CurrencyType) => {
-      setCurrency(currency);
-      setInvestmentData((prev) => ({ ...prev, currency: currency }));
-    },
-    [currency]
-  );
+  const updateDataCurrency = useCallback((currency: CurrencyType) => {
+    setCurrency(currency);
+    setInvestmentData((prev) => ({ ...prev, currency: currency }));
+  }, []);
   //-----------
-  //use Hook: useInputNumberHandler to get the function inputNumberHandler
-  //this function updates the states formData, ValidationMessages[name] and investmentData for [name] number input
-  const { inputNumberHandlerFn } = useInputNumberHandler(
-    setFormData,
-    setValidationMessages,
-    setInvestmentData
-  );
+  // //use Hook: useInputNumberHandler to get the function inputNumberHandler
+  // //this function updates the states formData, ValidationMessages[name] and investmentData for [name] number input
+  // const { inputNumberHandlerFn } = useInputNumberHandler(
+  //   setFormData,
+  //   setValidationMessages,
+  //   setInvestmentData
+  // );
   //--
   function updateTrackerData(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     e.preventDefault();
     const { name, value } = e.target;
+    //-----------
+    // if (name === 'amount') {
+    //   inputNumberHandlerFn(name, value);
+    // } else {
+    //   setInvestmentData((prev) => ({ ...prev, [name]: value }));
+    // }
     if (name === 'amount') {
-      inputNumberHandlerFn(name, value);
+      const { formatMessage, valueNumber, isError, valueToSave } =
+        checkNumberFormatValue(value);
+
+      // Update numeric state value. Actualizar el estado numerico en el formulario
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+      console.log({ formatMessage, valueNumber, isError, valueToSave });
+      setValidationMessages((prev) => ({
+        ...prev,
+        [name]: ` * Format: ${formatMessage}`,
+      }));
+
+      if (isError) {
+        console.log('Number Format Error occurred');
+        setValidationMessages((prev) => ({
+          ...prev,
+          [name]: ` * Error: ${formatMessage}`,
+        }));
+      }
+      setInvestmentData((prev) => ({ ...prev, [name]: valueToSave }));
+      return;
     } else {
       setInvestmentData((prev) => ({ ...prev, [name]: value }));
     }
@@ -115,13 +149,14 @@ function Investment() {
         prev === 'deposit' ? 'withdraw' : 'deposit'
       );
     },
-    [typeInv]
+    []
+    // [typeInv]
   );
   //--
   function changeInvestmentDate(selectedDate: Date): void {
     setInvestmentData((prev) => ({ ...prev, date: selectedDate }));
   }
-  //----
+  //----------------
   function onSaveHandler(e: React.MouseEvent<HTMLButtonElement>) {
     console.log('On Save Handler');
     e.preventDefault();
@@ -131,6 +166,7 @@ function Investment() {
       { formattedNumber },
       typeof formattedNumber
     );
+    //----------------------------------------------------------------------------
     //validation of entered data
     const newValidationMessages = { ...validationData(investmentData) };
     if (Object.values(newValidationMessages).length > 0) {
@@ -140,7 +176,9 @@ function Investment() {
     //----------------------------
     //do the post to the endpoint api, here
     //ENDPOINT
+    console.log('Investment data state to Post:', investmentData);
     //----------------------------
+
     //resetting values
     setTypeInv('deposit');
     updateDataCurrency(defaultCurrency);
@@ -157,7 +195,7 @@ function Investment() {
   useEffect(() => {
     updateDataCurrency(currency);
     setInvestmentData((prev) => ({ ...prev, type: typeInv }));
-  }, [currency, typeInv]);
+  }, [currency, typeInv, updateDataCurrency]);
   //------------------------
   //-------Top Card elements
   const topCardElements = {
@@ -177,7 +215,7 @@ function Investment() {
           trackerName={trackerState}
           currency={currency}
           updateCurrency={updateDataCurrency}
-          selectedValue={investmentData.account}
+          // selectedValue={investmentData.account}
           setSelectState={setInvestmentData}
           isReset={isReset}
           setIsReset={setIsReset}
@@ -201,7 +239,7 @@ function Investment() {
               <div className='card__screen--date '>
                 <Datepicker
                   changeDate={changeInvestmentDate}
-                  date={investmentData.date}
+                  date={investmentData.date ?? new Date()}
                   variant={'tracker'}
                   isReset={isReset}
                 />

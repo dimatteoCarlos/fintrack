@@ -13,7 +13,7 @@ import {
   VARIANT_FORM,
 } from '../../../helpers/constants.ts';
 import '../styles/forms-styles.css';
-import { CurrencyType } from '../../../types/types.ts';
+import { CurrencyType,  DropdownOptionType } from '../../../types/types.ts';
 import { validationData } from '../../../helpers/functions.ts';
 import { FormNumberInputType } from '../../../types/types.ts';
 import InputNumberFormHandler from '../../../general_components/inputNumberHandler/InputNumberFormHandler.tsx';
@@ -96,7 +96,7 @@ function NewAccount() {
     setAccountData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function accountTypeSelectHandler(selectedOption: any) {
+  function accountTypeSelectHandler(selectedOption:DropdownOptionType | null) {
     //check any
     if (selectedOption) {
       setAccountData((acc: AccountDataType) => ({

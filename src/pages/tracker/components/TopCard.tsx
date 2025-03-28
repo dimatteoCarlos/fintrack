@@ -2,7 +2,12 @@ import CurrencyBadge from '../../../general_components/currencyBadge/CurrencyBad
 import DropDownSelection from '../../../general_components/dropdownSelection/DropDownSelection';
 import LabelNumberValidation from '../../../general_components/labelNumberValidation/LabelNumberValidation';
 import { capitalize } from '../../../helpers/functions';
-import { CurrencyType, VariantType } from '../../../types/types';
+import {
+  CurrencyType,
+  DropdownOptionType,
+  TopCardSelectStateType,
+  VariantType,
+} from '../../../types/types';
 
 type TopCardPropType = {
   topCardElements: {
@@ -26,8 +31,8 @@ type TopCardPropType = {
   trackerName: string;
   updateCurrency: (x: CurrencyType) => void;
   currency: CurrencyType;
-  selectedValue: string;
-  setSelectState: React.Dispatch<React.SetStateAction<any>>; //check this later
+  selectedValue?: string;
+  setSelectState: React.Dispatch<React.SetStateAction<TopCardSelectStateType>>; //check this later
   isReset: boolean;
   setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -37,11 +42,10 @@ const TopCard = ({
   validationMessages,
   updateTrackerData,
   trackerName,
-  updateCurrency,
   currency,
+  updateCurrency,
+  selectedValue,
   setSelectState,
-  // selectedValue,
-
   isReset,
   setIsReset,
 }: TopCardPropType): JSX.Element => {
@@ -53,14 +57,14 @@ const TopCard = ({
     value, //amount input value
   } = topCardElements;
 
-  function stateSelectHandler(
-    selectedOption: { value: any; label: string } | null
-  ) {
-    setSelectState((prev: any) => ({
+  function stateSelectHandler(selectedOption: DropdownOptionType | null) {
+    setSelectState((prev: TopCardSelectStateType) => ({
       ...prev,
       [title2]: selectedOption?.value,
     }));
   }
+
+  console.log('selected value from TopCard:', selectedValue);
 
   return (
     <>
