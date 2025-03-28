@@ -37,6 +37,7 @@ type TopCardPropType = {
   setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 };
 //----component
+//next challenge: convert this to a generic component using generic ts type <T> 
 const TopCard = ({
   topCardElements,
   validationMessages,
