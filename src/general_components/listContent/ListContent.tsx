@@ -13,6 +13,15 @@ export type ListContenPropType = {
 };
 
 function ListContent({ listOfItems }: ListContenPropType) {
+
+  const formatDate = (dateInput: Date | string | number): string => {
+    const date = new Date(dateInput);
+    return new Intl.DateTimeFormat(DATE_TIME_FORMAT_DEFAULT).format(date);
+  };
+
+
+
+
   return (
     <>
       <div className='list__main__container'>
@@ -34,9 +43,7 @@ function ListContent({ listOfItems }: ListContenPropType) {
 
                 {date && isDateValid(date) && (
                   <div className='box__subtitle'>
-                    {new Intl.DateTimeFormat(DATE_TIME_FORMAT_DEFAULT).format(
-                      new Date(date)
-                    )}
+                     {formatDate(date)}
                   </div>
                 )}
               </BoxRow>
