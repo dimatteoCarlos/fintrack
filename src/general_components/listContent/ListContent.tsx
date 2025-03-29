@@ -32,7 +32,7 @@ function ListContent({ listOfItems }: ListContenPropType) {
                   </div>
                 </BoxRow>
 
-                {!!date && isDateValid(date.toLocaleString().toString()) && (
+                {!!date && isDateValid(date) && (
                   <div className='box__subtitle'>
                     {`${new Intl.DateTimeFormat(
                       DATE_TIME_FORMAT_DEFAULT
