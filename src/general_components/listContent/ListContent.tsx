@@ -32,11 +32,11 @@ function ListContent({ listOfItems }: ListContenPropType) {
                   </div>
                 </BoxRow>
 
-                {!!date && isDateValid(date) && (
+                {date && isDateValid(date) && (
                   <div className='box__subtitle'>
-                    {`${new Intl.DateTimeFormat(
-                      DATE_TIME_FORMAT_DEFAULT
-                    ).format(new Date(date))}`}
+                    {new Intl.DateTimeFormat(DATE_TIME_FORMAT_DEFAULT).format(
+                      new Date(date)
+                    )}
                   </div>
                 )}
               </BoxRow>
