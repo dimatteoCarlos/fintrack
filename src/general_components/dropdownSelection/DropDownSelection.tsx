@@ -49,7 +49,7 @@ const createStyles = (
     ...baseStyles,
     boxShadow: 'none',
     width: '100%',
-    border: 'red',
+    border: 'none',
     borderRadius: '0.75rem',
   }),
 

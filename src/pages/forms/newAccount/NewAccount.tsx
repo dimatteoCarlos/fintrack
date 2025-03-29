@@ -197,7 +197,7 @@ function NewAccount() {
             <div className='account__dateAndCurrency'>
               <div className='account__date'>
                 <label className='label form__title'>{'Starting Point'}</label>
-                <div className='form__datepicker__container'>
+                <div className='form__datepicker__container' >
                   <FormDatepicker
                     changeDate={changeStartingPoint}
                     date={accountData.date}
