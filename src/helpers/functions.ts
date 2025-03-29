@@ -170,8 +170,20 @@ export function showDate(date: Date, countryFormat = DATE_TIME_FORMAT_DEFAULT) {
 }
 
 //-------------------------
-export function isDateValid(dateStr: string) {
-  return !isNaN(Number(new Date(dateStr))); //check if a valid timestamp is resturned
+export function isDateValid(
+  dateStr: Date | string | number | undefined | null
+) {
+  if (dateStr === null || dateStr === undefined) {
+    return false;
+  }
+
+  if (typeof dateStr === 'number') {
+    return !isNaN(new Date(dateStr).getTime());
+  }
+
+  // Para Date o string
+  const date = new Date(dateStr);
+  return !isNaN(date.getTime());
 }
 
 //-----------------------
