@@ -120,7 +120,7 @@ function DropDownSelection({
   useEffect(() => {
     if (isReset && selectRef.current) {
       selectRef.current.clearValue();
-      setIsReset(false);
+      // setIsReset(false);
     }
   }, [isReset, setIsReset]);
 

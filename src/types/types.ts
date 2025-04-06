@@ -175,16 +175,10 @@ export type DropdownOptionType = { value: string; label: string };
 
 //tracker input mask data type
 
-export type TopCardSelectStateType =
-  | ExpenseInputDataType
-  | IncomeInputDataType
-  | InvestmentInputDataType
-  | DebtsTrackerInputDataType;
-
 export type ExpenseInputDataType = {
   amount: number;
   account: string;
-  category: string;
+  category: string | undefined;
   note: string;
   currency: string;
   date?: Date;
@@ -194,7 +188,7 @@ export type ExpenseInputDataType = {
 export type IncomeInputDataType = {
   amount: number;
   account: string;
-  source: string;
+  source: string | undefined;
   note: string;
   currency: string;
   date?: Date;

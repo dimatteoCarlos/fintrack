@@ -19,7 +19,6 @@ import {
   ExpenseAccountsType,
   ExpenseInputDataType,
   CategoryType,
-  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_categories } from '../../../endpoints.ts';
@@ -120,7 +119,7 @@ function Expense() {
   }>({});
 
   const [expenseData, setExpenseData] =
-    useState<TopCardSelectStateType>(initialExpenseData);
+    useState<ExpenseInputDataType>(initialExpenseData);
 
   const [formData, setFormData] = useState(initialFormData);
 
@@ -131,9 +130,9 @@ function Expense() {
   }
 
   function categorySelectHandler(selectedOption: DropdownOptionType | null) {
-    setExpenseData((prev: TopCardSelectStateType) => ({
+    setExpenseData((prev) => ({
       ...prev,
-      ['category']: selectedOption!.value,
+      ['category']: selectedOption?.value,
     }));
   }
   //=========
@@ -183,7 +182,7 @@ function Expense() {
       typeof formattedNumber
     );
 
-    //----------------------------------------------------------------------------
+    //------------------------------------------------
     //validation of entered data
     const newValidationMessages = validationData(expenseData);
     // console.log('validation mgs:', newValidationMessages);
@@ -201,7 +200,7 @@ function Expense() {
 
     setCurrency(defaultCurrency);
     setExpenseData(initialExpenseData);
-    setIsReset(true);
+    // setIsReset(true);
     setValidationMessages({});
     setFormData(initialFormData);
 

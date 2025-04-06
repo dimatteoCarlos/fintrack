@@ -15,7 +15,6 @@ import {
   IncomeInputDataType,
   SourcesType,
   SourceType,
-  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { url_accounts, url_sources } from '../../../endpoints.ts';
@@ -104,7 +103,7 @@ function Income() {
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [incomeData, setIncomeData] =
-    useState<TopCardSelectStateType>(initialIncomeData);
+    useState<IncomeInputDataType>(initialIncomeData);
 
   const [formData, setFormData] = useState(initialFormData);
   const [validationMessages, setValidationMessages] = useState<{
@@ -119,9 +118,9 @@ function Income() {
   }
 
   function sourceSelectHandler(selectedOption: DropdownOptionType | null) {
-    setIncomeData((prev: TopCardSelectStateType) => ({
+    setIncomeData((prev: IncomeInputDataType) => ({
       ...prev,
-      ['source']: selectedOption!.value,
+      ['source']: selectedOption?.value,
     }));
   }
   //-----------

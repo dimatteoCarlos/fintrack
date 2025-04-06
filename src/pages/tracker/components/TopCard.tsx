@@ -6,10 +6,9 @@ import {
   CurrencyType,
   DropdownOptionType,
   VariantType,
-  TopCardSelectStateType,
 } from '../../../types/types';
 
-type TopCardPropType = {
+type TopCardPropType<T extends Record<string, unknown>>= {
   topCardElements: {
     titles: { title1: string; title2: string };
     value: string;
@@ -32,13 +31,13 @@ type TopCardPropType = {
   updateCurrency: (x: CurrencyType) => void;
   currency: CurrencyType;
   selectedValue?: string;
-  setSelectState: React.Dispatch<React.SetStateAction<TopCardSelectStateType>>; //check this later
+  setSelectState: React.Dispatch<React.SetStateAction<T>>; //generic Type
   isReset: boolean;
   setIsReset: React.Dispatch<React.SetStateAction<boolean>>;
 };
 //----component
 //next challenge: convert this to a generic component using generic ts type <T> 
-const TopCard = ({
+const TopCard=<T extends Record<string, unknown>>({
   topCardElements,
   validationMessages,
   updateTrackerData,
@@ -49,7 +48,7 @@ const TopCard = ({
   setSelectState,
   isReset,
   setIsReset,
-}: TopCardPropType): JSX.Element => {
+}: TopCardPropType<T>): JSX.Element => {
   const {
     selectOptions: topCardOptions,
     selectOptions: { variant },
@@ -59,7 +58,7 @@ const TopCard = ({
   } = topCardElements;
 
   function stateSelectHandler(selectedOption: DropdownOptionType | null) {
-    setSelectState((prev: TopCardSelectStateType) => ({
+    setSelectState((prev) => ({
       ...prev,
       [title2]: selectedOption?.value,
     }));
