@@ -12,7 +12,6 @@ import {
   DebtsTrackerInputDataType,
   DebtsTypeMovementType,
   FormNumberInputType,
-  TopCardSelectStateType,
   VariantType,
 } from '../../../types/types.ts';
 import { numberFormat } from '../../../helpers/functions.ts';
@@ -76,7 +75,7 @@ function Debts() {
   const [type, setType] = useState<DebtsTypeMovementType>('lend');
 
   const [datatrack, setDataTrack] = useState<
-    DebtsTrackerInputDataType | TopCardSelectStateType
+    DebtsTrackerInputDataType 
   >(initialTrackerData);
 
   const [validationMessages, setValidationMessages] = useState<{

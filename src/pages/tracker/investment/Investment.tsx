@@ -10,7 +10,6 @@ import {
   InvestmentAccountsType,
   InvestmentInputDataType,
   InvestmentTypeMovementType,
-  TopCardSelectStateType,
 } from '../../../types/types.ts';
 import {
   checkNumberFormatValue,
@@ -81,7 +80,7 @@ function Investment() {
   //---states------
   const [currency, setCurrency] = useState<CurrencyType>(defaultCurrency);
   const [investmentData, setInvestmentData] = useState<
-    IncomeInputDataType | TopCardSelectStateType
+  InvestmentInputDataType  
   >(initialInvestmentData);
   const [typeInv, setTypeInv] = useState<InvestmentTypeMovementType>('deposit');
   const [isReset, setIsReset] = useState<boolean>(false);
