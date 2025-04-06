@@ -6,7 +6,6 @@ import Datepicker from '../../../general_components/datepicker/Datepicker.tsx';
 import {
   CurrencyType,
   FormNumberInputType,
-  IncomeInputDataType,
   InvestmentAccountsType,
   InvestmentInputDataType,
   InvestmentTypeMovementType,
